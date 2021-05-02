@@ -1,0 +1,1000 @@
+# Translation of Plugins - Uncanny Toolkit for LearnDash - Stable (latest release) in French (France)
+# This file is distributed under the same license as the Plugins - Uncanny Toolkit for LearnDash - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2019-10-08 13:29:19+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"Language: fr\n"
+"Project-Id-Version: Plugins - Uncanny Toolkit for LearnDash - Stable (latest release)\n"
+
+#: src/classes/frontend-login-plus.php:977
+msgid " Visit %s to view / edit user. "
+msgstr " Visitez %s pour voir / modifier l’utilisateur. "
+
+#: src/classes/frontend-login-plus.php:976
+msgid "%s account has been approved! "
+msgstr "Le compte %s a été approuvé ! "
+
+#: src/classes/frontend-login-plus.php:919
+msgid "Please visit %s to login. "
+msgstr " Veuillez visiter %s pour vous connecter. "
+
+#: src/classes/frontend-login-plus.php:299
+#: src/classes/frontend-login-plus.php:918
+msgid "Your account has been approved! "
+msgstr "Votre compte a été approuvé ! "
+
+#: src/classes/frontend-login-plus.php:896
+#: src/classes/frontend-login-plus.php:966
+msgid "%s - Account Verified"
+msgstr "%s - Compte vérifié"
+
+#: src/classes/login-logout-menu.php:230
+msgid " - Register"
+msgstr "- S'enregistrer "
+
+#: src/classes/login-logout-menu.php:227
+msgid " - Log In/Out"
+msgstr "- Se (dé)connecter "
+
+#: src/classes/login-logout-menu.php:224
+msgid " - Log Out"
+msgstr "- Se déconnecter "
+
+#: src/classes/login-logout-menu.php:155
+msgid "Log In / Log Out"
+msgstr "Se connecter / se déconnecter"
+
+#: src/classes/login-logout-menu.php:221
+msgid " - Log In"
+msgstr "- Se connecter "
+
+#: src/classes/frontend-login-plus.php:432
+msgid "Disable Remember Me Checkbox"
+msgstr "Désactiver la case à cocher « se souvenir de moi »"
+
+#: src/classes/frontend-login-plus.php:514
+msgid "You are logged in."
+msgstr "Vous êtes connecté⋅e."
+
+#: src/classes/frontend-login-plus.php:549
+msgid "Secret Key"
+msgstr "Clé secrète"
+
+#: src/classes/frontend-login-plus.php:543
+msgid "Site Key"
+msgstr "Clé du site"
+
+#: src/classes/frontend-login-plus.php:539
+msgid "Google reCAPTCHA Settings"
+msgstr "Réglages Google ReCAPTCHA"
+
+#: src/classes/frontend-login-plus.php:513
+msgid "Message For Logged In Users"
+msgstr "Message pour les utilisateurs connectés"
+
+#: src/classes/frontend-login-plus.php:508
+msgid "Hide All For Logged In Users"
+msgstr "Tout masquer pour les utilisateurs connectés"
+
+#: src/classes/frontend-login-plus.php:572
+msgid "Forgot Password"
+msgstr "Mot de passe oublié"
+
+#: src/classes/frontend-login-plus.php:567
+msgid "Forgot Password Form"
+msgstr "Formulaire de mot de passe oublié"
+
+#: src/classes/frontend-login-plus.php:583
+msgid "Field Label"
+msgstr "Libellé du champ"
+
+#: src/classes/frontend-login-plus.php:590
+msgid "Recover Account"
+msgstr "Récupérer mon compte"
+
+#: src/classes/frontend-login-plus.php:365
+#: src/classes/frontend-login-plus.php:631
+msgid "Body"
+msgstr "Corps"
+
+#: src/classes/frontend-login-plus.php:503
+#: src/classes/login-logout-menu.php:152
+msgid "Log Out"
+msgstr "Se déconnecter"
+
+#: src/classes/frontend-login-plus.php:450
+msgid "Forgot Password?"
+msgstr "Mot de passe oublié ?"
+
+#: src/classes/frontend-login-plus.php:455
+#: src/classes/frontend-login-plus.php:589
+#: src/classes/frontend-login-plus.php:687
+msgid "Button Label"
+msgstr "Libellé du bouton"
+
+#: src/classes/frontend-login-plus.php:461
+msgid "Register Link Text"
+msgstr "Texte du lien d’inscription"
+
+#: src/classes/frontend-login-plus.php:467
+msgid "Register Link"
+msgstr "Lien d’inscription"
+
+#: src/classes/frontend-login-plus.php:472
+msgid "Show Register Link"
+msgstr "Afficher le lien d’inscription"
+
+#: src/classes/frontend-login-plus.php:421
+#: src/classes/frontend-login-plus.php:584
+msgid "Username or Email Address"
+msgstr "Identifiant ou adresse de messagerie"
+
+#: src/classes/login-redirect.php:113
+msgid "Redirect Priority"
+msgstr "Priorité de redirection"
+
+#: src/classes/frontend-login-plus.php:624
+msgid "Password Reset"
+msgstr "Réinitialisation du mot de passe"
+
+#: src/classes/frontend-login-plus.php:614
+msgid "Email Success Message"
+msgstr "Message de succès d’e-mail"
+
+#: src/classes/frontend-login-plus.php:608
+msgid "Email Failed Message"
+msgstr "Message d’échec d’e-mail"
+
+#: src/classes/frontend-login-plus.php:603
+msgid "That is not a registered username or email address."
+msgstr "Cet identifiant ou adresse de messagerie n’a pas été reconnu."
+
+#: src/classes/frontend-login-plus.php:578
+msgid "Enter your email address or username and we’ll send you instructions to reset your password."
+msgstr "Saisissez votre adresse de messagerie ou votre identifiant et nous allons vous envoyer les instructions pour réinitialiser votre mot de passe."
+
+#: src/classes/frontend-login-plus.php:491
+msgid "Your account is not yet verified."
+msgstr "Votre compte n’a pas encore été vérifié."
+
+#: src/classes/frontend-login-plus.php:490
+msgid "Account Not Verified Message"
+msgstr "Message de compte non vérifié"
+
+#: src/classes/frontend-login-plus.php:477
+#: src/classes/frontend-login-plus.php:602
+msgid "Invalid Credentials Message"
+msgstr "Message d’identifiants invalides"
+
+#: src/classes/frontend-login-plus.php:395
+#: src/classes/frontend-login-plus.php:571
+#: src/classes/frontend-login-plus.php:656 src/classes/widget-cert.php:370
+msgid "Title"
+msgstr "Titre"
+
+#: src/classes/frontend-login-plus.php:391
+msgid "Login Form"
+msgstr "Formulaire de connexion"
+
+#: src/classes/frontend-login-plus.php:325
+msgid "Boxed with shadow"
+msgstr "Boîte avec ombre"
+
+#: src/classes/frontend-login-plus.php:414
+msgid "Hide the Description"
+msgstr "Masquer la description"
+
+#: src/classes/frontend-login-plus.php:401
+msgid "Hide the Title"
+msgstr "Masquer le titre"
+
+#: src/classes/frontend-login-plus.php:426
+#: src/classes/frontend-login-plus.php:668
+msgid "Password Field Label"
+msgstr "Libellé du champ « mot de passe »"
+
+#: src/classes/frontend-login-plus.php:420
+msgid "Login Field Label"
+msgstr "Libellé du champ « identifiant »"
+
+#: src/classes/frontend-login-plus.php:437
+msgid "Remember Me Checkbox Label"
+msgstr "Libellé de la case à cocher « se souvenir de moi »"
+
+#: src/classes/frontend-login-plus.php:449
+msgid "Forgot Password Link Text"
+msgstr "Texte du lien « mot de passe oublié »"
+
+#: src/classes/frontend-login-plus.php:306
+msgid "General"
+msgstr "Général"
+
+#: src/classes/frontend-login-plus.php:408
+msgid "Log in below to access your courses."
+msgstr "Connectez-vous ci-dessous pour accéder à vos cours."
+
+#: src/classes/breadcrumbs.php:370
+msgid "Breadcrumb"
+msgstr "Fil d’Ariane"
+
+#: src/classes/show-certificates-shortcode.php:44
+msgid "Show Certificates"
+msgstr "Afficher les certificats"
+
+#: src/classes/widget-cert.php:25
+msgid "Certificate Widget"
+msgstr "Widget certificat"
+
+#: src/classes/frontend-login-plus.php:713
+msgid "Invalid password reset link."
+msgstr "Lien de réinitialisation de mot de passe non valide."
+
+#: src/classes/frontend-login-plus.php:712
+msgid "Invalid Reset Link Message"
+msgstr "Message de réinitialisation de mot de passe non valide."
+
+#: src/classes/frontend-login-plus.php:694
+msgid "The passwords you entered do not match."
+msgstr "Les mots de passe que vous avez saisis ne correspondent pas."
+
+#: src/classes/frontend-login-plus.php:693
+msgid "Passwords Do Not Match Message"
+msgstr "Message de non correspondance de mots de passe"
+
+#: src/templates/admin-support.php:76
+msgid "Cheating, Eh?"
+msgstr "Alors, on triche ?"
+
+#: src/templates/admin-help.php:112 src/classes/frontend-login-plus.php:351
+#: src/classes/frontend-login-plus.php:625
+msgid "Subject"
+msgstr "Sujet"
+
+#: src/templates/admin-siteinfo.php:141
+msgid "Plugin"
+msgstr "Extension"
+
+#: src/templates/admin-siteinfo.php:142 src/templates/admin-siteinfo.php:171
+msgid "Version"
+msgstr "Version"
+
+#: src/templates/admin-siteinfo.php:127
+msgid "Object Cache"
+msgstr "Cache objet"
+
+#: src/templates/admin-siteinfo.php:139
+msgid "WordPress Plugins"
+msgstr "Extensions WordPress"
+
+#: src/templates/admin-siteinfo.php:106 src/templates/admin-siteinfo.php:128
+msgid "No"
+msgstr "Non"
+
+#: src/templates/admin-siteinfo.php:106 src/templates/admin-siteinfo.php:128
+msgid "Yes"
+msgstr "Oui"
+
+#: src/templates/admin-siteinfo.php:105
+msgid "Multisite"
+msgstr "Multisite"
+
+#: src/templates/admin-siteinfo.php:99
+msgid "WordPress Version"
+msgstr "Version de WordPress"
+
+#: src/templates/admin-siteinfo.php:89
+msgid "WordPress Settings"
+msgstr "Réglages WordPress"
+
+#: src/templates/admin-siteinfo.php:76
+msgid "MySQL version"
+msgstr "Version de MySQL"
+
+#: src/templates/admin-siteinfo.php:57
+msgid "PHP Version"
+msgstr "Version de PHP"
+
+#: src/templates/admin-siteinfo.php:45
+msgid " PHP_OS: "
+msgstr " PHP_OS : "
+
+#: src/templates/admin-siteinfo.php:31 src/templates/admin-siteinfo.php:92
+#: src/templates/admin-siteinfo.php:167 src/templates/admin-siteinfo.php:193
+msgid "Value"
+msgstr "Valeur"
+
+#: src/templates/admin-siteinfo.php:30 src/templates/admin-siteinfo.php:91
+#: src/templates/admin-siteinfo.php:166 src/templates/admin-siteinfo.php:192
+msgid "Setting"
+msgstr "Réglage"
+
+#: src/templates/admin-siteinfo.php:111
+msgid "Site Language"
+msgstr "Langue du site"
+
+#: src/templates/admin-siteinfo.php:121
+msgid "Not defined"
+msgstr "Non défini"
+
+#: src/templates/admin-siteinfo.php:190
+msgid "PHP Settings"
+msgstr "Réglages PHP"
+
+#: src/config.php:538
+msgid "Close"
+msgstr "Fermer"
+
+#: src/templates/admin-siteinfo.php:175
+msgid "DB Version"
+msgstr "Version BDD"
+
+#: src/templates/admin-siteinfo.php:179
+msgid "Script Debug"
+msgstr "Débogage de script"
+
+#: src/templates/admin-siteinfo.php:180
+msgid "not defined"
+msgstr "non défini"
+
+#: src/templates/admin-siteinfo.php:164
+msgid "Learndash Settings"
+msgstr "Réglages LearnDash"
+
+#: src/templates/admin-tabs.php:35 src/templates/admin-tabs.php:42
+msgid "License Activation"
+msgstr "Activation de licence"
+
+#: src/boot.php:90 src/templates/admin-tabs.php:23
+msgid "LearnDash Plugins"
+msgstr "Extensions LearnDash"
+
+#: src/boot.php:80 src/templates/admin-tabs.php:19 src/config.php:530
+msgid "Help"
+msgstr "Aide"
+
+#: src/templates/admin-tabs.php:15 src/admin-menu.php:55
+msgid "Modules"
+msgstr "Modules"
+
+#: src/admin-menu.php:581
+msgid "Course Dashboard"
+msgstr "Tableau de bord du cours"
+
+#: src/admin-menu.php:521
+msgid "Days Until Course Expiry"
+msgstr "Jours avant expiration du cours"
+
+#: src/templates/admin-help.php:143
+msgid "Site Data"
+msgstr "Données du site"
+
+#: src/templates/admin-siteinfo.php:21
+msgid "WordPress Minimum Requirements"
+msgstr "Prérequis minimaux de WordPress "
+
+#: src/templates/admin-siteinfo.php:28
+msgid "Environment"
+msgstr "Environnent"
+
+#: src/config.php:544
+msgid "Save module"
+msgstr "Enregistrer le module"
+
+#: src/templates/admin-modules.php:137
+msgid "Pro only"
+msgstr "Pro uniquement"
+
+#: src/templates/admin-modules.php:134
+msgid "Free only"
+msgstr "Gratuit uniquement"
+
+#: src/templates/admin-modules.php:131
+msgid "All Versions"
+msgstr "Toutes les versions"
+
+#: src/templates/admin-modules.php:148
+msgid "All Categories"
+msgstr "Toutes les catégories"
+
+#: src/templates/admin-modules.php:165
+msgid "All Statuses"
+msgstr "Tous les états"
+
+#: src/templates/admin-modules.php:284
+msgid "Settings"
+msgstr "Réglages"
+
+#: src/templates/admin-support.php:12 src/admin-menu.php:199
+msgid "by"
+msgstr "par"
+
+#: src/templates/admin-help.php:96
+msgid "Email"
+msgstr "E-mail"
+
+#: src/templates/admin-help.php:104
+msgid "Site URL"
+msgstr "URL du site"
+
+#: src/templates/admin-help.php:120
+msgid "Message"
+msgstr "Message"
+
+#: src/templates/admin-help.php:128
+msgid "Send site data"
+msgstr "Envoyer les données du site"
+
+#: src/templates/admin-help.php:136
+msgid "Create ticket"
+msgstr "Créer un ticket"
+
+#: src/admin-menu.php:563
+msgid "Import Users"
+msgstr "Importer des utilisateurs"
+
+#: src/classes/breadcrumbs.php:126
+msgid "Include Current Page"
+msgstr "Inclure la page actuelle"
+
+#: src/classes/learn-dash-resume.php:223 src/classes/learn-dash-resume.php:371
+msgid "RESUME"
+msgstr "Reprendre"
+
+#: src/classes/learn-dash-resume.php:112
+msgid "Show Name of Last Course / Lesson / Topic"
+msgstr "Afficher le nom du dernier cours/leçon/sujet"
+
+#: src/templates/admin-modules.php:168
+msgid "Active"
+msgstr "Active"
+
+#: src/admin-menu.php:635
+msgid "Enhanced Course Grid"
+msgstr "Grille de cours améliorée"
+
+#: src/templates/admin-modules.php:154
+msgid "General WordPress"
+msgstr "Général WordPress"
+
+#: src/templates/admin-modules.php:171
+msgid "Inactive"
+msgstr "Inactive"
+
+#: src/templates/admin-modules.php:151
+msgid "LearnDash"
+msgstr "LearnDash"
+
+#: src/admin-menu.php:605
+msgid "Learner Transcript"
+msgstr "Transcription de l'élève"
+
+#: src/admin-menu.php:533
+msgid "Simple Course Timer"
+msgstr "Minuterie de cours simple"
+
+#: src/classes/redirect-not-enrolled.php:57
+msgid "Not Enrolled Redirect"
+msgstr "Redirection de non-inscrit"
+
+#: src/classes/redirect-not-enrolled.php:137
+#: src/classes/redirect-not-enrolled.php:175
+msgid "Not enrolled Redirect URL"
+msgstr "URL de redirection de non-inscrit"
+
+#: src/classes/frontend-login-plus.php:609
+msgid "Password reset email failed to send."
+msgstr "L’e-mail n'a pas pu être envoyé."
+
+#: src/classes/redirect-not-enrolled.php:139
+#: src/classes/redirect-not-enrolled.php:177
+msgid "Redirect the user to the URL if they are not enrolled in the course"
+msgstr "Rediriger l'utilisateur vers l'URL s'il n'est pas inscrit au cours"
+
+#: src/classes/redirect-not-enrolled.php:59
+msgid "Redirects all non-admin roles to a specific URL if they are not enrolled in the course."
+msgstr "Redirige tous les rôles non-admin vers une URL spécifique si ils ne sont pas inscrits au cours."
+
+#: src/classes/frontend-login-plus.php:719
+msgid "Your password was successfully reset. Please log in."
+msgstr "Votre mot de passe a bien été réinitialisé. Connectez-vous."
+
+#. Translators: "switch off" means to temporarily log out
+#: src/includes/user-switching.php:231 src/includes/user-switching.php:252
+msgid "Could not switch off."
+msgstr "Impossible d’éteindre."
+
+#: src/includes/user-switching.php:155 src/includes/user-switching.php:180
+#: src/includes/user-switching.php:189 src/includes/user-switching.php:194
+#: src/includes/user-switching.php:222
+msgid "Could not switch users."
+msgstr "Impossible de changer d'utilisateur."
+
+#: src/classes/user-switching.php:132
+msgid "Easily and securely switch between users.  Great for testing your site and troubleshooting user issues."
+msgstr "Basculez facilement et en toute sécurité entre les utilisateurs. Idéal pour tester votre site et résoudre les problèmes des utilisateurs."
+
+#. Translators: "switch off" means to temporarily log out
+#: src/includes/user-switching.php:487
+msgid "Switch Off"
+msgstr "Éteindre"
+
+#. Translators: 1: user display name; 2: username;
+#: src/includes/user-switching.php:336 src/includes/user-switching.php:465
+#: src/includes/user-switching.php:499 src/includes/user-switching.php:529
+#: src/includes/user-switching.php:557 src/includes/user-switching.php:584
+msgid "Switch back to %1$s (%2$s)"
+msgstr "Revenir à%1$s (%2$s)"
+
+#: src/includes/user-switching.php:109 src/includes/user-switching.php:511
+#: src/includes/user-switching.php:630 src/includes/user-switching.php:668
+#: src/includes/user-switching.php:697
+msgid "Switch&nbsp;To"
+msgstr "Basculer vers"
+
+#. Translators: 1: user display name; 2: username;
+#: src/includes/user-switching.php:375
+msgid "Switched back to %1$s (%2$s)."
+msgstr "Revenir vers %1$s (%2$s)."
+
+#. Translators: 1: user display name; 2: username;
+#: src/includes/user-switching.php:322 src/includes/user-switching.php:382
+msgid "Switched to %1$s (%2$s)."
+msgstr "Basculer vers %1$s (%2$s)."
+
+#: src/classes/user-switching.php:126
+msgid "User Switching"
+msgstr "Bascule utilisateur"
+
+#: src/includes/user-switching.php:108
+msgctxt "User Switching title on user profile screen"
+msgid "User Switching"
+msgstr "Bascule de l'utilisateur"
+
+#: src/includes/custom-walker-nav-menu.php:144
+msgid "Edit"
+msgstr "Modifier"
+
+#: src/classes/login-redirect.php:56
+msgid "Log In/Log Out Redirects"
+msgstr "Redirections de connexion/déconnexion"
+
+#: src/classes/login-redirect.php:107
+msgid "Logout Redirect"
+msgstr "Redirection à la déconnexion"
+
+#: src/templates/admin-modules.php:299
+msgid "Learn More"
+msgstr "En savoir plus"
+
+#: src/classes/breadcrumbs.php:342 src/classes/breadcrumbs.php:345
+msgid " Archives"
+msgstr " Archives"
+
+#. translators: %s: title of menu item which is invalid
+#: src/includes/custom-walker-nav-menu.php:95
+msgid "%s (Invalid)"
+msgstr "%s (Non valide)"
+
+#. translators: %s: title of menu item in draft status
+#: src/includes/custom-walker-nav-menu.php:99
+msgid "%s (Pending)"
+msgstr "%s (En cours)"
+
+#: src/classes/sample.php:242
+msgid "<div>Some Extra Information for the user</div>"
+msgstr "<div>Informations supplémentaires pour l'utilisateur</div>"
+
+#: src/classes/login-logout-menu.php:78
+msgid "Add Log In and Log Out links to menus, or to any page or widget with a shortcode."
+msgstr "Ajoute des liens de connexion et de déconnexion aux menus, à une page ou un widget avec un code court."
+
+#: src/classes/login-logout-menu.php:198
+msgid "Add to Menu"
+msgstr "Ajouter au menu"
+
+#: src/classes/frontend-login-plus.php:217
+msgid "Adds a custom login form and can optionally force users to be verified by an admin before they can sign in."
+msgstr "Ajoute un formulaire personnalisé de connexion et peut éventuellement forcer la vérification par un administrateur avant toute connexion."
+
+#: src/classes/widget-cert.php:99
+msgid "Adds a new certificate widget that outputs links to all LearnDash certificates earned by the user."
+msgstr "Ajoute un nouveau widget de certificat qui génère des liens vers tous les certificats LearnDash obtenus par l'utilisateur."
+
+#: src/classes/mark-lessons-complete.php:74
+msgid "Automatically marks lessons as completed when all topics and quizzes for that lesson are marked complete."
+msgstr "Marque automatiquement des leçons comme terminée lorsque tous les sujets et les quizs pour cette leçon sont marqués comme complets."
+
+#: src/classes/breadcrumbs.php:60 src/blocks/dist/blocks.build.js:1
+#: src/blocks/src/toolkit-breadcrumbs/block.js:23
+#: src/blocks/src/toolkit-breadcrumbs/block.js:44
+msgid "Breadcrumbs"
+msgstr "Fil d'Ariane"
+
+#: src/classes/breadcrumbs.php:121
+msgid "Breadcrumbs Separator"
+msgstr "Séparateur de fil d’Ariane"
+
+#: src/includes/custom-walker-nav-menu.php:178
+msgid "CSS Classes (optional)"
+msgstr "Classes CSS (optionnel)"
+
+#: src/includes/custom-walker-nav-menu.php:229
+msgid "Cancel"
+msgstr "Annuler"
+
+#: src/classes/widget-cert.php:98
+msgid "Certificates - Uncanny Toolkit"
+msgstr "Certificats - Uncanny Toolkit"
+
+#: src/classes/show-certificates-shortcode.php:137
+#: src/classes/widget-cert.php:325
+msgid "Complete courses to earn certificates"
+msgstr "Terminer un cours pour obtenir un certificat"
+
+#: src/classes/show-hide-content.php:45
+msgid "Conditionally shows content to either logged in or logged out users. Great for Open course types."
+msgstr "Affiche conditionnellement le contenu aux utilisateurs connectés ou déconnectés. Idéal pour les cours de type ouverts."
+
+#: src/classes/frontend-login-plus.php:675
+msgid "Confirm New Password"
+msgstr "Confirmer le nouveau mot de passe"
+
+#: src/classes/widget-cert.php:27
+msgid "Custom Widget that displays all certificates the user has earned."
+msgstr "Widget personnalisé qui affiche tous les certificats que l'utilisateur a obtenu."
+
+#: src/classes/breadcrumbs.php:115
+msgid "Dashboard Page"
+msgstr "Page du tableau de bord"
+
+#: src/classes/breadcrumbs.php:110
+msgid "Dashboard Page Title"
+msgstr "Titre de page du tableau de bord"
+
+#: src/includes/custom-walker-nav-menu.php:190
+#: src/classes/frontend-login-plus.php:407
+#: src/classes/frontend-login-plus.php:577
+#: src/classes/frontend-login-plus.php:662
+msgid "Description"
+msgstr "Description"
+
+#: src/classes/menu-item-visibility.php:141
+msgid "Display Mode"
+msgstr "Mode d’affichage"
+
+#: src/classes/show-certificates-shortcode.php:46
+msgid "Displays a list of LearnDash certificates (both course and quiz) earned by the user, with the most recent at the top."
+msgstr "Affiche une liste de certificats LearnDash (de cours et de quiz) obtenus par l'utilisateur, avec le plus récent en haut."
+
+#: src/classes/learndash-group-user-profile.php:45
+msgid "Displays a user's LearnDash Group memberships in the user profile."
+msgstr "Affiche dans le profil d'un utilisateur ses appartenances à des groupes LearnDash ."
+
+#: src/includes/custom-walker-nav-menu.php:206
+msgid "Down one"
+msgstr "Un en dessous"
+
+#: src/classes/breadcrumbs.php:65
+msgid "Easily add breadcrumb links that work with courses, lessons, topics and quizzes using a shortcode or template change. WooCommerce is also supported."
+msgstr "Ajoutez facilement un fil d'Ariane qui fonctionne avec les cours, leçons, sujets et quizs en utilisant un code court ou des changements de modèles. Woocommerce est également supporté."
+
+#: src/includes/custom-walker-nav-menu.php:144
+msgid "Edit menu item"
+msgstr "Modifier l'élément de menu"
+
+#: src/classes/menu-item-visibility.php:172
+msgid "Everyone"
+msgstr "Tout le monde"
+
+#: src/classes/breadcrumbs.php:342
+msgid "F Y"
+msgstr "F Y"
+
+#: src/classes/frontend-login-plus.php:215 src/blocks/dist/blocks.build.js:1
+#: src/blocks/src/toolkit-frontend-login/block.js:19
+#: src/blocks/src/toolkit-frontend-login/block.js:41
+msgid "Front End Login"
+msgstr "Connexion en interface publique"
+
+#: src/classes/hide-admin-bar.php:37
+msgid "Hide Admin Bar"
+msgstr "Masquer la barre d'admin"
+
+#: src/classes/hide-admin-bar.php:39
+msgid "Hides the Admin Bar at the top of WordPress pages based on the user role."
+msgstr "Masque la barre d'admin en haut des pages WordPress, selon le rôle de l'utilisateur."
+
+#: src/classes/breadcrumbs.php:161
+msgid "Home"
+msgstr "Accueil"
+
+#: src/classes/learn-dash-resume.php:73
+msgid "Inserts a button that allows learners to return to the course, lesson or topic they last visited."
+msgstr "Insère un bouton qui permet aux élèves de revenir au cours, leçon ou sujet, à l'endroit où ils étaient lors de leur dernière visite."
+
+#: src/templates/frontend-login/layout_1-login.php:13
+#: src/classes/frontend-login-plus.php:478
+#: src/classes/frontend-login-plus.php:2388
+#: src/classes/frontend-login-plus.php:2498
+msgid "Invalid username and/or password."
+msgstr "Idezntifiant et/ou mot de passe incorrect."
+
+#: src/classes/learn-dash-resume.php:252 src/classes/learn-dash-resume.php:404
+#: src/classes/learn-dash-resume.php:418
+msgctxt "LMS shortcode Resume link title \"Resume post_type_name: Post_title "
+msgid "Resume %s: %s"
+msgstr "Reprendre %s : %s"
+
+#: src/classes/learndash-group-user-profile.php:86
+msgid "LearnDash Groups"
+msgstr "Groupes LearnDash"
+
+#: src/includes/custom-walker-nav-menu.php:184
+msgid "Link Relationship (XFN)"
+msgstr "Relation de lien (XFN)"
+
+#: src/classes/frontend-login-plus.php:456
+#: src/classes/frontend-login-plus.php:524
+#: src/classes/login-logout-menu.php:149 src/classes/login-logout-menu.php:335
+#: src/classes/login-logout-menu.php:352
+msgid "Log In"
+msgstr "Connexion"
+
+#: src/classes/login-logout-menu.php:73
+msgid "Log In/Log Out Links"
+msgstr "Liens de connexion/déconnexion"
+
+#: src/classes/menu-item-visibility.php:152
+msgid "Logged In Users"
+msgstr "Utilisateurs connectés"
+
+#: src/classes/menu-item-visibility.php:162
+msgid "Logged Out Users"
+msgstr "Utilisateurs déconnectés"
+
+#: src/classes/frontend-login-plus.php:396
+msgid "Login"
+msgstr "Connexion"
+
+#: src/classes/frontend-login-plus.php:330 src/classes/sample.php:286
+msgid "Login Page"
+msgstr "Page de connexion"
+
+#: src/classes/login-redirect.php:101
+msgid "Login Redirect"
+msgstr "Redirection de connexion"
+
+#: src/classes/login-logout-menu.php:352 src/classes/login-logout-menu.php:366
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: src/classes/frontend-login-plus.php:336
+msgid "Manual User Verification"
+msgstr "Vérification manuelle de l'utilisateur"
+
+#: src/classes/menu-item-visibility.php:60
+msgid "Menu Item Visibility"
+msgstr "Visibilité de l'élément de menu"
+
+#: src/includes/custom-walker-nav-menu.php:204
+msgid "Move"
+msgstr "Déplacer"
+
+#: src/includes/custom-walker-nav-menu.php:140
+msgid "Move down"
+msgstr "Descendre"
+
+#: src/includes/custom-walker-nav-menu.php:127
+msgid "Move up"
+msgstr "Monter"
+
+#: src/includes/custom-walker-nav-menu.php:160
+msgid "Navigation Label"
+msgstr "Label de navigation"
+
+#: src/classes/frontend-login-plus.php:669
+msgid "New Password"
+msgstr "Nouveau mot de passe"
+
+#: src/classes/widget-cert.php:340
+msgid "No certificates message:"
+msgstr "Message si pas de certificat :"
+
+#: src/includes/custom-walker-nav-menu.php:173
+msgid "Open link in a new tab"
+msgstr "Ouvrir le lien dans un nouvel onglet"
+
+#: src/includes/custom-walker-nav-menu.php:215
+msgid "Original: %s"
+msgstr "Original : %s"
+
+#: src/classes/frontend-login-plus.php:427
+msgid "Password"
+msgstr "Mot de passe"
+
+#: src/includes/custom-user-notification.php:25
+msgid "Password: %s"
+msgstr "Mot de passe : %s"
+
+#: src/boot.php:25
+msgid "Please contact your hosting company to update to php version 5.3+ and enable spl extensions."
+msgstr "Veuillez contacter votre hébergeur pour mettre à jour PHP en version 5.3+ et autoriser les extensions spl."
+
+#: src/classes/login-redirect.php:58
+msgid "Redirects all non-admin roles to a specific URL after logging into and/or out of the site."
+msgstr "Redirige tous les rôles non-admin vers une URL spécifique après l'ouverture de session et/ou hors du site."
+
+#: src/classes/frontend-login-plus.php:462
+#: src/classes/login-logout-menu.php:158 src/classes/login-logout-menu.php:376
+msgid "Register"
+msgstr "Inscription"
+
+#: src/classes/frontend-login-plus.php:438
+msgid "Remember Me"
+msgstr "Se souvenir de moi"
+
+#: src/includes/custom-walker-nav-menu.php:228
+msgid "Remove"
+msgstr "Supprimer"
+
+#: src/classes/frontend-login-plus.php:657
+#: src/classes/frontend-login-plus.php:688
+msgid "Reset Password"
+msgstr "Réinitialisation du mot de passe"
+
+#: src/classes/learn-dash-resume.php:107
+msgid "Resume Button Text"
+msgstr "Texte du bouton Reprendre"
+
+#: src/classes/sample.php:117
+msgid "Sample Description B"
+msgstr "Exemple de description B"
+
+#: src/classes/sample.php:111
+msgid "Sample Title"
+msgstr "Exemple de titre"
+
+#: src/classes/breadcrumbs.php:358
+msgid "Search"
+msgstr "Rechercher"
+
+#: src/classes/sample.php:248
+msgid "Settings A"
+msgstr "Réglages A"
+
+#: src/classes/sample.php:255
+msgid "Settings B"
+msgstr "Réglages B"
+
+#: src/classes/sample.php:274
+msgid "Settings Car"
+msgstr "Réglages de voiture"
+
+#: src/classes/sample.php:262
+msgid "Settings Gender"
+msgstr "Réglages de genre"
+
+#: src/classes/breadcrumbs.php:353
+msgid "Shop"
+msgstr "Boutique"
+
+#: src/classes/show-hide-content.php:43
+msgid "Show Or Hide Content"
+msgstr "Afficher ou masquer le contenu"
+
+#: src/classes/frontend-login-plus.php:2714
+msgid "Someone has requested a password reset for the following account:"
+msgstr "Nous avons reçu une demande de réinitialisation du mot de passe pour le compte suivant :"
+
+#: uncanny-learndash-toolkit.php:120
+msgid "The %s plugin requires %s version %s or greater. Your current version is %s."
+msgstr "L’extension %s nécessite %s version %s ou plus. Votre version actuelle est %s."
+
+#: src/includes/custom-walker-nav-menu.php:192
+msgid "The description will be displayed in the menu if the current theme supports it."
+msgstr "La description sera affichée dans le menu si le thème actuel le supporte."
+
+#: src/templates/frontend-login/layout_1-login.php:23
+#: src/classes/frontend-login-plus.php:2484
+msgid "This account is not verified."
+msgstr "Ce compte n'est pas vérifié."
+
+#: src/includes/custom-walker-nav-menu.php:166
+msgid "Title Attribute"
+msgstr "Attribut de titre"
+
+#: src/classes/widget-cert.php:333
+msgid "Title:"
+msgstr "Titre :"
+
+#: src/classes/frontend-login-plus.php:2720
+msgid "To reset your password, visit the following address:"
+msgstr "Pour réinitialiser votre mot de passe, allez à l'adresse suivante :"
+
+#: src/includes/custom-walker-nav-menu.php:209
+msgid "To the top"
+msgstr "Vers le haut"
+
+#: src/classes/menu-item-visibility.php:62
+msgid "Toggles the visibility of menu items based on whether or not users are signed in to the site."
+msgstr "Les éléments de menu sont visibles ou non si l’utilisateur est connecté ou pas."
+
+#: src/classes/mark-lessons-complete.php:72
+msgid "Topics Autocomplete Lessons"
+msgstr "Les sujets complètent automatiquement les leçons"
+
+#: src/includes/custom-walker-nav-menu.php:153
+msgid "URL"
+msgstr "URL"
+
+#: src/classes/login-logout-menu.php:128
+msgid "Uncanny Menu Links"
+msgstr "Liens du menu Uncanny"
+
+#: src/admin-menu.php:43 src/classes/login-logout-menu.php:239
+msgid "Uncanny Toolkit"
+msgstr "Uncanny Toolkit"
+
+#: src/includes/custom-walker-nav-menu.php:205
+msgid "Up one"
+msgstr "Un au dessus"
+
+#: src/templates/frontend-login/layout_1-login.php:16
+msgid "Username and/or Password is empty."
+msgstr "Identifiant et/ou mot de passe vide."
+
+#. translators: %s: user login
+#: src/includes/custom-user-notification.php:56
+#: src/classes/frontend-login-plus.php:2718
+msgid "Username: %s"
+msgstr "Nom d'utilisateur : %s"
+
+#: src/includes/custom-user-notification.php:24
+msgid "Usernametest: %s"
+msgstr "Testutilisateur : %s"
+
+#: src/classes/frontend-login-plus.php:1020
+msgid "We haven't verified this account."
+msgstr "Nous n'avons pas vérifié ce compte."
+
+#: src/classes/breadcrumbs.php:345
+msgid "Y"
+msgstr "Y"
+
+#: src/includes/custom-user-notification.php:58
+msgid "You account has been created. Log in link is:"
+msgstr "Votre compte a été créé. Votre lien de connexion est :"
+
+#: src/templates/frontend-login/layout_1-login.php:20
+#: src/classes/frontend-login-plus.php:497
+msgid "You are logged out."
+msgstr "Vous êtes maintenant déconnecté."
+
+#: src/classes/widget-cert.php:173 src/classes/widget-cert.php:213
+msgid "Your certificate for :"
+msgstr "Votre certificat pour :"
+
+#: src/classes/widget-cert.php:324
+msgid "Your certificates"
+msgstr "Vos certificats"
+
+#: src/includes/custom-user-notification.php:28
+msgid "[%s] Your username and password"
+msgstr "[%s] Votre identifiant et votre mot de passe"
+
+#: src/includes/custom-user-notification.php:61
+msgid "[%s] Your username and password info"
+msgstr "[%s] Info sur votre identifiant et votre mot de passe"
+
+#: src/includes/custom-user-notification.php:57
+msgid "password: %s"
+msgstr "mot de passe : %s"
+
+#: src/includes/custom-walker-nav-menu.php:112
+msgid "sub item"
+msgstr "sous-élément"

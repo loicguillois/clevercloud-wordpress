@@ -658,9 +658,6 @@ if ( ( ! class_exists( 'LDLMS_Course_Steps' ) ) && ( class_exists( 'LDLMS_Model'
 			}
 
 			$all_steps_ids = $this->get_all_steps_ids();
-			if ( empty( $all_steps_ids ) ) {
-				return;
-			}
 
 			$this->objects = array();
 
@@ -700,7 +697,7 @@ if ( ( ! class_exists( 'LDLMS_Course_Steps' ) ) && ( class_exists( 'LDLMS_Model'
 			 * If we have loaded some objects we filter through these and remove
 			 * the post IDs from all_steps to cut down on queried objects.
 			 */
-			if ( ( ! empty( $all_steps_ids ) ) && ( count( $all_objects_ids ) !== count( $all_steps_ids ) ) ) {
+			if ( ( count( $all_objects_ids ) !== count( $all_steps_ids ) ) ) {
 				/**
 				 * If we are not using Shared Steps we set the dirty
 				 * flag and abort. This will cause the process to restart.

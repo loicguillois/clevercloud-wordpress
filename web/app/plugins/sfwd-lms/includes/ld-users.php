@@ -642,7 +642,8 @@ function learndash_course_item_to_activity_sync( $user_id = 0, $course_id = 0, $
 	// First we loop over the new Course data lessons. We add any items not in the old array to the activity table
 	if ( ( isset( $course_data_new['lessons'] ) ) && ( ! empty( $course_data_new['lessons'] ) ) ) {
 		foreach ( $course_data_new['lessons'] as $lesson_id => $lesson_complete ) {
-			if ( ! isset( $course_data_old['lessons'][ $lesson_id ] ) ) {
+			$lesson_complete = (bool) $lesson_complete;
+			if ( ( ! isset( $course_data_old['lessons'][ $lesson_id ] ) ) || ( $lesson_complete !== (bool) $course_data_old['lessons'][ $lesson_id ] ) ) {
 				$lesson_args = array(
 					'course_id'     => $course_id,
 					'user_id'       => $user_id,
@@ -688,7 +689,8 @@ function learndash_course_item_to_activity_sync( $user_id = 0, $course_id = 0, $
 		foreach ( $course_data_new['topics'] as $lesson_id => $lesson_topics ) {
 			if ( ! empty( $lesson_topics ) ) {
 				foreach ( $lesson_topics as $topic_id => $topic_complete ) {
-					if ( ! isset( $course_data_old['topics'][ $lesson_id ][ $topic_id ] ) ) {
+					$topic_complete = (bool) $topic_complete;
+					if ( ( ! isset( $course_data_old['topics'][ $lesson_id ][ $topic_id ] ) ) || ( $topic_complete !== (bool) $course_data_old['topics'][ $lesson_id ][ $topic_id ] ) ) {
 
 						$topic_args = array(
 							'course_id'     => $course_id,

@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the LearnDash LMS plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: LearnDash LMS 3.4.0.7\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/dev.master\n"
+"Project-Id-Version: LearnDash LMS 3.4.0.8\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/dev.master-3.4.0.8\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-04-20T15:13:03+00:00\n"
+"POT-Creation-Date: 2021-04-28T11:26:05+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: learndash\n"
@@ -7451,7 +7451,7 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: includes/ld-users.php:1105
+#: includes/ld-users.php:1107
 #: includes/settings/settings-sections/class-ld-settings-section-quizzes-email-settings.php:172
 #: includes/settings/settings-sections/class-ld-settings-section-quizzes-email-settings.php:229
 #: includes/gutenberg/assets/js/index.js:196
@@ -7459,56 +7459,56 @@ msgstr ""
 msgid "User Login"
 msgstr ""
 
-#: includes/ld-users.php:1106
+#: includes/ld-users.php:1108
 #: includes/gutenberg/assets/js/index.js:196
 #: includes/gutenberg/blocks/ld-usermeta/index.js:65
 msgid "User First Name"
 msgstr ""
 
-#: includes/ld-users.php:1107
+#: includes/ld-users.php:1109
 #: includes/gutenberg/assets/js/index.js:196
 #: includes/gutenberg/blocks/ld-usermeta/index.js:69
 msgid "User Last Name"
 msgstr ""
 
-#: includes/ld-users.php:1108
+#: includes/ld-users.php:1110
 #: includes/gutenberg/assets/js/index.js:196
 #: includes/gutenberg/blocks/ld-usermeta/index.js:73
 msgid "User First and Last Name"
 msgstr ""
 
-#: includes/ld-users.php:1109
+#: includes/ld-users.php:1111
 #: includes/settings/settings-sections/class-ld-settings-section-quizzes-email-settings.php:228
 #: includes/gutenberg/assets/js/index.js:196
 #: includes/gutenberg/blocks/ld-usermeta/index.js:77
 msgid "User Display Name"
 msgstr ""
 
-#: includes/ld-users.php:1110
+#: includes/ld-users.php:1112
 #: includes/gutenberg/assets/js/index.js:196
 #: includes/gutenberg/blocks/ld-usermeta/index.js:81
 msgid "User Nicename"
 msgstr ""
 
-#: includes/ld-users.php:1111
+#: includes/ld-users.php:1113
 #: includes/gutenberg/assets/js/index.js:196
 #: includes/gutenberg/blocks/ld-usermeta/index.js:85
 msgid "User Nickname"
 msgstr ""
 
-#: includes/ld-users.php:1112
+#: includes/ld-users.php:1114
 #: includes/gutenberg/assets/js/index.js:196
 #: includes/gutenberg/blocks/ld-usermeta/index.js:89
 msgid "User Email"
 msgstr ""
 
-#: includes/ld-users.php:1113
+#: includes/ld-users.php:1115
 #: includes/gutenberg/assets/js/index.js:196
 #: includes/gutenberg/blocks/ld-usermeta/index.js:93
 msgid "User URL"
 msgstr ""
 
-#: includes/ld-users.php:1114
+#: includes/ld-users.php:1116
 #: includes/gutenberg/assets/js/index.js:196
 #: includes/gutenberg/blocks/ld-usermeta/index.js:97
 msgid "User Description"
