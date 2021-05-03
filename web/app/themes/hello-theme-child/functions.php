@@ -64,3 +64,14 @@ add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
 
 
 
+/* redirect after checkout */
+add_action( 'woocommerce_thankyou', 'educawa_checkoutredirect');
+function educawa_checkoutredirect( $order_id ){
+ 	$order = wc_get_order( $order_id );
+	$url = home_url();
+    	//$url = 'https://yoursite.com/custom-url';
+	if ( ! $order->has_status( 'failed' ) ) {
+		wp_safe_redirect( $url );
+		exit;
+	}
+}
