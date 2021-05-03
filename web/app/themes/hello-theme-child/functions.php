@@ -24,7 +24,11 @@ add_action( 'wp_enqueue_scripts', 'hello_elementor_child_enqueue_scripts', 20 );
 
 
 
-/* Csutom WooCommerce checkout */
+/*
+** Custom WooCommerce checkout 
+*/
+
+/* make fields optional */
 
 // Billing and shipping addresses fields
 add_filter( 'woocommerce_default_address_fields' , 'filter_default_address_fields', 20, 1 );
@@ -52,3 +56,11 @@ function filter_billing_fields( $billing_fields ) {
     //$billing_fields['billing_email']['required'] = false;
     return $billing_fields;
 }
+
+/* hide additional info */
+add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
+
+/* customize form fields */
+
+
+
