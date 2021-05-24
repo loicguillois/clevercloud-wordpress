@@ -75,3 +75,39 @@ function educawa_checkoutredirect( $order_id ){
 		exit;
 	}
 }
+
+
+
+
+/* elementor pro custom single matière filter query */
+add_action( 'elementor/query/educawa_matiere_1', function( $query ) {
+	//$posttype=get_post_type();
+	$postid=get_the_id();
+	$course_id = get_post_meta( $postid, 'course_id', true );
+
+	$meta_query[] = [          
+	'key' => 'course_id',          
+	'value' => [ $course_id ],          
+	'compare' => 'in', ];  
+	$meta_query[] = [          
+	'key' => 'lesson_id',          
+	'value' => [ $postid ],          
+	'compare' => 'in', ]; 
+	
+	$query->set( 'meta_query', $meta_query );
+} );
+
+
+
+/* elementor pro custom single classe filter query */
+add_action( 'elementor/query/educawa_classe_1', function( $query ) {
+	//$posttype=get_post_type();
+	$postid=get_the_id();
+
+	$meta_query[] = [          
+	'key' => 'course_id',          
+	'value' => [ $postid ],          
+	'compare' => 'in', ]; 
+
+	$query->set( 'meta_query', $meta_query );
+} );
