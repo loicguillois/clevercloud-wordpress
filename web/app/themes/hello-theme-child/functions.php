@@ -113,79 +113,69 @@ add_action( 'elementor/query/educawa_classe_1', function( $query ) {
 } );
 
 
-
 /**
- * Example usage for learndash_settings_fields filter.
- */
-add_filter(
-    'learndash_settings_fields',
-    function ( $setting_option_fields = array(), $settings_metabox_key = '' ) {
-        // Check the metabox includes/settings/settings-metaboxes/class-ld-settings-metabox-course-access-settings.php line 23 where
-        // settings_metabox_key is set. Each metabox or section has a unique settings key.
-		if ( 'learndash-topic-access-settings' === $settings_metabox_key ) {
-            // Add field here.
-            $post_id           = get_the_ID();
-            $my_settings_value = get_post_meta( $post_id, 'topic_custom_key', true );
-            if ( empty( $my_settings_value ) ) {
-                        $my_settings_value = '';
-            }
- 
-            if ( ! isset( $setting_option_fields['topic-custom-field'] ) ) {
-                $setting_option_fields['topic-custom'] = array(
- 					'name'      => 'topic-custom-field',
-                    'label'     => sprintf(
-                        // translators: placeholder: Topic.
-                        esc_html_x( '%s Topic Access', 'placeholder: Topic', 'learndash' ),
-                        learndash_get_custom_label( 'topic' )
-                    ),
-					'type'      => 'checkbox-switch',
-					'value'     => $my_settings_value,
-					'help_text' => sprintf( 
-						esc_html_x( 'Check this if you want this %1$s to be available for free.', 'placeholders: topic', 'learndash' ), 
-						learndash_get_custom_label_lower( 'topic' ), learndash_get_custom_label_lower( 'topic' ) 
-					),
-					'default'   => '',
-					'options'   => array(						
-						'on' => '',
-						''   => '',
-					),
-					'rest'      => array(
-						'show_in_rest' => LearnDash_REST_API::enabled(),
-						'rest_args'    => array(
-							'schema' => array(
-								'field_key'   => 'topic_custom_key',
-								// translators: placeholder: Lesson.
-								'description' => sprintf( 
-									esc_html_x( '%s free content', 'placeholder: Topic', 'learndash' ), 
-									learndash_get_custom_label( 'topic' ) 
-								),
-								'type'        => 'boolean',
-								'default'     => false,
-							),
-						),
-					),				
-                );
-            }
-        }
-        // Always return $setting_option_fields
-        return $setting_option_fields;
-    },
-    30,
-    2
-);
- 
-// You have to save your own field. This is no longer handled by LD. This is on purpose.
-add_action(
-    'save_post',
-    function( $post_id = 0, $post = null, $update = false ) {
-        // All the metabox fields are in sections. Here we are grabbing the post data
-        // within the settings key array where the added the custom field.
-        if ( isset( $_POST['learndash-topic-access-settings']['topic-custom-field'] ) ) {
-            $my_settings_value = esc_attr( $_POST['learndash-topic-access-settings']['topic-custom-field'] );
-            // Then update the post meta
-            update_post_meta( $post_id, 'topic_custom_key', $my_settings_value );
-        }
-    },
-    30,
-    3
-);
+* Example usage for learndash_add_meta_boxes action.
+*/
+
+add_action( 'add_meta_boxes', 'learndash_educawa_topic_add_meta_box' );
+function learndash_educawa_topic_add_meta_box(){	
+	add_meta_box( 
+		'learndash-educawa-topic-meta-box', 
+		'Paramètres Educawa',
+		'learndash_educawa_topic_output_meta_box', 
+		'sfwd-topic', 
+		'advanced', 
+		'high',
+		array()
+	);
+}
+
+function learndash_educawa_topic_output_meta_box($args){
+	$post_id       = get_the_ID();
+	$post 		   = get_post( $post_id );
+
+	$topic_free_access  = get_post_meta( $post_id, '_educawa_free_topic', true );
+
+	wp_nonce_field( 'learndash_course_educawa_save', 'learndash_course_educawa_nonce' ); 
+	
+	?>
+	<style>
+		#learndash-educawa-topic-meta-box{
+			display:block !important;
+		}
+	</style>
+	<div class="sfwd_input">
+			<span class="sfwd_option_label" style="text-align:right;vertical-align:top;">
+				<a class="sfwd_help_text_link" style="cursor:pointer;" title="Click pour Aide!" onclick="toggleVisibility('educawa_free_topic');"><img src="<?php echo LEARNDASH_LMS_PLUGIN_URL . 'assets/images/question.png' ?>">
+				<label class="sfwd_label textinput"><?php echo "Chapitre Accès libre"; ?></label></a>
+			</span>
+			<span class="sfwd_option_input">
+				<div class="sfwd_option_div">
+					<input type="hidden" name="educawa_free_topic" value="0">
+					<input type="checkbox" name="educawa_free_topic" value="1" <?php checked( $topic_free_access, 1, true ); ?>>
+				</div>
+				<div class="sfwd_help_text_div" style="display:none" id="educawa_free_topic">
+					<label class="sfwd_help_text"><?php printf('Activer cette option permet l\'accès libre au chapitre', LearnDash_Custom_Label::label_to_lower( 'topic' ) ) ; ?></label>
+				</div>
+			</span>
+			<p style="clear:left"></p>
+		</div>
+	<?php
+}
+
+add_action( 'save_post', 'learndash_educawa_topic_save_meta_box', 10, 3 );
+function learndash_educawa_topic_save_meta_box( $post_id, $post, $update ){
+	if ( ! in_array( $post->post_type, array( 'sfwd-topic') ) ) {
+		return;
+	}
+	if ( wp_is_post_revision( $post_id ) ) {
+		return;
+	}
+	if ( ! isset( $_POST['learndash_course_educawa_nonce'] ) ) {
+		return;
+	}
+	if ( ! wp_verify_nonce( $_POST['learndash_course_educawa_nonce'], 'learndash_course_educawa_save' ) ) {
+		wp_die( __( 'Cheatin\' huh?' ) );
+	}
+	update_post_meta( $post_id, '_educawa_free_topic', wp_filter_kses( $_POST['educawa_free_topic'] ) );	
+}
