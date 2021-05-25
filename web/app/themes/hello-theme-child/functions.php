@@ -111,3 +111,81 @@ add_action( 'elementor/query/educawa_classe_1', function( $query ) {
 
 	$query->set( 'meta_query', $meta_query );
 } );
+
+
+
+/**
+ * Example usage for learndash_settings_fields filter.
+ */
+add_filter(
+    'learndash_settings_fields',
+    function ( $setting_option_fields = array(), $settings_metabox_key = '' ) {
+        // Check the metabox includes/settings/settings-metaboxes/class-ld-settings-metabox-course-access-settings.php line 23 where
+        // settings_metabox_key is set. Each metabox or section has a unique settings key.
+		if ( 'learndash-topic-access-settings' === $settings_metabox_key ) {
+            // Add field here.
+            $post_id           = get_the_ID();
+            $my_settings_value = get_post_meta( $post_id, 'topic_custom_key', true );
+            if ( empty( $my_settings_value ) ) {
+                        $my_settings_value = '';
+            }
+ 
+            if ( ! isset( $setting_option_fields['topic-custom-field'] ) ) {
+                $setting_option_fields['topic-custom'] = array(
+ 					'name'      => 'topic-custom-field',
+                    'label'     => sprintf(
+                        // translators: placeholder: Topic.
+                        esc_html_x( '%s Topic Access', 'placeholder: Topic', 'learndash' ),
+                        learndash_get_custom_label( 'topic' )
+                    ),
+					'type'      => 'checkbox-switch',
+					'value'     => $my_settings_value,
+					'help_text' => sprintf( 
+						esc_html_x( 'Check this if you want this %1$s to be available for free.', 'placeholders: topic', 'learndash' ), 
+						learndash_get_custom_label_lower( 'topic' ), learndash_get_custom_label_lower( 'topic' ) 
+					),
+					'default'   => '',
+					'options'   => array(						
+						'on' => '',
+						''   => '',
+					),
+					'rest'      => array(
+						'show_in_rest' => LearnDash_REST_API::enabled(),
+						'rest_args'    => array(
+							'schema' => array(
+								'field_key'   => 'topic_custom_key',
+								// translators: placeholder: Lesson.
+								'description' => sprintf( 
+									esc_html_x( '%s free content', 'placeholder: Topic', 'learndash' ), 
+									learndash_get_custom_label( 'topic' ) 
+								),
+								'type'        => 'boolean',
+								'default'     => false,
+							),
+						),
+					),				
+                );
+            }
+        }
+        // Always return $setting_option_fields
+        return $setting_option_fields;
+    },
+    30,
+    2
+);
+ 
+// You have to save your own field. This is no longer handled by LD. This is on purpose.
+add_action(
+    'save_post',
+    function( $post_id = 0, $post = null, $update = false ) {
+        // All the metabox fields are in sections. Here we are grabbing the post data
+        // within the settings key array where the added the custom field.
+        if ( isset( $_POST['learndash-topic-access-settings']['topic-custom-field'] ) ) {
+            $my_settings_value = esc_attr( $_POST['learndash-topic-access-settings']['topic-custom-field'] );
+            // Then update the post meta
+            update_post_meta( $post_id, 'topic_custom_key', $my_settings_value );
+        }
+    },
+    30,
+    3
+);
