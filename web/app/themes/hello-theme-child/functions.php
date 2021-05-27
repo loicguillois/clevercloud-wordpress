@@ -112,6 +112,25 @@ add_action( 'elementor/query/educawa_classe_1', function( $query ) {
 	$query->set( 'meta_query', $meta_query );
 } );
 
+/* elementor pro + ele custom skin get course title from meta key */
+add_shortcode( 'educawa_shortcode_2', 'educawa_shortcode_get_course_title' );
+function educawa_shortcode_get_course_title() {
+		$postid=get_the_id();
+		$course_id = get_post_meta( $postid, 'course_id', true );
+		$coursetitle=get_the_title($course_id);
+		
+		return $coursetitle;	
+}
+
+/* elementor pro + ele custom skin get lesson title from meta key */
+add_shortcode( 'educawa_shortcode_3', 'educawa_shortcode_get_lesson_title' );
+function educawa_shortcode_get_lesson_title() {
+		$postid=get_the_id();
+		$less_id = get_post_meta( $postid, 'lesson_id', true );	
+		$lessontitle=get_the_title($less_id);
+		
+		return $lessontitle;	
+}
 
 /**
 * Example usage for learndash_add_meta_boxes action.
