@@ -36,13 +36,17 @@ defined( 'ABSPATH' ) || exit;
 		//add_action( 'woocommerce_account_navigation', 'woocommerce_account_navigation' );
 		//add_action( 'woocommerce_account_content', 'woocommerce_account_content' );
 
-		do_action( 'woocommerce_account_edit-address_endpoint', 'woocommerce_account_edit_address' );
+		//do_action( 'woocommerce_account_edit-address_endpoint', 'woocommerce_account_edit_address' );
+		
+		
 		do_action( 'woocommerce_account_edit-account_endpoint', 'woocommerce_account_edit_account' );
+		do_action( 'woocommerce_account_orders_endpoint', 'woocommerce_account_orders' );
+
 		do_action( 'woocommerce_account_payment-methods_endpoint', 'woocommerce_account_payment_methods' );
 		do_action( 'woocommerce_account_add-payment-method_endpoint', 'woocommerce_account_add_payment_method' );
-		do_action( 'woocommerce_account_orders_endpoint', 'woocommerce_account_orders' );
-		do_action( 'woocommerce_account_view-order_endpoint', 'woocommerce_account_view_order' );
+		//do_action( 'woocommerce_account_view-order_endpoint', 'woocommerce_account_view_order' );
 
 		//do_action( 'woocommerce_account_content' );
+
 	?>
 </div>
