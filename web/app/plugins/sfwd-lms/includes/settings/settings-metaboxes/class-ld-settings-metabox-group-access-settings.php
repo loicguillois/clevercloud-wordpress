@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Metabox for Group Access Settings.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.2.0
+ * @package LearnDash\Settings\Metaboxes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'LearnDash_Settings_Metabox_Group_Access_Settings' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Metabox for Group Access Settings.
+	 *
+	 * @since 3.2.0
 	 */
 	class LearnDash_Settings_Metabox_Group_Access_Settings extends LearnDash_Settings_Metabox {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.2.0
 		 */
 		public function __construct() {
 			// What screen ID are we showing on.
@@ -61,8 +65,10 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * Add script data to array.
 		 *
-		 * @since 3.0
+		 * @since 3.2.0
+		 *
 		 * @param array $script_data Script data array to be sent out to browser.
+		 *
 		 * @return array $script_data
 		 */
 		public function learndash_admin_settings_data( $script_data = array() ) {
@@ -77,6 +83,8 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings values.
+		 *
+		 * @since 3.2.0
 		 */
 		public function load_settings_values() {
 			parent::load_settings_values();
@@ -115,7 +123,7 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 			}
 
 			// Clear out the price type fields we are not using.
-			switch( $this->setting_option_values['group_price_type'] ) {
+			switch ( $this->setting_option_values['group_price_type'] ) {
 				case 'paynow':
 					$this->setting_option_values['group_price_type_subscribe_price']            = '';
 					$this->setting_option_values['group_price_type_subscribe_billing_cycle']    = '';
@@ -123,7 +131,7 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 					$this->setting_option_values['group_price_type_closed_custom_button_label'] = '';
 					$this->setting_option_values['group_price_type_closed_custom_button_url']   = '';
 					break;
-			
+
 				case 'paynow':
 					$this->setting_option_values['group_price_type_subscribe_price']            = '';
 					$this->setting_option_values['group_price_type_subscribe_billing_cycle']    = '';
@@ -131,20 +139,20 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 					$this->setting_option_values['group_price_type_closed_custom_button_label'] = '';
 					$this->setting_option_values['group_price_type_closed_custom_button_url']   = '';
 					break;
-				
+
 				case 'subscribe':
 					$this->setting_option_values['group_price_type_paynow_price']               = '';
 					$this->setting_option_values['group_price_type_closed_price']               = '';
 					$this->setting_option_values['group_price_type_closed_custom_button_label'] = '';
 					$this->setting_option_values['group_price_type_closed_custom_button_url']   = '';
 					break;
-				
+
 				case 'closed':
 					$this->setting_option_values['group_price_type_subscribe_price']         = '';
 					$this->setting_option_values['group_price_type_subscribe_billing_cycle'] = '';
 					$this->setting_option_values['group_price_type_paynow_price']            = '';
 					break;
-				
+
 				case 'free':
 				default:
 					$this->setting_option_values['group_price_type']                            = 'free';
@@ -160,6 +168,8 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings fields.
+		 *
+		 * @since 3.2.0
 		 */
 		public function load_settings_fields() {
 			global $sfwd_lms;
@@ -368,6 +378,15 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 			parent::load_settings_fields();
 		}
 
+		/**
+		 * Save Metabox Settings Field Map Post Values.
+		 * This function maps the external Post keys to the
+		 * internal field keys.
+		 *
+		 * @since 3.2.0
+		 *
+		 * @param array $post_values Array of post values.
+		 */
 		public function get_save_settings_fields_map_form_post_values( $post_values = array() ) {
 			$settings_fields_map = $this->settings_fields_map;
 			if ( ( isset( $post_values['group_price_type'] ) ) && ( ! empty( $post_values['group_price_type'] ) ) ) {
@@ -401,9 +420,12 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * Filter settings values for metabox before save to database.
 		 *
+		 * @since 3.2.0
+		 *
 		 * @param array  $settings_values Array of settings values.
 		 * @param string $settings_metabox_key Metabox key.
 		 * @param string $settings_screen_id Screen ID.
+		 *
 		 * @return array $settings_values.
 		 */
 		public function filter_saved_fields( $settings_values = array(), $settings_metabox_key = '', $settings_screen_id = '' ) {

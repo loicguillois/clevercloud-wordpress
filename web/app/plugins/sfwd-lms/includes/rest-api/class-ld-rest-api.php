@@ -1,32 +1,80 @@
 <?php
+/**
+ * LearnDash REST API loader
+ *
+ * @since 2.4.5
+* @package LearnDash\REST
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ! defined( 'LEARNDASH_REST_API_NAMESPACE' ) ) {
+	/**
+	 * Define LearnDash LMS - Set REST API Namespace.
+	 *
+	 * @since 2.4.5
+	 *
+	 * @var string Default is 'ldlms'.
+	 */
 	define( 'LEARNDASH_REST_API_NAMESPACE', 'ldlms' );
 }
-
-define( 'LEARNDASH_REST_API_DIR', dirname( __FILE__ ) );
+if ( ! defined( 'LEARNDASH_REST_API_DIR' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the REST API library path.
+	 *
+	 * Will be set based on directory of the current file.
+	 *
+	 * @since 2.4.5
+	 *
+	 * @var string Path to REST library.
+	 */
+	define( 'LEARNDASH_REST_API_DIR', dirname( __FILE__ ) );
+}
 
 require_once LEARNDASH_LMS_PLUGIN_DIR . 'includes/gutenberg/lib/class-ld-rest-gutenberg-posts-controller.php';
 
 if ( ! class_exists( 'LearnDash_REST_API' ) ) {
+
+	/**
+	 * Class LearnDash REST API.
+	 *
+	 * @since 2.4.5
+	 */
 	class LearnDash_REST_API {
 
 		/**
-		 * @var The reference to *Singleton* instance of this class
+		 * The reference to *Singleton* instance of this class
+		 *
+		 * @since 2.4.5
+		 *
+		 * @var object $instance
 		 */
 		private static $instance;
 
+		/**
+		 * Private Controllers
+		 *
+		 * @since 2.4.5
+		 *
+		 * @var array $controllers
+		 */
 		private $controllers = array();
 
+		/**
+		 * Public constructor for class
+		 *
+		 * @since 2.4.5
+		 */
 		public function __construct() {
 			add_action( 'rest_api_init', array( $this, 'rest_api_init' ), 10 );
 		}
 
 		/**
 		 * Init function to all the LearnDash REST API namespace and endpoints.
+		 *
+		 * @since 2.4.5
 		 */
 		public function rest_api_init() {
 			if ( self::enabled() ) {
@@ -158,6 +206,7 @@ if ( ! class_exists( 'LearnDash_REST_API' ) ) {
 				 *
 				 * @param array $controllers An array of REST API controllers data.
 				 */
+				//phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
 				$this->controllers = apply_filters( 'learndash-rest-api-controllers', $this->controllers );
 				if ( ! empty( $this->controllers ) ) {
 					foreach ( $this->controllers as $controller_class => $set ) {
@@ -178,6 +227,8 @@ if ( ! class_exists( 'LearnDash_REST_API' ) ) {
 		/**
 		 * Returns the *Singleton* instance of this class.
 		 *
+		 * @since 2.4.5
+		 *
 		 * @return The *Singleton* instance.
 		 */
 		public static function get_instance() {
@@ -192,6 +243,8 @@ if ( ! class_exists( 'LearnDash_REST_API' ) ) {
 		 * Override class function for 'this'.
 		 * This function handles out Singleton logic.
 		 *
+		 * @since 2.4.5
+		 *
 		 * @return reference to current instance
 		 */
 		public static function this() {
@@ -200,6 +253,8 @@ if ( ! class_exists( 'LearnDash_REST_API' ) ) {
 
 		/**
 		 * Check if REST is enabled for post type.
+		 *
+		 * @since 2.5.8
 		 *
 		 * @param string $post_type Post Type slug to check.
 		 *
@@ -226,6 +281,8 @@ if ( ! class_exists( 'LearnDash_REST_API' ) ) {
 		/**
 		 * Check if Gutenberg editor is enabled for post type.
 		 *
+		 * @since 2.5.8
+		 *
 		 * @param string $post_type Post Type slug to check.
 		 *
 		 * @return bool true is enable. Otherwise false.
@@ -248,6 +305,8 @@ if ( ! class_exists( 'LearnDash_REST_API' ) ) {
 
 		/**
 		 * get REST controller for post type.
+		 *
+		 * @since 2.5.8
 		 *
 		 * @param string $post_type Post Type slug to check.
 		 *

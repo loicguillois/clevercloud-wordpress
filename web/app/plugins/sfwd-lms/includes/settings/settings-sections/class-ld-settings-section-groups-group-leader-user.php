@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section for Group Leader Users Metabox.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.2.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Section_Groups_Group_Leader_User' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Section for Group Leader Users Metabox.
+	 *
+	 * @since 3.2.0
 	 */
 	class LearnDash_Settings_Section_Groups_Group_Leader_User extends LearnDash_Settings_Section {
 
 		/**
 		 * Array or role capabilities ties to the settings fields.
+		 *
+		 * @since 3.2.0
 		 *
 		 * @var array $role_caps.
 		 */
@@ -25,6 +29,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 3.2.0
 		 */
 		protected function __construct() {
 			$this->settings_screen_id = 'groups_page_groups-options';
@@ -63,6 +69,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings values.
+		 *
+		 * @since 3.2.0
 		 */
 		public function load_settings_values() {
 			global $sfwd_lms;
@@ -73,6 +81,10 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 				$this->setting_option_values['bypass_course_limits'] = '';
 			}
 
+			if ( ! isset( $this->setting_option_values['groups_autoenroll_managed'] ) ) {
+				$this->setting_option_values['groups_autoenroll_managed'] = '';
+			}
+			
 			if ( ! isset( $this->setting_option_values['courses_autoenroll'] ) ) {
 				$this->setting_option_values['courses_autoenroll'] = '';
 			}
@@ -199,10 +211,39 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings fields.
+		 *
+		 * @since 3.2.0
 		 */
 		public function load_settings_fields() {
 
 			$this->setting_option_fields = array(
+				'groups_autoenroll_managed'          => array(
+					'name'      => 'groups_autoenroll_managed',
+					'type'      => 'checkbox-switch',
+					'label'     => sprintf(
+						// translators: placeholder: Groups.
+						esc_html_x( 'Managed %s Auto-enrollment', 'placeholder: Groups', 'learndash' ),
+						learndash_get_custom_label( 'Groups' )
+					),
+					'help_text' => sprintf(
+						// translators: placeholder: groups.
+						esc_html_x( 'Enroll in %s managed by the Group Leader.', 'placeholder: groups', 'learndash' ),
+						learndash_get_custom_label_lower( 'groups' )
+					),
+					'value'     => $this->setting_option_values['groups_autoenroll_managed'],
+					'options'   => array(
+						''    => sprintf(
+							// translators: placeholder: groups.
+							esc_html_x( 'Group Leader not enrolled in managed %s.', 'placeholder: groups', 'learndash' ),
+							learndash_get_custom_label_lower( 'groups' )
+						),
+						'yes' => sprintf(
+							// translators: placeholder: groups.
+							esc_html_x( 'Group Leader enrolled in managed %s.', 'placeholder: groups', 'learndash' ),
+							learndash_get_custom_label_lower( 'groups' )
+						),
+					),
+				),
 				'courses_autoenroll'          => array(
 					'name'      => 'courses_autoenroll',
 					'type'      => 'checkbox-switch',
@@ -412,6 +453,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * Intercept the WP options save logic and check that we have a valid nonce.
 		 *
+		 * @since 3.2.0
+		 *
 		 * @param array  $value Array of section fields values.
 		 * @param array  $old_value Array of old values.
 		 * @param string $section_key Section option key should match $this->setting_option_key.
@@ -520,7 +563,12 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 		}
 
 		/**
-		 * Add Header and description on email sections.
+		 * Settings row outside before
+		 *
+		 * @since 3.2.0
+		 *
+		 * @param string $content    Content to show before row
+		 * @param array  $field_args Row field Args
 		 */
 		public function learndash_settings_row_outside_before( $content = '', $field_args = array() ) {
 			if ( ( isset( $field_args['name'] ) ) && ( in_array( $field_args['name'], array( 'manage_groups_enabled' ), true ) ) ) {

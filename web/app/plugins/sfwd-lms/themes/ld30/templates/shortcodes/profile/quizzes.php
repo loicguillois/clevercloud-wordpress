@@ -1,4 +1,12 @@
 <?php
+/**
+ * LearnDash LD30 Displays a user's profile quizzes listing.
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -13,6 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		/**
 		 * Filters user profile quiz list columns.
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param array $quiz_columns An array of quiz list column details array. Column details array can have keys for id and label.
 		 */

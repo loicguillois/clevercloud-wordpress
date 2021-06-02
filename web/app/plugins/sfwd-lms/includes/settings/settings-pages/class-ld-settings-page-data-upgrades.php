@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Settings Page Data Upgrades].
+ * LearnDash Settings Page Data Upgrades.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.6.0
+ * @package LearnDash\Settings\Pages
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,7 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDash_Settings_Page_Data_Upgrades' ) ) ) {
 	/**
-	 * Class to create the settings page.
+	 * Class LearnDash Settings Page Data Upgrades.
+	 *
+	 * @since 2.6.0
 	 */
 	class LearnDash_Settings_Page_Data_Upgrades extends LearnDash_Settings_Page {
 		/**
@@ -25,6 +27,8 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 2.6.0
 		 */
 		public function __construct() {
 			$this->parent_menu_page_url  = 'admin.php?page=learndash_lms_settings';
@@ -43,7 +47,7 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 		/**
 		 * Action function called when Add-ons page is loaded.
 		 *
-		 * @since 2.5.5
+		 * @since 2.6.0
 		 */
 		public function load_settings_page() {
 			global $learndash_assets_loaded;
@@ -75,7 +79,7 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 		/**
 		 * Shows Data Upgrade admin notice.
 		 *
-		 * @version 2.3
+		 * @version 3.2.0
 		 */
 		public function show_upgrade_admin_notice() {
 			if ( true !== self::$admin_notice_shown ) {

@@ -17,7 +17,7 @@ if ( ! function_exists( 'is_group_leader' ) ) {
 	 *
 	 * @since 2.1.0
 	 *
-	 * @deprecated 2.3.0 Use learndash_is_group_leader_user()
+	 * @deprecated 2.3.0 Use {@see 'learndash_is_group_leader_user'} instead.
 	 *
 	 * @param int|WP_User $user `WP_User` instance or user ID.
 	 *

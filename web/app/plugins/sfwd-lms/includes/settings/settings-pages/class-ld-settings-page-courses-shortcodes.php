@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Page Courses Shortcodes.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.4.0
+ * @package LearnDash\Settings\Pages
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDash_Settings_Page_Courses_Shortcodes' ) ) ) {
 	/**
-	 * Class to create the settings page.
+	 * Class LearnDash Settings Page Courses Shortcodes.
+	 *
+	 * @since 2.4.0
 	 */
 	class LearnDash_Settings_Page_Courses_Shortcodes extends LearnDash_Settings_Page {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 2.4.0
 		 */
 		public function __construct() {
 
@@ -35,8 +39,9 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 
 		/**
 		 * Show settiings page output.
+		 *
+		 * @since 2.4.0
 		 */
-
 		public function show_settings_page() {
 			?>
 			<div  id='course-shortcodes'  class='wrap'>

@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Settings field Timer Entry.
+ * LearnDash Timer Entry Settings Field.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Field
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,12 +13,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ( class_exists( 'LearnDash_Settings_Fields' ) ) && ( ! class_exists( 'LearnDash_Settings_Fields_Timer_Entry' ) ) ) {
 
 	/**
-	 * Class to create the settings field.
+	 * Class LearnDash Timer Entry Settings Field.
+	 *
+	 * @since 3.0.0
+	 * @uses LearnDash_Settings_Fields
 	 */
 	class LearnDash_Settings_Fields_Timer_Entry extends LearnDash_Settings_Fields {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		public function __construct() {
 			$this->field_type = 'timer-entry';
@@ -29,7 +34,7 @@ if ( ( class_exists( 'LearnDash_Settings_Fields' ) ) && ( ! class_exists( 'Learn
 		/**
 		 * Function to crete the settiings field.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param array $field_args An array of field arguments used to process the ouput.
 		 * @return void
@@ -81,7 +86,7 @@ if ( ( class_exists( 'LearnDash_Settings_Fields' ) ) && ( ! class_exists( 'Learn
 		/**
 		 * Validate field
 		 *
-		 * @since 2.6.0
+		 * @since 3.0.0
 		 *
 		 * @param mixed  $val Value to validate.
 		 * @param string $key Key of value being validated.
@@ -94,9 +99,9 @@ if ( ( class_exists( 'LearnDash_Settings_Fields' ) ) && ( ! class_exists( 'Learn
 		}
 
 		/**
-		 * Default validation function. Should be overriden in Field subclass.
+		 * Get Settings Field Value
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param mixed  $val Value to validate.
 		 * @param string $key Key of value being validated.
@@ -135,7 +140,8 @@ if ( ( class_exists( 'LearnDash_Settings_Fields' ) ) && ( ! class_exists( 'Learn
 		/**
 		 * Convert REST submit value to internal Settings Field acceptable value.
 		 *
-		 * @since 3.2
+		 * @since 3.4.0
+		 *
 		 * @param mixed  $val        Value from REST to be converted to internal value.
 		 * @param string $key        Key field for value.
 		 * @param array  $field_args Array of field args.

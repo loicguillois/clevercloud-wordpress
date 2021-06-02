@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Transactions (sfwd-transactions) Posts Listing Class.
+ * LearnDash Transactions (sfwd-transactions) Posts Listing.
  *
- * @package LearnDash
- * @subpackage admin
+ * @since 3.2.0
+ * @package LearnDash\Transactions\Listing
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,13 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'Learndash_Admin_Transactions_Listing' ) ) ) {
+
 	/**
-	 * Class for LearnDash Transactions Listing Pages.
+	 * Class LearnDash Transactions (sfwd-transactions) Posts Listing.
+	 *
+	 * @since 3.2.0
+	 * @uses Learndash_Admin_Posts_Listing
 	 */
 	class Learndash_Admin_Transactions_Listing extends Learndash_Admin_Posts_Listing {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.2.0
 		 */
 		public function __construct() {
 			$this->post_type = learndash_get_post_type_slug( 'transaction' );
@@ -27,6 +33,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Called via the WordPress init action hook.
+		 *
+		 * @since 3.2.3
 		 */
 		public function listing_init() {
 			if ( $this->listing_init_done ) {
@@ -103,7 +111,9 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 *
 		 * @since 3.2.3
 		 *
-		 * @param  object $q_vars      Query vars used for the table listing
+		 * @param object $q_vars   Query vars used for the table listing
+		 * @param array  $selector Selector array.
+		 *
 		 * @return object $q_vars.
 		 */
 		protected function listing_filter_by_transaction_type( $q_vars, $selector = array() ) {
@@ -133,7 +143,9 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 *
 		 * @since 3.2.3
 		 *
-		 * @param  object $q_vars      Query vars used for the table listing
+		 * @param object $q_vars   Query vars used for the table listing
+		 * @param array  $selector Selector array.
+		 *
 		 * @return object $q_vars.
 		 */
 		protected function listing_filter_by_transaction_course_id( $q_vars, $selector = array() ) {
@@ -156,8 +168,10 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 *
 		 * @since 3.2.3
 		 *
-		 * @param  object $q_vars      Query vars used for the table listing
-		 * @return object $q_vars.
+		 * @param object $q_vars   Query vars used for the table listing
+		 * @param array  $selector Selector array.
+		 *
+		 * @return object $q_vars
 		 */
 		protected function listing_filter_by_transaction_group_id( $q_vars, $selector = array() ) {
 			if ( ( isset( $selector['selected'] ) ) && ( ! empty( $selector['selected'] ) ) ) {
@@ -176,6 +190,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Output the Transaction Type column.
+		 *
+		 * @since 3.2.3
 		 *
 		 * @param int $post_id Transaction Post ID.
 		 */
@@ -215,6 +231,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Output the Transaction Course or Group.
+		 *
+		 * @since 3.2.3
 		 *
 		 * @param int $post_id Transaction Post ID.
 		 */
@@ -274,6 +292,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Show Transaction User ID.
+		 *
+		 * @since 3.2.3
 		 *
 		 * @param int $post_id Transaction Post ID.
 		 */

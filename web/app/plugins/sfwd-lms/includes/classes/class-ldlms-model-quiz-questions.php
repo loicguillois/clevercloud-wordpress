@@ -2,9 +2,8 @@
 /**
  * LearnDash Quiz Questions Class.
  *
- * @package LearnDash
- * @subpackage Quiz Questions
- * @since 3.2.0
+ * @since 2.6.0
+ * @package LearnDash\Quiz\Questions
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,6 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ( ! class_exists( 'LDLMS_Quiz_Questions' ) ) && ( class_exists( 'LDLMS_Model' ) ) ) {
 	/**
 	 * Class for LearnDash Quiz Questions.
+	 *
+	 * @since 2.6.0
+	 * @uses LDLMS_Model
 	 */
 	class LDLMS_Quiz_Questions extends LDLMS_Model {
 
@@ -94,6 +96,8 @@ if ( ( ! class_exists( 'LDLMS_Quiz_Questions' ) ) && ( class_exists( 'LDLMS_Mode
 
 		/**
 		 * Iniitialize object vars.
+		 *
+		 * @since 2.6.0
 		 */
 		public function init() {
 			if ( false === $this->init_called ) {
@@ -154,7 +158,9 @@ if ( ( ! class_exists( 'LDLMS_Quiz_Questions' ) ) && ( class_exists( 'LDLMS_Mode
 		 * Build the ProQuiz question objects from the post_ids
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param mixed $question_type string or array of question types to build out.
+		 *
 		 * @return array of questions.
 		 */
 		private function build_questions( $question_type = '' ) {
@@ -294,6 +300,8 @@ if ( ( ! class_exists( 'LDLMS_Quiz_Questions' ) ) && ( class_exists( 'LDLMS_Mode
 		/**
 		 * Sets the Quiz dirty flag and will force the questions to be
 		 * reloaded from queries.
+		 *
+		 * @since 2.6.0
 		 */
 		public function set_questions_dirty() {
 			$this->init();
@@ -305,6 +313,8 @@ if ( ( ! class_exists( 'LDLMS_Quiz_Questions' ) ) && ( class_exists( 'LDLMS_Mode
 
 		/**
 		 * Check if the quiz dirty flag is set.
+		 *
+		 * @since 2.6.0
 		 */
 		protected function is_questions_dirty() {
 			// If the questions_dirty boolean has been previously set to try it save a call to postmeta.
@@ -322,6 +332,8 @@ if ( ( ! class_exists( 'LDLMS_Quiz_Questions' ) ) && ( class_exists( 'LDLMS_Mode
 
 		/**
 		 * Clear the quiz dirty flag.
+		 *
+		 * @since 2.6.0
 		 */
 		protected function clear_questions_dirty() {
 			if ( ! empty( $this->quiz_primary_id ) ) {
@@ -332,6 +344,8 @@ if ( ( ! class_exists( 'LDLMS_Quiz_Questions' ) ) && ( class_exists( 'LDLMS_Mode
 
 		/**
 		 * Get the count of valid questions in quiz.
+		 *
+		 * @since 2.6.0
 		 */
 		public function get_questions_count() {
 			$this->init();
@@ -378,6 +392,8 @@ if ( ( ! class_exists( 'LDLMS_Quiz_Questions' ) ) && ( class_exists( 'LDLMS_Mode
 		/**
 		 * This function sets a post_meta association for the various questions within the quiz.
 		 * The new association is 'ld_quiz_XXX' where 'XXX' is the quiz ID.
+		 *
+		 * @since 2.6.0
 		 */
 		public function set_questions_to_quiz() {
 			global $wpdb;
@@ -462,6 +478,8 @@ if ( ( ! class_exists( 'LDLMS_Quiz_Questions' ) ) && ( class_exists( 'LDLMS_Mode
 		/**
 		 * This function sets a post_meta association for the various questions within the quiz.
 		 * The new association is 'quiz'.
+		 *
+		 * @since 2.6.0
 		 */
 		public function set_questions_to_quiz_legacy() {
 			global $wpdb;
@@ -523,6 +541,7 @@ if ( ( ! class_exists( 'LDLMS_Quiz_Questions' ) ) && ( class_exists( 'LDLMS_Mode
 		 * This function updates the postmeta 'question_order' for legacy questions.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param array $questions Array of Question post IDs.
 		 */
 		protected function set_question_to_quiz_order( $questions = array() ) {
@@ -582,6 +601,7 @@ if ( ( ! class_exists( 'LDLMS_Quiz_Questions' ) ) && ( class_exists( 'LDLMS_Mode
 		 * @since 2.6.0
 		 *
 		 * @param string $question_type Default is 'post_ids' or 'pro_objects'.
+		 *
 		 * @return array of question IDs.
 		 */
 		public function get_questions( $question_type = 'post_ids' ) {
@@ -607,6 +627,7 @@ if ( ( ! class_exists( 'LDLMS_Quiz_Questions' ) ) && ( class_exists( 'LDLMS_Mode
 		 * @since 2.6.0
 		 *
 		 * @param array $questions_data array of question post IDs.
+		 *
 		 * @return array $questions.
 		 */
 		public static function questions_split_keys( $questions_data = array() ) {

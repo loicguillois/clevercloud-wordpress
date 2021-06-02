@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Quizzes (sfwd-quiz) Posts Listing Class.
+ * LearnDash Quizzes (sfwd-quiz) Posts Listing.
  *
- * @package LearnDash
- * @subpackage admin
+ * @since 3.0.0
+ * @package LearnDash\Quiz\Listing
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,13 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'Learndash_Admin_Quizzes_Listing' ) ) ) {
+
 	/**
-	 * Class for LearnDash Quizzes Listing Pages.
+	 * Class LearnDash Quizzes (sfwd-quiz) Posts Listing.
+	 *
+	 * @since 3.0.0
+	 * @uses Learndash_Admin_Posts_Listing
 	 */
 	class Learndash_Admin_Quizzes_Listing extends Learndash_Admin_Posts_Listing {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		public function __construct() {
 			$this->post_type = learndash_get_post_type_slug( 'quiz' );
@@ -27,6 +33,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Called via the WordPress init action hook.
+		 *
+		 * @since 3.2.3
 		 */
 		public function listing_init() {
 			if ( $this->listing_init_done ) {
@@ -151,13 +159,51 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Call via the WordPress load sequence for admin pages.
+		 *
+		 * @since 3.2.3
 		 */
 		public function on_load_listing() {
 			if ( $this->post_type_check() ) {
 				parent::on_load_listing();
 
+				add_filter( 'learndash_listing_table_query_vars_filter', array( $this, 'listing_table_query_vars_filter_quizzes' ), 30, 3 );
 				add_filter( 'post_row_actions', array( $this, 'post_row_actions' ), 20, 2 );
+
+				/**
+				 * Convert the Group Post Meta items.
+				 *
+				 * @since 3.4.1
+				 */
+				$ld_data_upgrade_quiz_post_meta = Learndash_Admin_Data_Upgrades::get_instance( 'Learndash_Admin_Data_Upgrades_Quiz_Post_Meta' );
+				if ( ( $ld_data_upgrade_quiz_post_meta ) && ( is_a( $ld_data_upgrade_quiz_post_meta, 'Learndash_Admin_Data_Upgrades_Quiz_Post_Meta' ) ) ) {
+					$ld_data_upgrade_quiz_post_meta->process_post_meta( false );
+				}
 			}
+		}
+
+		/**
+		 * Listing table query vars
+		 *
+		 * @since 3.4.1
+		 *
+		 * @param array  $q_vars    Array of query vars.
+		 * @param string $post_type Post Type being displayed.
+		 * @param array  $query     Main Query.
+		 */
+		public function listing_table_query_vars_filter_quizzes( $q_vars, $post_type, $query ) {
+			if ( isset( $_GET['certificate_id'] ) ) {
+				$certificate_id = absint( $_GET['certificate_id'] );
+				if ( ! empty( $certificate_id ) ) {
+					$used_posts = learndash_certificate_get_used_by( $certificate_id, $this->post_type );
+					if ( ! empty( $used_posts ) ) {
+						$q_vars['post__in'] = $used_posts;
+					} else {
+						$q_vars['post__in'] = array( 0 );
+					}
+				}
+			}
+
+			return $q_vars;
 		}
 
 		/**
@@ -193,9 +239,9 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		}
 
 		/**
-		 * Add Course Builder link to Courses row action array.
+		 * Add Quiz Builder link to Quizzes row action array.
 		 *
-		 * @since 2.5.0
+		 * @since 3.0.0
 		 *
 		 * @param array   $row_actions Existing Row actions for course.
 		 * @param WP_Post $course_post Course Post object for current row.
@@ -209,6 +255,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 				if ( ( 'yes' === LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Quizzes_Builder', 'enabled' ) ) && ( current_user_can( 'edit_post', $post->ID ) ) && ( ! isset( $row_actions['ld-quiz-builder'] ) ) ) {
 					/**
 					 * Filters whether to show quiz builder row actions or not.
+					 *
+					 * @since 2.6.4
 					 *
 					 * @param boolean      $show_row_actions Whether to show row actions.
 					 * @param WP_Post|null $course_post      Quiz post object.

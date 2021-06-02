@@ -4,6 +4,7 @@
  *
  * This is an abstract class for Course Posts, User Progression, etc.
  *
+ * @since 2.5.0
  * @package LearnDash
  */
 
@@ -15,8 +16,11 @@ if ( ! class_exists( 'LDLMS_Factory' ) ) {
 
 	/**
 	 * Class for LearnDash LMS Factory.
+	 *
+	 * @since 2.5.0
 	 */
 	abstract class LDLMS_Factory {
+
 		/**
 		 * Static array of object instances.
 		 *
@@ -24,13 +28,18 @@ if ( ! class_exists( 'LDLMS_Factory' ) ) {
 		 */
 		protected static $instances = array();
 
+		/**
+		 * Public constructor for class.
+		 *
+		 * @since 2.5.0
+		 */
 		public function __construct() {
 		}
 
 		/**
 		 * Get the current instance of this class or new.
 		 *
-		 * @since 3.2.0
+		 * @since 2.5.0
 		 *
 		 * @param string $instance_key Unique identifier for instance.
 		 * @return object instance of class.
@@ -51,7 +60,8 @@ if ( ! class_exists( 'LDLMS_Factory' ) ) {
 		/**
 		 * Add Model instance.
 		 *
-		 * @since 3.2.0
+		 * @since 2.5.0
+		 *
 		 * @param string  $model  Class name to add.
 		 * @param integer $key    Unique ID for instance.
 		 * @param mixed   $args   Args passed to class constructor.
@@ -82,7 +92,8 @@ if ( ! class_exists( 'LDLMS_Factory' ) ) {
 		/**
 		 * Remove Model instance.
 		 *
-		 * @since 3.3.0
+		 * @since 2.5.0
+		 *
 		 * @param string  $model Class name to add.
 		 * @param integer $key  Unique ID for instance.
 		 */

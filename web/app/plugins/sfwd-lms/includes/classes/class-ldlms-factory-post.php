@@ -3,8 +3,8 @@
  * LearnDash Factory Post Class.
  * This is a factory class used to instansiate course and quiz related data.
  *
+ * @since 2.5.0
  * @package LearnDash
- * @since 3.2.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,6 +14,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ( ! class_exists( 'LDLMS_Factory_Post' ) ) && ( class_exists( 'LDLMS_Factory' ) ) ) {
 	/**
 	 * Class for LearnDash Factory Post.
+	 *
+	 * @since 2.5.0
+	 * @uses LDLMS_Factory
 	 */
 	class LDLMS_Factory_Post extends LDLMS_Factory {
 

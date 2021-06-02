@@ -16,6 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * For now excludes quizzes at lesson and topic level.
  *
+ * @since 2.3.0
+ *
  * @param int   $course_id          Optional. The ID of the course. Default 0.
  * @param array $include_post_types Optional. An array of post types to include in course steps. Default array contains 'sfwd-lessons' and 'sfwd-topic'.
  *
@@ -46,6 +48,8 @@ function learndash_get_course_steps( $course_id = 0, $include_post_types = array
 /**
  * Gets the total count of lessons and topics for a given course ID.
  *
+ * @since 2.3.0
+ *
  * @param int $course_id Optional. The ID of the course. Default 0.
  *
  * @return int The count of the course steps.
@@ -60,6 +64,8 @@ function learndash_get_course_steps_count( $course_id = 0 ) {
 
 /**
  * Gets the total completed steps for a given course progress array.
+ *
+ * @since 2.3.0
  *
  * @param int   $user_id         Optional. The ID of the user. Default 0.
  * @param int   $course_id       Optional. The ID of the course. Default 0.
@@ -213,12 +219,12 @@ function learndash_course_get_topics( $course_id = 0, $lesson_id = 0, $query_arg
 }
 
 /**
- * Get the Course Topics.
+ * Get the Course Quizzes.
  *
  * @since 3.4.0
  *
- * @param integer $course_id Course ID.
- * @param integer $parent_id Parent Lesson, Topic, or Course ID.
+ * @param integer $course_id  Course ID.
+ * @param integer $parent_id  Parent Lesson, Topic, or Course ID.
  * @param array   $query_args Array of query args to filter the query.
  *
  * @return array of Quizzes.
@@ -272,6 +278,8 @@ function learndash_course_get_steps_count( $course_id = 0 ) {
 /**
  * Gets the parent step IDs for a step in a course.
  *
+ * @since 2.5.0
+ *
  * @param int $course_id Optional. The ID of the course. Default 0.
  * @param int $step_id   Optional. The ID of the step to get parent steps. Default 0.
  *
@@ -320,6 +328,8 @@ function learndash_course_get_all_parent_step_ids( $course_id = 0, $step_id = 0 
 
 /**
  * Gets the single parent step ID for a given step ID in a course.
+ *
+ * @since 2.5.0
  *
  * @param int    $course_id Optional. Course ID. Default 0.
  * @param int    $step_id   Optional. Step ID. Default 0.
@@ -379,6 +389,8 @@ function learndash_course_get_single_parent_step( $course_id = 0, $step_id = 0, 
 /**
  * Gets the course steps by type.
  *
+ * @since 2.5.0
+ *
  * @param int    $course_id Optional. Course ID. Default 0.
  * @param string $step_type Optional. The type of the step. Default empty.
  *
@@ -406,6 +418,8 @@ function learndash_course_get_steps_by_type( $course_id = 0, $step_type = '' ) {
 
 /**
  * Gets the list of children steps for a given step ID.
+ *
+ * @since 2.5.0
  *
  * @param int    $course_id  Optional.     Course ID. Default 0.
  * @param int    $step_id    Optional.     The ID of step to get child steps. Default 0.
@@ -437,6 +451,8 @@ function learndash_course_get_children_of_step( $course_id = 0, $step_id = 0, $c
 
 /**
  * Gets the list of courses associated with a step.
+ *
+ * @since 2.5.0
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
@@ -527,6 +543,7 @@ function learndash_get_courses_for_step( $step_id = 0, $return_flat_array = fals
  * Check the Course Step primary Course ID.
  *
  * @since 3.2.3
+ *
  * @param int $step_id Course Step Post ID.
  */
 function learndash_check_primary_course_for_step( $step_id = 0 ) {
@@ -550,7 +567,8 @@ function learndash_check_primary_course_for_step( $step_id = 0 ) {
 /**
  * Get primary course_id for course step.
  *
- * @since 3.2
+ * @since 3.2.0
+ *
  * @param integer $step_id Course step post ID.
  * @return integer $course_id Primary Course ID if found.
  */
@@ -577,8 +595,10 @@ function learndash_get_primary_course_for_step( $step_id = 0 ) {
 /**
  * Set primary course_id for course step.
  *
- * @since 3.2
+ * @since 3.2.0
+ *
  * @param integer $step_id Course step post ID.
+ *
  * @return integer $course_id Primary Course ID if found.
  */
 function learndash_set_primary_course_for_step( $step_id = 0, $course_id = 0 ) {
@@ -597,12 +617,10 @@ function learndash_set_primary_course_for_step( $step_id = 0, $course_id = 0 ) {
 /**
  * Validates the URL requests when nested URL permalinks are used.
  *
- * Fires on `wp` hook.
+ * @since 2.5.0
  *
  * @global WP_Post  $post     Global post object.
  * @global WP_Query $wp_query WordPress Query object.
- *
- * @since 2.5.0
  *
  * @param WP $wp The `WP` instance.
  */
@@ -734,7 +752,6 @@ function learndash_check_course_step( $wp ) {
 		}
 	}
 }
-
 add_action( 'wp', 'learndash_check_course_step' );
 
 /**
@@ -792,6 +809,51 @@ function learndash_course_set_steps_dirty( $course_id = 0 ) {
 }
 
 /**
+ * Get the array of 'post_stats' keys used for Course Steps queries.
+ *
+ * @since 3.4.1
+ *
+ * @return array Array of post_status keys.
+ */
+function learndash_get_step_post_statuses() {
+	$ld_post_statuses = array();
+	$wp_post_statuses = get_post_stati( array( 'show_in_admin_status_list' => true ), 'object' );
+	if ( ! empty( $wp_post_statuses ) ) {
+		foreach ( $wp_post_statuses as $status_key => $status_object ) {
+			$ld_post_statuses[ $status_key ] = $status_object->label;
+		}
+	}
+	$ld_post_statuses['password'] = esc_html_x( 'Password', 'Password Protected post_status label', 'learndash' );
+
+	/**
+	 * Filters the post_statuses use for Course Steps Queries.
+	 *
+	 * @since 3.4.0.3
+	 *
+	 * @param array $ld_post_statuses Array of post_status key/label pairs.
+	 */
+	return apply_filters( 'learndash_course_steps_post_statuses', $ld_post_statuses );
+}
+
+/**
+ * Get single course step post status slug.
+ *
+ * @since 3.4.1
+ *
+ * @param object $post WP_Post object.
+ *
+ * @return string
+ */
+function learndash_get_step_post_status_slug( $post ) {
+	if ( ( $post ) && ( is_a( $post, 'WP_Post' ) ) ) {
+		if ( ( 'publish' === $post->post_status ) && ( ! empty( $post->post_password ) ) ) {
+			return 'password';
+		}
+		return $post->post_status;
+	}
+}
+
+/**
  * Handler function when a new course step is inserted.
  *
  * This function exists to handle inserted post steps external to
@@ -800,9 +862,9 @@ function learndash_course_set_steps_dirty( $course_id = 0 ) {
  *
  * @since 3.4.0.3
  *
- * @param int     $post_ID Post ID.
- * @param WP_Post $post    Post object.
- * @param bool    $update  Whether this is an existing post being updated.
+ * @param int    $post_ID Post ID.
+ * @param object $post    WP_Post object.
+ * @param bool   $update  Whether this is an existing post being updated.
  */
 function learndash_new_step_insert( $post_id, $post, $update ) {
 	$post_id = absint( $post_id );

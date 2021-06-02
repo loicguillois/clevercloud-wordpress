@@ -1,20 +1,21 @@
 <?php
 /**
- * LearnDash Settings Page Abstract Class.
+ * LearnDash Settings Sections Abstract Class.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.4.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-//require_once LEARNDASH_LMS_PLUGIN_DIR . 'includes/settings/class-ld-settings-section-fields.php';
-
 if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
+
 	/**
 	 * Absract for LearnDash Settings Sections.
+	 *
+	 * @since 2.4.0
 	 */
 	abstract class LearnDash_Settings_Section {
 
@@ -64,7 +65,7 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 		 * Flag to save settings values on load.
 		 *
 		 * This is needed is the settings values loaded
-		 * is false. 
+		 * is false.
 		 *
 		 * @var boolean $settings_values_save_on_load Flag.
 		 */
@@ -179,6 +180,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 2.4.0
 		 */
 		protected function __construct() {
 			add_action( 'init', array( $this, 'init' ) );
@@ -238,6 +241,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 
 		/**
 		 * Initialize self
+		 *
+		 * @since 2.4.0
 		 */
 		public function init() {
 			if ( ! $this->settings_values_loaded ) {
@@ -252,6 +257,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 
 		/**
 		 * Load the section settings values.
+		 *
+		 * @since 2.4.0
 		 */
 		public function load_settings_values() {
 			$this->settings_values_loaded = true;
@@ -279,6 +286,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 
 		/**
 		 * Load the section settings fields.
+		 *
+		 * @since 2.4.0
 		 */
 		public function load_settings_fields() {
 			$this->settings_fields_loaded = true;
@@ -341,6 +350,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 
 		/**
 		 * Save Section Settings values
+		 *
+		 * @since 2.4.0
 		 */
 		public function save_settings_values() {
 			$this->settings_values_loaded = false;
@@ -367,6 +378,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 
 		/**
 		 * Initialize the Settings page.
+		 *
+		 * @since 2.4.0
 		 *
 		 * @param string $settings_page_id ID of page being initialized.
 		 */
@@ -407,6 +420,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 
 		/**
 		 * Show Settings Section Description
+		 *
+		 * @since 2.4.0
 		 */
 		public function show_settings_section_description() {
 
@@ -417,6 +432,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 
 		/**
 		 * Output Settings Section nonce field.
+		 *
+		 * @since 3.0.0
 		 */
 		public function show_settings_section_nonce_field() {
 			wp_nonce_field( $this->setting_option_key, $this->setting_option_key . '_nonce' );
@@ -425,9 +442,10 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 		/**
 		 * Intercept the WP options save logic and check that we have a valid nonce.
 		 *
-		 * @since 3.0
-		 * @param array $value Array of section fields values.
-		 * @param array $old_value Array of old values.
+		 * @since 3.0.0
+		 *
+		 * @param array  $value Array of section fields values.
+		 * @param array  $old_value Array of old values.
 		 * @param string $section_key Section option key should match $this->setting_option_key.
 		 */
 		public function section_pre_update_option( $value, $old_value, $section_key = '' ) {
@@ -445,9 +463,10 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 		/**
 		 * Called AFTER section settings are update.
 		 *
-		 * @since 3.0
-		 * @param array $value Array of section fields values.
-		 * @param array $old_value Array of old values.
+		 * @since 3.0.0
+		 *
+		 * @param array  $value Array of section fields values.
+		 * @param array  $old_value Array of old values.
 		 * @param string $section_key Section option key should match $this->setting_option_key.
 		 */
 		public function section_update_option( $old_value = '', $value = '', $section_key = '' ) {
@@ -455,6 +474,14 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 				// When a section values change we update our internal set and also trigger reload fresh.
 
 				if ( ! defined( 'LEARNDASH_SETTINGS_UPDATING' ) ) {
+					/**
+					 * Define LearnDash LMS - Set during settings save processing
+					 *
+					 * @since 3.1.0
+					 * @internal Will be set by LearnDash LMS.
+					 *
+					 * @var bool true when settings are being saved.
+					 */
 					define( 'LEARNDASH_SETTINGS_UPDATING', true );
 				}
 				$this->setting_option_values  = $value;
@@ -466,6 +493,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 
 		/**
 		 * Verify Settings Section nonce field POST value.
+		 *
+		 * @since 3.0.0
 		 */
 		public function verify_metabox_nonce_field() {
 			if ( ( isset( $_POST[ $this->setting_option_key . '_nonce' ] ) ) && ( ! empty( $_POST[ $this->setting_option_key . '_nonce' ] ) ) && ( wp_verify_nonce( esc_attr( $_POST[ $this->setting_option_key . '_nonce' ] ), $this->setting_option_key ) ) ) {
@@ -475,6 +504,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 
 		/**
 		 * Show Settings Section reset link
+		 *
+		 * @since 2.6.0
 		 */
 		public function show_settings_section_reset_confirm_link() {
 			if ( ! empty( $this->reset_confirm_message ) ) {
@@ -494,6 +525,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 
 		/**
 		 * Added Settings Section meta box.
+		 *
+		 * @since 2.4.0
 		 *
 		 * @param string $settings_screen_id Settings Screen ID.
 		 */
@@ -550,6 +583,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 
 		/**
 		 * Show Settings Section meta box.
+		 *
+		 * @since 2.4.0
 		 */
 		public function show_meta_box() {
 			global $wp_settings_sections;
@@ -565,6 +600,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 
 		/**
 		 * Show the meta box settings
+		 *
+		 * @since 2.4.0
 		 *
 		 * @param string $section Section to be shown.
 		 */
@@ -645,6 +682,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 		/**
 		 * Show Settings Section Fields.
 		 *
+		 * @since 2.4.0
+		 *
 		 * @param string $page Page shown.
 		 * @param string $section Section shown.
 		 */
@@ -661,6 +700,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 		/**
 		 * This validation function is set via the call to 'register_setting'
 		 * and will be called for each section.
+		 *
+		 * @since 2.4.0
 		 *
 		 * @param array $post_fields Array of section fields.
 		 */
@@ -691,6 +732,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 		/**
 		 * Static function to get section setting.
 		 *
+		 * @since 2.4.0
+		 *
 		 * @param string $field_key Section field key.
 		 * @param mixed  $default_return Default value if field not found.
 		 */
@@ -700,6 +743,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 
 		/**
 		 * Static function to get all section settings.
+		 *
+		 * @since 2.4.0
 		 */
 		public static function get_settings_all() {
 			return self::get_section_settings_all( get_called_class() );
@@ -707,6 +752,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 
 		/**
 		 * Static function to get section to get option label.
+		 *
+		 * @since 2.4.0
 		 *
 		 * @param string $field_key Section field key.
 		 * @param string $option_key Section option key.
@@ -717,6 +764,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 
 		/**
 		 * Static function to get a Section Setting value.
+		 *
+		 * @since 2.4.0
 		 *
 		 * @param string $section Settings Section.
 		 * @param string $field_key Settings Section field key.
@@ -746,6 +795,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 		/**
 		 * Static function to set a Section Setting value.
 		 *
+		 * @since 2.5.0
+		 *
 		 * @param string $section Settings Section.
 		 * @param string $field_key Settings Section field key.
 		 * @param mixed  $new_value new value for field.
@@ -769,6 +820,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 
 		/**
 		 * Static function to get all Section fields.
+		 *
+		 * @since 2.4.0
 		 *
 		 * @param string $section Settings Section.
 		 * @param string $field Settings Section field key.
@@ -807,6 +860,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 		/**
 		 * From a section settings you can access the label used on a select by the option key.
 		 *
+		 * @since 2.4.0
+		 *
 		 * @param string $section Settings Section.
 		 * @param string $field_key Settings Section field key.
 		 * @param string $option_key Option key.
@@ -840,7 +895,7 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 		/**
 		 * Transition settings from old class into current one.
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
 		 */
 		public function transition_deprecated_settings() {
 			if ( ! empty( $this->settings_deprecated ) ) {
@@ -862,7 +917,8 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 		/**
 		 * Transition old Settiings Class to new one.
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
+		 *
 		 * @param string $section Old section class.
 		 * @return string New section Class.
 		 */
@@ -879,7 +935,7 @@ if ( ! class_exists( 'LearnDash_Settings_Section' ) ) {
 		/**
 		 * Transition old Settiings Class field(s) to new one(s).
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
 		 * @param string $field_key Old section field key.
 		 * @param string $section Old section class.
 		 * @return string new field key.

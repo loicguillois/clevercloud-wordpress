@@ -1,11 +1,18 @@
 <?php
+/**
+ * LearnDash Shortcode Section for Group [ld_group].
+ *
+ * @since 2.4.0
+ * @package LearnDash\Settings\Shortcodes
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'LearnDash_Shortcodes_Section_ld_group' ) ) ) {
 	/**
-	 * Class for LearnDash Shortcode Section.
+	 * Class LearnDash Shortcode Section for Group [ld_group].
 	 */
 	//phpcs:ignore PEAR.NamingConventions.ValidClassName.Invalid
 	class LearnDash_Shortcodes_Section_ld_group extends LearnDash_Shortcodes_Section {
@@ -18,8 +25,8 @@ if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'Le
 		public function __construct( $fields_args = array() ) {
 			$this->fields_args = $fields_args;
 
-			$this->shortcodes_section_key         = 'ld_group';
-			$this->shortcodes_section_title       = sprintf(
+			$this->shortcodes_section_key   = 'ld_group';
+			$this->shortcodes_section_title = sprintf(
 				// translators: placeholder: Group
 				esc_html_x( '%s', 'placeholder: Group', 'learndash' ),
 				learndash_get_custom_label( 'group' )

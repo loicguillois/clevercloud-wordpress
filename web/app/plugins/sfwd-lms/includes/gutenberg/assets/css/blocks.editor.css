@@ -28,5 +28,9 @@
 
 .edit-post-visual-editor .learndash-block-error-message {
 	display: block;
-	color: red;    
+	color: red;
+}
+
+.components-panel .learndash-block-controls-panel select[multiple] {
+	height: max-content !important;
 }

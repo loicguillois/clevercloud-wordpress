@@ -2,8 +2,8 @@
 /**
  * LearnDash Group Membership.
  *
- * @package LearnDash
- * @subpackage Groups
+ * @since 3.2.0
+ * @package LearnDash\Groups
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,13 +13,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 	/**
 	 * Class to create the instance.
+	 *
+	 * @since 3.2.0
 	 */
 	class LD_Groups_Membership {
 		/**
 		 * Static instance variable to ensure
 		 * only one instance of class is used.
-		 *
-		 * @since 1.0.0
 		 *
 		 * @var object $instance
 		 */
@@ -56,7 +56,7 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 		/**
 		 * Get or create instance object of class.
 		 *
-		 * @since 1.0.0
+		 * @since 3.2.0
 		 */
 		public static function get_instance() {
 			if ( ! isset( static::$instance ) ) {
@@ -69,7 +69,7 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 		/**
 		 * Public constructor for class
 		 *
-		 * @since 1.0.0
+		 * @since 3.2.0
 		 */
 		protected function __construct() {
 			add_action( 'load-post.php', array( $this, 'on_load' ) );
@@ -80,6 +80,8 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 
 		/**
 		 * Call via the WordPress load sequence for admin pages.
+		 *
+		 * @since 3.2.0
 		 */
 		public function on_load_edit() {
 			global $typenow, $post;
@@ -143,7 +145,7 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 		}
 
 		/**
-		 * Adds the assigned course columns for lessons and quizzes in the admin.
+		 * Adds the protection columns in the table listing.
 		 *
 		 * @global string $typenow
 		 *
@@ -166,6 +168,14 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 			return $cols;
 		}
 
+		/**
+		 * Show the protection columns in the table listing.
+		 *
+		 * @since 3.2.0
+		 *
+		 * @param string  $column_name Column name key.
+		 * @param integer $post_id     Post ID of row.
+		 */
 		public function posts_custom_column( $column_name = '', $post_id = 0 ) {
 			$column_name = esc_attr( $column_name );
 			$post_id     = absint( $post_id );
@@ -196,6 +206,14 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 			}
 		}
 
+		/**
+		 * Display bulk edit on table listing
+		 *
+		 * @since 3.2.3
+		 *
+		 * @param string $column_name Column name key.
+		 * @param string $post_type   Post Type slug.
+		 */
 		public function display_custom_bulk_edit( $column_name = '', $post_type = '' ) {
 			global $sfwd_lms;
 
@@ -367,6 +385,14 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 			}
 		}
 
+		/**
+		 * Save bulk edit changes.
+		 *
+		 * @since 3.2.3
+		 *
+		 * @param integer $post_id Post ID
+		 * @param object  $post    WP_Post object.
+		 */
 		public function save_post_bulk_edit( $post_id, $post ) {
 			global $typenow;
 
@@ -429,6 +455,8 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 
 		/**
 		 * Get Group Membership post metabox instance.
+		 *
+		 * @since 3.2.0
 		 */
 		protected function get_metabox_instance() {
 			if ( is_null( $this->mb_instance ) ) {
@@ -441,6 +469,8 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 
 		/**
 		 * Initialize runtime vars.
+		 *
+		 * @since 3.2.0
 		 */
 		protected function init_vars() {
 			$this->vars['post_id'] = get_the_ID();
@@ -469,6 +499,8 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 		/**
 		 * Add debug message to array.
 		 *
+		 * @since 3.2.0
+		 *
 		 * @param string $message Message text to add.
 		 */
 		protected function add_debug_message( $message = '' ) {
@@ -479,6 +511,8 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 
 		/**
 		 * Output debug message.
+		 *
+		 * @since 3.2.0
 		 */
 		protected function output_debug_messages() {
 			if ( ( isset( $this->vars['debug'] ) ) && ( true === $this->vars['debug'] ) && ( ! empty( $this->vars['debug_messages'] ) ) ) {
@@ -490,6 +524,8 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 
 		/**
 		 * Load the Groups Membership Global settings
+		 *
+		 * @since 3.2.0
 		 */
 		protected function init_global_settings() {
 			if ( is_null( $this->global_setting ) ) {
@@ -515,6 +551,8 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 
 		/**
 		 * Get the managed membership post types.
+		 *
+		 * @since 3.2.0
 		 */
 		protected function get_global_included_post_types() {
 			$included_post_types = array();
@@ -532,6 +570,8 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 
 		/**
 		 * Get Group Membership excluded user roles.
+		 *
+		 * @since 3.2.0
 		 */
 		protected function get_excluded_user_roles() {
 			$excluded_user_roles = array();
@@ -549,6 +589,8 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 
 		/**
 		 * Get Group Membership access denied message.
+		 *
+		 * @since 3.2.0
 		 */
 		protected function get_access_denied_message() {
 			static $inline_css_loaded = false;
@@ -616,7 +658,10 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 		/**
 		 * Get Group Membership Post metabox setting
 		 *
+		 * @since 3.2.0
+		 *
 		 * @param integer $pot_id Post ID to get settings for.
+		 *
 		 * @return array of settings.
 		 */
 		protected function init_post_settings( $post_id = 0 ) {
@@ -627,7 +672,10 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 		/**
 		 * Get the managed membership post groups.
 		 *
+		 * @since 3.2.0
+		 *
 		 * @param integer $pot_id Post ID to get settings for.
+		 *
 		 * @return array of post groups.
 		 */
 		protected function get_post_included_groups( $post_id = 0 ) {
@@ -651,7 +699,10 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 		/**
 		 * Get the managed membership post groups compare.
 		 *
+		 * @since 3.2.0
+		 *
 		 * @param integer $pot_id Post ID to get settings for.
+		 *
 		 * @return array of post groups.
 		 */
 		protected function get_post_groups_compare( $post_id = 0 ) {
@@ -672,6 +723,8 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 		/**
 		 * Check if post type is managed by membership logic.
 		 *
+		 * @since 3.2.0
+		 *
 		 * @param string $post_type Post type slug to check.
 		 */
 		protected function is_included_post_type( $post_type = '' ) {
@@ -684,6 +737,8 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 
 		/**
 		 * Check if user_role is excluded by membership logic.
+		 *
+		 * @since 3.2.0
 		 *
 		 * @param integer $user_id User ID.
 		 */
@@ -710,7 +765,10 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 		/**
 		 * Check if Post is enabled and if the post type is included in the global settings.
 		 *
+		 * @since 3.2.0
+		 *
 		 * @param integer $post_id Post ID
+		 *
 		 * @return boolean
 		 */
 		protected function is_post_blocked( $post_id = 0 ) {
@@ -737,8 +795,11 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 		/**
 		 * Check if User enrolled groups against Post and Membership settings.
 		 *
+		 * @since 3.2.0
+		 *
 		 * @param integer $post_id Post ID
 		 * @param integer $user_id USer ID
+		 *
 		 * @return boolean
 		 */
 		protected function is_user_blocked( $post_id = 0, $user_id = 0 ) {
@@ -775,6 +836,8 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 
 		/**
 		 * Check if user if in the associated post membership groups.
+		 *
+		 * @since 3.2.0
 		 *
 		 * @param integer $post_id Post ID.
 		 * @param integer $user_id User ID.
@@ -814,6 +877,8 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 
 		/**
 		 * Called when the Post is Added or Edited.
+		 *
+		 * @since 3.2.0
 		 */
 		public function on_load() {
 			global $typenow;
@@ -826,6 +891,8 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 
 		/**
 		 * Called when the Post is Saved.
+		 *
+		 * @since 3.2.0
 		 *
 		 * @param integer $post_id Post ID.
 		 * @param object  $post    WP_Post instance.
@@ -842,6 +909,8 @@ if ( ! class_exists( 'LD_Groups_Membership' ) ) {
 
 		/**
 		 * Start the logic to filter the content.
+		 *
+		 * @since 3.2.0
 		 *
 		 * @param string/HTML $content The Post content.
 		 */

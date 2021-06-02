@@ -2,8 +2,8 @@
 /**
  * Abstract class to extend LDLMS_Model to LDLMD_Model_Post.
  *
- * @package LearnDash
  * @since 2.5.0
+ * @package LearnDash
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,12 +11,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( ! class_exists( 'LDLMS_Model_Post' ) ) && ( class_exists( 'LDLMS_Model' ) ) ) {
+	/**
+	 * Class for LearnDash Model Post.
+	 *
+	 * @since 2.5.0
+	 * @uses LDLMS_Model
+	 */
 	class LDLMS_Model_Post extends LDLMS_Model {
 
 		/**
 		 * Post ID of Model.
-		 *
-		 * @since 3.2.0
 		 *
 		 * @var integer $id.
 		 */
@@ -25,16 +29,12 @@ if ( ( ! class_exists( 'LDLMS_Model_Post' ) ) && ( class_exists( 'LDLMS_Model' )
 		/**
 		 * Post Type of Model.
 		 *
-		 * @since 3.3.0
-		 *
 		 * @var string $post_type WP_Post post_type.
 		 */
 		protected $post_type = null;
 
 		/**
 		 * Post Object of Model.
-		 *
-		 * @since 3.2.0
 		 *
 		 * @var object $post WP_Post instance.
 		 */
@@ -43,16 +43,12 @@ if ( ( ! class_exists( 'LDLMS_Model_Post' ) ) && ( class_exists( 'LDLMS_Model' )
 		/**
 		 * Post Settings of Model.
 		 *
-		 * @since 3.2.0
-		 *
 		 * @var array $post_settings Array of Post Settings.
 		 */
 		protected $settings = null;
 
 		/**
 		 * Settings loaded for Model.
-		 *
-		 * @since 3.2.0
 		 *
 		 * @var boolean $settings_loaded Set to true when settings have been loaded.
 		 */
@@ -61,16 +57,12 @@ if ( ( ! class_exists( 'LDLMS_Model_Post' ) ) && ( class_exists( 'LDLMS_Model' )
 		/**
 		 * Settings changed for Model.
 		 *
-		 * @since 3.4.0
-		 *
 		 * @var boolean $settings_changed Set to true when settings have changed.
 		 */
 		protected $settings_changed = false;
 
 		/**
 		 * Private constructor for class.
-		 *
-		 * @since 3.2.0
 		 */
 		private function __construct() {
 		}

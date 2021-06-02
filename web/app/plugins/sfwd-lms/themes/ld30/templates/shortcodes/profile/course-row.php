@@ -1,4 +1,11 @@
 <?php
+/**
+ * LearnDash LD30 Displays a user's profile course progress row.
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -23,6 +30,8 @@ if ( absint( $progress['percentage'] ) > 0 && 100 !== absint( $progress['percent
 
 /**
  * Filters shortcode course row CSS class.
+ *
+ * @since 3.0.0
  *
  * @param string $course_row_class List of the course row CSS classes
  */
@@ -87,6 +96,8 @@ $course_class = apply_filters(
 				<?php
 				/**
 				 * Filters Whether to show profiles quizzes.
+				 *
+				 * @since 2.5.8
 				 *
 				 * @param boolean $show_quizzes Whether to show profile quizzes.
 				 */

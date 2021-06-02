@@ -9,7 +9,7 @@
  * @var array  $shortcode_atts Array of shortcode attributes to create the Quiz.
  * @since 3.2
  *
- * @package LearnDash\Quiz
+ * @package LearnDash\Templates\Legacy\Quiz
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

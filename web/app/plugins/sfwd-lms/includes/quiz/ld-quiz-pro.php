@@ -11,16 +11,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-
 /**
  * Include WP Pro Quiz Plugin
  */
 //require_once dirname( dirname( __FILE__ ) ) . '/vendor/wp-pro-quiz/wp-pro-quiz.php';
 require_once LEARNDASH_LMS_LIBRARY_DIR . '/wp-pro-quiz/wp-pro-quiz.php';
 
-
 /**
  * LearnDash QuizPro class
+ *
+ * @since 2.1.0
  */
 class LD_QuizPro {
 
@@ -28,8 +28,10 @@ class LD_QuizPro {
 
 	/**
 	 * LD_QuizPro constructor
+	 *
+	 * @since 2.1.0
 	 */
-	function __construct() {
+	public function __construct() {
 
 		//add_action( 'wp_head', array( $this, 'certificate_details' ) );
 		add_action( 'wp_pro_quiz_completed_quiz', array( $this, 'wp_pro_quiz_completed' ) );
@@ -70,15 +72,12 @@ class LD_QuizPro {
 		add_action( 'learndash_quiz_completed', array( $this, 'set_quiz_status_meta' ), 1, 2 );
 	}
 
-
-
 	/**
 	 * Submit quiz and echo JSON representation of the checked quiz answers
 	 *
 	 * @since 2.1.0
-	 *
 	 */
-	function ld_adv_quiz_pro_ajax() {
+	public function ld_adv_quiz_pro_ajax() {
 
 		// First we unpack the $_POST['results'] string
 		if ( ( isset( $_POST['data']['responses'] ) ) && ( !empty( $_POST['data']['responses'] ) ) && ( is_string( $_POST['data']['responses'] ) ) ) {
@@ -106,9 +105,10 @@ class LD_QuizPro {
 	 * @since 2.1.0
 	 *
 	 * @param  array $data Quiz information and answers to be checked
+	 *
 	 * @return string  JSON representation of checked answers
 	 */
-	function checkAnswers( $data ) {
+	public function checkAnswers( $data ) {
 
 		//error_log('in '. __FUNCTION__ );
 		//error_log('_POST<pre>'. print_r($_POST, true) .'</pre>');
@@ -327,7 +327,7 @@ class LD_QuizPro {
 											break;
 										}
 
-										// See https://bitbucket.org/snippets/learndash/aKdpz for examples of this filter.
+										// See https://developers.learndash.com/hook/learndash_ques_multiple_answer_pts_whole/ for examples of this filter.
 										/**
 										 * Filters points awarded for a multiple answer type question.
 										 *
@@ -390,7 +390,7 @@ class LD_QuizPro {
 											$correct = true;
 										}
 
-										// See https://bitbucket.org/snippets/learndash/aKdpz for examples of this filter.
+										// See https://developers.learndash.com/hook/learndash_ques_single_answer_pts/ for examples of this filter.
 										/**
 										 * Filters points awarded for a single answer type question.
 										 *
@@ -703,7 +703,7 @@ class LD_QuizPro {
 	 *
 	 * @since 2.1.0
 	 */
-	function quiz_edit_redirect() {
+	public function quiz_edit_redirect() {
 
 		if ( ! empty( $_GET['page'] ) && $_GET['page'] == 'ldAdvQuiz' && empty( $_GET['module'] ) && ! empty( $_GET['action'] ) && $_GET['action'] == 'addEdit' ) {
 
@@ -754,6 +754,7 @@ class LD_QuizPro {
 	 * @since 2.1.0
 	 *
 	 * @param  int $pro_quiz_id
+	 *
 	 * @return string HTML representation of quiz description
 	 */
 	static function get_description( $pro_quiz_id ) {
@@ -796,7 +797,7 @@ class LD_QuizPro {
 	 *
 	 * @param  string $msg Debugging message
 	 */
-	function debug( $msg ) {
+	public function debug( $msg ) {
 	}
 
 
@@ -835,6 +836,9 @@ class LD_QuizPro {
 	 * Checks a users submitted quiz attempt to see if that quiz
 	 * has graded questions and if all of them have been graded
 	 *
+	 * @since 2.2.0
+	 *
+	 * @param array $quiz_attempt Quiz Attempt data.
 	 */
 	static function quiz_attempt_has_ungraded_question( $quiz_attempt ) {
 		if (isset( $quiz_attempt['graded'] ) ) {
@@ -850,9 +854,12 @@ class LD_QuizPro {
 	/**
 	 * This function runs when a quiz is started and is used to set the quiz start timestamp
 	 *
-	 * @since 2.3
+	 * @since 2.3.0
+	 *
+	 * @param array  $quizdata Quiz data array
+	 * @param object $user     WP_User object
 	 */
-	function set_quiz_status_meta( $quizdata, $user ) {
+	public function set_quiz_status_meta( $quizdata, $user ) {
 
 		if (empty( $quizdata ) ) return;
 		if ( !( $user instanceof WP_User ) ) return;
@@ -898,16 +905,23 @@ class LD_QuizPro {
 				'user_id'			=>	$user->ID,
 				'post_id'			=>	$quizdata['course'],
 				'activity_type'		=>	'course',
-				'activity_started'	=>	time(),
-				'activity_meta'			=>	array(
-												'steps_completed'	=>	$quizdata['steps_completed'],
-												'steps_last_id'		=>	$quizdata['quiz']
-											)
 			);
 			$course_activity = learndash_get_user_activity( $course_args );
-			if ( !$course_activity ) {
-				learndash_update_user_activity( $course_args );
+
+			if ( ! empty( $course_activity ) ) {
+				$course_activity = json_decode( wp_json_encode( $course_activity ), true );
+			} else {
+				$course_activity = $course_args;
 			}
+
+			$course_activity['activity_started'] = time();
+			$course_activity['activity_updated'] = time();
+			$course_activity['activity_meta']	 = array(
+				'steps_completed'	=>	$quizdata['steps_completed'],
+				'steps_last_id'		=>	$quizdata['quiz']
+			);
+
+			learndash_update_user_activity( $course_activity );
 		}
 
 		if  ( ( isset( $quizdata['started'] ) ) && ( !empty( $quizdata['started'] ) ) && ( isset( $quizdata['completed'] ) ) && ( !empty( $quizdata['completed'] ) ) ) {
@@ -937,6 +951,8 @@ class LD_QuizPro {
 	 * This function runs when a quiz is completed, and does the action 'wp_pro_quiz_completed_quiz'
 	 *
 	 * @since 2.1.0
+	 *
+	 * @param integer $statistic_ref_id Quiz Statistics Ref ID.
 	 */
 	function wp_pro_quiz_completed( $statistic_ref_id = 0) {
 
@@ -1241,8 +1257,9 @@ class LD_QuizPro {
 	 *
 	 * @since 2.1.0
 	 *
-	 * @param  int 	$pro_quizid
-	 * @return int  quiz ID
+	 * @param int $pro_quizid WPProQuiz ID
+	 *
+	 * @return int quiz ID
 	 */
 	function get_ld_quiz_id( $pro_quizid ) {
 		$quizzes = SFWD_SlickQuiz::get_all_quizzes();
@@ -1284,6 +1301,8 @@ class LD_QuizPro {
 	 * Echoes the HTML with inline javascript that contains the JSON representation of the certificate details and continue link details
 	 *
 	 * @since 2.1.0
+	 *
+	 * @param int $pro_quiz_id WPProQuiz ID
 	 */
 	static function certificate_details( $pro_quiz_id = null ) {
 
@@ -1348,6 +1367,7 @@ class LD_QuizPro {
 	 *
 	 * @param  string $content HTML
 	 * @param  mixed  $pro_quiz (integer) WPProQuixz ID, (object) WpProQuiz_Model_Quiz
+	 *
 	 * @return string HTML $content or $content concatenated with the certificate link
 	 */
 	static function certificate_link( $content, $pro_quiz = null ) {
@@ -1484,7 +1504,7 @@ class LD_QuizPro {
 	 *
 	 * @since 2.1.0
 	 *
-	 * @param  int $post_id
+	 * @param int $post_id Post ID
 	 */
 	static function edit_process( $post_id ) {
 		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
@@ -1533,8 +1553,9 @@ class LD_QuizPro {
 	 *
 	 * @since 2.1.0
 	 *
-	 * @param  int 		$question_id
-	 * @param  int 		$pos
+	 * @param int $question_id Question ID
+	 * @param int $pos         Postiion
+	 *
 	 * @return string 	MD5 Checksum
 	 */
 	static function datapos( $question_id, $pos ) {
@@ -1549,8 +1570,9 @@ class LD_QuizPro {
 	 *
 	 * @since 2.1.0
 	 *
-	 * @param  int 		$question_id
-	 * @param  int 		$count
+	 * @param  int 		$question_id Question ID
+	 * @param  int 		$count       Count
+	 *
 	 * @return array  	Array of MD5 checksum strings
 	 */
 	static function datapos_array( $question_id, $count ) {
@@ -1564,6 +1586,11 @@ class LD_QuizPro {
 		return $datapos_array;
 	}
 
+	/**
+	 * Show Modal Window
+	 *
+	 * @since 2.3.0
+	 */
 	static function showModalWindow() {
 		static $show_only_once = false;
 
@@ -1637,7 +1664,14 @@ class LD_QuizPro {
 		}
 	}
 
-
+	/**
+	 * Quiz Content
+	 *
+	 * @since 2.3.0
+	 *
+	 * @param string $quiz_content Quiz Content.
+	 * @param object $quiz_post    WP_Post Quiz object.
+	 */
 	function learndash_quiz_content($quiz_content, WP_Post $quiz_post ) {
 		return $quiz_content;
 
@@ -1779,6 +1813,14 @@ function learndash_get_open_quizzes( $bypass_transient = false ) {
 
 $quiz_debug_error_log_file = '';
 global $quiz_debug_error_log_file;
+
+/**
+ * Quiz Debug Log Init
+ *
+ * @since 3.2.3
+ *
+ * @param integer $quiz_id Quiz ID
+ */
 function learndash_quiz_debug_log_init( $quiz_id = 0 ) {
 	global $quiz_debug_error_log_file;
 
@@ -1807,6 +1849,13 @@ function learndash_quiz_debug_log_init( $quiz_id = 0 ) {
 	}
 }
 
+/**
+ * Quiz Debug Log Message
+ *
+ * @since 3.2.3
+ *
+ * @param string $message Message
+ */
 function learndash_quiz_debug_log_message( $message = '' ) {
 	global $quiz_debug_error_log_file;
 

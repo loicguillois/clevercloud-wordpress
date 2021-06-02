@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Loader.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.4.0
+ * @package LearnDash\Settings
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,6 +11,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'LEARNDASH_SETTINGS_SECTION_TYPE' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the Setting Section display type.
+	 *
+	 * @since 2.4.0
+	 *
+	 * @var string Default is 'metabox'. No other values supported at this time.
+	 */
 	define( 'LEARNDASH_SETTINGS_SECTION_TYPE', 'metabox' );
 }
 

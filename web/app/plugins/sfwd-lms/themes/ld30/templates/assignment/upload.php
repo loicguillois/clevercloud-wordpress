@@ -1,6 +1,6 @@
 <?php
 /**
- * lesson/topic assignment upload form.
+ * LearnDash LD30 Display lesson/topic assignment uploads form.
  *
  * If the lesson/topic is set to be an assignment there will be an upload form displayed to the user.
  *
@@ -10,9 +10,9 @@
  * $user_id: Current user ID
  * $assignment_upload_error_message: string of previous upload error. Will be empty if no previous upload attempt
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\Lesson
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -74,6 +74,8 @@ if ( isset( $post_settings['assignment_upload_limit_count'] ) ) {
 /**
  * Fires before the assignment uploads.
  *
+ * @since 3.0.0
+ *
  * @param int $course_step_post_id Post ID for the Lesson/Topic being shown.
  * @param int $course_id           Course ID.
  * @param int $user_id             User ID.
@@ -86,6 +88,8 @@ do_action( 'learndash-assignment-uploads-before', $course_step_post->ID, $course
 		<?php
 		/**
 		 * Fires before the assignment upload heading.
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param int $course_step_post_id Post ID for the Lesson/Topic being shown.
 		 * @param int $course_id           Course ID.
@@ -101,7 +105,9 @@ do_action( 'learndash-assignment-uploads-before', $course_step_post->ID, $course
 		<?php
 
 		/**
-		 * Fires after the assignment uploads.
+		 * Fires after the assignment uploads heading.
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param int $course_step_post_id Post ID for the Lesson/Topic being shown.
 		 * @param int $course_id           Course ID.
@@ -124,6 +130,8 @@ do_action( 'learndash-assignment-uploads-before', $course_step_post->ID, $course
 		/**
 		 * Fires inside the assignment upload form.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param int $course_step_post_id Post ID for the Lesson/Topic being shown.
 		 * @param int $course_id           Course ID.
 		 * @param int $user_id             User ID.
@@ -144,6 +152,8 @@ do_action( 'learndash-assignment-uploads-before', $course_step_post->ID, $course
 		<?php
 		/**
 		 * Fires inside assignment upload message wrapper.
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param int $course_step_post_id Post ID for the Lesson/Topic being shown.
 		 * @param int $course_id           Course ID.

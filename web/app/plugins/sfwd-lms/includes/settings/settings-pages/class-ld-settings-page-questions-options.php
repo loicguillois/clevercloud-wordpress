@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Page Questions Options.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.6.0
+ * @package LearnDash\Settings\Pages
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,12 +13,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDash_Settings_Page_Questions_Options' ) ) ) {
 
 	/**
-	 * Class to create the settings page.
+	 * Class LearnDash Settings Page Questions Options.
+	 *
+	 * @since 2.6.0
 	 */
 	class LearnDash_Settings_Page_Questions_Options extends LearnDash_Settings_Page {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 2.6.0
 		 */
 		public function __construct() {
 

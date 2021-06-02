@@ -2,9 +2,8 @@
 /**
  * LearnDash V2 REST API Users Quiz Progress Controller.
  *
- * @package LearnDash
- * @subpackage REST_API
  * @since 3.3.0
+ * @package LearnDash\REST\V2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,15 +11,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( ! class_exists( 'LD_REST_Users_Quiz_Progress_Controller_V2' ) ) && ( class_exists( 'LD_REST_Posts_Controller_V2' ) ) ) {
+
 	/**
-	 * Class REST API Courses Post Controller.
+	 * Class LearnDash V2 REST API Users Quiz Progress Controller.
+	 *
+	 * @since 3.3.0
+	 * @uses LD_REST_Posts_Controller_V2
 	 */
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Users_Quiz_Progress_Controller_V2 extends LD_REST_Posts_Controller_V2 {
 
 		/**
-		 * Public constructor for class
+		 * Supported Collection Parameters.
+		 *
+		 * @since 3.3.0
+		 *
+		 * @var array $supported_collection_params.
 		 */
+
 		public $supported_collection_params = array(
 			'quiz'     => 'quiz_id',
 			'course'   => 'course_id',
@@ -34,6 +42,11 @@ if ( ( ! class_exists( 'LD_REST_Users_Quiz_Progress_Controller_V2' ) ) && ( clas
 			'search'   => 's',
 		);
 
+		/**
+		 * Public constructor for class
+		 *
+		 * @since 3.3.0
+		 */
 		public function __construct( $post_type = '' ) {
 			if ( empty( $post_type ) ) {
 				$post_type = learndash_get_post_type_slug( 'quiz' );
@@ -272,14 +285,6 @@ if ( ( ! class_exists( 'LD_REST_Users_Quiz_Progress_Controller_V2' ) ) && ( clas
 						'context'     => array( 'view' ),
 						'readonly'    => true,
 					),
-					/*
-					'certificate_link'  => array(
-						'description' => esc_html__( 'Statistic ID', 'learndash' ),
-						'type'        => 'integer',
-						'context'     => array( 'view' ),
-						'readonly'    => true,
-					),
-					*/
 				),
 			);
 			return $schema;
@@ -487,7 +492,6 @@ if ( ( ! class_exists( 'LD_REST_Users_Quiz_Progress_Controller_V2' ) ) && ( clas
 				'statistic'     => 0,
 				'started'       => '',
 				'completed'     => '',
-				// 'certificate_link' => '',
 			);
 
 			if ( ( isset( $course_info['quizzes'] ) ) && ( ! empty( $course_info['quizzes'] ) ) ) {
@@ -528,11 +532,6 @@ if ( ( ! class_exists( 'LD_REST_Users_Quiz_Progress_Controller_V2' ) ) && ( clas
 					if ( ! empty( $quiz['completed'] ) ) {
 						$quiz['completed'] = $this->prepare_date_response( gmdate( 'Y-m-d h:i:s', $quiz['completed'] ) );
 					}
-
-					// $cert_details = learndash_certificate_details( $quiz['quiz'], $quiz['user'] );
-					// if ( ( isset( $cert_details['certificateLink'] ) ) && ( ! empty( $cert_details['certificateLink'] ) ) ) {
-					// $quiz['certificate_link'] = $cert_details['certificateLink'];
-					// }
 
 					$quiz_key = $quiz['key'];
 					unset( $quiz['key'] );

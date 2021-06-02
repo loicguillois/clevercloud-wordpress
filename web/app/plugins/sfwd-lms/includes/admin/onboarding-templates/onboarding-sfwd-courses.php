@@ -1,9 +1,10 @@
 <?php
 /**
- * Onboarding Template.
+ * Onboarding Courses Template.
  *
  * Displayed when no entities were added to help the user.
  *
+ * @since 3.0.0
  * @package LearnDash
  */
 

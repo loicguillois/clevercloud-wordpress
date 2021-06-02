@@ -1,10 +1,6 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
 /**
- * Displays a lesson content (topics and quizzes)
+ * LearnDash LD30 Displays a lesson content (topics and quizzes)
  *
  * Available Variables:
  *
@@ -17,8 +13,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 3.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\LD30
  */
+
+ if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 global $course_pager_results;
 
@@ -44,6 +44,8 @@ do_action( 'learndash-topic-list-before', $lesson['post']->ID, $course_id, $user
 			<?php
 			/**
 			 * Filters lesson listing table CSS class.
+			 *
+			 * @since 3.0.0
 			 *
 			 * @param string $table_class Lesson table CSS class list.
 			 */
@@ -96,6 +98,8 @@ do_action( 'learndash-topic-list-before', $lesson['post']->ID, $course_id, $user
 				/**
 				 * Filters whether to show lesson progress in lesson listing.
 				 *
+				 * @since 3.0.7.1
+				 *
 				 * @param boolean $show_progress Whether to show lesson progress.
 				 * @param int     $lesson_id     Lesson ID.
 				 * @param int     $course_id     Course ID
@@ -116,6 +120,8 @@ do_action( 'learndash-topic-list-before', $lesson['post']->ID, $course_id, $user
 				<?php
 				/**
 				 * Filters whether to show lesson steps in lesson listing.
+				 *
+				 * @since 3.0.7.1
 				 *
 				 * @param boolean $show_steps Whether to show lesson steps.
 				 * @param int     $lesson_id  Lesson ID.

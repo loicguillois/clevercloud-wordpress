@@ -1,5 +1,8 @@
 <?php
 /**
+ * Gutenberg loader
+ *
+ * @since 2.5.8
  * @package LearnDash
  */
 

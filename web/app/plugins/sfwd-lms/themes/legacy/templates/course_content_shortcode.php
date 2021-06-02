@@ -24,7 +24,7 @@
  *
  * @since 2.1.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\Legacy\Course
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

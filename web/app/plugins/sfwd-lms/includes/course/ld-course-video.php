@@ -2,8 +2,7 @@
 /**
  * Handles Video Progression logic and setup.
  *
- * @package LearnDash
- * @subpackage Video Progression
+ * @package LearnDash\Video_Progression
  * @since 2.4.0
  */
 
@@ -14,6 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'Learndash_Course_Video' ) ) {
 	/**
 	 * Class for handling the LearnDash Video Progression.
+	 *
+	 * @since 2.4.0
 	 */
 	class Learndash_Course_Video {
 
@@ -84,6 +85,8 @@ if ( ! class_exists( 'Learndash_Course_Video' ) ) {
 
 		/**
 		 * LearnDash Vide Progress constructor.
+		 *
+		 * @since 2.4.0
 		 */
 		public function __construct() {
 			add_action( 'wp_footer', array( $this, 'action_wp_footer' ), 1 );
@@ -100,6 +103,8 @@ if ( ! class_exists( 'Learndash_Course_Video' ) ) {
 
 		/**
 		 * Hook into the LearnDash template logic to insert the Video Progression output
+		 *
+		 * @since 2.4.3
 		 *
 		 * @param string $content  HTML content to be output to browser.
 		 * @param Object $post     WP_Post instance for Lesson or Topic.
@@ -150,7 +155,7 @@ if ( ! class_exists( 'Learndash_Course_Video' ) ) {
 					$bypass_course_limits_admin_users = learndash_can_user_bypass( $this->user_id, 'learndash_video_progression', $post->ID, $post );
 
 					// For logged in users to allow an override filter.
-					/** This filter is documented in includes/class-ld-cpt-instance.php */
+					/** This filter is documented in includes/course/ld-course-progress.php */
 					$bypass_course_limits_admin_users       = apply_filters( 'learndash_prerequities_bypass', $bypass_course_limits_admin_users, $this->user_id, $post->ID, $post );
 					$this->video_data['video_admin_bypass'] = $bypass_course_limits_admin_users;
 
@@ -621,6 +626,8 @@ if ( ! class_exists( 'Learndash_Course_Video' ) ) {
 
 		/**
 		 * Add JS logic to the page footer.
+		 *
+		 * @since 2.4.3
 		 */
 		public function action_wp_footer() {
 			if ( false !== $this->video_data['videos_found_provider'] ) {
@@ -655,6 +662,8 @@ if ( ! class_exists( 'Learndash_Course_Video' ) ) {
 
 		/**
 		 * Handle Mark Complete on Lesson or Topic with Video Progress enabled.
+		 *
+		 * @since 2.4.6
 		 *
 		 * @param bool   $process_complete.
 		 * @param Object $post         WP_Post object beiing marked complete.
@@ -691,6 +700,8 @@ if ( ! class_exists( 'Learndash_Course_Video' ) ) {
 		/**
 		 * Redirect after Mark Complete is performed.
 		 *
+		 * @since 2.4.6
+		 *
 		 * @param string $link Link to redirect to after Mark Complete.
 		 */
 		public function learndash_completion_redirect( $link ) {
@@ -723,6 +734,8 @@ if ( ! class_exists( 'Learndash_Course_Video' ) ) {
 		/**
 		 * Build unique video progress cookie key. This is used to track the video state
 		 * in the user's browser.
+		 *
+		 * @since 3.2.0
 		 *
 		 * @return string $cookie_key.
 		 */
@@ -773,9 +786,11 @@ if ( ! class_exists( 'Learndash_Course_Video' ) ) {
 		 * Utility class method to allow add-hoc checks on video complete.
 		 *
 		 * @since 3.2.3
+		 *
 		 * @param int $step_id   Course Step ID.
 		 * @param int $course_id Course ID.
 		 * @param int $user_id   User ID.
+		 *
 		 * @return bool true if complete.
 		*/
 		public function check_video_complete( $step_id = 0, $course_id = 0, $user_id = 0 ) {
@@ -827,9 +842,11 @@ add_action(
  * Utility class method to allow add-hoc checks on video complete.
  *
  * @since 3.2.3
+ *
  * @param int $step_id   Course Step ID.
  * @param int $course_id Course ID.
  * @param int $user_id   User ID.
+ *
  * @return bool true if complete.
 */
 function learndash_video_complete_for_step( $step_id = 0, $course_id = 0, $user_id = 0 ) {
@@ -839,6 +856,15 @@ function learndash_video_complete_for_step( $step_id = 0, $course_id = 0, $user_
 	}
 }
 
+/**
+ * Delete Video Cookie for Step
+ *
+ * @since 3.2.3
+ *
+ * @param int $step_id   Course Step ID.
+ * @param int $course_id Course ID.
+ * @param int $user_id   User ID.
+ */
 function learndash_video_delete_cookie_for_step( $step_id = 0, $course_id = 0, $user_id = 0 ) {
 	$ld_video_instance = Learndash_Course_Video::get_instance();
 	if ( $ld_video_instance ) {

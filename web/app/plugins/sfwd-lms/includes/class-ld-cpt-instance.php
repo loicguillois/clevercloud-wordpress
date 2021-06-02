@@ -311,7 +311,7 @@ if ( ! class_exists( 'SFWD_CPT_Instance' ) ) {
 			$bypass_course_limits_admin_users = learndash_can_user_bypass( $user_id, 'learndash_prerequities_bypass', $course_id, $post );
 
 			// For logged in users to allow an override filter.
-			/** This filter is documented in themes/ld30/includes/helpers.php */
+			/** This filter is documented in includes/course/ld-course-progress.php */
 			$bypass_course_limits_admin_users = apply_filters( 'learndash_prerequities_bypass', $bypass_course_limits_admin_users, $user_id, $course_id, $post );
 
 			if ( in_array( $post->post_type, learndash_get_post_types( 'course' ), true ) ) {
@@ -555,24 +555,33 @@ if ( ! class_exists( 'SFWD_CPT_Instance' ) ) {
 								}
 							}
 
+							$started_time = time();
+							
 							// We insert the Course started record before the Lesson.
 							$course_args = array(
 								'course_id'        => $course_id,
 								'user_id'          => $current_user->ID,
 								'post_id'          => $course_id,
 								'activity_type'    => 'course',
-								'activity_status'  => false,
-								'activity_started' => time(),
-								'activity_meta'    => array(
-									'steps_total'     => learndash_get_course_steps_count( $course_id ),
-									'steps_completed' => learndash_course_get_completed_steps( $current_user->ID, $course_id ),
-									'steps_last_id'   => $post->ID,
-								),
 							);
 
 							$course_activity = learndash_get_user_activity( $course_args );
 							if ( ( ! $course_activity ) || ( empty( $course_activity->activity_started ) ) ) {
-								learndash_update_user_activity( $course_args );
+								learndash_update_user_activity(
+									array(
+										'course_id'        => $course_id,
+										'user_id'          => $current_user->ID,
+										'post_id'          => $course_id,
+										'activity_type'    => 'course',
+										'activity_status'  => false,
+										'activity_started' => $started_time,
+										'activity_meta'    => array(
+											'steps_total'     => learndash_get_course_steps_count( $course_id ),
+											'steps_completed' => learndash_course_get_completed_steps( $current_user->ID, $course_id ),
+											'steps_last_id'   => $post->ID,
+										),
+									)
+								);
 							}
 
 							$lesson_args     = array(
@@ -581,11 +590,7 @@ if ( ! class_exists( 'SFWD_CPT_Instance' ) ) {
 								'post_id'          => $post->ID,
 								'activity_type'    => 'lesson',
 								'activity_status'  => false,
-								'activity_started' => time(),
-								'activity_meta'    => array(
-									'steps_total'     => learndash_get_course_steps_count( $course_id ),
-									'steps_completed' => learndash_course_get_completed_steps( $current_user->ID, $course_id ),
-								),
+								'activity_started' => $started_time,
 							);
 							$lesson_activity = learndash_get_user_activity( $lesson_args );
 							if ( ( ! $lesson_activity ) || ( empty( $lesson_activity->activity_started ) ) ) {
@@ -700,6 +705,8 @@ if ( ! class_exists( 'SFWD_CPT_Instance' ) ) {
 								}
 							}
 
+							$started_time = time();
+
 							// We insert the Course started record before the Topic.
 							$course_args     = array(
 								'course_id'        => $course_id,
@@ -707,7 +714,7 @@ if ( ! class_exists( 'SFWD_CPT_Instance' ) ) {
 								'post_id'          => $course_id,
 								'activity_type'    => 'course',
 								'activity_status'  => false,
-								'activity_started' => time(),
+								'activity_started' => $started_time,
 								'activity_meta'    => array(
 									'steps_total'     => learndash_get_course_steps_count( $course_id ),
 									'steps_completed' => learndash_course_get_completed_steps( $current_user->ID, $course_id ),
@@ -719,17 +726,34 @@ if ( ! class_exists( 'SFWD_CPT_Instance' ) ) {
 								learndash_update_user_activity( $course_args );
 							}
 
+							$lesson_args     = array(
+								'course_id'        => $course_id,
+								'user_id'          => $current_user->ID,
+								'post_id'          => $lesson_id,
+								'activity_type'    => 'lesson',
+								'activity_status'  => false,
+								'activity_started' => $started_time,
+								//'activity_meta'    => array(
+								//	'steps_total'     => learndash_get_course_steps_count( $course_id ),
+								//	'steps_completed' => learndash_course_get_completed_steps( $current_user->ID, $course_id ),
+								//),
+							);
+							$lesson_activity = learndash_get_user_activity( $lesson_args );
+							if ( ( ! $lesson_activity ) || ( empty( $lesson_activity->activity_started ) ) ) {
+								learndash_update_user_activity( $lesson_args );
+							}
+							
 							$topic_args     = array(
 								'course_id'        => $course_id,
 								'user_id'          => $current_user->ID,
 								'post_id'          => $post->ID,
 								'activity_type'    => 'topic',
 								'activity_status'  => false,
-								'activity_started' => time(),
-								'activity_meta'    => array(
-									'steps_total'     => learndash_get_course_steps_count( $course_id ),
-									'steps_completed' => learndash_course_get_completed_steps( $current_user->ID, $course_id ),
-								),
+								'activity_started' => $started_time,
+								//'activity_meta'    => array(
+								//	'steps_total'     => learndash_get_course_steps_count( $course_id ),
+								//	'steps_completed' => learndash_course_get_completed_steps( $current_user->ID, $course_id ),
+								//),
 							);
 							$topic_activity = learndash_get_user_activity( $topic_args );
 							if ( ( ! $topic_activity ) || ( empty( $topic_activity->activity_started ) ) ) {

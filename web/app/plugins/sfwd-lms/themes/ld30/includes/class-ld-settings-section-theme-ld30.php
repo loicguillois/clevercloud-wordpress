@@ -1,9 +1,10 @@
 <?php
 /**
- * LearnDash Settings Section for LD30 Theme Colors Metabox.
+ * LearnDash LD30 Settings Section for Theme Colors Metabox.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,11 +14,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ( class_exists( 'LearnDash_Theme_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Theme_LD30' ) ) ) {
 	/**
 	 * Class to create the settings section.
+	 *
+	 * @since 3.0.0
 	 */
 	class LearnDash_Settings_Theme_LD30 extends LearnDash_Theme_Settings_Section {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		protected function __construct() {
 
@@ -47,6 +52,9 @@ if ( ( class_exists( 'LearnDash_Theme_Settings_Section' ) ) && ( ! class_exists(
 
 			foreach ( $ld30_colors_defs as $definition => $value ) {
 				if ( ! defined( $definition ) ) {
+					/**
+					 * @ignore
+					 */
 					define( $definition, $value ); //phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.VariableConstantNameFound -- Inside a protected constructor
 				}
 			}
@@ -56,6 +64,8 @@ if ( ( class_exists( 'LearnDash_Theme_Settings_Section' ) ) && ( ! class_exists(
 
 		/**
 		 * Initialize the metabox settings values.
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_values() {
 			parent::load_settings_values();
@@ -95,6 +105,8 @@ if ( ( class_exists( 'LearnDash_Theme_Settings_Section' ) ) && ( ! class_exists(
 
 		/**
 		 * Initialize the metabox settings fields.
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_fields() {
 			$this->setting_option_fields = array(
@@ -232,6 +244,8 @@ if ( ( class_exists( 'LearnDash_Theme_Settings_Section' ) ) && ( ! class_exists(
 		/**
 		 * Validate settings field.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param string $val Value to be validated.
 		 * @param string $key settings fields key.
 		 * @param array  $args Settings field args array.
@@ -249,6 +263,8 @@ if ( ( class_exists( 'LearnDash_Theme_Settings_Section' ) ) && ( ! class_exists(
 
 		/**
 		 * Validate color selection settings fields.
+		 *
+		 * @since 3.1.0
 		 *
 		 * @param string $val Value to be validated.
 		 * @param string $key settings fields key.

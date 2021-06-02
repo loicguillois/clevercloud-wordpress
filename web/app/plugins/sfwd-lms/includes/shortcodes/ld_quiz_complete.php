@@ -1,6 +1,6 @@
 <?php
 /**
- * Shortcode for ld_quiz_complete
+ * LearnDash `[ld_quiz_complete]` shortcode processing.
  *
  * @since 3.1.4
  *
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `ld_quiz_complete` shortcode output.
+ * Builds the `[ld_quiz_complete]` shortcode output.
  *
  * @global boolean $learndash_shortcode_used
  *
@@ -21,11 +21,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array  $atts {
  *    An array of shortcode attributes.
  *
- *    @type int $course_id Optional. Course ID. Default 0.
- *    @type int $quiz_id   Optional. Quiz ID. Default 0.
- *    @type int $user_id   Optional. User ID. Default current user ID.
+ *    @type int $course_id Course ID. Default 0.
+ *    @type int $quiz_id   Quiz ID. Default 0.
+ *    @type int $user_id   User ID. Default current user ID.
  * }
- * @param string $content The shortcode content.
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string The `ld_quiz_complete` shortcode output.
  */

@@ -217,11 +217,16 @@ if ( ! class_exists( 'LearnDash_Settings_Metabox' ) ) {
 
 			$this->_post = $post;
 
-			if ( ( ! $this->settings_values_loaded ) || ( true === $force ) ) {
+			if ( true === $force ) {
+				$this->settings_values_loaded = false;
+				$this->settings_fields_loaded = false;
+			}
+
+			if ( ! $this->settings_values_loaded ) {
 				$this->load_settings_values();
 			}
 
-			if ( ( ! $this->settings_fields_loaded ) || ( true === $force ) ) {
+			if ( ! $this->settings_fields_loaded ) {
 				$this->load_settings_fields();
 			}
 		}
@@ -821,99 +826,107 @@ if ( ! class_exists( 'LearnDash_Settings_Metabox' ) ) {
 			}
 		}
 
-		public function init_quiz_edit( $post ) {
+		public function init_quiz_edit( $post, $reload_pro_quiz = false ) {
 			static $pro_quiz_edit = array();
 
-			$quiz_mapper         = new WpProQuiz_Model_QuizMapper();
-			$prerequisite_mapper = new WpProQuiz_Model_PrerequisiteMapper();
-			$form_mapper         = new WpProQuiz_Model_FormMapper();
+			if ( ( $post ) && ( is_a( $post, 'WP_Post' ) ) ) {
+				$quiz_mapper         = new WpProQuiz_Model_QuizMapper();
+				$prerequisite_mapper = new WpProQuiz_Model_PrerequisiteMapper();
+				$form_mapper         = new WpProQuiz_Model_FormMapper();
 
-			$pro_quiz_id = absint( learndash_get_setting( $post->ID, 'quiz_pro' ) );
+				$pro_quiz_id = absint( learndash_get_setting( $post->ID, 'quiz_pro' ) );
+				$pro_quiz_id = absint( $pro_quiz_id );
 
-			if ( ! isset( $pro_quiz_edit[ $pro_quiz_id ] ) ) {
-				if ( ! empty( $pro_quiz_id ) ) {
-					$pro_quiz_edit[ $pro_quiz_id ] = array(
-						'quiz'                 => $quiz_mapper->fetch( $pro_quiz_id ),
-						'prerequisiteQuizList' => $prerequisite_mapper->fetchQuizIds( $pro_quiz_id ),
-						'forms'                => $form_mapper->fetch( $pro_quiz_id ),
-					);
-					$pro_quiz_edit[ $pro_quiz_id ]['quiz']->setPostId( absint( $post->ID ) );
-
-				} else {
-					$pro_quiz_edit[ $pro_quiz_id ] = array(
-						'quiz'                 => $quiz_mapper->fetch( 0 ),
-						'prerequisiteQuizList' => $prerequisite_mapper->fetchQuizIds( 0 ),
-						'forms'                => $form_mapper->fetch( 0 ),
-					);
+				// Note: $pro_quiz_id is allowed to be zero here.
+				if ( ( true === $reload_pro_quiz ) && ( isset( $pro_quiz_edit[ $pro_quiz_id ] ) ) ) {
+					unset( $pro_quiz_edit[ $pro_quiz_id ] );
 				}
 
-				// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				if ( ( isset( $_GET['templateLoadId'] ) ) && ( ! empty( $_GET['templateLoadId'] ) ) ) {
+				if ( ! isset( $pro_quiz_edit[ $pro_quiz_id ] ) ) {
+					if ( ! empty( $pro_quiz_id ) ) {
+						$pro_quiz_edit[ $pro_quiz_id ] = array(
+							'quiz'                 => $quiz_mapper->fetch( $pro_quiz_id ),
+							'prerequisiteQuizList' => $prerequisite_mapper->fetchQuizIds( $pro_quiz_id ),
+							'forms'                => $form_mapper->fetch( $pro_quiz_id ),
+						);
+						$pro_quiz_edit[ $pro_quiz_id ]['quiz']->setPostId( absint( $post->ID ) );
+
+					} else {
+						$pro_quiz_edit[ $pro_quiz_id ] = array(
+							'quiz'                 => $quiz_mapper->fetch( 0 ),
+							'prerequisiteQuizList' => $prerequisite_mapper->fetchQuizIds( 0 ),
+							'forms'                => $form_mapper->fetch( 0 ),
+						);
+					}
+
 					// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-					$template_id = absint( $_GET['templateLoadId'] );
-					if ( ! empty( $template_id ) ) {
-						$template_mapper = new WpProQuiz_Model_TemplateMapper();
-						$template        = $template_mapper->fetchById( $template_id );
-						$data            = $template->getData();
-						if ( null !== $data ) {
-							if ( ( isset( $data['quiz'] ) ) && ( is_a( $data['quiz'], 'WpProQuiz_Model_Quiz' ) ) ) {
-								$data['quiz']->setId( $pro_quiz_edit[ $pro_quiz_id ]['quiz']->getId() );
-								$data['quiz']->setPostId( $post->ID );
-								$data['quiz']->setName( $pro_quiz_edit[ $pro_quiz_id ]['quiz']->getName() );
-								$data['quiz']->setText( 'AAZZAAZZ' );
-							} else {
-								$data['quiz'] = $quiz_mapper->fetch( 0 );
-							}
-
-							if ( ! isset( $data['forms'] ) ) {
-								$data['forms'] = array();
-							}
-
-							if ( ! isset( $data['prerequisiteQuizList'] ) ) {
-								$data['prerequisiteQuizList'] = array();
-							}
-
-							if ( isset( $data[ '_' . learndash_get_post_type_slug( 'quiz' ) ] ) ) {
-								$quiz_postmeta = $data[ '_' . learndash_get_post_type_slug( 'quiz' ) ];
-								// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-								if ( ( ! isset( $_GET['templateLoadReplaceCourse'] ) ) || ( 'on' !== $_GET['templateLoadReplaceCourse'] ) ) {
-									if ( isset( $quiz_postmeta['course'] ) ) {
-										$quiz_postmeta['course'] = absint( learndash_get_setting( $post->ID, 'course' ) );
-									}
-									if ( isset( $quiz_postmeta['lesson'] ) ) {
-										$quiz_postmeta['lesson'] = absint( learndash_get_setting( $post->ID, 'lesson' ) );
-									}
+					if ( ( isset( $_GET['templateLoadId'] ) ) && ( ! empty( $_GET['templateLoadId'] ) ) ) {
+						// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+						$template_id = absint( $_GET['templateLoadId'] );
+						if ( ! empty( $template_id ) ) {
+							$template_mapper = new WpProQuiz_Model_TemplateMapper();
+							$template        = $template_mapper->fetchById( $template_id );
+							$data            = $template->getData();
+							if ( null !== $data ) {
+								if ( ( isset( $data['quiz'] ) ) && ( is_a( $data['quiz'], 'WpProQuiz_Model_Quiz' ) ) ) {
+									$data['quiz']->setId( $pro_quiz_edit[ $pro_quiz_id ]['quiz']->getId() );
+									$data['quiz']->setPostId( $post->ID );
+									$data['quiz']->setName( $pro_quiz_edit[ $pro_quiz_id ]['quiz']->getName() );
+									$data['quiz']->setText( 'AAZZAAZZ' );
+								} else {
+									$data['quiz'] = $quiz_mapper->fetch( 0 );
 								}
 
-								// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-								if ( ( ! isset( $_GET['templateLoadReplaceQuestions'] ) ) || ( 'on' !== $_GET['templateLoadReplaceQuestions'] ) ) {
-									if ( isset( $quiz_postmeta['quiz_pro'] ) ) {
-										$quiz_postmeta['quiz_pro'] = absint( learndash_get_setting( $post->ID, 'quiz_pro' ) );
-									}
+								if ( ! isset( $data['forms'] ) ) {
+									$data['forms'] = array();
 								}
-								$data[ '_' . learndash_get_post_type_slug( 'quiz' ) ] = $quiz_postmeta;
 
-								foreach ( $this->settings_fields_map as $_internal => $_external ) {
-									if ( isset( $data[ '_' . learndash_get_post_type_slug( 'quiz' ) ][ $_external ] ) ) {
-										$this->setting_option_values[ $_internal ] = $data[ '_' . learndash_get_post_type_slug( 'quiz' ) ][ $_external ];
-									}
+								if ( ! isset( $data['prerequisiteQuizList'] ) ) {
+									$data['prerequisiteQuizList'] = array();
 								}
-							} else {
-								$quiz_postmeta = array();
+
+								if ( isset( $data[ '_' . learndash_get_post_type_slug( 'quiz' ) ] ) ) {
+									$quiz_postmeta = $data[ '_' . learndash_get_post_type_slug( 'quiz' ) ];
+									// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+									if ( ( ! isset( $_GET['templateLoadReplaceCourse'] ) ) || ( 'on' !== $_GET['templateLoadReplaceCourse'] ) ) {
+										if ( isset( $quiz_postmeta['course'] ) ) {
+											$quiz_postmeta['course'] = absint( learndash_get_setting( $post->ID, 'course' ) );
+										}
+										if ( isset( $quiz_postmeta['lesson'] ) ) {
+											$quiz_postmeta['lesson'] = absint( learndash_get_setting( $post->ID, 'lesson' ) );
+										}
+									}
+
+									// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+									if ( ( ! isset( $_GET['templateLoadReplaceQuestions'] ) ) || ( 'on' !== $_GET['templateLoadReplaceQuestions'] ) ) {
+										if ( isset( $quiz_postmeta['quiz_pro'] ) ) {
+											$quiz_postmeta['quiz_pro'] = absint( learndash_get_setting( $post->ID, 'quiz_pro' ) );
+										}
+									}
+									$data[ '_' . learndash_get_post_type_slug( 'quiz' ) ] = $quiz_postmeta;
+
+									foreach ( $this->settings_fields_map as $_internal => $_external ) {
+										if ( isset( $data[ '_' . learndash_get_post_type_slug( 'quiz' ) ][ $_external ] ) ) {
+											$this->setting_option_values[ $_internal ] = $data[ '_' . learndash_get_post_type_slug( 'quiz' ) ][ $_external ];
+										}
+									}
+								} else {
+									$quiz_postmeta = array();
+								}
+
+								$pro_quiz_edit[ $pro_quiz_id ] = array(
+									'quiz'                 => $data['quiz'],
+									'prerequisiteQuizList' => $data['prerequisiteQuizList'],
+									'forms'                => $data['forms'],
+									'quiz_postmeta'        => $quiz_postmeta,
+								);
 							}
-
-							$pro_quiz_edit[ $pro_quiz_id ] = array(
-								'quiz'                 => $data['quiz'],
-								'prerequisiteQuizList' => $data['prerequisiteQuizList'],
-								'forms'                => $data['forms'],
-								'quiz_postmeta'        => $quiz_postmeta,
-							);
 						}
 					}
 				}
-			}
 
-			return $pro_quiz_edit[ $pro_quiz_id ];
+				return $pro_quiz_edit[ $pro_quiz_id ];
+			}
 		}
 
 		public function check_legacy_metabox_fields( $legacy_fields = array() ) {

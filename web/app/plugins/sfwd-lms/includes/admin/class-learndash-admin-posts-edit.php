@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Post Edit Abstract Class.
+ * LearnDash Post Edit Base.
  *
+ * @since 2.6.0
  * @package LearnDash
- * @subpackage admin
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,8 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'Learndash_Admin_Post_Edit' ) ) {
+
 	/**
-	 * Absract for LearnDash Post Edit Pages.
+	 * Class LearnDash Post Edit Base.
+	 *
+	 * @since 2.6.0
 	 */
 	abstract class Learndash_Admin_Post_Edit {
 
@@ -39,6 +42,8 @@ if ( ! class_exists( 'Learndash_Admin_Post_Edit' ) ) {
 
 		/**
 		 * Public constructor for class.
+		 *
+		 * @since 2.6.0
 		 */
 		public function __construct() {
 			// Hook into the on-load action for our post_type editor.
@@ -58,7 +63,8 @@ if ( ! class_exists( 'Learndash_Admin_Post_Edit' ) ) {
 		 * Common function to check if we are editing a correct post type.
 		 *
 		 * @since 2.6.0
-		 * @param mixed $edit_post WP_Post object or post type string.
+		 *
+		 * @param  mixed   $edit_post WP_Post object or post type string.
 		 * @return boolean true is correct, else false.
 		 */
 		protected function post_type_check( $edit_post = null ) {
@@ -81,6 +87,8 @@ if ( ! class_exists( 'Learndash_Admin_Post_Edit' ) ) {
 		 * On Load handler function for this post type edit.
 		 * This function is called by a WP action when the admin
 		 * page 'post.php' or 'post-new.php' are loaded.
+		 *
+		 * @since 2.6.0
 		 */
 		public function on_load() {
 			global $sfwd_lms;
@@ -92,6 +100,8 @@ if ( ! class_exists( 'Learndash_Admin_Post_Edit' ) ) {
 				 * Filters post metaboxes init settings.
 				 *
 				 * The Dynamic part `$post_type` refers to the post type slug.
+				 *
+				 * @since 3.0.0
 				 *
 				 * @param string $post_type Post type slug.
 				 * @param array  $metaboxes Common array set to contain the metaboxes shown on the post edit screen.
@@ -209,7 +219,9 @@ if ( ! class_exists( 'Learndash_Admin_Post_Edit' ) ) {
 		 * Check superglobal data.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param mixed $data Array data or null.
+		 *
 		 * @return array filtered data.
 		 */
 		protected function clear_request_data( $data = null ) {
@@ -224,7 +236,8 @@ if ( ! class_exists( 'Learndash_Admin_Post_Edit' ) ) {
 		 * Called from WP at the start of the post edit <form> tag. Allows us
 		 * to inject needed support fields.
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
+		 *
 		 * @param object $post WP Post object instance being edited.
 		 */
 		public function edit_form_top( $post ) {
@@ -241,9 +254,11 @@ if ( ! class_exists( 'Learndash_Admin_Post_Edit' ) ) {
 		 * Called from WP when saving a post edit form. This filter allows us
 		 * to interject a 'currentTab' query string variable.
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
+		 *
 		 * @param string  $location URL to redirect to after edit post processing.
 		 * @param integer $post_id Post ID of item being edited.
+		 *
 		 * @return string  $location URL.
 		 */
 		public function redirect_post_location( $location = '', $post_id = 0 ) {
@@ -263,8 +278,10 @@ if ( ! class_exists( 'Learndash_Admin_Post_Edit' ) ) {
 		 * Override Gutenberg placeholder title shown when adding new post.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param string $placeholder_title Placeholder title to be shown. Default is 'Add title'.
 		 * @param object $post WP_Post instance of post_type being added.
+		 *
 		 * @return string $placeholder_title.
 		 */
 		public function gutenberg_placeholder_enter_title_here( $placeholder_title = '', $post = null ) {
@@ -285,8 +302,10 @@ if ( ! class_exists( 'Learndash_Admin_Post_Edit' ) ) {
 		 * Override Gutenberg placeholder text shown when adding new post.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param string $placeholder_text Placeholder text to be shown. Default is 'Write your story'.
 		 * @param object $post WP_Post instance of post_type being added.
+		 *
 		 * @return string $placeholder_text.
 		 */
 		public function gutenberg_placeholder_write_your_story( $placeholder_text = ' ', $post = null ) {
@@ -308,6 +327,7 @@ if ( ! class_exists( 'Learndash_Admin_Post_Edit' ) ) {
 		 * Save Question handler function.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param integer $post_id Post ID Question being edited.
 		 * @param object  $post WP_Post Question being edited.
 		 * @param boolean $update If update true, else false.
@@ -351,7 +371,8 @@ if ( ! class_exists( 'Learndash_Admin_Post_Edit' ) ) {
 		/**
 		 * Edit Post handler function.
 		 *
-		 * @since 3.2.1
+		 * @since 3.2.3
+		 *
 		 * @param integer $post_id Post ID being edited.
 		 * @param object  $post    WP_Post being edited.
 		 */
@@ -360,11 +381,14 @@ if ( ! class_exists( 'Learndash_Admin_Post_Edit' ) ) {
 
 		/**
 		 * Filter post_parent before update/insert. Ensure the post_parent fiel is zero for course post types.
-		 * @since 3.1
+		 *
+		 * @since 3.1.0
+		 *
 		 * @param  integer $post_parent Post Parent post ID.
 		 * @param  integer $post_id     Post ID being edited.
 		 * @param  array   $new_postarr Array of updated POST fields to be saved.
 		 * @param  array   $postarr     Array of previous POST fields to be saved.
+		 *
 		 * @return integer $post_parent
 		 */
 		public function filter_post_parent( $post_parent = 0, $post_id = 0, $new_postarr = array(), $postarr = array() ) {
@@ -376,14 +400,15 @@ if ( ! class_exists( 'Learndash_Admin_Post_Edit' ) ) {
 			return $post_parent;
 		}
 
-
 		/**
-		 * Register metaboxes for Question edit.
+		 * Register metaboxes for course Associated Content
 		 *
 		 * @since 2.6.0
-		 * @param string $post_type Port Type being edited.
+		 *
+		 * @param string $post_type Post Type being edited.
+		 * @param object $post      WP_Post Post being edited.
 		 */
-		public function add_metaboxes( $post_type = '' ) {
+		public function add_metaboxes( $post_type = '', $post = null ) {
 			if ( $this->post_type_check( $post_type ) ) {
 
 				// If we are showing a course or related 'step' we show the Assoc Content metabox.
@@ -432,6 +457,7 @@ if ( ! class_exists( 'Learndash_Admin_Post_Edit' ) ) {
 		 * supporting this on all LD post types.
 		 *
 		 * @since 3.1.4
+		 *
 		 * @param integer $post_id ID of Post to clear cache for.
 		 */
 		public function post_clear_oembed_cache( $post_id = 0 ) {

@@ -1,17 +1,28 @@
 <?php
+/**
+ * LearnDash Shortcode Section for Group List [ld_group_list].
+ *
+ * @since 3.2.0
+ * @package LearnDash\Settings\Shortcodes
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'LearnDash_Shortcodes_Section_ld_group_list' ) ) ) {
 	/**
-	 * Class for LearnDash Shortcode Section.
+	 * Class LearnDash Shortcode Section for Group List [ld_group_list].
+	 *
+	 * @since 3.2.0
 	 */
 	//phpcs:ignore PEAR.NamingConventions.ValidClassName.Invalid
 	class LearnDash_Shortcodes_Section_ld_group_list extends LearnDash_Shortcodes_Section {
 
 		/**
 		 * Public constructor for class.
+		 *
+		 * @since 3.2.0
 		 *
 		 * @param array $fields_args Field Args.
 		 */
@@ -30,6 +41,8 @@ if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'Le
 
 		/**
 		 * Initialize the shortcode fields.
+		 *
+		 * @since 3.2.0
 		 */
 		public function init_shortcodes_section_fields() {
 			$this->shortcodes_option_fields = array(
@@ -281,6 +294,11 @@ if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'Le
 			parent::init_shortcodes_section_fields();
 		}
 
+		/**
+		 * Show Shortcode section footer extra
+		 *
+		 * @since 3.2.0
+		 */
 		public function show_shortcodes_section_footer_extra() {
 			?>
 			<script>

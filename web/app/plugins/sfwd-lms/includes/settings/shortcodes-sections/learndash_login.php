@@ -1,17 +1,28 @@
 <?php
+/**
+ * LearnDash Shortcode Section for Login [learndash_login].
+ *
+ * @since 3.0.7
+ * @package LearnDash\Settings\Shortcodes
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'LearnDash_Shortcodes_Section_learndash_login' ) ) ) {
 	/**
-	 * Class for LearnDash Shortcode Section.
+	 * Class LearnDash Shortcode Section for Login [learndash_login].
+	 *
+	 * @since 3.0.7
 	 */
 	//phpcs:ignore PEAR.NamingConventions.ValidClassName.Invalid
 	class LearnDash_Shortcodes_Section_learndash_login extends LearnDash_Shortcodes_Section {
 
 		/**
 		 * Public constructor for class.
+		 *
+		 * @since 3.0.7
 		 *
 		 * @param array $fields_args Field Args.
 		 */
@@ -28,6 +39,8 @@ if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'Le
 
 		/**
 		 * Initialize the shortcode fields.
+		 *
+		 * @since 3.0.7
 		 */
 		public function init_shortcodes_section_fields() {
 			$this->shortcodes_option_fields = array(

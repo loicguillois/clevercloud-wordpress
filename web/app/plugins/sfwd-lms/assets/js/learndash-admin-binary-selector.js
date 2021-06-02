@@ -74,7 +74,7 @@ function learndash_binary_selector( selector_div ) {
 			var search_timeout = 200;
 
 			// Activate logic on fucus.
-			jQuery( '.learndash-binary-selector-search', self.selector_div ).focus( function() {
+			jQuery( '.learndash-binary-selector-search', self.selector_div ).on( 'focus', function() {
 				var search_el = this;
 
 				var section_el = self.get_section_el( search_el );

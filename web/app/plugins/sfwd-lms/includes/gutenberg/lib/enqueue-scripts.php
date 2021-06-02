@@ -1,11 +1,21 @@
 <?php
+/**
+ * Enqueue scripts and stylsheets for Blocks
+ *
+ * @package LearnDash
+ * @since 2.5.8
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
 /**
  * Enqueues block editor styles and scripts.
  *
  * Fires on `enqueue_block_editor_assets` hook.
+ *
+ * @since 2.5.8
  */
 function learndash_editor_scripts() {
 	// Make paths variables so we don't write em twice ;).

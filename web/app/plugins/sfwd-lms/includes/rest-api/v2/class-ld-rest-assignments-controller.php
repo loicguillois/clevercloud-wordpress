@@ -1,28 +1,27 @@
 <?php
 /**
- * LearnDash V2 REST API Assignment (sfwd-assignment) Post Controller.
+ * LearnDash REST API V2 Assignment (sfwd-assignment) Post Controller.
  *
- * @package LearnDash
- * @subpackage REST_API
+ * This Controller class is used to GET/UPDATE/DELETE the LearnDash
+ * custom post type Assignments (sfwd-assignment).
+ *
+ * This class extends the LD_REST_Posts_Controller_V2 class.
+
  * @since 3.3.0
+ * @package LearnDash\REST\V2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- * This Controller class is used to GET/UPDATE/DELETE the LearnDash
- * custom post type Assignments (sfwd-assignment).
- *
- * This class extends the LD_REST_Posts_Controller_V2 class.
- *
- * @since 3.3.0
- */
-
 if ( ( ! class_exists( 'LD_REST_Assignments_Controller_V2' ) ) && ( class_exists( 'LD_REST_Posts_Controller_V2' ) ) ) {
+
 	/**
-	 * Class REST API Assignments Post Controller.
+	 * Class LearnDash REST API V2 Assignment (sfwd-assignment) Post Controller.
+	 *
+	 * @since 3.3.0
+	 * @uses LD_REST_Posts_Controller_V2
 	 */
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Assignments_Controller_V2 extends LD_REST_Posts_Controller_V2 {
@@ -36,6 +35,8 @@ if ( ( ! class_exists( 'LD_REST_Assignments_Controller_V2' ) ) && ( class_exists
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.3.0
 		 */
 		public function __construct( $post_type = '' ) {
 			if ( empty( $post_type ) ) {
@@ -43,6 +44,9 @@ if ( ( ! class_exists( 'LD_REST_Assignments_Controller_V2' ) ) && ( class_exists
 			}
 			$this->post_type = $post_type;
 			$this->metaboxes = array();
+
+			$this->route_methods_singular   = array( WP_REST_Server::READABLE, WP_REST_Server::EDITABLE );
+			$this->route_methods_collection = array( WP_REST_Server::READABLE, WP_REST_Server::EDITABLE, WP_REST_Server::DELETABLE );
 
 			parent::__construct( $this->post_type );
 
@@ -221,17 +225,7 @@ if ( ( ! class_exists( 'LD_REST_Assignments_Controller_V2' ) ) && ( class_exists
 		 * @since 3.3.0
 		 */
 		protected function register_fields_metabox() {
-			/*
-			$this->metaboxes = apply_filters( 'learndash_post_settings_metaboxes_init_' . $this->post_type, $this->metaboxes );
-			if ( ! empty( $this->metaboxes ) ) {
-				foreach ( $this->metaboxes as $metabox ) {
-					$metabox->load_settings_values();
-					$metabox->load_settings_fields();
-
-					$this->register_rest_fields( $metabox->get_settings_metabox_fields(), $metabox );
-				}
-			}
-			*/
+			return true;
 		}
 
 		/**
@@ -753,6 +747,8 @@ if ( ( ! class_exists( 'LD_REST_Assignments_Controller_V2' ) ) && ( class_exists
 
 		/**
 		 * Update REST Settings Field value.
+		 *
+		 * @since 3.3.0
 		 *
 		 * @param mixed  $post_value  Value of setting to update.
 		 * @param object $post        Post object being updated.

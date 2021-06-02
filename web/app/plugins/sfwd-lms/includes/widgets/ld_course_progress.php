@@ -1,9 +1,8 @@
 <?php
 /**
- * Widget for Course Progress
+ * LearnDash `Course Progress` Widget Class.
  *
  * @since 2.1.0
- *
  * @package LearnDash\Widgets
  */
 
@@ -15,10 +14,19 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Course Progress Widget
  */
 if ( ( ! class_exists( 'LearnDash_Course_Progress_Widget' ) ) && ( class_exists( 'WP_Widget' ) ) ) {
+
+	/**
+	 * Class for LearnDash `Course Progress` Widget.
+	 *
+	 * @since 2.1.0
+	 * @uses WP_Widget
+	 */
 	class LearnDash_Course_Progress_Widget extends WP_Widget {
 
 		/**
-		 * Set up course project widget
+		 * Public constructor for Widget Class.
+		 *
+		 * @since 2.1.0
 		 */
 		public function __construct() {
 			$widget_ops  = array(
@@ -38,6 +46,7 @@ if ( ( ! class_exists( 'LearnDash_Course_Progress_Widget' ) ) && ( class_exists(
 		 *
 		 * @param  array $args     widget arguments
 		 * @param  array $instance widget instance
+		 *
 		 * @return string          widget output
 		 */
 		public function widget( $args, $instance ) {
@@ -76,6 +85,7 @@ if ( ( ! class_exists( 'LearnDash_Course_Progress_Widget' ) ) && ( class_exists(
 		 *
 		 * @param  array $new_instance
 		 * @param  array $old_instance
+		 *
 		 * @return array $instance
 		 */
 		public function update( $new_instance, $old_instance ) {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays a user group lists.
+ * LearnDash LD30 Displays a user group lists.
  * This template is called from the [user_groups] shortcode.
  *
  * @param array   $admin_groups     Array of admin group IDs.
@@ -8,9 +8,9 @@
  * @param boolean $has_admin_groups True if there are admin groups.
  * @param boolean $has_user_groups  True if there are user groups.
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\Groups
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

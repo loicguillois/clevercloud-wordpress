@@ -1,10 +1,12 @@
 <?php
 /**
+ * LearnDash LD30 Displays a custom alert message
+ *
  * This file contains the wrapper for a custom alert message
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,6 +15,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Filters custom alert type.
+ *
+ * @since 3.1.4
  *
  * @param string $type Alert message type.
  */
@@ -23,6 +27,8 @@ $type = apply_filters(
 
 /**
  * Filters custom alert icon CSS class.
+ *
+ * @since 3.0.0
  *
  * @param string $alert_class List of alert Icon CSS classes.
  * @param string $type        Alert message type.
@@ -38,6 +44,8 @@ $icon = apply_filters(
 /**
  * Filters custom alert message CSS class.
  *
+ * @since 3.0.0
+ *
  * @param string $alert_class List of alert CSS classes.
  * @param string $type        Alert message type.
  * @param string $icon        List of alert icon CSS classes.
@@ -51,6 +59,8 @@ $class = apply_filters(
 
 /**
  * Filters LearnDash custom alert message text.
+ *
+ * @since 3.0.0
  *
  * @param string $message Alert message text.
  * @param string $type    Alert message type.
@@ -66,7 +76,7 @@ $message = apply_filters(
 if ( ( isset( $message ) ) && ( ! empty( $message ) ) ) :
 
 	/**
-	 * Fires between before an alert.
+	 * Fires before an alert.
 	 *
 	 * @since 3.0.0
 	 *
@@ -148,6 +158,8 @@ if ( ( isset( $message ) ) && ( ! empty( $message ) ) ) :
 
 		/**
 		 * Filters alert button data.
+		 *
+		 * @since 3.1.4
 		 *
 		 * @param array $button An array of alert button data.
 		 */

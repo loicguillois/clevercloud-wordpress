@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Settings field Email.
+ * LearnDash Email Settings Field.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Field
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,12 +13,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ( class_exists( 'LearnDash_Settings_Fields_Text' ) ) && ( ! class_exists( 'LearnDash_Settings_Fields_Email' ) ) ) {
 
 	/**
-	 * Class to create the settings field.
+	 * Class LearnDash Email Settings Field.
+	 *
+	 * @since 3.0.0
+	 * @uses LearnDash_Settings_Fields
 	 */
 	class LearnDash_Settings_Fields_Email extends LearnDash_Settings_Fields_Text {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		public function __construct() {
 			$this->field_type = 'email';
@@ -29,7 +34,7 @@ if ( ( class_exists( 'LearnDash_Settings_Fields_Text' ) ) && ( ! class_exists( '
 		/**
 		 * Validate field
 		 *
-		 * @since 2.6.0
+		 * @since 3.0.0
 		 *
 		 * @param mixed  $val Value to validate.
 		 * @param string $key Key of value being validated.

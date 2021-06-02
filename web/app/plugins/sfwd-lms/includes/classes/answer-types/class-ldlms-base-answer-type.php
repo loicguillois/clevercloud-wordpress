@@ -7,7 +7,8 @@
  *
  * Class LDLMS_Base_Answer_Type
  *
- * @package Learndash
+ * @since 3.3.0
+ * @package Learndash\Question
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

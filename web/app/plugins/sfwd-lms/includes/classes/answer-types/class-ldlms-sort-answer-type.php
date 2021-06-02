@@ -5,7 +5,8 @@
  * This class will be used to part answers for `sort` and `matrix_sort` type
  * question's answers.
  *
- * @package Learndash
+ * @since 3.3.0
+ * @package Learndash\Question\Sort
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

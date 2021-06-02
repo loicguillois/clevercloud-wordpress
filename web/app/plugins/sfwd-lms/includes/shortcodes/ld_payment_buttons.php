@@ -1,6 +1,6 @@
 <?php
 /**
- * Shortcode for learndash_payment_buttons
+ * LearnDash `[learndash_payment_buttons]` shortcode processing.
  *
  * @since 2.1.0
  *
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `learndash_payment_buttons` shortcode output.
+ * Builds the `[learndash_payment_buttons]` shortcode output.
  *
  * @since 2.1.0
  *
@@ -21,12 +21,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $attr {
  *    An array of shortcode attributes.
  *
- *    @type int $course_id Optional. Course ID. Default 0.
+ *    @type int $course_id Course ID. Default 0.
  * }
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string Returns the `learndash_payment_buttons` shortcode output.
  */
-function learndash_payment_buttons_shortcode( $attr ) {
+function learndash_payment_buttons_shortcode( $attr = array(), $content = '' ) {
 	global $learndash_shortcode_used;
 	$learndash_shortcode_used = true;
 
@@ -41,5 +42,4 @@ function learndash_payment_buttons_shortcode( $attr ) {
 
 	return learndash_payment_buttons( $shortcode_atts['course_id'] );
 }
-
-add_shortcode( 'learndash_payment_buttons', 'learndash_payment_buttons_shortcode' );
+add_shortcode( 'learndash_payment_buttons', 'learndash_payment_buttons_shortcode', 10, 2 );

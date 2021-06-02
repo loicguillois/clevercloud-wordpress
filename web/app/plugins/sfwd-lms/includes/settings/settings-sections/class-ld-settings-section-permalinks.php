@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Settings Section for Permalinks section shown on WP Settings > Permalinks page..
+ * LearnDash Settings Section for Permalinks section shown on WP Settings > Permalinks page.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.4.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Section_Permalinks' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Section for Permalinks section shown on WP Settings > Permalinks page.
+	 *
+	 * @since 2.4.0
 	 */
 	class LearnDash_Settings_Section_Permalinks extends LearnDash_Settings_Section {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 2.4.0
 		 */
 		protected function __construct() {
 			$this->settings_page_id = 'permalink';
@@ -46,6 +50,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * Hook into the admin init action to fire up the LD settings page init processing.
 		 * Remember the Permalinks page is not a LD page.
+		 *
+		 * @since 2.4.0
 		 */
 		public function admin_init() {
 			/** This filter is documented in includes/settings/class-ld-settings-pages.php */
@@ -54,6 +60,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Function to handle metabox init.
+		 *
+		 * @since 2.4.0
 		 *
 		 * @param string $settings_screen_id Screen ID of current page.
 		 */
@@ -74,6 +82,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings values.
+		 *
+		 * @since 2.4.0
 		 */
 		public function load_settings_values() {
 			parent::load_settings_values();
@@ -123,6 +133,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings fields.
+		 *
+		 * @since 2.4.0
 		 */
 		public function load_settings_fields() {
 			global $wp_rewrite;
@@ -222,6 +234,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Save the metabox fields. This is needed due to special processing needs.
+		 *
+		 * @since 2.4.0
 		 */
 		public function save_settings_fields() {
 
@@ -291,6 +305,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Class utility function to escape the URL
+		 *
+		 * @since 2.4.0
 		 *
 		 * @param string $value URL to Escape.
 		 *

@@ -1,9 +1,10 @@
 <?php
 /**
- * LearnDash LearnDash 3.0 Theme Register.
+ * LearnDash LD30 Theme Register.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,11 +14,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ( class_exists( 'LearnDash_Theme_Register' ) ) && ( ! class_exists( 'LearnDash_Theme_Register_LD30' ) ) ) {
 	/**
 	 * Class to create the settings section.
+	 *
+	 * @since 3.0.0
+	 * @uses LearnDash_Theme_Register
 	 */
 	class LearnDash_Theme_Register_LD30 extends LearnDash_Theme_Register {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		protected function __construct() {
 			$this->theme_key          = 'ld30';

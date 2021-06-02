@@ -1,6 +1,6 @@
 <?php
 /**
- * Shortcode for user_groups
+ * LearnDash `[user_groups]` shortcode processing.
  *
  * @since 2.1.0
  *
@@ -12,17 +12,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `user_groups` shortcode output.
+ * Builds the `[user_groups]` shortcode output.
  *
  * @since 2.1.0
  *
  * @global boolean $learndash_shortcode_used
  *
- * @param  array $attr An array of shortcode attributes.
+ * @param array $attr {
+ *    An array of shortcode attributes.
+ *
+ *    @type int $user_id User ID. Default to current user ID.
+ * }
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string The output for `user_groups` shortcode.
  */
-function learndash_user_groups( $attr = array() ) {
+function learndash_user_groups( $attr = array(), $content = '' ) {
 
 	global $learndash_shortcode_used;
 	$learndash_shortcode_used = true;
@@ -57,5 +62,4 @@ function learndash_user_groups( $attr = array() ) {
 		)
 	);
 }
-
-add_shortcode( 'user_groups', 'learndash_user_groups' );
+add_shortcode( 'user_groups', 'learndash_user_groups', 10, 2 );

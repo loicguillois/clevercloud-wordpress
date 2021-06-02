@@ -2,8 +2,8 @@
 /**
  * LearnDash Data Upgrades for Database Tables.
  *
- * @package LearnDash
- * @subpackage Data Upgrades
+ * @since 2.3.0
+ * @package LearnDash\Data_Upgrades
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,13 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'Learndash_Admin_Data_Upgrades_User_Activity_DB_Table' ) ) ) {
+
 	/**
-	 * Class to create the Data Upgrade for Database Tables.
+	 * Class LearnDash Data Upgrades for Database Tables.
+	 *
+	 * @since 2.3.0
+	 * @uses Learndash_Admin_Data_Upgrades
 	 */
 	class Learndash_Admin_Data_Upgrades_User_Activity_DB_Table extends Learndash_Admin_Data_Upgrades {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 2.3.0
 		 */
 		protected function __construct() {
 			$this->data_slug = 'activity_db-tables';
@@ -28,10 +34,9 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Update the LearnDash Settings.
-		 *
 		 * Checks to see if settings needs to be updated.
 		 *
-		 * @since 2.3
+		 * @since 2.3.0
 		 */
 		public function upgrade_data_settings() {
 			if ( is_admin() ) {
@@ -46,7 +51,7 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		/**
 		 * Perform DB Tables upgrade.
 		 *
-		 * @since 2.3
+		 * @since 2.3.0
 		 *
 		 * @param string $data_version Current database version we are upgrading from.
 		 */

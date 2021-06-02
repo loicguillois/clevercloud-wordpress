@@ -1,5 +1,13 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+/**
+ * LearnDash LD30 focus mode comments list wrapper.
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
+ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -11,6 +19,8 @@ if ( post_password_required() ) {
 	<?php
 	/**
 	 * Fires before the comments in focus mode.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param int $course_id Course ID.
 	 * @param int $user_id   User ID.
@@ -76,6 +86,8 @@ if ( post_password_required() ) {
 	/**
 	 * Fires after the comments in focus mode.
 	 *
+	 * @since 3.0.0
+	 *
 	 * @param int $course_id Course ID.
 	 * @param int $user_id   User ID.
 	 */
@@ -93,7 +105,9 @@ if ( post_password_required() ) {
 	<div class="ld-focus-comments__form-container<?php echo esc_attr( $learndash_comment_form_state ); ?>" id="ld-comments-form">
 		<?php
 		/**
-		 * Filters Focus mode comment arguments.
+		 * Filters Focus mode comment form arguments.
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param array $comment_arguments Focus mode comment form arguments to be used in comments_open function.
 		 */
@@ -110,6 +124,8 @@ if ( post_password_required() ) {
 	<?php
 	/**
 	 * Fires after the comment form in focus mode.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param int $course_id Course ID.
 	 * @param int $user_id   User ID.

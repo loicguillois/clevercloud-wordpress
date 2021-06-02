@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section Question Mangement and Display.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Questions_Management_Display' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Section Question Mangement and Display.
+	 *
+	 * @since 3.0.0
 	 */
 	class LearnDash_Settings_Questions_Management_Display extends LearnDash_Settings_Section {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		protected function __construct() {
 			// What screen ID are we showing on.
@@ -56,6 +60,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Load the field settings values
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_values() {
 			parent::load_settings_values();
@@ -90,6 +96,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Load the field settings fields
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_fields() {
 			$this->setting_option_fields = array(
@@ -124,7 +132,7 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * This function handles the AJAX actions from the browser.
 		 *
-		 * @since 2.5.9
+		 * @since 3.0.0
 		 */
 		public function ajax_action() {
 			$reply_data = array( 'status' => false );

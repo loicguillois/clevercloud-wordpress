@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays a course
+ * LearnDash LD30 Displays a course
  *
  * Available Variables:
  * $course_id                   : (int) ID of the course
@@ -25,9 +25,9 @@
  * $has_topics                  : (true/false)
  * $lesson_topics               : (array) lessons topics
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -117,17 +117,7 @@ $has_lesson_quizzes = learndash_30_has_lesson_quizzes( $course_id, $lessons ); ?
 	?>
 
 	<?php
-	/**
-	 * Filters the content to be echoed after the course status section of the course template output.
-	 *
-	 * @since 2.3.0
-	 * See https://bitbucket.org/snippets/learndash/7oe9K for example use of this filter.
-	 *
-	 * @param string $content             Custom content showed after the course status section. Can be empty.
-	 * @param string $course_status_index Course status index from the course status label
-	 * @param int    $course_id           Course ID.
-	 * @param int    $user_id             User ID.
-	 */
+	/** This filter is documented in themes/legacy/templates/course.php */
 	echo apply_filters( 'ld_after_course_status_template_container', '', learndash_course_status_idx( $course_status ), $course_id, $user_id );
 
 	/**
@@ -219,6 +209,8 @@ $has_lesson_quizzes = learndash_30_has_lesson_quizzes( $course_id, $lessons ); ?
 						/**
 						 * Filters whether to expand all course steps by default. Default is false.
 						 *
+						 * @since 2.5.0
+						 *
 						 * @param boolean $expand_all Whether to expand all course steps.
 						 * @param int     $course_id  Course ID.
 						 * @param string  $context    The context where course is expanded.
@@ -264,7 +256,7 @@ $has_lesson_quizzes = learndash_30_has_lesson_quizzes( $course_id, $lessons ); ?
 			/**
 			 * Content content listing
 			 *
-			 * @since 3.0
+			 * @since 3.0.0
 			 *
 			 * ('listing.php');
 			 */

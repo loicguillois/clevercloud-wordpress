@@ -1,17 +1,28 @@
 <?php
+/**
+ * LearnDash Shortcode Section for Courses List [ld_course_list].
+ *
+ * @since 2.4.0
+ * @package LearnDash\Settings\Shortcodes
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'LearnDash_Shortcodes_Section_ld_course_list' ) ) ) {
 	/**
-	 * Class for LearnDash Shortcode Section.
+	 * Class LearnDash Shortcode Section for Courses List [ld_course_list].
+	 *
+	 * @since 2.4.0
 	 */
 	//phpcs:ignore PEAR.NamingConventions.ValidClassName.Invalid
 	class LearnDash_Shortcodes_Section_ld_course_list extends LearnDash_Shortcodes_Section {
 
 		/**
 		 * Public constructor for class.
+		 *
+		 * @since 2.4.0
 		 *
 		 * @param array $fields_args Field Args.
 		 */
@@ -30,6 +41,8 @@ if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'Le
 
 		/**
 		 * Initialize the shortcode fields.
+		 *
+		 * @since 2.4.0
 		 */
 		public function init_shortcodes_section_fields() {
 			$this->shortcodes_option_fields = array(
@@ -75,6 +88,23 @@ if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'Le
 					),
 				),
 
+				'price_type'     => array(
+					'id'        => $this->shortcodes_section_key . '_price_type',
+					'name'      => 'price_type',
+					'type'      => 'multiselect',
+					// translators: placeholder: Course Access Mode(s)
+					'label'     => sprintf( esc_html_x( '%s Access Mode(s)', 'placeholder: Course Access Mode(s)', 'learndash' ), learndash_get_custom_label( 'courses' ) ),
+					// translators: placeholder: course
+					'help_text' => sprintf( esc_html_x( 'Filter %s by access mode(s), Ctrl+click to deselect selected items.', 'placeholder: courses', 'learndash' ), learndash_get_custom_label_lower( 'courses' ) ),
+					'value'     => '',
+					'options'   => array(
+						'open'      => esc_html__( 'Open', 'learndash' ),
+						'free'      => esc_html__( 'Free', 'learndash' ),
+						'paynow'    => esc_html__( 'Buy Now', 'learndash' ),
+						'subscribe' => esc_html__( 'Subscribe', 'learndash' ),
+						'closed'    => esc_html__( 'Closed', 'learndash' ),
+					),
+				),
 				'mycourses'      => array(
 					'id'        => $this->shortcodes_section_key . '_mycourses',
 					'name'      => 'mycourses',
@@ -100,7 +130,7 @@ if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'Le
 					// translators: placeholder: Course.
 					'label'     => sprintf( esc_html_x( 'All %s Status', 'placeholder: Course', 'learndash' ), LearnDash_Custom_Label::get_label( 'course' ) ),
 					// translators: placeholder: courses.
-					'help_text' => sprintf( esc_html_x( 'filter %s by status.', 'placeholders: courses', 'learndash' ), learndash_get_custom_label_lower( 'courses' ) ),
+					'help_text' => sprintf( esc_html_x( 'Filter %s by status, Ctrl+click to deselect selected items.', 'placeholders: courses', 'learndash' ), learndash_get_custom_label_lower( 'courses' ) ),
 					'value'     => array( 'not_started', 'in_progress', 'completed' ),
 					'options'   => array(
 						'not_started' => esc_html__( 'Not Started', 'learndash' ),
@@ -281,6 +311,11 @@ if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'Le
 			parent::init_shortcodes_section_fields();
 		}
 
+		/**
+		 * Show Shortcode section footer extra
+		 *
+		 * @since 2.4.0
+		 */
 		public function show_shortcodes_section_footer_extra() {
 			?>
 			<script>

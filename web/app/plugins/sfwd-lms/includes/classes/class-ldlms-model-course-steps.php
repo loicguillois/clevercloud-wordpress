@@ -2,9 +2,8 @@
 /**
  * LearnDash Course Steps Class.
  *
- * @package LearnDash
- * @subpackage Course Steps
- * @since 3.2.0
+ * @since 2.5.0
+ * @package LearnDash\Course\Steps
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -15,6 +14,9 @@ if ( ( ! class_exists( 'LDLMS_Course_Steps' ) ) && ( class_exists( 'LDLMS_Model'
 
 	/**
 	 * Class for LearnDash Course Steps.
+	 *
+	 * @since 2.5.0
+	 * @uses LDLMS_Model
 	 */
 	class LDLMS_Course_Steps extends LDLMS_Model {
 
@@ -255,7 +257,7 @@ if ( ( ! class_exists( 'LDLMS_Course_Steps' ) ) && ( class_exists( 'LDLMS_Model'
 		/**
 		 * Sets the Course steps dirty flag and will force the steps to be
 		 * reloaded from queries.
-		 * 
+		 *
 		 * @since 2.5.0
 		 */
 		public function set_steps_dirty() {
@@ -1130,23 +1132,23 @@ if ( ( ! class_exists( 'LDLMS_Course_Steps' ) ) && ( class_exists( 'LDLMS_Model'
 
 						$sql_str = $wpdb->prepare(
 							'SELECT posts.ID FROM ' . $wpdb->posts . ' as posts
-								LEFT JOIN ' . $wpdb->postmeta . ' postmeta 
-									ON ( posts.ID = postmeta.post_id )  
-								LEFT JOIN ' . $wpdb->postmeta . ' AS mt1 
-									ON ( posts.ID = mt1.post_id )  
-								LEFT JOIN ' . $wpdb->postmeta . " AS mt2 
-									ON (posts.ID = mt2.post_id AND mt2.meta_key = 'lesson_id' ) 
-								WHERE 1=1  	
-								AND ( 
-									( postmeta.meta_key = 'course_id' 
-										AND CAST(postmeta.meta_value AS SIGNED) = %d ) 
-								AND 
-  							  		( 
-									( mt1.meta_key = 'lesson_id' AND CAST(mt1.meta_value AS SIGNED) = '0' ) 
-    								OR 
+								LEFT JOIN ' . $wpdb->postmeta . ' postmeta
+									ON ( posts.ID = postmeta.post_id )
+								LEFT JOIN ' . $wpdb->postmeta . ' AS mt1
+									ON ( posts.ID = mt1.post_id )
+								LEFT JOIN ' . $wpdb->postmeta . " AS mt2
+									ON (posts.ID = mt2.post_id AND mt2.meta_key = 'lesson_id' )
+								WHERE 1=1
+								AND (
+									( postmeta.meta_key = 'course_id'
+										AND CAST(postmeta.meta_value AS SIGNED) = %d )
+								AND
+  							  		(
+									( mt1.meta_key = 'lesson_id' AND CAST(mt1.meta_value AS SIGNED) = '0' )
+    								OR
 									mt2.post_id IS NULL
 									)
-								) 
+								)
 								AND posts.post_type = %s
 								GROUP BY posts.ID ORDER BY posts.post_date DESC ",
 							$this->course_id,
@@ -1262,7 +1264,19 @@ if ( ( ! class_exists( 'LDLMS_Course_Steps' ) ) && ( class_exists( 'LDLMS_Model'
 				// Set that we loaded the objects to prevent double logic.
 				$this->objects_loaded = true;
 
-				$course_lesson_order = learndash_get_course_lessons_order( $this->course_id );
+				/**
+				 * If Course Builder is enabled and the meta is not empty we set the
+				 * orderby/order instead of using the global settings.
+				 * See LEARNDASH-5804
+				 */
+				if ( ( true === $this->meta['course_builder_enabled'] ) && ( true !== $this->meta['empty'] ) ) {
+					$course_lesson_order = array(
+						'order'   => 'ASC',
+						'orderby' => 'menu_order',
+					);
+				} else {
+					$course_lesson_order = learndash_get_course_lessons_order( $this->course_id );
+				}
 
 				// Course > Lessons
 				$lesson_steps_query_args = array(
@@ -1563,6 +1577,7 @@ if ( ( ! class_exists( 'LDLMS_Course_Steps' ) ) && ( class_exists( 'LDLMS_Model'
 		 *
 		 * @param array  $steps       Array of steps.
 		 * @param string $parent_type Parent Post Type slug.
+		 *
 		 */
 		public static function steps_split_keys( $steps, $parent_type = '' ) {
 			if ( learndash_get_post_type_slug( 'lesson' ) === $parent_type ) {
@@ -1609,19 +1624,19 @@ if ( ( ! class_exists( 'LDLMS_Course_Steps' ) ) && ( class_exists( 'LDLMS_Model'
 		protected function get_step_post_statuses() {
 			$post_status_keys = array();
 
-			$post_statuses = get_post_statuses();
+			$post_statuses = get_post_stati( array( 'internal' => false, '_builtin' => true ) );
 			if ( ! empty( $post_statuses ) ) {
 				$post_status_keys = array_keys( $post_statuses );
 			}
 
 			/**
-			 * Filters the post_statuses use for Course Steps Queries.
+			 * Filters the $post_status_keys use for Course Steps Queries.
 			 *
 			 * @since 3.4.0
 			 *
 			 * @param array $post_status_keys Array of post_status keys.
 			 */
-			return apply_filters( 'learndash_course_steps_post_statuses', $post_status_keys );
+			return apply_filters( 'learndash_course_steps_post_status_keys', $post_status_keys );
 		}
 	}
 }

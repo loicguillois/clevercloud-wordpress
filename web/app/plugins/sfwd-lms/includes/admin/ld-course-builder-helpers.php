@@ -4,7 +4,8 @@
  *
  * Used to provide proper data to Course Builder app.
  *
- * @package LearnDash
+ * @since 3.0.0
+ * @package LearnDash\Builder
  */
 
 namespace LearnDash\Admin\CourseBuilderHelpers;
@@ -15,6 +16,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Gets the course data for the course builder.
+ *
+ * @since 3.4.0
  *
  * @param array $data The data passed down to the front-end.
  *
@@ -91,25 +94,27 @@ function learndash_get_course_data( $data ) {
 									}
 
 									$output_topic_quizzes[] = array(
-										'ID'         => $quiz_post->ID,
-										'expanded'   => true,
-										'post_title' => $quiz_post->post_title,
-										'type'       => $quiz_post->post_type,
-										'url'        => learndash_get_step_permalink( $quiz_post->ID, $course_id ),
-										'edit_link'  => get_edit_post_link( $quiz_post->ID, '' ),
-										'tree'       => array(),
+										'ID'          => $quiz_post->ID,
+										'expanded'    => true,
+										'post_title'  => $quiz_post->post_title,
+										'post_status' => learndash_get_step_post_status_slug( $quiz_post ),
+										'type'        => $quiz_post->post_type,
+										'url'         => learndash_get_step_permalink( $quiz_post->ID, $course_id ),
+										'edit_link'   => get_edit_post_link( $quiz_post->ID, '' ),
+										'tree'        => array(),
 									);
 								}
 							}
 
 							$output_topics[] = array(
-								'ID'         => $topic_post->ID,
-								'expanded'   => true,
-								'post_title' => $topic_post->post_title,
-								'type'       => $topic_post->post_type,
-								'url'        => learndash_get_step_permalink( $topic_post->ID, $course_id ),
-								'edit_link'  => get_edit_post_link( $topic_post->ID, '' ),
-								'tree'       => $output_topic_quizzes,
+								'ID'          => $topic_post->ID,
+								'expanded'    => true,
+								'post_title'  => $topic_post->post_title,
+								'post_status' => learndash_get_step_post_status_slug( $topic_post ),
+								'type'        => $topic_post->post_type,
+								'url'         => learndash_get_step_permalink( $topic_post->ID, $course_id ),
+								'edit_link'   => get_edit_post_link( $topic_post->ID, '' ),
+								'tree'        => $output_topic_quizzes,
 							);
 						}
 					}
@@ -133,26 +138,28 @@ function learndash_get_course_data( $data ) {
 							}
 
 							$output_quizzes[] = array(
-								'ID'         => $quiz_post->ID,
-								'expanded'   => true,
-								'post_title' => $quiz_post->post_title,
-								'type'       => $quiz_post->post_type,
-								'url'        => learndash_get_step_permalink( $quiz_post->ID, $course_id ),
-								'edit_link'  => get_edit_post_link( $quiz_post->ID, '' ),
-								'tree'       => array(),
+								'ID'          => $quiz_post->ID,
+								'expanded'    => true,
+								'post_title'  => $quiz_post->post_title,
+								'post_status' => learndash_get_step_post_status_slug( $quiz_post ),
+								'type'        => $quiz_post->post_type,
+								'url'         => learndash_get_step_permalink( $quiz_post->ID, $course_id ),
+								'edit_link'   => get_edit_post_link( $quiz_post->ID, '' ),
+								'tree'        => array(),
 							);
 						}
 					}
 
 					// Output lesson with child tree.
 					$output_lessons[] = array(
-						'ID'         => $lesson_post->ID,
-						'expanded'   => false,
-						'post_title' => $lesson_post->post_title,
-						'type'       => $lesson_post->post_type,
-						'url'        => learndash_get_step_permalink( $lesson_post->ID, $course_id ),
-						'edit_link'  => get_edit_post_link( $lesson_post->ID, '' ),
-						'tree'       => array_merge( $output_topics, $output_quizzes ),
+						'ID'          => $lesson_post->ID,
+						'expanded'    => false,
+						'post_title'  => $lesson_post->post_title,
+						'post_status' => learndash_get_step_post_status_slug( $lesson_post ),
+						'type'        => $lesson_post->post_type,
+						'url'         => learndash_get_step_permalink( $lesson_post->ID, $course_id ),
+						'edit_link'   => get_edit_post_link( $lesson_post->ID, '' ),
+						'tree'        => array_merge( $output_topics, $output_quizzes ),
 					);
 				}
 			}
@@ -174,14 +181,20 @@ function learndash_get_course_data( $data ) {
 						continue;
 					}
 
+					$quiz_post_status = $quiz_post->post_status;
+					if ( ( 'publish' === $quiz_post->post_status ) && ( ! empty( $quiz_post->post_password ) ) ) {
+						$quiz_post_status = 'password';
+					}
+
 					$output_quizzes[] = array(
-						'ID'         => $quiz_post->ID,
-						'expanded'   => true,
-						'post_title' => $quiz_post->post_title,
-						'type'       => $quiz_post->post_type,
-						'url'        => learndash_get_step_permalink( $quiz_post->ID, $course_id ),
-						'edit_link'  => get_edit_post_link( $quiz_post->ID, '' ),
-						'tree'       => array(),
+						'ID'          => $quiz_post->ID,
+						'expanded'    => true,
+						'post_title'  => $quiz_post->post_title,
+						'post_status' => $quiz_post_status,
+						'type'        => $quiz_post->post_type,
+						'url'         => learndash_get_step_permalink( $quiz_post->ID, $course_id ),
+						'edit_link'   => get_edit_post_link( $quiz_post->ID, '' ),
+						'tree'        => array(),
 					);
 				}
 			}
@@ -204,6 +217,8 @@ function learndash_get_course_data( $data ) {
 		'quizzes'  => $output_quizzes,
 		'sections' => $sections,
 	);
+
+	$data['post_statuses'] = learndash_get_step_post_statuses();
 
 	return $data;
 }

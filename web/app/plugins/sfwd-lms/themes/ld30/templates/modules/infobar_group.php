@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays an informational bar
+ * LearnDash LD30 Displays an informational bar in group
  *
  * Is contextulaized by passing in a $context variable that indicates post type
  *
@@ -13,23 +13,23 @@
  *
  * @since 3.1.7
  *
- * @package LearnDash\Group
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/** This filter is documented in themes/ld30/templates/modules/tabs.php */
+/** This filter is documented in themes/ld30/templates/modules/infobar.php */
 do_action( 'learndash-infobar-before', get_post_type( $group_id ), $group_id, $user_id );
 
-/** This filter is documented in themes/ld30/templates/modules/tabs.php */
+/** This filter is documented in themes/ld30/templates/modules/infobar.php */
 do_action( 'learndash-' . $context . '-infobar-before', $group_id, $user_id );
 
-/** This filter is documented in themes/ld30/templates/modules/tabs.php */
+/** This filter is documented in themes/ld30/templates/modules/infobar.php */
 do_action( 'learndash-infobar-inside-before', get_post_type( $group_id ), $group_id, $user_id );
 
-/** This filter is documented in themes/ld30/templates/modules/tabs.php */
+/** This filter is documented in themes/ld30/templates/modules/infobar.php */
 do_action( 'learndash-' . $context . '-infobar-inside-before', $group_id, $user_id );
 
 learndash_get_template_part(
@@ -44,14 +44,14 @@ learndash_get_template_part(
 	true
 );
 
-/** This filter is documented in themes/ld30/templates/modules/tabs.php */
+/** This filter is documented in themes/ld30/templates/modules/infobar.php */
 do_action( 'learndash-infobar-inside-after', get_post_type( $group_id ), $group_id, $user_id );
 
-/** This filter is documented in themes/ld30/templates/modules/tabs.php */
+/** This filter is documented in themes/ld30/templates/modules/infobar.php */
 do_action( 'learndash-' . $context . '-infobar-inside-after', $group_id, $user_id );
 
-/** This filter is documented in themes/ld30/templates/modules/tabs.php */
+/** This filter is documented in themes/ld30/templates/modules/infobar.php */
 do_action( 'learndash-infobar-after', get_post_type( $group_id ), $group_id, $user_id );
 
-/** This filter is documented in themes/ld30/templates/modules/tabs.php */
+/** This filter is documented in themes/ld30/templates/modules/infobar.php */
 do_action( 'learndash-' . $context . '-infobar-after', $group_id, $user_id );

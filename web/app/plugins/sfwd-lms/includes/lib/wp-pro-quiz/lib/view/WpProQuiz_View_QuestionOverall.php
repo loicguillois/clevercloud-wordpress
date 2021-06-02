@@ -155,7 +155,7 @@ class WpProQuiz_View_QuestionOverall extends WpProQuiz_View_View {
 		<?php if ( current_user_can( 'wpProQuiz_edit_quiz' ) ) { ?>
 		<a class="button-secondary" href="admin.php?page=ldAdvQuiz&module=question&action=addEdit&quiz_id=<?php echo absint( $this->quiz->getId() ); ?>&post_id=<?php echo absint( $post_id ); ?>">
 			<?php
-			sprintf(
+			printf(
 				// translators: placeholder: question
 				esc_html_x( 'Add %s', 'placeholder: question', 'learndash' ),
 				learndash_get_custom_label( 'question' )
@@ -166,7 +166,7 @@ class WpProQuiz_View_QuestionOverall extends WpProQuiz_View_View {
 		<a class="button-secondary" href="#" id="wpProQuiz_questionCopy">
 			<?php
 			// translators: placeholder: questions, quiz.
-			echo sprintf( esc_html_x( 'Copy %1$s from another %2$s', 'placeholder: questions, quiz', 'learndash' ), learndash_get_custom_label_lower( 'questions' ), learndash_get_custom_label_lower( 'quiz' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
+			printf( esc_html_x( 'Copy %1$s from another %2$s', 'placeholder: questions, quiz', 'learndash' ), learndash_get_custom_label_lower( 'questions' ), learndash_get_custom_label_lower( 'quiz' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
 			?>
 		</a>
 		<?php } ?>

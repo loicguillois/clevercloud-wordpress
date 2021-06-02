@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Metabox for Topic Access Settings.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Metaboxes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'LearnDash_Settings_Metabox_Topic_Access_Settings' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Metabox for Topic Access Settings.
+	 *
+	 * @since 3.0.0
 	 */
 	class LearnDash_Settings_Metabox_Topic_Access_Settings extends LearnDash_Settings_Metabox {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		public function __construct() {
 			// What screen ID are we showing on.
@@ -54,9 +58,11 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * Hook into filter before the metabox is registered in WP.
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
+		 *
 		 * @param boolean $show_metabox True or False to show metabox.
 		 * @param string  $settings_metabox_key metabox key.
+		 *
 		 * @return boolean $show_metabox
 		 */
 		public function check_show_metabox( $show_metabox, $settings_metabox_key = '' ) {
@@ -71,6 +77,8 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 		}
 		/**
 		 * Initialize the metabox settings values.
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_values() {
 			parent::load_settings_values();
@@ -93,6 +101,8 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings fields.
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_fields() {
 			global $sfwd_lms;
@@ -237,10 +247,10 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 					'type'        => 'select',
 					'lazy_load'   => true,
 					'help_text'   => sprintf(
-						// translators: placeholders: Lesson, Course.
-						esc_html_x( 'Associate this %1$s with a %2$s.', 'placeholders: Lesson, Course', 'learndash' ),
-						learndash_get_custom_label( 'lesson' ),
-						learndash_get_custom_label( 'course' )
+						// translators: placeholders: Topic, Lesson.
+						esc_html_x( 'Associate this %1$s with a %2$s.', 'placeholders: Topic, Lesson', 'learndash' ),
+						learndash_get_custom_label( 'topic' ),
+						learndash_get_custom_label( 'lesson' )
 					),
 					'default'     => '',
 					'value'       => $this->setting_option_values['lesson'],
@@ -261,7 +271,7 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 					),
 				),
 			);
-			
+
 			/** This filter is documented in includes/settings/settings-metaboxes/class-ld-settings-metabox-course-access-settings.php */
 			$this->setting_option_fields = apply_filters( 'learndash_settings_fields', $this->setting_option_fields, $this->settings_metabox_key );
 
@@ -271,9 +281,12 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * Filter settings values for metabox before save to database.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param array  $settings_values Array of settings values.
 		 * @param string $settings_metabox_key Metabox key.
 		 * @param string $settings_screen_id Screen ID.
+		 *
 		 * @return array $settings_values.
 		 */
 		public function filter_saved_fields( $settings_values = array(), $settings_metabox_key = '', $settings_screen_id = '' ) {

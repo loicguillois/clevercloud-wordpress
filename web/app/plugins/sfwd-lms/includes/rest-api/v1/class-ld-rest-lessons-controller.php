@@ -1,11 +1,32 @@
 <?php
+/**
+ * Class REST API V1 Lessons Post Controller.
+ *
+ * @since 2.5.8
+ * @package LearnDash\REST\V1
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( ! class_exists( 'LD_REST_Lessons_Controller_V1' ) ) && ( class_exists( 'LD_REST_Posts_Controller_V1' ) ) ) {
+
+	/**
+	 * Class Class REST API V1 Lessons Post Controller.
+	 *
+	 * @since 2.5.8
+	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Lessons_Controller_V1 extends LD_REST_Posts_Controller_V1 {
 
+		/**
+		 * Public constructor for class
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param string $post_type Post type.
+		 */
 		public function __construct( $post_type = '' ) {
 			$this->post_type = 'sfwd-lessons';
 
@@ -14,6 +35,13 @@ if ( ( ! class_exists( 'LD_REST_Lessons_Controller_V1' ) ) && ( class_exists( 'L
 			$this->rest_base = LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Section_General_REST_API', $this->post_type );
 		}
 
+		/**
+		 * Registers the routes for the objects of the controller.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @see register_rest_route() in WordPress core.
+		 */
 		public function register_routes() {
 			parent::register_routes_wpv2();
 
@@ -90,6 +118,14 @@ if ( ( ! class_exists( 'LD_REST_Lessons_Controller_V1' ) ) && ( class_exists( 'L
 			);
 		}
 
+		/**
+		 * Filters collection parameters for the posts controller.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param array $query_params Quest params array.
+		 * @param WP_Post_Type $post_type    Post type object.
+		 */
 		public function rest_collection_params_filter( $query_params, $post_type ) {
 			$query_params = parent::rest_collection_params_filter( $query_params, $post_type );
 
@@ -114,6 +150,8 @@ if ( ( ! class_exists( 'LD_REST_Lessons_Controller_V1' ) ) && ( class_exists( 'L
 		/**
 		 * Gets sfwd-lessons schema.
 		 *
+		 * @since 2.5.8
+		 *
 		 * @return array
 		 */
 		public function get_schema() {
@@ -124,6 +162,13 @@ if ( ( ! class_exists( 'LD_REST_Lessons_Controller_V1' ) ) && ( class_exists( 'L
 			return $schema;
 		}
 
+		/**
+		 * Check Single Lesson Read Permissions.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function get_item_permissions_check( $request ) {
 			$return = parent::get_item_permissions_check( $request );
 			if ( ( true === $return ) && ( ! learndash_is_admin_user() ) ) {
@@ -179,7 +224,7 @@ if ( ( ! class_exists( 'LD_REST_Lessons_Controller_V1' ) ) && ( class_exists( 'L
 						return new WP_Error( 'ld_rest_cannot_view', __( 'Sorry, you are not allowed to view this item.', 'learndash' ), array( 'status' => rest_authorization_required_code() ) );
 					}
 
-					if ( ! in_array( $request['id'], $lesson_ids ) ) {
+					if ( ! in_array( $request['id'], $lesson_ids, true ) ) {
 						return new WP_Error( 'ld_rest_cannot_view', __( 'Sorry, you are not allowed to view this item.', 'learndash' ), array( 'status' => rest_authorization_required_code() ) );
 					}
 				}
@@ -188,10 +233,13 @@ if ( ( ! class_exists( 'LD_REST_Lessons_Controller_V1' ) ) && ( class_exists( 'L
 			return $return;
 		}
 
-		public function get_item( $request ) {
-			return parent::get_item( $request );
-		}
-
+		/**
+		 * Check Lessons Read Permissions.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function get_items_permissions_check( $request ) {
 			$return = parent::get_items_permissions_check( $request );
 			if ( ( true === $return ) && ( 'view' === $request['context'] ) ) {
@@ -237,10 +285,6 @@ if ( ( ! class_exists( 'LD_REST_Lessons_Controller_V1' ) ) && ( class_exists( 'L
 			}
 
 			return $return;
-		}
-
-		public function get_items( $request ) {
-			return parent::get_items( $request );
 		}
 
 		public function rest_query_filter( $args, $request ) {

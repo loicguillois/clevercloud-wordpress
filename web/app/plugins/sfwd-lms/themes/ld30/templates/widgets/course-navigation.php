@@ -1,10 +1,10 @@
 <?php
 /**
- * Displays the course navigation widget.
+ * LearnDash LD30 Displays the course navigation widget.
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Filter to allow override of widget instance arguments.
- * @since 3.0
+ * @since 3.0.0
  */
 if ( ! isset( $widget_instance ) ) {
 	$widget_instance = array();
@@ -31,6 +31,8 @@ if ( isset( $widget_instance['show_lesson_quizzes'] ) && true !== (bool) $widget
 
 /**
  * Filters Course navigation widget arguments
+ *
+ * @since 2.3.3
  *
  * @param array $widget_instance The widget instance.
  * @param int   $course_id       Course ID.

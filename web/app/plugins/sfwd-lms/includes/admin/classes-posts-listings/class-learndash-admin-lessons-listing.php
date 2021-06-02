@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Lessons (sfwd-lessons) Posts Listing Class.
+ * LearnDash Lessons (sfwd-lessons) Posts Listing.
  *
- * @package LearnDash
- * @subpackage admin
+ * @since 3.0.0
+ * @package LearnDash\Lesson\Listing
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,13 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'Learndash_Admin_Lessons_Listing' ) ) ) {
+
 	/**
-	 * Class for LearnDash Lessons Listing Pages.
+	 * Class LearnDash Lessons (sfwd-lessons) Posts Listing.
+	 *
+	 * @since 3.0.0
+	 * @uses Learndash_Admin_Posts_Listing
 	 */
 	class Learndash_Admin_Lessons_Listing extends Learndash_Admin_Posts_Listing {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		public function __construct() {
 			$this->post_type = learndash_get_post_type_slug( 'lesson' );
@@ -27,6 +33,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Called via the WordPress init action hook.
+		 *
+		 * @since 3.0.0
 		 */
 		public function listing_init() {
 			if ( $this->listing_init_done ) {

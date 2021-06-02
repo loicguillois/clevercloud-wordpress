@@ -2,7 +2,7 @@
 /**
  * LearnDash ld30 template init.
  *
- * @package LearnDash
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

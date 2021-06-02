@@ -139,7 +139,7 @@ function learndash_get_lesson_id( $post_id = null, $course_id = null ) {
 /**
  * Checks if the user's course prerequisites are completed for a given course.
  *
- * @since 2.1.0
+ * @since 3.2.0
  * @since 3.2.3 Added `$user_id` parameter.
  *
  * @param int $post_id Optional. The ID of the course. Default 0.
@@ -256,6 +256,8 @@ function learndash_get_course_prerequisite( $course_id = 0 ) {
 /**
  * Sets new prerequisites for a course.
  *
+ * @since 2.4.4
+ *
  * @param int   $course_id            Optional. ID of the course. Default 0.
  * @param array $course_prerequisites Optional. An array of course prerequisites. Default empty array.
  *
@@ -299,6 +301,8 @@ function learndash_get_course_prerequisite_enabled( $course_id ) {
 
 /**
  * Sets the status of whether the course prerequisite is enabled or disabled.
+ *
+ * @since 2.4.4
  *
  * @param int     $course_id The ID of the course.
  * @param boolean $enabled   Optional. The value is true to enable course prerequisites. Any other
@@ -427,6 +431,8 @@ function learndash_get_course_points_access( $post_id = 0 ) {
 /**
  * Checks if a user can access course points.
  *
+ * @since 2.4.0
+ *
  * @param int $post_id The ID of the post.
  * @param int $user_id Optional. The ID of the user. Default 0.
  *
@@ -551,8 +557,6 @@ function learndash_process_course_join() {
 
 add_action( 'wp', 'learndash_process_course_join' );
 
-
-
 /**
  * Gets all the courses with the price type open.
  *
@@ -565,31 +569,7 @@ add_action( 'wp', 'learndash_process_course_join' );
  * @return array An array of course IDs.
  */
 function learndash_get_open_courses( $bypass_transient = false ) {
-	global $wpdb;
-
-	$transient_key = 'learndash_open_courses';
-
-	if ( ! $bypass_transient ) {
-		$courses_ids_transient = LDLMS_Transients::get( $transient_key );
-	} else {
-		$courses_ids_transient = false;
-	}
-
-	if ( false === $courses_ids_transient ) {
-		$course_ids = $wpdb->get_col(
-			$wpdb->prepare(
-				"SELECT postmeta.post_id as post_id FROM {$wpdb->postmeta} as postmeta INNER JOIN {$wpdb->posts} as posts ON posts.ID = postmeta.post_id WHERE posts.post_status='publish' AND posts.post_type=%s AND postmeta.meta_key='_sfwd-courses' AND ( postmeta.meta_value REGEXP '\"sfwd-courses_course_price_type\";s:4:\"open\";' )",
-				learndash_get_post_type_slug( 'course' )
-			)
-		);
-
-		LDLMS_Transients::set( $transient_key, $course_ids, MINUTE_IN_SECONDS );
-
-	} else {
-		$course_ids = $courses_ids_transient;
-	}
-
-	return array_map( 'absint', $course_ids );
+	return learndash_get_posts_by_price_type( learndash_get_post_type_slug( 'course' ), 'open', $bypass_transient );
 }
 
 /**
@@ -606,35 +586,13 @@ function learndash_get_open_courses( $bypass_transient = false ) {
  * @return array An array of course IDs.
  */
 function learndash_get_paynow_courses( $bypass_transient = false ) {
-	global $wpdb;
-
-	$transient_key = 'learndash_paynow_courses';
-
-	if ( ! $bypass_transient ) {
-		$courses_ids_transient = LDLMS_Transients::get( $transient_key );
-	} else {
-		$courses_ids_transient = false;
-	}
-
-	if ( false === $courses_ids_transient ) {
-
-		$course_ids = $wpdb->get_col(
-			$wpdb->prepare(
-				"SELECT postmeta.post_id FROM {$wpdb->postmeta} as postmeta INNER JOIN {$wpdb->posts} as posts ON posts.ID = postmeta.post_id WHERE posts.post_status='publish' AND posts.post_type=%s AND postmeta.meta_key='_sfwd-courses' AND (( postmeta.meta_value REGEXP 's:30:\"sfwd-courses_course_price_type\";s:6:\"paynow\";' ) AND ( postmeta.meta_value REGEXP 's:25:\"sfwd-courses_course_price\";s:0:\"\";' ))",
-				learndash_get_post_type_slug( 'course' )
-			)
-		);
-		LDLMS_Transients::set( $transient_key, $course_ids, MINUTE_IN_SECONDS );
-
-	} else {
-		$course_ids = $courses_ids_transient;
-	}
-
-	return array_map( 'absint', $course_ids );
+	return learndash_get_posts_by_price_type( learndash_get_post_type_slug( 'course' ), 'paynow', $bypass_transient );
 }
 
 /**
  * Gets the list of users with expired course access from the user meta.
+ *
+ * @since 2.6.4
  *
  * @param int $course_id Optional. The ID of the course. Default 0.
  *
@@ -660,6 +618,8 @@ function learndash_get_course_expired_access_from_meta( $course_id = 0 ) {
 
 /**
  * Gets the course settings from the course meta.
+ *
+ * @since 2.6.4
  *
  * @TODO Need to convert all references to get_post_meta for '_sfwd-courses' to use this function.
  *
@@ -710,10 +670,6 @@ function learndash_get_course_meta_setting( $course_id = 0, $setting_key = '' ) 
 	}
 }
 
-
-
-
-
 add_filter(
 	'sfwd-courses_display_options',
 	function( $options, $location ) {
@@ -740,6 +696,8 @@ add_filter(
  * Updates the users group course access.
  *
  * Fires on `learndash_update_course_access` hook.
+ *
+ * @since 2.4.0
  *
  * @param int     $user_id     The ID of the user.
  * @param int     $course_id   The ID of the course.
@@ -795,6 +753,8 @@ add_action( 'learndash_update_course_access', 'learndash_update_course_users_gro
 /**
  * Gets the course completion date for a user.
  *
+ * @since 2.4.7
+ *
  * @param int $user_id   Optional. The ID of the user. Default 0.
  * @param int $course_id Optional. The ID of the course. Default 0.
  *
@@ -834,6 +794,8 @@ function learndash_user_get_course_completed_date( $user_id = 0, $course_id = 0 
 /**
  * Gets the page data by page path.
  *
+ * @since 2.5.2
+ *
  * @param string $slug      Optional. The slug of the page. Default empty.
  * @param string $post_type Optional. The post type slug. Default empty.
  *
@@ -863,7 +825,7 @@ function learndash_get_page_by_path( $slug = '', $post_type = '' ) {
  * default lesson options setting we will use that. Then if the lessons options
  * is not set for some reason we use the default system option 'posts_per_page'.
  *
- * @since 2.5.4
+ * @since 2.5.5
  *
  * @param int $course_id Optional. The ID of the course. Default 0.
  *
@@ -905,6 +867,8 @@ global $course_pager_results;
 /**
  * Handles the course lessons list pager.
  *
+ * @since 2.5.5
+ *
  * Fires on `learndash_course_lessons_list_pager` hook.
  *
  * @global array $course_pager_results
@@ -927,6 +891,8 @@ add_action( 'learndash_course_lessons_list_pager', 'learndash_course_lessons_lis
 
 /**
  * Gets the lesson topic pagination values from HTTP get global array.
+ *
+ * @since 3.0.0
  *
  * @return array An array of lesson topic pagination values.
  */
@@ -955,6 +921,8 @@ function learndash_get_lesson_topic_paged_values() {
 
 /**
  * Processes the lesson topics pagination.
+ *
+ * @since 3.0.0
  *
  * @global array $course_pager_results
  *
@@ -1042,7 +1010,7 @@ function learndash_process_lesson_topics_pager( $topics = array(), $args = array
  * the lesson options. This function will check all logic and return the
  * correct setting.
  *
- * @since 2.5.4
+ * @since 2.5.8
  *
  * @param int $course_id Optional. The ID of the course. Default 0.
  *
@@ -1161,6 +1129,8 @@ function learndash_get_course_topics_per_page( $course_id = 0, $lesson_id = 0 ) 
 /**
  * Checks whether to use the legacy course access list.
  *
+ * @since 3.1.0
+ *
  * @return boolean Returns true to use legacy course access list otherwise false.
  */
 function learndash_use_legacy_course_access_list() {
@@ -1182,9 +1152,9 @@ function learndash_use_legacy_course_access_list() {
 /**
  * Gets the user's last active (last updated) course ID.
  *
- * @global wpdb $wpdb WordPress database abstraction object.
+ * @since 3.1.4
  *
- * @since 2.1.3
+ * @global wpdb $wpdb WordPress database abstraction object.
  *
  * @param int $user_id Optional. User ID. Default 0.
  *
@@ -1216,7 +1186,7 @@ function learndash_get_last_active_course( $user_id = 0 ) {
 /**
  * Gets the user's last active step for a course.
  *
- * @since 2.1.3
+ * @since 3.1.4
  *
  * @param int $user_id   Optional. User ID. Default 0.
  * @param int $course_id Optional. Course ID. Default 0.
@@ -1255,7 +1225,7 @@ function learndash_user_course_last_step( $user_id = 0, $course_id = 0 ) {
 /**
  * Check if user can bypass action ($context).
  *
- * @since 3.1.7
+ * @since 3.2.0
  *
  * @param int    $user_id User ID.
  * @param string $context The specific action to check for.
@@ -1362,4 +1332,116 @@ function learndash_is_course_shared_steps_enabled() {
 	}
 
 	return false;
+}
+
+/**
+ * Get Courses/Groups by Price Type.
+ *
+ * @since 3.4.1
+ *
+ * @param string  $price_type       Price Type: open, free, closed, paynow, etc.
+ * @param string  $post_type        Post Type slug: sfwd-courses or group.
+ * @param boolean $bypass_transient Optional. Whether to bypass transient cache. Default false.
+ *
+ * @return @array Array of Course IDs.
+ */
+function learndash_get_posts_by_price_type( $post_type = '', $price_type = '', $bypass_transient = false ) {
+	global $wpdb;
+
+	$post_ids   = array();
+	$post_type  = esc_attr( $post_type );
+	$price_type = esc_attr( $price_type );
+
+	if ( ( ! empty( $post_type ) ) && ( in_array( $post_type, learndash_get_post_type_slug( array( 'course', 'group' ) ), true ) ) ) {
+		
+		$new_logic = false;
+		if ( learndash_get_post_type_slug( 'course' ) === $post_type ) {
+			if ( empty( $price_type ) ) {
+				$price_type = LEARNDASH_DEFAULT_COURSE_PRICE_TYPE;
+			}
+
+			$transient_key = 'learndash_' . $price_type . '_courses';
+
+		} elseif ( learndash_get_post_type_slug( 'group' ) === $post_type ) {
+			if ( empty( $price_type ) ) {
+				$price_type = LEARNDASH_DEFAULT_GROUP_PRICE_TYPE;
+			}
+
+			$transient_key = 'learndash_' . $price_type . '_groups';
+		}
+
+		if ( ! $bypass_transient ) {
+			$post_ids_transient = LDLMS_Transients::get( $transient_key );
+		} else {
+			$post_ids_transient = false;
+		}
+
+		if ( false === $post_ids_transient ) {
+			if ( learndash_post_meta_processed( $post_type ) ) {
+				$price_query_args = array(
+					'post_type'    => $post_type,
+					'fields'       => 'ids',
+					'nopaging'     => true,
+					'meta_key'     => '_ld_price_type',
+					'meta_value'   => $price_type,
+					'meta_compare' => '=',
+				);
+
+				$price_query = new WP_Query( $price_query_args );
+				if ( ( property_exists( $price_query, 'posts' ) ) && ( ! empty( $price_query->posts ) ) ) {
+					$post_ids = $price_query->posts;
+					$post_ids = array_map( 'absint', $post_ids );
+				}
+			} else {
+				$sql_str = $wpdb->prepare(
+						"SELECT postmeta.post_id as post_id FROM {$wpdb->postmeta} as postmeta
+						INNER JOIN {$wpdb->posts} as posts ON posts.ID = postmeta.post_id 
+						WHERE posts.post_status='publish' AND posts.post_type=%s AND postmeta.meta_key=%s 
+						AND ( postmeta.meta_value REGEXP '\"" . $post_type . "_" . learndash_get_post_type_key( $post_type ) . "_price_type\";s:" . strlen( $price_type ) . ":\"" . $price_type . "\";' )",
+						$post_type, '_' . $post_type
+				);
+
+				$post_ids = $wpdb->get_col( $sql_str );
+			}
+			if ( ! empty( $post_ids ) ) {
+				$post_ids = array_map( 'absint', $post_ids );
+			}
+			LDLMS_Transients::set( $transient_key, $post_ids, MINUTE_IN_SECONDS );
+
+		} else {
+			$post_ids = $post_ids_transient;
+		}
+	}
+	
+	return $post_ids;
+}
+
+/**
+ * Checks if Post Meta Data Upgrade has completed.
+ *
+ * @since 3.4.1
+ *
+ * @param string $post_type The post type slug to check.
+ *
+ * @return boolean.
+ */
+function learndash_post_meta_processed( $post_type = '' ) {
+	if ( ( ! empty( $post_type ) ) && ( learndash_is_valid_post_type( $post_type ) ) ) {
+		$data_settings = learndash_data_upgrades_setting( learndash_get_post_type_key( $post_type ) . '-post-meta' );
+		if ( ( ! isset( $data_settings['process_status'] ) ) || ( 'complete' !== $data_settings['process_status'] ) ) {
+			$post_meta_processed = false;
+		} else {
+			$post_meta_processed = true;
+		}
+
+		/**
+		 * Filters whether to post meta is processed or not.
+		 *
+		 * @since 3.4.1
+		 *
+		 * @param boolean $process   True or Fals to process post meta.
+		 * @param string  $post_type The post type slug.
+		 */
+		return apply_filters( 'learndash_post_meta_processed', $post_meta_processed, $post_type );
+	}
 }

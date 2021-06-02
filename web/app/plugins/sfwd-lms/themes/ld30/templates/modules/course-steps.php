@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays a Course Prev/Next navigation.
+ * LearnDash LD30 Displays a Course Prev/Next navigation.
  *
  * Available Variables:
  *
@@ -10,9 +10,9 @@
  * $course_settings  : (array) Settings specific to current course
  * $can_complete     : (bool) Can the user mark this lesson/topic complete?
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -26,6 +26,8 @@ if ( ( empty( $learndash_previous_step_id ) ) && ( learndash_get_post_type_slug(
 
 	/**
 	 * Filters whether to show parent previous link in the course navigation.
+	 *
+	 * @since 3.1.0
 	 *
 	 * @param boolean $show_previous_link Whether to show parent previous link.
 	 * @param int     $course_step_post   ID of the lesson/topic post.
@@ -41,7 +43,7 @@ $learndash_next_step_id = '';
 $button_class           = 'ld-button ' . ( 'focus' === $context ? 'ld-button-transparent' : '' );
 
 /*
- * See details for filter 'learndash_show_next_link' https://bitbucket.org/snippets/learndash/5oAEX
+ * See details for filter 'learndash_show_next_link' at https://developers.learndash.com/hook/learndash_show_next_link/
  *
  * @since version 2.3
  */
@@ -73,6 +75,8 @@ if ( ( isset( $course_settings['course_disable_lesson_progression'] ) ) && ( 'on
 /**
  * Filters whether to show the next link in the course navigation.
  *
+ * @since 2.3.0
+ *
  * @param boolean $show_previous_link Whether to show parent previous link.
  * @param int     $course_step_post   ID of the lesson/topic post.
  * @param int     $course_id          Course ID.
@@ -85,6 +89,8 @@ if ( true === (bool) $learndash_maybe_show_next_step_link ) {
 		if ( learndash_is_lesson_complete( $user_id, $parent_id ) ) {
 			/**
 			 * Filters whether to show parent next link in the course navigation.
+			 *
+			 * @since 3.1.0
 			 *
 			 * @param boolean $show_previous_link Whether to show parent next link.
 			 * @param int     $course_step_post   ID of the lesson/topic post.
@@ -170,6 +176,8 @@ if ( ! empty( $parent_lesson_id ) ) {
 	 *
 	 * The dynamic portion of the hook name, `$context`, refers to the context for which the hook is fired,
 	 * such as `course`, `lesson`, `topic`, `quiz`, etc.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param string|false $post_type Post type slug.
 	 * @param int          $course_id Course ID.
@@ -272,6 +280,8 @@ if ( ! empty( $parent_lesson_id ) ) {
 	 *
 	 * The dynamic portion of the hook name, `$context`, refers to the context for which the hook is fired,
 	 * such as `course`, `lesson`, `topic`, `quiz`, etc.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param string|false $post_type Post type slug.
 	 * @param int          $course_id Course ID.

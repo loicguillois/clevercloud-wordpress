@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Metabox for Quiz Access Settings.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Metaboxes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'LearnDash_Settings_Metabox_Quiz_Access_Settings' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Metabox for Quiz Access Settings.
+	 *
+	 * @since 3.0.0
 	 */
 	class LearnDash_Settings_Metabox_Quiz_Access_Settings extends LearnDash_Settings_Metabox {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		public function __construct() {
 			// What screen ID are we showing on.
@@ -57,49 +61,54 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 		 * Used to save the settings fields back to the global $_POST object so
 		 * the WPProQuiz normal form processing can take place.
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
+		 *
 		 * @param object $pro_quiz_edit WpProQuiz_Controller_Quiz instance (not used).
 		 * @param array  $settings_values Array of settings fields.
 		 */
 		public function save_fields_to_post( $pro_quiz_edit, $settings_values = array() ) {
-
-			$_POST['prerequisite']     = $settings_values['prerequisite'];
-			$_POST['prerequisiteList'] = $settings_values['prerequisiteList'];
-
-			$_POST['startOnlyRegisteredUser'] = $settings_values['startOnlyRegisteredUser'];
+			foreach( $settings_values as $setting_key => $setting_value ) {
+				if ( isset( $this->settings_fields_map[ $setting_key ] ) ) {
+					$_POST[ $setting_key ] = $setting_value;	
+				}
+			}
 		}
 
 		/**
 		 * Initialize the metabox settings values.
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_values() {
+			$reload_pro_quiz = false;
+			if ( true !== $this->settings_values_loaded ) {
+				$reload_pro_quiz = true;
+			}
+
 			parent::load_settings_values();
 
 			if ( true === $this->settings_values_loaded ) {
-				$this->quiz_edit = $this->init_quiz_edit( $this->_post );
+				$this->quiz_edit = $this->init_quiz_edit( $this->_post, $reload_pro_quiz );
 
-				if ( true === $this->settings_values_loaded ) {
-					if ( ! isset( $this->setting_option_values['course'] ) ) {
-						$this->setting_option_values['course'] = '';
+				if ( ! isset( $this->setting_option_values['course'] ) ) {
+					$this->setting_option_values['course'] = '';
+				}
+				if ( ! isset( $this->setting_option_values['lesson'] ) ) {
+					$this->setting_option_values['lesson'] = '';
+				}
+
+				if ( ( isset( $this->quiz_edit['quiz'] ) ) && ( ! empty( $this->quiz_edit['quiz'] ) ) ) {
+					$this->setting_option_values['startOnlyRegisteredUser'] = $this->quiz_edit['quiz']->isStartOnlyRegisteredUser();
+					if ( true === $this->setting_option_values['startOnlyRegisteredUser'] ) {
+						$this->setting_option_values['startOnlyRegisteredUser'] = 'on';
+					} else {
+						$this->setting_option_values['startOnlyRegisteredUser'] = '';
 					}
-					if ( ! isset( $this->setting_option_values['lesson'] ) ) {
-						$this->setting_option_values['lesson'] = '';
-					}
 
-					$this->quiz_edit = $this->init_quiz_edit( $this->_post );
-					if ( ( isset( $this->quiz_edit['quiz'] ) ) && ( ! empty( $this->quiz_edit['quiz'] ) ) ) {
-						$this->setting_option_values['startOnlyRegisteredUser'] = $this->quiz_edit['quiz']->isStartOnlyRegisteredUser();
-						if ( true === $this->setting_option_values['startOnlyRegisteredUser'] ) {
-							$this->setting_option_values['startOnlyRegisteredUser'] = 'on';
-						} else {
-							$this->setting_option_values['startOnlyRegisteredUser'] = '';
-						}
-
-						if ( $this->quiz_edit['prerequisiteQuizList'] ) {
-							$this->setting_option_values['prerequisiteList'] = $this->quiz_edit['prerequisiteQuizList'];
-						} else {
-							$this->setting_option_values['prerequisiteList'] = array();
-						}
+					if ( $this->quiz_edit['prerequisiteQuizList'] ) {
+						$this->setting_option_values['prerequisiteList'] = $this->quiz_edit['prerequisiteQuizList'];
+					} else {
+						$this->setting_option_values['prerequisiteList'] = array();
 					}
 				}
 			}
@@ -114,6 +123,8 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings fields.
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_fields() {
 			global $sfwd_lms;
@@ -384,9 +395,12 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * Filter settings values for metabox before save to database.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param array  $settings_values Array of settings values.
 		 * @param string $settings_metabox_key Metabox key.
 		 * @param string $settings_screen_id Screen ID.
+		 *
 		 * @return array $settings_values.
 		 */
 		public function filter_saved_fields( $settings_values = array(), $settings_metabox_key = '', $settings_screen_id = '' ) {

@@ -57,30 +57,27 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 			parent::__construct();
 		}
 
-
 		public function save_fields_to_post( $pro_quiz_edit, $settings_values = array() ) {
-
-			$_POST['resultGradeEnabled'] = $settings_values['resultGradeEnabled'];
-
-			$_POST['btnRestartQuizHidden']      = $settings_values['btnRestartQuizHidden'];
-			$_POST['showAverageResult']         = $settings_values['showAverageResult'];
-			$_POST['showCategoryScore']         = $settings_values['showCategoryScore'];
-			$_POST['hideResultPoints']          = $settings_values['hideResultPoints'];
-			$_POST['hideResultCorrectQuestion'] = $settings_values['hideResultCorrectQuestion'];
-			$_POST['hideResultQuizTime']        = $settings_values['hideResultQuizTime'];
-			$_POST['hideAnswerMessageBox']      = $settings_values['hideAnswerMessageBox'];
-			$_POST['disabledAnswerMark']        = $settings_values['disabledAnswerMark'];
-			$_POST['btnViewQuestionHidden']     = $settings_values['btnViewQuestionHidden'];
+			foreach( $settings_values as $setting_key => $setting_value ) {
+				if ( isset( $this->settings_fields_map[ $setting_key ] ) ) {
+					$_POST[ $setting_key ] = $setting_value;	
+				}
+			}
 		}
 
 		/**
 		 * Initialize the metabox settings values.
 		 */
 		public function load_settings_values() {
+			$reload_pro_quiz = false;
+			if ( true !== $this->settings_values_loaded ) {
+				$reload_pro_quiz = true;
+			}
+
 			parent::load_settings_values();
 
 			if ( true === $this->settings_values_loaded ) {
-				$this->quiz_edit = $this->init_quiz_edit( $this->_post );
+				$this->quiz_edit = $this->init_quiz_edit( $this->_post, $reload_pro_quiz );
 
 				if ( ( isset( $this->quiz_edit['quiz'] ) ) && ( ! empty( $this->quiz_edit['quiz'] ) ) ) {
 					$this->setting_option_values['resultGradeEnabled'] = $this->quiz_edit['quiz']->isResultGradeEnabled();

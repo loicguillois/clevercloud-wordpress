@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays content of course
+ * LearnDash LD30 Displays content of course
  *
  * Available Variables:
  * $course_id                  : (int) ID of the course
@@ -22,9 +22,9 @@
  * $quizzes                    : Quizzes Array
  * $lesson_progression_enabled : (true/false)
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -109,7 +109,7 @@ if ( $has_course_content ) :
 			/**
 			 * Content content listing
 			 *
-			 * @since 3.0
+			 * @since 3.0.0
 			 *
 			 * ('listing.php');
 			 */

@@ -182,7 +182,7 @@ jQuery( function( $ ) {
 			var search_width = null;
 
 			// Activate logic on fucus.
-			jQuery( '#learndash_builder_box_wrap .learndash_selectors .learndash-selector-search input' ).focus( function( e ) {
+			jQuery( '#learndash_builder_box_wrap .learndash_selectors .learndash-selector-search input' ).on( 'focus', function( e ) {
 				var selector_container = jQuery( e.currentTarget ).parents( '.learndash-selector-container' );
 				if ( typeof selector_container !== 'undefined' ) {
 					var selector_type = jQuery( selector_container ).data( 'ld-type' );

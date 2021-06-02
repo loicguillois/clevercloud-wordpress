@@ -11,7 +11,7 @@
  *
  * @since 3.2
  *
- * @package LearnDash\Quiz
+ * @package LearnDash\Templates\Legacy\Quiz
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -648,10 +648,12 @@ $cat_points    = array();
 										)
 									)
 								);
-							?>
-							</h5>
+							?></h5>
 							<?php
-							echo do_shortcode( apply_filters( 'comment_text', $question->getTipMsg(), null, null ) ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WP Core Hook
+							$tip_message = apply_filters( 'comment_text', $question->getTipMsg(), null, null );
+							global $wp_embed;
+							$tip_message = $wp_embed->run_shortcode( $tip_message );
+							echo do_shortcode( $tip_message );
 							?>
 						</div>
 					</div>

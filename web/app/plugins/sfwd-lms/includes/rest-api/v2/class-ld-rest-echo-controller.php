@@ -1,13 +1,13 @@
 <?php
 /**
- * LearnDash V2 REST API Echo Controller.
+ * LearnDash REST API V2 Echo Controller.
  *
  * This Controller class is used simple echo back method, requests, and payload
  *
  * This class extends the WP_REST_Controller class.
  *
- * @package LearnDash
- * @subpackage REST
+ * @since 3.3.0
+ * @package LearnDash\REST\V2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -15,8 +15,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( ! class_exists( 'LD_REST_Echo_Controller_V2' ) ) && ( class_exists( 'WP_REST_Controller' ) ) ) {
+
 	/**
-	 * Class REST API Courses Post Controller.
+	 * Class LearnDash REST API V2 Echo Controller.
+	 *
+	 * @since 3.3.0
+	 * @uses WP_REST_Controller
 	 */
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Echo_Controller_V2 extends WP_REST_Controller {
@@ -24,6 +28,8 @@ if ( ( ! class_exists( 'LD_REST_Echo_Controller_V2' ) ) && ( class_exists( 'WP_R
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.3.0
 		 */
 		public function __construct() {
 			$this->namespace = trailingslashit( LEARNDASH_REST_API_NAMESPACE ) . $this->version;
@@ -34,6 +40,8 @@ if ( ( ! class_exists( 'LD_REST_Echo_Controller_V2' ) ) && ( class_exists( 'WP_R
 		 * Registers the routes for the objects of the controller.
 		 *
 		 * @see register_rest_route()
+		 *
+		 * @since 3.3.0
 		 */
 		public function register_routes() {
 			register_rest_route(
@@ -63,6 +71,8 @@ if ( ( ! class_exists( 'LD_REST_Echo_Controller_V2' ) ) && ( class_exists( 'WP_R
 		/**
 		 * Checks if a given request has access to read the theme.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @param WP_REST_Request $request Full details about the request.
 		 *
 		 * @return true|WP_Error True if the request has read access for the item, otherwise WP_Error object.
@@ -74,7 +84,10 @@ if ( ( ! class_exists( 'LD_REST_Echo_Controller_V2' ) ) && ( class_exists( 'WP_R
 		/**
 		 * Retrieves a collection of themes.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @param WP_REST_Request $request Full details about the request.
+		 *
 		 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
 		 */
 		public function get_repsonse( $request ) {
@@ -103,6 +116,8 @@ if ( ( ! class_exists( 'LD_REST_Echo_Controller_V2' ) ) && ( class_exists( 'WP_R
 
 		/**
 		 * Retrieves the theme's schema, conforming to JSON Schema.
+		 *
+		 * @since 3.3.0
 		 *
 		 * @return array Item schema data.
 		 */

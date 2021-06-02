@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Data Upgrades for Quiz Questions
+ * LearnDash Data Upgrades for Quiz Questions.
  *
- * @package LearnDash
- * @subpackage Data Upgrades
+ * @since 2.6.0
+ * @package LearnDash\Data_Upgrades
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,13 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'Learndash_Admin_Data_Upgrades_Quiz_Questions' ) ) ) {
+
 	/**
-	 * Class to create the Data Upgrade for Quiz Questions.
+	 * Class LearnDash Data Upgrades for Quiz Questions.
+	 *
+	 * @since 2.6.0
+	 * @uses Learndash_Admin_Data_Upgrades
 	 */
 	class Learndash_Admin_Data_Upgrades_Quiz_Questions extends Learndash_Admin_Data_Upgrades {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 2.6.0
 		 */
 		protected function __construct() {
 			$this->data_slug = 'pro-quiz-questions';
@@ -28,7 +34,7 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		/**
 		 * Show data upgrade row for this instance.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 */
 		public function show_upgrade_action() {
 			?>
@@ -98,6 +104,7 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 					$progress_label       = '';
 					$progress_slug        = '';
 
+					// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					if ( ( true === $show_progess ) && ( ! isset( $_GET['quiz_id'] ) ) ) {
 						?>
 						<p id="learndash-data-upgrades-continue-<?php echo esc_attr( $this->data_slug ); ?>" class="learndash-data-upgrades-continue"><input type="checkbox" name="learndash-data-upgrades-continue" value="1" /> <?php esc_html_e( 'Continue previous upgrade processing?', 'learndash' ); ?></p>
@@ -120,8 +127,11 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 					} else {
 						if ( ( isset( $data_settings['last_run'] ) ) && ( ! empty( $data_settings['last_run'] ) ) ) {
 							$process_quiz_id = 0;
+							// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 							if ( ( isset( $_GET['quiz_id'] ) ) && ( ! empty( $_GET['quiz_id'] ) ) ) {
+								// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 								if ( learndash_get_post_type_slug( 'quiz' ) === get_post_type( $_GET['quiz_id'] ) ) {
+									// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 									$process_quiz_id = absint( $_GET['quiz_id'] );
 								} else {
 									?>
@@ -153,9 +163,10 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 									esc_html_x( 'Reprocess %1$s for %2$s: "%3$s"', 'placeholders: Questions, Quiz, Quiz Title', 'learndash' ),
 									LearnDash_Custom_Label::get_label( 'Questions' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
 									LearnDash_Custom_Label::get_label( 'Quiz' ), // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
-									wp_kses_post( get_the_title( $_GET['quiz_id'] ) )
+									wp_kses_post( get_the_title( $_GET['quiz_id'] ) ) // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 								)
 								?>
+									<?php // phpcs:ignore WordPress.Security.NonceVerification.Recommended ?>
 									<input type="hidden" name="learndash-data-upgrades-quiz" value="<?php echo absint( $_GET['quiz_id'] ); ?>" />
 									</p>
 									<?php
@@ -191,9 +202,10 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		 * This function will determine what users need to be converted. Then the course and quiz functions
 		 * will be called to convert each individual user data set.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 *
 		 * @param  array $data Post data from AJAX call.
+		 *
 		 * @return array $data Post data from AJAX call
 		 */
 		public function process_upgrade_action( $data = array() ) {
@@ -393,6 +405,8 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Determine if there are mismatched ProQuiz Questions not found as WP Posts (sfwd-question).
+		 *
+		 * @since 2.6.4
 		 */
 		public function get_mismatched_questions() {
 			global $wpdb;
@@ -459,6 +473,7 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		 * @since 2.6.0
 		 *
 		 * @param array $data Array of existing data elements.
+		 *
 		 * @return array or data.
 		 */
 		protected function build_progress_output( $data = array() ) {
@@ -528,9 +543,10 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		/**
 		 * Convert single user quiz attempts to Activity DB entries.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 *
 		 * @param int $question_pro_id ProQuiz Question ID to convert.
+		 *
 		 * @return boolean true if complete, false if not.
 		 */
 		protected function convert_proquiz_question( $question_pro_id = 0 ) {

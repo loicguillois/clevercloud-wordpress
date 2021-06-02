@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays the listing of course row content
+ * LearnDash LD30 Displays the listing of course row content
  *
  * @var int    $group_id            Group ID.
  * @var int    $user_id             User ID.
@@ -9,7 +9,7 @@
  *
  * @since 3.1.7
  *
- * @package LearnDash\Group
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -31,7 +31,7 @@ $progress = learndash_course_progress(
  * The logic in learndash_course_progress() should
  * return an array of elements. However, when scanning
  * other calls to this function some check if the returned
- * value is an empty string. 
+ * value is an empty string.
  */
 if ( ! is_array( $progress ) ) {
 	$progress = array();

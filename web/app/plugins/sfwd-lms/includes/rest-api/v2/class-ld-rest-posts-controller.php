@@ -1,17 +1,7 @@
 <?php
 /**
- * LearnDash V2 REST API Post Controller.
+ * LearnDash REST API V2 Post Controller.
  *
- * @package LearnDash
- * @subpackage REST_API
- * @since 3.3.0
- */
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
-/**
  * This Controller is used as the parent Controller for all LearnDash
  * custom post types like Courses (sfwd-courses), Lessons (sfwd-lessons), Topics (sfwd-topic),
  * Quizzes (sfwd-quiz) and, Questions (sfwd-question).
@@ -19,10 +9,20 @@ if ( ! defined( 'ABSPATH' ) ) {
  * This Controller class extends the WordPress WP_REST_Posts_Controller class.
  *
  * @since 3.3.0
+ * @package LearnDash\REST\V2
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( ( ! class_exists( 'LD_REST_Posts_Controller_V2' ) ) && ( class_exists( 'WP_REST_Posts_Controller' ) ) ) {
+
 	/**
-	 * Class REST API Post Controller.
+	 * Class LearnDash REST API V2 Post Controller.
+	 *
+	 * @since 3.3.0
+	 * @uses WP_REST_Posts_Controller
 	 */
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Posts_Controller_V2 extends WP_REST_Posts_Controller {
@@ -116,7 +116,27 @@ if ( ( ! class_exists( 'LD_REST_Posts_Controller_V2' ) ) && ( class_exists( 'WP_
 		protected $saved_rest_registered_fields = array();
 
 		/**
+		 * Route Methods Singular
+		 *
+		 * @since 3.4.1
+		 *
+		 * @var array $route_methods_singular.
+		 */
+		protected $route_methods_singular = array( WP_REST_Server::READABLE, WP_REST_Server::CREATABLE, WP_REST_Server::EDITABLE, WP_REST_Server::DELETABLE );
+
+		/**
+		 * Route Methods Collection
+		 *
+		 * @since 3.4.1
+		 *
+		 * @var array $route_methods_collection.
+		 */
+		protected $route_methods_collection = array( WP_REST_Server::READABLE, WP_REST_Server::CREATABLE );
+
+		/**
 		 * Protected constructor for class
+		 *
+		 * @since 3.3.0
 		 */
 		public function __construct( $post_type = '' ) {
 			parent::__construct( $post_type );
@@ -137,68 +157,84 @@ if ( ( ! class_exists( 'LD_REST_Posts_Controller_V2' ) ) && ( class_exists( 'WP_
 		 * Registers the routes for the objects of the controller.
 		 *
 		 * @see register_rest_route() in WordPress core.
+		 *
+		 * @since 3.3.0
 		 */
 		public function register_routes() {
 
 			$this->register_fields();
 
-			register_rest_route(
-				$this->namespace,
-				'/' . $this->rest_base,
-				array(
-					array(
-						'methods'             => WP_REST_Server::READABLE,
-						'callback'            => array( $this, 'get_items' ),
-						'permission_callback' => array( $this, 'get_items_permissions_check' ),
-						'args'                => $this->get_collection_params(),
-					),
-					array(
-						'methods'             => WP_REST_Server::CREATABLE,
-						'callback'            => array( $this, 'create_item' ),
-						'permission_callback' => array( $this, 'create_item_permissions_check' ),
-						'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::CREATABLE ),
-					),
-					'schema' => array( $this, 'get_public_item_schema' ),
-				)
-			);
+			$methods_collection = array();
 
-			register_rest_route(
-				$this->namespace,
-				'/' . $this->rest_base . '/(?P<id>[\d]+)',
-				array(
-					'args'   => array(
-						'id' => array(
-							'description' => esc_html__( 'Unique identifier for the object.', 'learndash' ),
-							'type'        => 'integer',
+			if ( in_array( WP_REST_Server::READABLE, $this->route_methods_collection, true ) ) {
+				$methods_collection[] = array(
+					'methods'             => WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'get_items' ),
+					'permission_callback' => array( $this, 'get_items_permissions_check' ),
+					'args'                => $this->get_collection_params(),
+				);
+			}
+			if ( in_array( WP_REST_Server::CREATABLE, $this->route_methods_collection, true ) ) {
+				$methods_collection[] = array(
+					'methods'             => WP_REST_Server::CREATABLE,
+					'callback'            => array( $this, 'create_item' ),
+					'permission_callback' => array( $this, 'create_item_permissions_check' ),
+					'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::CREATABLE ),
+				);
+			}
+
+			if ( ! empty( $methods_collection ) ) {
+				$methods_collection['schema'] = array( $this, 'get_public_item_schema' );
+				register_rest_route(
+					$this->namespace,
+					'/' . $this->rest_base,
+					$methods_collection
+				);
+			}
+
+			$methods_singular = array();
+
+			if ( in_array( WP_REST_Server::READABLE, $this->route_methods_singular, true ) ) {
+				$methods_singular[] = array(
+					'methods'             => WP_REST_Server::READABLE,
+					'callback'            => array( $this, 'get_item' ),
+					'permission_callback' => array( $this, 'get_item_permissions_check' ),
+					'args'                => $this->get_collection_params(),
+				);
+			}
+
+			if ( in_array( WP_REST_Server::EDITABLE, $this->route_methods_singular, true ) ) {
+				$methods_singular[] = array(
+					'methods'             => WP_REST_Server::EDITABLE,
+					'callback'            => array( $this, 'update_item' ),
+					'permission_callback' => array( $this, 'update_item_permissions_check' ),
+					'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::EDITABLE ),
+				);
+			}
+
+			if ( in_array( WP_REST_Server::DELETABLE, $this->route_methods_singular, true ) ) {
+				$methods_singular[] = array(
+					'methods'             => WP_REST_Server::DELETABLE,
+					'callback'            => array( $this, 'delete_item' ),
+					'permission_callback' => array( $this, 'delete_item_permissions_check' ),
+					'args'                => array(
+						'force' => array(
+							'type'        => 'boolean',
+							'default'     => false,
+							'description' => esc_html__( 'Whether to bypass trash and force deletion.', 'learndash' ),
 						),
 					),
-					array(
-						'methods'             => WP_REST_Server::READABLE,
-						'callback'            => array( $this, 'get_item' ),
-						'permission_callback' => array( $this, 'get_item_permissions_check' ),
-						'args'                => $this->get_collection_params(),
-					),
-					array(
-						'methods'             => WP_REST_Server::EDITABLE,
-						'callback'            => array( $this, 'update_item' ),
-						'permission_callback' => array( $this, 'update_item_permissions_check' ),
-						'args'                => $this->get_endpoint_args_for_item_schema( WP_REST_Server::EDITABLE ),
-					),
-					array(
-						'methods'             => WP_REST_Server::DELETABLE,
-						'callback'            => array( $this, 'delete_item' ),
-						'permission_callback' => array( $this, 'delete_item_permissions_check' ),
-						'args'                => array(
-							'force' => array(
-								'type'        => 'boolean',
-								'default'     => false,
-								'description' => esc_html__( 'Whether to bypass trash and force deletion.', 'learndash' ),
-							),
-						),
-					),
-					'schema' => array( $this, 'get_public_item_schema' ),
-				)
-			);
+				);
+			}
+
+			if ( ! empty( $methods_singular ) ) {
+				$methods_singular['schema'] = array( $this, 'get_public_item_schema' );
+				register_rest_route(
+					$this->namespace,
+					'/' . $this->rest_base . '/(?P<id>[\d]+)',
+					$methods_singular
+				);
+			}
 		}
 
 		/**
@@ -328,6 +364,8 @@ if ( ( ! class_exists( 'LD_REST_Posts_Controller_V2' ) ) && ( class_exists( 'WP_
 
 		/**
 		 * Stub function for base class to register fields.
+		 *
+		 * @since 3.3.0
 		 */
 		protected function register_fields() {
 			return true;
@@ -335,6 +373,8 @@ if ( ( ! class_exists( 'LD_REST_Posts_Controller_V2' ) ) && ( class_exists( 'WP_
 
 		/**
 		 * Stub function for base class to register metabox fields.
+		 *
+		 * @since 3.3.0
 		 */
 		protected function register_fields_metabox() {
 			return true;
@@ -361,7 +401,7 @@ if ( ( ! class_exists( 'LD_REST_Posts_Controller_V2' ) ) && ( class_exists( 'WP_
 					if ( ! empty( $post_args_fields ) ) {
 						foreach ( $post_args_fields as $post_args_field_key => $post_args_field ) {
 							if ( ( isset( $post_args_field['show_in_rest'] ) ) && ( true === $post_args_field['show_in_rest'] ) ) {
-								if ( isset( $wp_rest_additional_fields[ $object_type ][ $post_args_field_key ] ) ) {	
+								if ( isset( $wp_rest_additional_fields[ $object_type ][ $post_args_field_key ] ) ) {
 									unset( $wp_rest_additional_fields[ $object_type ][ $post_args_field_key ] );
 								}
 							}
@@ -414,16 +454,18 @@ if ( ( ! class_exists( 'LD_REST_Posts_Controller_V2' ) ) && ( class_exists( 'WP_
 				 * function.
 				 */
 				if ( ! empty( $this->saved_metabox_fields ) ) {
-					foreach( $this->saved_metabox_fields as $metabox_class => $metabox_fields_values ) {
+					foreach ( $this->saved_metabox_fields as $metabox_class => $metabox_fields_values ) {
 						if ( isset( $this->metaboxes[ $metabox_class ] ) ) {
 							$metabox = $this->metaboxes[ $metabox_class ];
 							$metabox->init( $post );
 
-							$settings_field_updates = $metabox->apply_metabox_settings_fields_changes( $metabox_fields_values ); 
+							$settings_field_updates = $metabox->apply_metabox_settings_fields_changes( $metabox_fields_values );
 							$settings_field_updates = $metabox->validate_metabox_settings_post_updates( $settings_field_updates );
 							$settings_field_updates = $metabox->trigger_metabox_settings_post_filters( $settings_field_updates );
 
 							$metabox->save_post_meta_box( $post->ID, $post, $creating, $settings_field_updates );
+
+							//$metabox->save_fields_to_post( null, $settings_field_updates );
 
 							/**
 							 * After we save the meta data we re-initialize the metabox with the

@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Displays an informational bar
+ * LearnDash LD30 Displays an informational bar
  *
  * This will have to be variable based on the current users context.
  * Different information is passed in based on if they are on a course, lesson,
@@ -21,9 +21,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * $logged_in     : User is logged in
  * $current_user  : (object) Currently logged in user object
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\LD30\Modules
  */
 
 /**

@@ -2,16 +2,21 @@
 /**
  * Class to extend LDLMS_Model_Post to LDLMS_Model_Lesson.
  *
- * @package LearnDash
- * @subpackage Lesson
- * @since 3.2.0
+ * @since 2.5.0
+ * @package LearnDash\Lesson
  */
 
- if ( ! defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( ! class_exists( 'LDLMS_Model_Lesson' ) ) && ( class_exists( 'LDLMS_Model_Post' ) ) ) {
+	/**
+	 * Class for LearnDash Model Lesson.
+	 *
+	 * @since 3.2.0
+	 * @uses LDLMS_Model_Post
+	 */
 	class LDLMS_Model_Lesson extends LDLMS_Model_Post {
 
 		/**
@@ -50,7 +55,7 @@ if ( ( ! class_exists( 'LDLMS_Model_Lesson' ) ) && ( class_exists( 'LDLMS_Model_
 		/**
 		 * Checks if lesson is sample.
 		 *
-		 * @since 3.4.0
+		 * @since 3.2.0
 		 *
 		 * @return boolean Returns true if the post is sample otherwise false.
 		 */

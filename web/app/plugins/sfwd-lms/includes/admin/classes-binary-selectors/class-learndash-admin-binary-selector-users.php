@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Binary Selector Users Class.
+ * LearnDash Binary Selector Users.
  *
- * @package LearnDash
- * @subpackage Admin Settings
+ * @since 2.2.1
+ * @package LearnDash\Settings
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,12 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( ! class_exists( 'Learndash_Binary_Selector_Users' ) ) && ( class_exists( 'Learndash_Binary_Selector' ) ) ) {
+
 	/**
-	 * Class for LearnDash Binary Selector or Users.
+	 * Class LearnDash Binary Selector Users.
+	 *
+	 * @since 2.2.1
+	 * @uses Learndash_Binary_Selector
 	 */
 	class Learndash_Binary_Selector_Users extends Learndash_Binary_Selector {
+
 		/**
 		 * Public constructor for class.
+		 *
+		 * @since 2.2.1
 		 *
 		 * @param array $args Array of arguments for class.
 		 */
@@ -51,6 +58,8 @@ if ( ( ! class_exists( 'Learndash_Binary_Selector_Users' ) ) && ( class_exists( 
 
 		/**
 		 * Get selector section pager data.
+		 *
+		 * @since 2.2.1
 		 *
 		 * @param string $position Value for 'left' or 'right' position.
 		 */
@@ -91,6 +100,8 @@ if ( ( ! class_exists( 'Learndash_Binary_Selector_Users' ) ) && ( class_exists( 
 		/**
 		 * Build selector section options HTML.
 		 *
+		 * @since 2.2.1
+		 *
 		 * @param string $position Value for 'left' or 'right' position.
 		 */
 		protected function build_options_html( $position = '' ) {
@@ -101,6 +112,8 @@ if ( ( ! class_exists( 'Learndash_Binary_Selector_Users' ) ) && ( class_exists( 
 					foreach ( $this->element_items[ $position ] as $user ) {
 						/**
 						 * Filters binary selector item.
+						 *
+						 * @since 2.6.0
 						 *
 						 * @param string  $selector_item  Binary selector item title.
 						 * @param WP_User $user           WP_User object.
@@ -133,7 +146,10 @@ if ( ( ! class_exists( 'Learndash_Binary_Selector_Users' ) ) && ( class_exists( 
 			return $options_html;
 		}
 
-		/** Query selector section items.
+		/**
+		 * Query selector section items.
+		 *
+		 * @since 2.2.1
 		 *
 		 * @param string $position Value for 'left' or 'right' position.
 		 */
@@ -175,7 +191,7 @@ if ( ( ! class_exists( 'Learndash_Binary_Selector_Users' ) ) && ( class_exists( 
 				/**
 				 * Filter to exclude users with no role.
 				 *
-				 * @since 3.2.2
+				 * @since 3.2.3
 				 *
 				 * @param bool true Boolean to exclude no_role users.
 				 * @param array $query_args Array of current query args.
@@ -183,7 +199,7 @@ if ( ( ! class_exists( 'Learndash_Binary_Selector_Users' ) ) && ( class_exists( 
 				 * @param string $selector_class Class for Binary selector.
 				 */
 				if ( apply_filters( 'learndash_exclude_user_no_role', true, $this->args, $position, $this->selector_class ) ) {
-					$blog_prefix              = $wpdb->get_blog_prefix( $wpdb->blogid );
+					$blog_prefix = $wpdb->get_blog_prefix( $wpdb->blogid );
 					if ( ! isset( $this->args['meta_query'] ) ) {
 						$this->args['meta_query'] = array();
 					}
@@ -215,6 +231,8 @@ if ( ( ! class_exists( 'Learndash_Binary_Selector_Users' ) ) && ( class_exists( 
 		/**
 		 * Process selector section query.
 		 *
+		 * @since 2.2.1
+		 *
 		 * @param array  $query_args Array of query args.
 		 * @param string $position Value for 'left' or 'right' position.
 		 */
@@ -244,6 +262,8 @@ if ( ( ! class_exists( 'Learndash_Binary_Selector_Users' ) ) && ( class_exists( 
 
 		/**
 		 * Load selector section search AJAX.
+		 *
+		 * @since 2.2.1
 		 *
 		 * @param string $position Value for 'left' or 'right' position.
 		 */

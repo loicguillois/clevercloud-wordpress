@@ -1,9 +1,8 @@
 <?php
 /**
- * Shortcode for course_complete
+ * LearnDash `[course_complete]` shortcode processing.
  *
  * @since 2.1.0
- *
  * @package LearnDash\Shortcodes
  */
 
@@ -12,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `course_complete` shortcode output.
+ * Builds the `[course_complete]` shortcode output.
  *
  * Shortcode that shows the content if the user has completed the course.
  *
@@ -20,15 +19,15 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since 2.1.0
  *
- * @param array  $atts {
+ * @param array $atts {
  *    An array of shortcode attributes. Default empty array.
  *
- *    @type string  $content    Optional. The shortcode content. Default empty.
- *    @type int     $course_id  Optional. Course ID. Default false.
- *    @type int     $user_id    Optional. User ID. Default false.
- *    @type boolean $autop      Optional. Whether to replace linebreaks with paragraph elements. Default true.
+ *    @type string  $content    The shortcode content. Default empty.
+ *    @type int     $course_id  Course ID. Default false.
+ *    @type int     $user_id    User ID. Default false.
+ *    @type boolean $autop      Whether to replace linebreaks with paragraph elements. Default true.
  * }
- * @param string $content Optional. The shortcode content. Default empty.
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string The `course_complete` shortcode output.
  */
@@ -77,5 +76,4 @@ function learndash_course_complete_shortcode( $atts = array(), $content = '' ) {
 		);
 	}
 }
-
-add_shortcode( 'course_complete', 'learndash_course_complete_shortcode' );
+add_shortcode( 'course_complete', 'learndash_course_complete_shortcode', 10, 2 );

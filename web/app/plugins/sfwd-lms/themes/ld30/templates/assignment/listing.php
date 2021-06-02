@@ -1,16 +1,16 @@
 <?php
 /**
- * lesson/topic assignment uploads list.
+ * LearnDash LD30 Display lesson/topic assignment uploads listing.
  *
- * If ther user has previouly uploaded assignment files they will be show via this template
+ * If the user has previouly uploaded assignment files they will be shown via this template
  *
  * Available Variables:
  *
  * $course_step_post: WP_Post object for the Lesson/Topic being shown
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\Lesson
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -53,7 +53,9 @@ if ( isset( $course_step_post ) && $course_step_post instanceof WP_Post ) :
 				/**
 				 * Filters message shown after assignment upload.
 				 *
-				 * @param string $message          The message showed after the assignment upload.
+				 * @since 3.0.0
+				 *
+				 * @param string $message          The message shown after the assignment upload.
 				 * @param int $course_step_post_id Course step post ID.
 				 * @param int $course_id           Course ID.
 				 * @param int $user_id             User ID.
@@ -113,6 +115,8 @@ if ( isset( $course_step_post ) && $course_step_post instanceof WP_Post ) :
 		/**
 		 * Fires before the assignment approval alert.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param int $course_step_post_id Post ID for the Lesson/Topic being shown.
 		 * @param int $course_id           Course ID.
 		 * @param int $user_id             User ID.
@@ -133,6 +137,8 @@ if ( isset( $course_step_post ) && $course_step_post instanceof WP_Post ) :
 
 		/**
 		 * Fires after the assignment approval alert.
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param int $course_step_post_id Post ID for the Lesson/Topic being shown.
 		 * @param int $course_id           Course ID.
@@ -192,6 +198,8 @@ if ( isset( $course_step_post ) && $course_step_post instanceof WP_Post ) :
 
 				/**
 				 * Filters assignments listing columns. Used to add new or remove existing columns in the assignment table.
+				 *
+				 * @since 3.0.0
 				 *
 				 * @param array $columns An Array of columns keyed with column CSS class and label as value
 				 */

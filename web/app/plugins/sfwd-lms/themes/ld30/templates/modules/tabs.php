@@ -1,4 +1,11 @@
 <?php
+/**
+ * LearnDash LD30 Displays content tabs
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -20,6 +27,8 @@ do_action( 'learndash-content-tabs-before', get_the_ID(), $course_id, $user_id )
  * The dynamic portion of the hook name, `$context`, refers to the context for which the hook is fired,
  * such as `course`, `lesson`, `topic`, `quiz`, etc.
  *
+ * @since 3.0.0
+ *
  * @param int|false $post_id   Post ID.
  * @param int       $course_id Course ID.
  * @param int       $user_id   User ID.
@@ -30,6 +39,8 @@ $tab_count = 0;
 
 /**
  * Filters LearnDash content Tabs.
+ *
+ * @since 3.0.0
  *
  * @param array  $tabs      An array of tabs array data. The tabs array data can contain keys for id, icon, label, content.
  * @param string $context   The context where the tabs are shown like course, lesson, topic, quiz, etc.
@@ -121,6 +132,8 @@ foreach ( $tabs as $tab ) {
 		 * The dynamic portion of the hook name, `$context`, refers to the context for which the hook is fired,
 		 * such as `course`, `lesson`, `topic`, `quiz`, etc.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param string|false $post_id   Post ID.
 		 * @param int          $course_id Course ID.
 		 * @param int          $user_id   User ID.
@@ -141,6 +154,8 @@ foreach ( $tabs as $tab ) {
 			 *
 			 * The dynamic portion of the hook name, `$tab['id]`, refers id of the tab.
 			 *
+			 * @since 3.0.0
+			 *
 			 * @param int|false $post_id   Post ID.
 			 * @param string    $context   The context for which the hook is fired such as `course`, `lesson`, `topic`, `quiz`, etc.
 			 * @param int       $course_id Course ID.
@@ -159,6 +174,8 @@ foreach ( $tabs as $tab ) {
 			 * Fires after any tab.
 			 *
 			 * The dynamic portion of the hook name, `$tab['id]`, refers to the id of the tab.
+			 *
+			 * @since 3.0.0
 			 *
 			 * @param int|false $post_id   Post ID.
 			 * @param string    $context   The context for which the hook is fired such as `course`, `lesson`, `topic`, `quiz`, etc.
@@ -187,6 +204,8 @@ foreach ( $tabs as $tab ) {
 		 * The dynamic portion of the hook name, `$context`, refers to the context for which the hook is fired,
 		 * such as `course`, `lesson`, `topic`, `quiz`, etc.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param string|false $post_id   Post ID.
 		 * @param int          $course_id Course ID.
 		 * @param int          $user_id   User ID.
@@ -214,6 +233,8 @@ do_action( 'learndash-content-tabs-after', get_the_ID(), $course_id, $user_id );
  *
  * The dynamic portion of the hook name, `$context`, refers to the context for which the hook is fired,
  * such as `course`, `lesson`, `topic`, `quiz`, etc.
+ *
+ * @since 3.0.0
  *
  * @param int|false $post_id   Post ID.
  * @param int       $course_id Course ID.

@@ -16,8 +16,7 @@ if ( ! function_exists( 'ld_course_access_update' ) ) {
 	 * Updates the course access time for a user.
 	 *
 	 * @since 2.6.0
-	 *
-	 * @deprecated 2.6.0 Use ld_course_access_from_update()
+	 * @deprecated 2.6.0 Use {@see 'ld_course_access_from_update'} instead.
 	 *
 	 * @param int     $course_id Course ID for update.
 	 * @param int     $user_id User ID for update.

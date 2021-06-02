@@ -1,5 +1,13 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+/**
+ * LearnDash LD30 Displays group progress
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
+ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -92,7 +100,7 @@ if ( 'group' === $context ) {
 /**
  * Action to add custom content before the course content progress bar
  *
- * @since 3.0
+ * @since 3.0.0
  */
 do_action( 'learndash-' . $context . '-progress-bar-after', $group_id, $user_id );
 

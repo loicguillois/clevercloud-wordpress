@@ -3,8 +3,7 @@
  * Deprecated functions from LD 3.4.0
  * The functions will be removed in a later version.
  *
- * @package LearnDash
- * @subpackage Deprecated
+ * @package LearnDash\Deprecated
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -27,7 +26,7 @@ if ( ! function_exists( 'is_quiz_accessable' ) ) {
 	 * Checks if the quiz is accessible to the user.
 	 *
 	 * @since 2.1.0
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_is_quiz_accessable'} instead.
 	 *
 	 * @param int|null     $user_id $user_id  Optional. The ID of User to check.  Defaults to the current logged-in user. Default null.
 	 * @param WP_Post|null $post              Optional. The `WP_Post` quiz object. Default null.
@@ -50,7 +49,7 @@ if ( ! function_exists( 'has_global_quizzes' ) ) {
 	 * Checks if the resource has any quizzes.
 	 *
 	 * @since 2.1.0
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_has_global_quizzes'} instead.
 	 *
 	 * @param int|null $id Optional. The ID of the resource like course, lesson, topic, etc. Default null.
 	 *
@@ -70,7 +69,7 @@ if ( ! function_exists( 'is_all_global_quizzes_complete' ) ) {
 	 * Checks if all quizzes for a course are complete for the user.
 	 *
 	 * @since 2.1.0
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_is_all_global_quizzes_complete'} instead.
 	 *
 	 * @param int|null $user_id Optional. User ID. Default null.
 	 * @param int|null $id      Optional. The ID of the resource. Default null.
@@ -90,7 +89,7 @@ if ( ! function_exists( 'learndash_get_course_steps_ORG' ) ) {
 	/**
 	 * Gets the list of course step IDs.
 	 *
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_get_course_steps'} instead.
 	 *
 	 * @param int   $course_id          Optional. The ID of the course. Default 0.
 	 * @param array $include_post_types Optional. An array of post types to include in course steps. Default array contains 'sfwd-lessons' and 'sfwd-topic'.
@@ -110,7 +109,7 @@ if ( ! function_exists( 'learndash_quiz_continue_link_OLD' ) ) {
 	/**
 	 * Outputs the quiz continue link(old).
 	 *
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_quiz_continue_link'} instead.
 	 *
 	 * @param int $id Quiz ID.
 	 *
@@ -133,7 +132,7 @@ if ( ! function_exists( 'learndash_get_global_quiz_list_OLD' ) ) {
 	 * @global WP_Post $post Global post object.
 	 *
 	 * @since 2.1.0
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_get_global_quiz_list'} instead.
 	 *
 	 * @param int|null $id An ID of the resource.
 	 *
@@ -153,7 +152,7 @@ if ( ! function_exists( 'learndash_course_get_steps_by_type_ORG1' ) ) {
 	/**
 	 * Gets the course steps by type.
 	 *
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_course_get_steps_by_type'} instead.
 	 *
 	 * @param int    $course_id Optional. Course ID. Default 0.
 	 * @param string $step_type Optional. The type of the step. Default empty.
@@ -337,7 +336,7 @@ if ( ! function_exists( 'is_previous_complete' ) ) {
 	 * Checks if the previous topic or lesson is complete.
 	 *
 	 * @since 2.1.0
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_is_previous_complete'} instead.
 	 *
 	 * @param  WP_Post $post The `WP_Post` object of lesson or topic.
 	 *
@@ -376,7 +375,7 @@ if ( ! function_exists( 'wp_ajax_ld_course_registered_pager' ) ) {
 	 *
 	 * Fires on `ld_course_registered_pager` AJAX action.
 	 *
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_ajax_course_registered_pager'} instead.
 	 *
 	 * @return void|string
 	 */
@@ -395,7 +394,7 @@ if ( ! function_exists( 'wp_ajax_ld_course_progress_pager' ) ) {
 	 *
 	 * Fires on `ld_course_progress_pager` AJAX action.
 	 *
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_ajax_course_progress_pager'} instead.
 	 *
 	 * @return void|string
 	 */
@@ -414,7 +413,7 @@ if ( ! function_exists( 'wp_ajax_ld_quiz_progress_pager' ) ) {
 	 *
 	 * Fires on `ld_course_progress_pager` AJAX action.
 	 *
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_ajax_quiz_progress_pager'} instead.
 	 *
 	 * @return void|string
 	 */
@@ -434,7 +433,7 @@ if ( ! function_exists( 'wp_ajax_ld_course_navigation_pager' ) ) {
 	 * Fires on `ld_course_navigation_pager` AJAX action.
 	 *
 	 * @since 2.5.4
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_ajax_course_navigation_pager'} instead.
 	 */
 	function wp_ajax_ld_course_navigation_pager() {
 		if ( function_exists( '_deprecated_function' ) ) {
@@ -452,7 +451,7 @@ if ( ! function_exists( 'wp_ajax_ld_course_navigation_admin_pager' ) ) {
 	 * Fires on `ld_course_navigation_admin_pager` AJAX action.
 	 *
 	 * @since 2.5.4
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_ajax_course_navigation_admin_pager'} instead.
 	 */
 	function wp_ajax_ld_course_navigation_admin_pager() {
 		if ( function_exists( '_deprecated_function' ) ) {
@@ -468,7 +467,7 @@ if ( ! function_exists( 'lesson_hasassignments' ) ) {
 	 * Utility function to check whether a lesson has an assignment.
 	 *
 	 * @since 2.1.0
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_lesson_hasassignments'} instead.
 	 *
 	 * @param WP_Post $post The assignment `WP_Post` object.
 	 *
@@ -488,7 +487,7 @@ if ( ! function_exists( 'get_course_groups_users_access' ) ) {
 	 * Gets the group's user IDs if the course is associated with the group.
 	 *
 	 * @since 2.3.0
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_get_course_groups_users_access'} instead.
 	 *
 	 * @param int $course_id Optional. Course ID. Default 0.
 	 *
@@ -508,7 +507,7 @@ if ( ! function_exists( 'array_map_r' ) ) {
 	 * Utility function to traverse the multidimensional array and apply user function.
 	 *
 	 * @since 2.1.2
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_array_map_r'} instead.
 	 *
 	 * @param callable $func The Callable user defined or system function. This
 	 *                       should be 'esc_attr', or some similar function.
@@ -571,7 +570,7 @@ if ( ! function_exists( 'learndash_get_report_user_ids_NEW_PP21' ) ) {
 	 * group leader, it will show the only user within the leader's groups. For admin, it will
 	 * show all users.
 	 *
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_get_report_user_ids'} instead.
 	 *
 	 * @param int   $user_id    Optional. User ID. Defaults to the current user ID. Default 0.
 	 * @param array $query_args Optional. User query arguments. Default empty array.
@@ -594,7 +593,7 @@ if ( ! function_exists( 'ld_remove_lessons_and_quizzes_page' ) ) {
 	 * Fires on `wp` hook.
 	 *
 	 * @since 2.1.0
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_remove_lessons_and_quizzes_page'} instead.
 	 *
 	 * @param WP $wp The `WP` object.
 	 */
@@ -613,7 +612,7 @@ if ( ! function_exists( 'ld_footer_payment_buttons' ) ) {
 	 *
 	 * Fires on `wp_footer` hook.
 	 *
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_footer_payment_buttons'} instead.
 	 *
 	 * @global string $dropdown_button Dropdown button markup.
 	 */
@@ -636,7 +635,7 @@ if ( ! function_exists( 'wpLD_tiny_mce_before_init' ) ) {
 	 *        not currently functional
 	 *
 	 * @since 2.1.0
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_wp_tiny_mce_before_init'} instead.
 	 *
 	 * @param array $init_array The tinymce editor settings.
 	 *
@@ -660,7 +659,7 @@ if ( ! function_exists( 'filter_mce_css' ) ) {
 	 * see https://codex.wordpress.org/Plugin_API/Filter_Reference/mce_css
 	 *
 	 * @since 2.1.0
-	 * @deprecated 3.4.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_filter_mce_css'} instead.
 	 *
 	 * @param string $mce_css Optional. Comma-delimited list of stylesheets. Default empty.
 	 *
@@ -715,7 +714,8 @@ if ( ! function_exists( 'is_learndash_license_valid' ) ) {
 	/**
 	 * Checks Whether the learndash license is valid or not.
 	 *
-	 * @deprecated 3.4.0
+	 * @since 2.1.0
+	 * @deprecated 3.4.0 Use {@see 'learndash_is_learndash_license_valid'} instead.
 	 *
 	 * @return boolean
 	 */

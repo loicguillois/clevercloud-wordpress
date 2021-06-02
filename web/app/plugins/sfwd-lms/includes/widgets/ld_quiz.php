@@ -1,9 +1,8 @@
 <?php
 /**
- * Widget for Quiz
+ * LearnDash `Quizzes` Widget Class.
  *
  * @since 2.1.0
- *
  * @package LearnDash\Widgets
  */
 
@@ -11,18 +10,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- * Adds widget for displaying quizzes
- */
 if ( ( ! class_exists( 'Quiz_Widget' ) ) && ( class_exists( 'WP_Widget' ) ) ) {
+
+	/**
+	 * Class for LearnDash `Quizzes` Widget.
+	 *
+	 * @since 2.1.0
+	 * @uses WP_Widget
+	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class Quiz_Widget extends WP_Widget {
 
+		/**
+		 * @var string $post_type.
+		 */
 		protected $post_type = 'sfwd-quiz';
+
+		/**
+		 * @var string $post_name.
+		 */
 		protected $post_name = 'Quiz';
+
+		/**
+		 * @var object $post_arga.
+		 */
 		protected $post_args;
 
 		/**
-		 * Set up post arguments for widget
+		 * Public constructor for Widget Class.
 		 *
 		 * @since 2.1.0
 		 */
@@ -55,7 +70,8 @@ if ( ( ! class_exists( 'Quiz_Widget' ) ) && ( class_exists( 'WP_Widget' ) ) ) {
 		 *
 		 * @param  array $args     widget arguments
 		 * @param  array $instance widget instance
-		 * @return string          widget output
+		 *
+		 * @return string widget output
 		 */
 		public function widget( $args, $instance ) {
 			global $learndash_shortcode_used;
@@ -100,6 +116,7 @@ if ( ( ! class_exists( 'Quiz_Widget' ) ) && ( class_exists( 'WP_Widget' ) ) ) {
 		 *
 		 * @param  array $new_instance
 		 * @param  array $old_instance
+		 *
 		 * @return array $instance
 		 */
 		public function update( $new_instance, $old_instance ) {

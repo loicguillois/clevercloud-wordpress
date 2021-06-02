@@ -127,9 +127,13 @@ registerBlockType(
 				type: 'boolean',
 				default: 0
 			},
+			price_type: {
+				type: 'array',
+				default: ['open', 'free', 'paynow', 'subscribe', 'closed'],
+			},
 		},
 		edit: function( props ) {
-			const { attributes: { orderby, order, per_page, mycourses, status, show_content, show_thumbnail, course_category_name, course_cat, course_categoryselector, course_tag, course_tag_id, category_name, cat, categoryselector, tag, tag_id, course_grid, progress_bar, col, preview_user_id, preview_show, example_show },
+			const { attributes: { orderby, order, per_page, mycourses, status, show_content, show_thumbnail, course_category_name, course_cat, course_categoryselector, course_tag, course_tag_id, category_name, cat, categoryselector, tag, tag_id, course_grid, progress_bar, col, preview_user_id, preview_show, example_show, price_type },
 				setAttributes } = props;
 
 			let field_show_content = '';
@@ -193,6 +197,7 @@ registerBlockType(
 
 			const panelbody_header = (
 				<PanelBody
+					className="learndash-block-controls-panel learndash-block-controls-panel-ld-course-list"
 					title={__('Settings', 'learndash')}
 				>
 					<SelectControl
@@ -246,6 +251,38 @@ registerBlockType(
 					/>
 
 					<SelectControl
+						multiple
+						key="price_type"
+						// translators: placeholder: Course Access Mode(s)
+						label={sprintf(_x('%s Access Mode(s)', 'placeholder" Course Access Mode(s)', 'learndash'), ldlms_get_custom_label('course'))}
+						help={__( 'Ctrl+click to deselect selected items.', 'placeholder: default per page', 'learndash' )}
+						value={price_type}
+						options={[
+							{
+								label: __('Open', 'learndash'),
+								value: 'open',
+							},
+							{
+								label: __('Free', 'learndash'),
+								value: 'free',
+							},
+							{
+								label: __('Buy Now', 'learndash'),
+								value: 'paynow',
+							},
+							{
+								label: __('Recurring', 'learndash'),
+								value: 'subscribe',
+							},
+							{
+								label: __('Closed', 'learndash'),
+								value: 'closed',
+							},
+						]}
+						onChange={price_type => setAttributes({ price_type })}
+						/>
+
+					<SelectControl
 						key="mycourses"
 						// translators: placeholder: Courses.
 						label={sprintf(_x('My %s', 'placeholder: Courses', 'learndash'), ldlms_get_custom_label('courses'))}
@@ -275,6 +312,7 @@ registerBlockType(
 						key="status"
 						// translators: placeholder: Courses.
 						label={sprintf(_x('Enrolled %s Status', 'placeholder: Courses', 'learndash'), ldlms_get_custom_label('courses'))}
+						help={__( 'Ctrl+click to deselect selected items.', 'placeholder: default per page', 'learndash' )}
 						value={status}
 						options={[
 							{

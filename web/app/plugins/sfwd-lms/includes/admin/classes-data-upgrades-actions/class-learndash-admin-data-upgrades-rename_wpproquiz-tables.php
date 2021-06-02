@@ -2,8 +2,8 @@
 /**
  * LearnDash Data Upgrades for WPProQuiz DB Table rename.
  *
- * @package LearnDash
- * @subpackage Data Upgrades
+ * @since 2.6.0
+ * @package LearnDash\Data_Upgrades
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,13 +11,26 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'Learndash_Admin_Data_Upgrades_Rename_WPProQuiz_Tables' ) ) ) {
+
 	/**
-	 * Class to create the Data Upgrade.
+	 *  Class LearnDash Data Upgrades for WPProQuiz DB Table rename.
+	 *
+	 * @since 2.6.0
+	 * @uses Learndash_Admin_Data_Upgrades
 	 */
 	class Learndash_Admin_Data_Upgrades_Rename_WPProQuiz_Tables extends Learndash_Admin_Data_Upgrades {
+
+		/**
+		 * Settings array
+		 *
+		 * @var array $settings
+		 */
 		protected $settings = null;
+
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 2.6.0
 		 */
 		protected function __construct() {
 			$this->data_slug = 'rename-wpproquiz-tables';
@@ -25,6 +38,11 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 			parent::register_upgrade_action();
 		}
 
+		/**
+		 * Init settings
+		 *
+		 * @since 3.1.0
+		 */
 		public function init_settings() {
 			$this->settings = $this->get_data_settings( $this->data_slug );
 
@@ -84,7 +102,7 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		/**
 		 * Show data upgrade row for this instance.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 */
 		public function show_upgrade_action() {
 			global $wpdb;
@@ -93,6 +111,8 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 
 			/**
 			 * Filters whether to show upgrade section or not.
+			 *
+			 * @since 3.1.4
 			 *
 			 * @param boolean $show_upgades Whether to show upgrades section or not.
 			 * @param string  $data_slug    Data Slug used to itentify each instance.
@@ -291,6 +311,15 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 			<?php
 		}
 
+		/**
+		 * Check table lists
+		 *
+		 * @since 3.1.0
+		 *
+		 * @param array $table_list Array of table names to check.
+		 *
+		 * @return array $table_list
+		 */
 		public function check_tables_lists( $table_list = array() ) {
 
 			if ( ! empty( $table_list ) ) {
@@ -312,6 +341,15 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 			}
 		}
 
+		/**
+		 * Check single table exists
+		 *
+		 * @since 3.1.0
+		 *
+		 * @param string $table_name Single table name to check
+		 *
+		 * @return boolean
+		 */
 		public function check_table_exists( $table_name = '' ) {
 			global $wpdb;
 
@@ -325,6 +363,11 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 			}
 		}
 
+		/**
+		 * Build tables list
+		 *
+		 * @since 3.1.0
+		 */
 		public function build_tables_lists() {
 			global $wpdb;
 
@@ -349,9 +392,10 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		 * This function will determine what users need to be converted. Then the course and quiz functions
 		 * will be called to convert each individual user data set.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 *
 		 * @param  array $data Post data from AJAX call.
+		 *
 		 * @return array $data Post data from AJAX call.
 		 */
 		public function process_upgrade_action( $data = array() ) {
@@ -445,8 +489,6 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		 * Common function to query needed items.
 		 *
 		 * @since 2.6.0
-		 *
-		 * @param boolean $increment_paged default true to increment paged.
 		 */
 		protected function query_items() {
 			$process_tables = array();
@@ -486,6 +528,7 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		 * @since 2.6.0
 		 *
 		 * @param array $data Array of existing data elements.
+		 *
 		 * @return array or data.
 		 */
 		protected function build_progress_output( $data = array() ) {
@@ -534,9 +577,10 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		/**
 		 * Convert WPProQuiz Database to new name
 		 *
-		 * @since 2.6.0
+		 * @since 3.1.0
 		 *
-		 * @param array $item Item to convert.
+		 * @param string $old_table Old table name
+		 * @param string $new_table New table name
 		 *
 		 * @return mixed New table name (string) if complete, false if not.
 		 */

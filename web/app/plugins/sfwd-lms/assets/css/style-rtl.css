@@ -286,7 +286,8 @@ body.edit-php.post-type-sfwd-assignment .column-approval_status .ld-approval-act
 body.post-type-sfwd-courses .column-categories,
 body.post-type-sfwd-courses .column-tags,
 body.post-type-sfwd-courses .column-taxonomy-ld_course_category, 
-body.post-type-sfwd-courses .column-taxonomy-ld_course_tag, 
+body.post-type-sfwd-courses .column-taxonomy-ld_course_tag,
+body.post-type-sfwd-courses .column-price_type,
 
 body.post-type-sfwd-lessons .column-categories,
 body.post-type-sfwd-lessons .column-tags,
@@ -305,11 +306,14 @@ body.post-type-sfwd-quiz .column-taxonomy-ld_quiz_tag,
 
 body.post-type-sfwd-question .column-proquiz_question_category,
 
+body.post-type-sfwd-certificates .column-certificate_groups_courses_quizzes,
+
 body.post-type-groups .column-categories,
 body.post-type-groups .column-tags,
 body.post-type-groups .column-taxonomy-ld_group_category, 
 body.post-type-groups .column-taxonomy-ld_group_tag,
-body.post-type-groups .column-groups_courses_users {
+body.post-type-groups .column-groups_courses_users,
+body.post-type-groups .column-price_type {
 	width: 8%;
 }
 

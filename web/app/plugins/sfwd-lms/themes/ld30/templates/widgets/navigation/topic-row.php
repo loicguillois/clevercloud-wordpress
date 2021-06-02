@@ -1,10 +1,20 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+/**
+ * LearnDash LD30 Displays the course navigation widget topic row.
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
+ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
  * Filters Navigation widget topic row wrapper CSS class.
+ *
+ * @since 3.0.0
  *
  * @param string $topic_wrapper_class List of row wrapper CSS classes.
  * @param object $topic               The Topic object

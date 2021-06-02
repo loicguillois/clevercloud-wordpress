@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays a single quiz row
+ * LearnDash LD30 Displays a single quiz row
  *
  * Available Variables:
  *
@@ -10,9 +10,9 @@
  * $topic     :   The current topic object
  * $quiz      :   The current quiz (array)
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -24,6 +24,8 @@ $is_sample    = ( isset( $lesson['sample'] ) ? $lesson['sample'] : false );
 
 /**
  * Filters quiz row attributes. Used while displaying a single quiz row.
+ *
+ * @since 3.0.0
  *
  * @param string $attribute Quiz row attribute. The value is data-ld-tooltip if a user does not have access to quiz otherwise empty string.
  */

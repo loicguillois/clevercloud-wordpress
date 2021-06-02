@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Admin Question Edit Class.
+ * LearnDash Admin Quiz Edit.
  *
- * @package LearnDash
- * @subpackage Admin
+ * @since 2.4.0
+ * @package LearnDash\Quiz\Edit
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,10 +11,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learndash_Admin_Quiz_Edit' ) ) ) {
+
 	/**
-	 * Class for LearnDash Admin Question Edit.
+	 * Class LearnDash Admin Quiz Edit.
+	 *
+	 * @since 2.4.0
+	 * @uses Learndash_Admin_Post_Edit
 	 */
 	class Learndash_Admin_Quiz_Edit extends Learndash_Admin_Post_Edit {
+
 		/**
 		 * WPProQuiz Quiz instance.
 		 * This is used to bridge the WPProQuiz to WP systems.
@@ -47,6 +52,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 
 		/**
 		 * Public constructor for class.
+		 *
+		 * @since 2.4.0
 		 */
 		public function __construct() {
 			$this->post_type = learndash_get_post_type_slug( 'quiz' );
@@ -58,6 +65,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Initialize the ProQuiz Quiz being edited.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function init_quiz_edit( $post ) {
@@ -88,6 +96,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * On Load handler function for this post type edit.
 		 * This function is called by a WP action when the admin
 		 * page 'post.php' or 'post-new.php' are loaded.
+		 *
+		 * @since 2.4.0
 		 */
 		public function on_load() {
 			if ( $this->post_type_check() ) {
@@ -113,9 +123,9 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 					/**
 					 * Filters whether to show quiz builder metabox or not.
 					 *
-					 * @since 2.5.0
+					 * @since 2.6.0
 					 *
-					 * @param boolean $show_course_builder Whether to show course builder or not.
+					 * @param boolean $show_course_builder Whether to show quiz builder or not.
 					 */
 					if ( apply_filters( 'learndash_show_quiz_builder', $this->use_quiz_builder ) === true ) {
 						$this->quiz_builder = Learndash_Admin_Metabox_Quiz_Builder::add_instance();
@@ -129,6 +139,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 
 		/**
 		 * Save metabox handler function.
+		 *
+		 * @since 2.6.0
 		 *
 		 * @param integer $post_id Post ID Question being edited.
 		 * @param object  $post WP_Post Question being edited.
@@ -196,6 +208,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 					$_metaboxes_instance->save_fields_to_post( $this->pro_quiz_edit, $settings_fields );
 				}
 			}
+
 			$quiz_id  = absint( learndash_get_setting( $post_id, 'quiz_pro', true ) );
 			$pro_quiz = new WpProQuiz_Controller_Quiz();
 			$pro_quiz->route(
@@ -210,17 +223,21 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		/**
 		 * Register metaboxes for Quiz edit.
 		 *
-		 * @since 2.6.0
-		 * @param string $post_type Port Type being edited.
+		 * @since 2.4.0
+		 *
+		 * @param string $post_type Post Type being edited.
+		 * @param object $post      WP_Post Post being edited.
 		 */
 		public function add_metaboxes( $post_type = '', $post = null ) {
 			global $learndash_metaboxes;
 
 			if ( $this->post_type_check( $post_type ) ) {
-				parent::add_metaboxes( $post_type );
+				parent::add_metaboxes( $post_type, $post );
 
 				/**
 				 * Filters whether to disable advanced quiz or not.
+				 *
+				 * @since 2.1.0
 				 *
 				 * @param boolean $disable_advanced_quiz Whether to disable advanced quiz.
 				 * @param int     $post_id               Post ID.
@@ -271,7 +288,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		/**
 		 * Shows the Quiz Settings metabo.
 		 *
-		 * @since 2.6.0
+		 * @since 3.0.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function quiz_advanced_page_box_advanced_settings( $post ) {
@@ -407,7 +425,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		/**
 		 * Display a horizontal separator.
 		 *
-		 * @since 2.6.0
+		 * @since 3.0.0
 		 */
 		public function quiz_advanced_hr() {
 			?>
@@ -418,7 +436,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		/**
 		 * Open a wrapper.
 		 *
-		 * @since 2.6.0
+		 * @since 3.0.0
 		 */
 		public function quiz_advanced_open_wrapper() {
 			?>
@@ -429,7 +447,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		/**
 		 * Close a wrapper.
 		 *
-		 * @since 2.6.0
+		 * @since 3.0.0
 		 */
 		public function quiz_advanced_close_wrapper() {
 			?>
@@ -440,7 +458,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		/**
 		 * Shows the Quiz Advanced metabox.
 		 *
-		 * @since 2.6.0
+		 * @since 2.4.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function quiz_advanced_page_box( $post ) {
@@ -454,8 +473,9 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		/**
 		 * Display section header.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param string $title The title to be displayed.
-		 * @return void
 		 */
 		public function quiz_advanced_section_header( $title ) {
 			?>
@@ -467,6 +487,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Shows the Quiz Templates metabox.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function quiz_templates_page_box( $post ) {
@@ -543,6 +564,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Shows the Quiz Question Options metabox.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function quiz_question_options_page_box( $post ) {
@@ -556,6 +578,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Shows the Quiz Result Options metabox.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function quiz_result_options_page_box( $post ) {
@@ -569,6 +592,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Shows the Quiz Mode Options metabox.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function quiz_mode_options_page_box( $post ) {
@@ -582,6 +606,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Shows the Quiz Leaderbord Options metabox.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function quiz_leaderboard_options_page_box( $post ) {
@@ -595,6 +620,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Shows the Quiz Custom Fields Options metabox.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function quiz_custom_fields_options_page_box( $post ) {
@@ -608,6 +634,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Shows the Quiz Result Text  metabox.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function quiz_custom_result_text_page_box( $post ) {

@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section for Support Data Reset Metabox.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.1.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,7 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Section_Data_Reset' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Section for Support Data Reset Metabox.
+	 *
+	 * @since 3.1.0
 	 */
 	class LearnDash_Settings_Section_Data_Reset extends LearnDash_Settings_Section {
 
@@ -25,6 +27,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 3.1.0
 		 */
 		protected function __construct() {
 			$this->settings_page_id = 'learndash_support';
@@ -52,6 +56,14 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 			parent::__construct();
 		}
 
+		/**
+		 * On Settings Page Load
+		 *
+		 * @since 3.1.0
+		 *
+		 * @param string $settings_screen_id Screen ID
+		 * @param string $settings_page_id   Page ID
+		 */
 		public function on_settings_page_load( $settings_screen_id = '', $settings_page_id = '' ) {
 			global $sfwd_lms;
 
@@ -80,6 +92,14 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 			}
 		}
 
+		/**
+		 * Show Support Section
+		 *
+		 * @since 3.1.0
+		 *
+		 * @param string $settings_section_key Section Key
+		 * @param string $settings_screen_id   Screen ID
+		 */
 		public function show_support_section( $settings_section_key = '', $settings_screen_id = '' ) {
 			if ( $settings_section_key === $this->settings_section_key ) {
 				if ( learndash_is_admin_user() ) {

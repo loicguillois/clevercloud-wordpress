@@ -4,7 +4,8 @@
  *
  * Used to provide proper data to Quiz Builder app.
  *
- * @package LearnDash
+ * @since 3.0.0
+ * @package LearnDash\Builder
  */
 
 namespace LearnDash\Admin\QuizBuilderHelpers;
@@ -16,6 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Gets the quiz data for the quiz builder.
  *
+ * @since 3.0.0
+ *
  * @param array $data The data passed down to the front-end.
  *
  * @return array The data passed down to the front-end.
@@ -23,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function get_quiz_data( $data ) {
 	global $pagenow, $typenow;
 
-	$output_questions = [];
+	$output_questions = array();
 
 	if ( ( 'post.php' === $pagenow ) && ( learndash_get_post_type_slug( 'quiz' ) === $typenow ) ) {
 		$quiz_id = get_the_ID();
@@ -37,7 +40,7 @@ function get_quiz_data( $data ) {
 					$question_pro_id = absint( $question_pro_id );
 
 					// Get answers from question.
-					//$question_pro_id = (int) get_post_meta( $question_id, 'question_pro_id', true );
+					// $question_pro_id = (int) get_post_meta( $question_id, 'question_pro_id', true );
 					$question_mapper = new \WpProQuiz_Model_QuestionMapper();
 
 					if ( ! empty( $question_pro_id ) ) {
@@ -60,11 +63,11 @@ function get_quiz_data( $data ) {
 					}
 
 					// Store answers in our format used at FE.
-					$processed_answers = [];
+					$processed_answers = array();
 
 					foreach ( $answers_data as $answer_type => $answers ) {
 						foreach ( $answers as $answer ) {
-							$processed_answers[ $answer_type ][] = [
+							$processed_answers[ $answer_type ][] = array(
 								'answer'             => $answer->getAnswer(),
 								'html'               => $answer->isHtml(),
 								'points'             => $answer->getPoints(),
@@ -75,15 +78,16 @@ function get_quiz_data( $data ) {
 								'gradingProgression' => $answer->getGradingProgression(),
 								'gradedType'         => $answer->getGradedType(),
 								'type'               => 'answer',
-							];
+							);
 						}
 					}
 
 					// Output question's data and answers.
-					$output_questions[] = [
+					$output_questions[] = array(
 						'ID'              => $question_id,
 						'expanded'        => false,
 						'post_title'      => $question_data['_title'],
+						'post_status'     => learndash_get_step_post_status_slug( get_post( $question_id ) ),
 						'post_content'    => $question_data['_question'],
 						'edit_link'       => get_edit_post_link( $question_id, '' ),
 						'type'            => get_post_type( $question_id ),
@@ -95,20 +99,22 @@ function get_quiz_data( $data ) {
 						'correctSameText' => $question_data['_correctSameText'],
 						'tipEnabled'      => $question_data['_tipEnabled'],
 						'tipMsg'          => $question_data['_tipMsg'],
-					];
+					);
 				}
 			}
 		}
 	}
 
 	// Output all the quiz's questions.
-	$data['outline'] = [
+	$data['outline'] = array(
 		'questions' => $output_questions,
-	];
+	);
+
+	$data['post_statuses'] = learndash_get_step_post_statuses();
 
 	// Add labels and data to Quiz Builder at FE.
 	$data['labels']['questions_types']             = $GLOBALS['learndash_question_types'];
-	$data['questions_types_map']                   = [
+	$data['questions_types_map']                   = array(
 		'single'             => 'classic_answer',
 		'multiple'           => 'classic_answer',
 		'sort_answer'        => 'sort_answer',
@@ -117,19 +123,19 @@ function get_quiz_data( $data ) {
 		'free_answer'        => 'free_answer',
 		'assessment_answer'  => 'assessment_answer',
 		'essay'              => 'essay',
-	];
-	$data['labels']['points']                      = [
+	);
+	$data['labels']['points']                      = array(
 		'singular' => esc_html__( 'point', 'learndash' ),
 		'plural'   => esc_html__( 'points', 'learndash' ),
-	];
-	$data['labels']['questions_types_description'] = [
+	);
+	$data['labels']['questions_types_description'] = array(
 		'free_answer'       => esc_html_x( 'correct answers (one per line) (answers will be converted to lower case)', 'Question type description for Free Answers', 'learndash' ),
 		'sort_answer'       => esc_html_x( 'Please sort the answers in the right order with the "move" button. The answers will be displayed randomly.', 'Question type description for Sort Answers', 'learndash' ),
-		'cloze_answer'      => [
+		'cloze_answer'      => array(
 			wp_kses_post( __( 'Use <strong class="description-red">{ }</strong> to mark a gap and correct answer:<br /> <strong>I <span class="description-red">{</span>play<span class="description-red">}</span> soccer.</strong>', 'learndash' ) ),
 			wp_kses_post( __( 'Use <strong class="description-red">[ ]</strong> to mark multiple correct answers:<br /> <strong>I {<span class="description-red">[</span>love<span class="description-red">][</span>hate<span class="description-red">]</span>} soccer.</strong>', 'learndash' ) ),
-		],
-		'essay'             => [
+		),
+		'essay'             => array(
 			esc_html__( 'How should the user submit their answer?', 'learndash' ),
 			sprintf(
 				// translators: placeholders: question, course
@@ -144,12 +150,12 @@ function get_quiz_data( $data ) {
 				\learndash_get_custom_label_lower( 'question' ),
 				\learndash_get_custom_label_lower( 'quiz' )
 			),
-		],
-		'assessment_answer' => [
+		),
+		'assessment_answer' => array(
 			wp_kses_post( __( 'Use <strong class="description-red">{ }</strong> to mark an assessment:<br /> <strong>Less true <span class="description-red">{</span> [1] [2] [3] [4] [5] <span class="description-red">}</span> More true</strong>', 'learndash' ) ),
 			wp_kses_post( __( 'Use <strong class="description-red">[ ]</strong> to mark selectable items:<br /> <strong>Less true { <span class="description-red">[</span>A<span class="description-red">]</span> <span class="description-red">[</span>B<span class="description-red">]</span> <span class="description-red">[</span>C<span class="description-red">]</span> } More true</strong>', 'learndash' ) ),
-		],
-	];
+		),
+	);
 
 	return $data;
 }

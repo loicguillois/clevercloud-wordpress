@@ -3,6 +3,7 @@
  * LearnDash Factory User Class.
  * This is a factory class used to instansiate user related data.
  *
+ * @since 3.4.0
  * @package LearnDash
  */
 
@@ -13,6 +14,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ( ! class_exists( 'LDLMS_Factory_User' ) ) && ( class_exists( 'LDLMS_Factory' ) ) ) {
 	/**
 	 * Class for LearnDash Factory User.
+	 *
+	 * @since 2.5.0
+	 * @uses LDLMS_Factory
 	 */
 	class LDLMS_Factory_User extends LDLMS_Factory {
 

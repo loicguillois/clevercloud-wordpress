@@ -1,17 +1,28 @@
 <?php
+/**
+ * LearnDash Shortcode Section for Course Progress [learndash_course_progress].
+ *
+ * @since 2.4.0
+ * @package LearnDash\Settings\Shortcodes
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'LearnDash_Shortcodes_Section_learndash_course_progress' ) ) ) {
 	/**
-	 * Class for LearnDash Shortcode Section.
+	 * Class LearnDash Shortcode Section for Course Progress [learndash_course_progress].
+	 *
+	 * @since 2.4.0
 	 */
 	//phpcs:ignore PEAR.NamingConventions.ValidClassName.Invalid
 	class LearnDash_Shortcodes_Section_learndash_course_progress extends LearnDash_Shortcodes_Section {
 
 		/**
 		 * Public constructor for class.
+		 *
+		 * @since 2.4.0
 		 *
 		 * @param array $fields_args Field Args.
 		 */
@@ -39,6 +50,8 @@ if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'Le
 
 		/**
 		 * Initialize the shortcode fields.
+		 *
+		 * @since 2.4.0
 		 */
 		public function init_shortcodes_section_fields() {
 			$this->shortcodes_option_fields = array(

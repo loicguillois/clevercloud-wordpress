@@ -12,7 +12,7 @@
  *
  * @since 3.2
  *
- * @package LearnDash\Quiz
+ * @package LearnDash\Templates\Legacy\Quiz
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -281,8 +281,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="ld-quiz-actions" style="margin: 10px 0px;">
 		<?php
 			/**
-			 *  See snippet https://bitbucket.org/snippets/learndash/nMk9a
-			 *
+			 *  See snippet https://developers.learndash.com/hook/show_quiz_continue_buttom_on_fail/
 			 * @since 2.3.0.2
 			 */
 			$show_quiz_continue_buttom_on_fail = apply_filters( 'show_quiz_continue_buttom_on_fail', false, learndash_get_quiz_id_by_pro_quiz_id( $quiz->getId() ) );

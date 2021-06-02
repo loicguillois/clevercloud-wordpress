@@ -4,7 +4,7 @@
  *
  * @since 3.4.0
  *
- * @package LearnDash\Course_User
+ * @package LearnDash\User
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -287,8 +287,6 @@ function ld_course_access_expired_alert() {
 
 add_action( 'wp_head', 'ld_course_access_expired_alert', 1 );
 
-
-
 /**
  * Gets the amount of time until the course access expires for a user.
  *
@@ -336,7 +334,6 @@ function ld_course_access_expires_on( $course_id, $user_id ) {
 	 */
 	return apply_filters( 'ld_course_access_expires_on', $course_access_upto, $course_id, $user_id );
 }
-
 
 /**
  * Gets the amount of time when the lesson becomes available to a user.
@@ -412,11 +409,10 @@ function ld_course_access_from( $course_id = 0, $user_id = 0 ) {
 	return apply_filters( 'ld_course_access_from', $courses[ $course_id ][ $user_id ], $course_id, $user_id );
 }
 
-
 /**
  * Updates the course access time for a user.
  *
- * @since 2.6.0
+ * @since 3.0.0
  *
  * @param int        $course_id Course ID for update.
  * @param int        $user_id   User ID for update.
@@ -695,7 +691,7 @@ function lesson_visible_after( $content, $post ) {
 	$bypass_course_limits_admin_users = learndash_can_user_bypass( $user_id, 'learndash_course_lesson_not_available', $post->ID, $post );
 
 	// For logged in users to allow an override filter.
-	/** This filter is documented in includes/class-ld-cpt-instance.php */
+	/** This filter is documented in includes/course/ld-course-progress.php */
 	$bypass_course_limits_admin_users = apply_filters( 'learndash_prerequities_bypass', $bypass_course_limits_admin_users, $user_id, $post->ID, $post );
 
 	$lesson_access_from = ld_lesson_access_from( $lesson_id, get_current_user_id() );
@@ -719,11 +715,12 @@ function lesson_visible_after( $content, $post ) {
 
 	return $content;
 }
-
 add_filter( 'learndash_content', 'lesson_visible_after', 1, 2 );
 
 /**
  * Gets the list of users who has access to the given course.
+ *
+ * @since 2.3.0
  *
  * @param int     $course_id     Optional. The ID of the course. Default 0.
  * @param array   $query_args    Optional. An array of `WP_User_query` arguments. Default empty array.
@@ -790,9 +787,10 @@ function learndash_get_users_for_course( $course_id = 0, $query_args = array(), 
 	return $course_user_ids;
 }
 
-
 /**
  * Sets new users to the course access list.
+ *
+ * @since 2.5.0
  *
  * @param int   $course_id        Optional. The ID of the course. Default 0.
  * @param array $course_users_new Optional. An array of user IDs to set course access. Default empty array.
@@ -832,13 +830,14 @@ function learndash_set_users_for_course( $course_id = 0, $course_users_new = arr
 
 		// Finally clear our cache for other services
 		// $transient_key = "learndash_group_courses_" . $group_id;
-		// delete_transient( $transient_key );
+		// LDLMS_Transients::delete( $transient_key );
 	}
 }
 
-
 /**
  * Gets the users with course access from the user meta.
+ *
+ * @since 2.6.4
  *
  * @param int $course_id Optional. The ID of the course. Default 0.
  *

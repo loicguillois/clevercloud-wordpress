@@ -1,9 +1,8 @@
 <?php
 /**
- * Shortcode for course_notstarted
+ * LearnDash `[course_notstarted]` shortcode processing.
  *
  * @since 2.1.0
- *
  * @package LearnDash\Shortcodes
  */
 
@@ -12,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `course_notstarted` shortcode output.
+ * Builds the `[course_notstarted]` shortcode output.
  *
  * Shortcode that shows the content if the user has not started the course.
  *
@@ -23,12 +22,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array  $atts {
  *    An array of shortcode attributes.
  *
- *    @type string  $content    Optional. The shortcode content. Default empty.
- *    @type int     $course_id  Optional. Course ID. Default false.
- *    @type int     $user_id    Optional. User ID. Default false.
- *    @type boolean $autop      Optional. Whether to replace linebreaks with paragraph elements. Default true.
+ *    @type string  $content   The shortcode content. Default empty.
+ *    @type int     $course_id Course ID. Default false.
+ *    @type int     $user_id   User ID. Default false.
+ *    @type boolean $autop     Whether to replace linebreaks with paragraph elements. Default true.
  * }
- * @param string $content The shortcode content.
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string The `course_notstarted` shortcode output.
  */
@@ -77,5 +76,4 @@ function learndash_course_notstarted_shortcode( $atts = array(), $content = '' )
 		);
 	}
 }
-
-add_shortcode( 'course_notstarted', 'learndash_course_notstarted_shortcode' );
+add_shortcode( 'course_notstarted', 'learndash_course_notstarted_shortcode', 10, 2 );

@@ -1,9 +1,8 @@
 <?php
 /**
- * Widget for Transactions
+ * LearnDash `Transactions` Widget Class.
  *
  * @since 2.1.0
- *
  * @package LearnDash\Widgets
  */
 
@@ -11,18 +10,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- * Adds widget for displaying transactions
- */
 if ( ( ! class_exists( 'Transactions_Widget' ) ) && ( class_exists( 'WP_Widget' ) ) ) {
+
+	/**
+	 * Class for LearnDash `Transactions` Widget.
+	 *
+	 * @since 2.1.0
+	 * @uses WP_Widget
+	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class Transactions_Widget extends WP_Widget {
 
+		/**
+		 * @var string $post_type.
+		 */
 		protected $post_type = 'sfwd-transactions';
+
+		/**
+		 * @var string $post_name.
+		 */
 		protected $post_name = 'Transactions';
+
+		/**
+		 * @var object $post_arga.
+		 */
 		protected $post_args;
 
 		/**
-		 * Set up post arguments for widget
+		 * Public constructor for Widget Class.
 		 *
 		 * @since 2.1.0
 		 */
@@ -53,7 +68,8 @@ if ( ( ! class_exists( 'Transactions_Widget' ) ) && ( class_exists( 'WP_Widget' 
 		 *
 		 * @param  array $args     widget arguments
 		 * @param  array $instance widget instance
-		 * @return string          widget output
+		 *
+		 * @return string widget output
 		 */
 		public function widget( $args, $instance ) {
 			global $learndash_shortcode_used;
@@ -98,6 +114,7 @@ if ( ( ! class_exists( 'Transactions_Widget' ) ) && ( class_exists( 'WP_Widget' 
 		 *
 		 * @param  array $new_instance
 		 * @param  array $old_instance
+		 *
 		 * @return array $instance
 		 */
 		public function update( $new_instance, $old_instance ) {

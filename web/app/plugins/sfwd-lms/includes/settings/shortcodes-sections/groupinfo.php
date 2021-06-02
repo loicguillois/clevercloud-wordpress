@@ -1,17 +1,28 @@
 <?php
+/**
+ * LearnDash Shortcode Section for Groupinfo [groupinfo].
+ *
+ * @since 2.4.0
+ * @package LearnDash\Settings\Shortcodes
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'LearnDash_Shortcodes_Section_groupinfo' ) ) ) {
 	/**
-	 * Class for LearnDash Shortcode Section.
+	 * Class LearnDash Shortcode Section for Groupinfo [groupinfo].
+	 *
+	 * @since 2.4.0
 	 */
 	//phpcs:ignore PEAR.NamingConventions.ValidClassName.Invalid
 	class LearnDash_Shortcodes_Section_groupinfo extends LearnDash_Shortcodes_Section {
 
 		/**
 		 * Public constructor for class.
+		 *
+		 * @since 2.4.0
 		 *
 		 * @param array $fields_args Field Args.
 		 */
@@ -31,6 +42,8 @@ if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'Le
 
 		/**
 		 * Initialize the shortcode fields.
+		 *
+		 * @since 2.4.0
 		 */
 		public function init_shortcodes_section_fields() {
 			$this->shortcodes_option_fields = array(
@@ -123,6 +136,11 @@ if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'Le
 			parent::init_shortcodes_section_fields();
 		}
 
+		/**
+		 * Show Shortcode section footer extra
+		 *
+		 * @since 2.4.0
+		 */
 		public function show_shortcodes_section_footer_extra() {
 			?>
 			<script>
@@ -130,8 +148,6 @@ if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'Le
 					if ( jQuery( 'form#learndash_shortcodes_form_groupinfo select#groupinfo_show' ).length) {
 						jQuery( 'form#learndash_shortcodes_form_groupinfo select#groupinfo_show').on( 'change', function() {
 							var selected = jQuery(this).val();
-							//console.log('selected[%o]', selected);
-
 							if ( ['completed_on', 'enrolled_on'].includes( selected) ) {
 								jQuery( 'form#learndash_shortcodes_form_groupinfo #groupinfo_format_field').slideDown();
 							} else {

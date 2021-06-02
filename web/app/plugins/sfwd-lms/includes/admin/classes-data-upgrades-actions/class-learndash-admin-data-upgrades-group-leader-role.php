@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Data Upgrades for Group Leader Role
+ * LearnDash Data Upgrades for Group Leader Role.
  *
- * @package LearnDash
- * @subpackage Data Upgrades
+ * @since 2.5.6
+ * @package LearnDash\Data_Upgrades
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,13 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'Learndash_Admin_Data_Upgrades_Group_Leader_Role' ) ) ) {
+
 	/**
-	 * Class to create the Data Upgrade for Group Leader Role.
+	 * Class LearnDash Data Upgrades for Group Leader Role.
+	 *
+	 * @since 2.5.6
+	 * @uses Learndash_Admin_Data_Upgrades
 	 */
 	class Learndash_Admin_Data_Upgrades_Group_Leader_Role extends Learndash_Admin_Data_Upgrades {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 2.5.6
 		 */
 		protected function __construct() {
 			$this->data_slug = 'group-leader-role';
@@ -28,7 +34,6 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Create Group Leader Role
-		 *
 		 * Checks to see if settings needs to be updated.
 		 *
 		 * @since 2.5.6

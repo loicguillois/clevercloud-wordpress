@@ -3,9 +3,7 @@
  * LearnDash Settings Page Orderview.
  *
  * @since 3.0.0
- *
- * @package LearnDash
- * @subpackage Settings
+ * @package LearnDash\Settings\Pages
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,7 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDash_Settings_Page_Overview' ) ) ) {
 	/**
-	 * Class to create the settings page.
+	 * Class LearnDash Settings Page Orderview.
+	 *
+	 * @since 3.0.0
 	 */
 	class LearnDash_Settings_Page_Overview extends LearnDash_Settings_Page {
 
@@ -49,6 +49,8 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		public function __construct() {
 			$this->parent_menu_page_url  = 'admin.php?page=learndash_lms_overview';
@@ -76,6 +78,7 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 		 * @since 3.0.0
 		 *
 		 * @param array $submenu Submenu item to check.
+		 *
 		 * @return array $submenu
 		 */
 		public function submenu_item( $submenu ) {
@@ -99,7 +102,8 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 		/**
 		 * Filter the admin header data. We don't want to show the header panel on the Overview page.
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
+		 *
 		 * @param array  $header_data Array of header data used by the Header Panel React app.
 		 * @param string $menu_key The menu key being displayed.
 		 * @param array  $menu_items Array of menu/tab items.
@@ -292,7 +296,6 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 				}
 			}
 		}
-
 
 		/**
 		 * Utility function to maybe display the Bootcamp
@@ -1040,15 +1043,11 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 											<ul>
 												<li><a href="https://www.learndash.com/support/docs/core/shortcodes-blocks/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Shortcodes', 'learndash' ); ?></a></li>
 												<li><a href="https://www.learndash.com/support/docs/reporting/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Reporting', 'learndash' ); ?></a></li>
-												<li><a href="https://www.learndash.com/support/docs/users-groups/" target="_blank" rel="noopener noreferrer">
-												<?php
-												sprintf(
+												<li><a href="https://www.learndash.com/support/docs/users-groups/" target="_blank" rel="noopener noreferrer"> <?php printf( // phpcs:ignore Squiz.PHP.EmbeddedPhp.ContentBeforeOpen,Squiz.PHP.EmbeddedPhp.ContentAfterOpen
 													// translators: placeholder: Groups.
 													esc_html_x( 'Users & %s', 'placeholder: Groups', 'learndash' ),
 													learndash_get_custom_label( 'groups' )
-												);
-												?>
-												</a></li>
+												); ?> </a></li> <?php // phpcs:ignore Generic.WhiteSpace.ScopeIndent.Incorrect,Squiz.PHP.EmbeddedPhp.ContentBeforeEnd,Squiz.PHP.EmbeddedPhp.ContentAfterEnd ?>
 												<li><a href="https://www.learndash.com/support/docs/add-ons/" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Add-ons', 'learndash' ); ?></a></li>
 											</ul>
 										</div>

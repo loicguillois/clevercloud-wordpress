@@ -2,7 +2,7 @@
 /**
  * Activity Functions
  *
- * @since 2.1.0
+ * @since 3.4.0
  *
  * @package LearnDash\Activity
  */
@@ -11,9 +11,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-
 /**
  * Updates the user activity.
+ *
+ * @since 2.3.0
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
@@ -224,12 +225,14 @@ function learndash_update_user_activity( $args = array() ) {
 /**
  * Gets the user activity.
  *
+ * @since 2.3.0
+ *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
  * @param array $args {
  *    An array of user activity arguments. Default empty array.
  *
- *    @type int    Optional. $course_id     Course ID. Default 0.
+ *    @type int    $course_id     Optional. Course ID. Default 0.
  *    @type string $activity_type Type of the activity.
  * }
  *
@@ -283,6 +286,8 @@ function learndash_get_user_activity( $args = array() ) {
 /**
  * Gets the user activity meta.
  *
+ * @since 2.3.0
+ *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
  * @param int     $activity_id                     Optional. Activity ID. Default 0.
@@ -329,6 +334,8 @@ function learndash_get_user_activity_meta( $activity_id = 0, $activity_meta_key 
 
 /**
  * Updates the user activity meta.
+ *
+ * @since 2.3.0
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *
@@ -384,6 +391,8 @@ function learndash_update_user_activity_meta( $activity_id = 0, $meta_key = '', 
 
 /**
  * Deletes the user activity.
+ *
+ * @since 2.5.0
  *
  * @global wpdb $wpdb WordPress database abstraction object.
  *

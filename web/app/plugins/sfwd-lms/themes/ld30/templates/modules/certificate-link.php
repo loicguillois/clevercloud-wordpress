@@ -1,4 +1,11 @@
 <?php
+/**
+ * LearnDash LD30 Displays the certificate link
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -6,6 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Fires before the certificate link wrapper.
+ *
+ * @since 3.0.0
  */
 do_action( 'learndash-certificate-wrapper-before' ); ?>
 
@@ -14,6 +23,8 @@ do_action( 'learndash-certificate-wrapper-before' ); ?>
 	<?php
 	/**
 	 * Fires before the certificate link.
+	 *
+	 * @since 3.0.0
 	 */
 	do_action( 'learndash-certificate-before' );
 	?>
@@ -23,6 +34,8 @@ do_action( 'learndash-certificate-wrapper-before' ); ?>
 	<?php
 	/**
 	 * Fires after the certificate link.
+	 *
+	 * @since 3.0.0
 	 */
 	do_action( 'learndash-certificate-after' );
 	?>
@@ -32,5 +45,7 @@ do_action( 'learndash-certificate-wrapper-before' ); ?>
 <?php
 /**
  * Fires after the certificate link wrapper.
+ *
+ * @since 3.0.0
  */
 do_action( 'learndash-certificate-wrapper-after' ); ?>

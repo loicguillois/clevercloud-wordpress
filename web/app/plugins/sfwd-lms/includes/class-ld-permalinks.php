@@ -23,6 +23,7 @@ if ( ! class_exists( 'LearnDash_Permalinks' ) ) {
 			add_filter( 'get_edit_post_link', array( $this, 'get_edit_post_link' ), 10, 3 );
 			add_filter( 'get_sample_permalink', array( $this, 'get_sample_permalink' ), 99, 5 );
 
+			add_filter( 'attachment_link', array( $this, 'attachment_link' ), 10, 2 ); 
 			add_action( 'comment_form_top', array( $this, 'comment_form_top' ) );
 			add_action( 'comment_post', array( $this, 'comment_post' ), 30, 3 );
 		}
@@ -164,14 +165,16 @@ if ( ! class_exists( 'LearnDash_Permalinks' ) ) {
 			$url_part_old = '';
 			$url_part_new = '';
 
-			if ( ( LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Section_Permalinks', 'nested_urls' ) == 'yes' ) && ( in_array( $post->post_type, array( 'sfwd-lessons', 'sfwd-topic', 'sfwd-quiz' ), true ) ) ) {
+			if ( ( LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Section_Permalinks', 'nested_urls' ) == 'yes' ) && ( in_array( $post->post_type, learndash_get_post_types( 'course_steps' ), true ) ) ) {
 
 				// If we are viewing one of the list tables we only effect the link if the course_id URL param is set
 				if ( ( is_admin() ) && ( 'edit.php' == $pagenow ) ) {
 					if ( LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Courses_Builder', 'shared_steps' ) == 'yes' ) {
 						$course_id = 0;
 
+						// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 						if ( ( isset( $_GET['course_id'] ) ) && ( ! empty( $_GET['course_id'] ) ) ) {
+							// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 							$course_id = absint( $_GET['course_id'] );
 						}
 						$course_id = apply_filters( 'learndash_post_link_course_id', $course_id, $post_link, $post );
@@ -452,10 +455,12 @@ if ( ! class_exists( 'LearnDash_Permalinks' ) ) {
 			global $pagenow, $typenow;
 
 			if ( ( is_admin() ) && ( 'edit.php' == $pagenow ) ) {
-				if ( ( 'yes' === LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Courses_Builder', 'shared_steps' ) ) && ( in_array( $typenow, array( 'sfwd-lessons', 'sfwd-topic', 'sfwd-quiz' ), true ) ) ) {
+				if ( ( 'yes' === LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Courses_Builder', 'shared_steps' ) ) && ( in_array( $typenow, learndash_get_post_types( 'course_steps' ), true ) ) ) {
 					$course_id = 0;
 
+					// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					if ( isset( $_GET['course_id'] ) ) {
+						// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 						$course_id = absint( $_GET['course_id'] );
 					}
 
@@ -481,7 +486,7 @@ if ( ! class_exists( 'LearnDash_Permalinks' ) ) {
 
 			if ( ( ! empty( $post_id ) ) && ( ! is_admin() ) || ( ( is_admin() && ( in_array( $pagenow, array( 'post.php', 'edit.php' ), true ) ) ) ) ) {
 				$post_type_name = get_post_type( $post_id );
-				if ( ( ! empty( $post_type_name ) ) && ( in_array( $post_type_name, array( 'sfwd-lessons', 'sfwd-topic', 'sfwd-quiz' ), true ) ) ) {
+				if ( ( ! empty( $post_type_name ) ) && ( in_array( $post_type_name, learndash_get_post_types( 'course_steps' ), true ) ) ) {
 					if ( LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Courses_Builder', 'shared_steps' ) == 'yes' ) {
 
 						$course_id = 0;
@@ -518,7 +523,7 @@ if ( ! class_exists( 'LearnDash_Permalinks' ) ) {
 		public function get_sample_permalink( $permalink = '', $post_id = 0, $title = '', $name = '', $post = '' ) {
 			global $pagenow;
 
-			if ( ( is_admin() ) && ( 'post.php' === $pagenow ) && ( is_a( $post, 'WP_Post' ) ) && ( in_array( $post->post_type, array( 'sfwd-lessons', 'sfwd-topic', 'sfwd-quiz' ), true ) ) ) {
+			if ( ( is_admin() ) && ( 'post.php' === $pagenow ) && ( is_a( $post, 'WP_Post' ) ) && ( in_array( $post->post_type, learndash_get_post_types( 'course_steps' ), true ) ) ) {
 				$permalink_new = $this->post_type_link( $permalink[0], $post, false, true );
 				if ( ( ! empty( $permalink_new ) ) && ( $permalink_new !== $permalink[0] ) ) {
 					$permalink[0] = $permalink_new;
@@ -526,6 +531,35 @@ if ( ! class_exists( 'LearnDash_Permalinks' ) ) {
 			}
 
 			return $permalink;
+		}
+
+		/**
+		 * Filter the attachment link when using nested URLs.
+		 *
+		 * @since 3.4.1
+		 *
+		 * @param string  $attachment_link Attachment link.
+		 * @param integer $attachment_id   Attachment post ID.
+		 *
+		 * @return string $attachment_link
+		 */
+		public function attachment_link( $attachment_link = '', $attachment_id = 0 ) {
+			global $wp_rewrite;
+
+			if ( ( ! empty( $attachment_link ) ) && ( ! empty( $attachment_id ) ) ) {
+				if ( ( $wp_rewrite->using_permalinks() ) && ( 'yes' === LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Section_Permalinks', 'nested_urls' ) ) ) {
+					$attachment_post = get_post( $attachment_id );
+					if ( ( $attachment_post ) && ( is_a( $attachment_post, 'WP_Post' ) ) ) {
+						if ( ( property_exists( $attachment_post, 'post_parent' ) ) && ( ! empty( $attachment_post->post_parent ) ) ) {
+							if ( in_array( get_post_type( $attachment_post->post_parent ), learndash_get_post_types( 'course' ), true ) ) {
+								$attachment_link = str_replace( '/' . $attachment_post->post_name . '/', '/attachment/' . $attachment_post->post_name . '/', $attachment_link );
+							}
+						}
+					}
+				}
+			}
+
+			return $attachment_link;
 		}
 
 
@@ -538,7 +572,7 @@ if ( ! class_exists( 'LearnDash_Permalinks' ) ) {
 			$queried_object = get_queried_object();
 
 			if ( ( is_a( $queried_object, 'WP_Post' ) ) && ( LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Section_Permalinks', 'nested_urls' ) == 'yes' ) ) {
-				if ( in_array( $queried_object->post_type, array( 'sfwd-lessons', 'sfwd-topic', 'sfwd-quiz' ), true ) ) {
+				if ( in_array( $queried_object->post_type, learndash_get_post_types( 'course_steps' ), true ) ) {
 					echo '<input type="hidden" name="step_id" value="' . absint( $queried_object->ID ) . '" />';
 
 					$course_id = learndash_get_course_id( $queried_object->ID );
@@ -560,12 +594,14 @@ if ( ! class_exists( 'LearnDash_Permalinks' ) ) {
 		 * Add the course_id to comment meta
 		 *
 		 * @since 2.5.5
-		 * @param int        $comment_id              The comment ID.
-		 * @param int|string $comment_approved 1 if the comment is approved, 0 if not, 'spam' if spam.
-		 * @param array      $commentdata           Comment data.
+		 * @param int        $comment_id       The comment ID.
+		 * @param int|string $comment_approved Comment Approve Status, 1 if the comment is approved, 0 if not, 'spam' if spam.
+		 * @param array      $commentdata      Comment data.
 		 */
 		public function comment_post( $comment_id, $comment_approved, $commentdata ) {
+			// phpcs:ignore WordPress.Security.NonceVerification.Missing
 			if ( ( isset( $_POST['course_id'] ) ) && ( ! empty( $_POST['course_id'] ) ) ) {
+				// phpcs:ignore WordPress.Security.NonceVerification.Missing
 				update_comment_meta( $comment_id, 'course_id', absint( $_POST['course_id'] ) );
 			}
 		}
@@ -593,7 +629,7 @@ function learndash_get_step_permalink( $step_id = 0, $step_course_id = null ) {
 
 	if ( ! empty( $step_id ) ) {
 		if ( ! is_null( $step_course_id ) ) {
-			$GLOBALS['step_course_id'] = $step_course_id;
+			$GLOBALS['step_course_id'] = $step_course_id; //phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 			add_filter(
 				'learndash_post_link_course_id',
 				function( $course_id ) {
@@ -628,14 +664,16 @@ function learndash_redirect_post_location( $location = '', $post_id = 0 ) {
 
 		global $typenow;
 
-		if ( in_array( $typenow, array( 'sfwd-lessons', 'sfwd-topic', 'sfwd-quiz' ), true ) ) {
+		check_admin_referer( 'update-post_' . $post_id );
+
+		if ( in_array( $typenow, learndash_get_post_types( 'course_steps' ), true ) ) {
 			if ( ( isset( $_POST['ld-course-switcher'] ) ) && ( ! empty( $_POST['ld-course-switcher'] ) ) ) {
 				$post_args = wp_parse_args( $_POST['ld-course-switcher'], array() );
 				if ( ( isset( $post_args['course_id'] ) ) && ( ! empty( $post_args['course_id'] ) ) ) {
 					$location = add_query_arg( 'course_id', intval( $post_args['course_id'] ), $location );
 				}
 			}
-		} elseif ( 'sfwd-question' === $typenow ) {
+		} elseif ( learndash_get_post_type_slug( 'question' ) === $typenow ) {
 			if ( ( isset( $_POST['ld-quiz-switcher'] ) ) && ( ! empty( $_POST['ld-quiz-switcher'] ) ) ) {
 				$post_args = wp_parse_args( $_POST['ld-quiz-switcher'], array() );
 				if ( ( isset( $post_args['quiz_id'] ) ) && ( ! empty( $post_args['quiz_id'] ) ) ) {

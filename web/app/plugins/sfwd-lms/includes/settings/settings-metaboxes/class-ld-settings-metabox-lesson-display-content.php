@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Metabox for Lesson Display and Content Options.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Metaboxes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'LearnDash_Settings_Metabox_Lesson_Display_Content' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Metabox for Lesson Display and Content Options.
+	 *
+	 * @since 3.0.0
 	 */
 	class LearnDash_Settings_Metabox_Lesson_Display_Content extends LearnDash_Settings_Metabox {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		public function __construct() {
 			// What screen ID are we showing on.
@@ -74,6 +78,8 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings values.
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_values() {
 			global $sfwd_lms;
@@ -242,6 +248,8 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings fields.
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_fields() {
 
@@ -909,8 +917,13 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 			parent::load_settings_fields();
 		}
 
-
-		/** This function is documented in includes/settings/class-ld-settings-metaboxes.php */
+		/**
+		 * Update Metabox Settings values.
+		 *
+		 * @since 3.4.0
+		 *
+		 * @param array $settings_values Array of key/value settings changes.
+		 */
 		public function apply_metabox_settings_fields_changes( $settings_field_updates = array() ) {
 			$settings_field_values = $this->get_settings_metabox_values();
 
@@ -952,9 +965,12 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * Filter settings values for metabox before save to database.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param array  $settings_values Array of settings values.
 		 * @param string $settings_metabox_key Metabox key.
 		 * @param string $settings_screen_id Screen ID.
+		 *
 		 * @return array $settings_values.
 		 */
 		public function filter_saved_fields( $settings_values = array(), $settings_metabox_key = '', $settings_screen_id = '' ) {

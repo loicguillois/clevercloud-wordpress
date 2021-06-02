@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section for Custom Labels Metabox.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.4.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Section_Custom_Labels' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Section for Custom Labels Metabox.
+	 *
+	 * @since 2.4.0
 	 */
 	class LearnDash_Settings_Section_Custom_Labels extends LearnDash_Settings_Section {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 2.4.0
 		 */
 		protected function __construct() {
 			$this->settings_page_id = 'learndash_lms_settings_custom_labels';
@@ -41,6 +45,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings values.
+		 *
+		 * @since 2.4.0
 		 */
 		public function load_settings_values() {
 			parent::load_settings_values();
@@ -68,6 +74,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings fields.
+		 *
+		 * @since 2.4.0
 		 */
 		public function load_settings_fields() {
 
@@ -226,7 +234,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * Changes group_leader role display name
 		 *
-		 * @since 3.0
+		 * @since 2.4.0
+		 *
 		 * @param array $new_values Array of section fields values.
 		 * @param array $old_values Array of old values.
 		 * @param string $section_key Section option key should match $this->setting_option_key.

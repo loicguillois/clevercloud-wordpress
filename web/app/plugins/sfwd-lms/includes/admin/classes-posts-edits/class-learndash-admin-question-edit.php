@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Admin Question Edit Class.
+ * LearnDash Admin Question Edit.
  *
- * @package LearnDash
- * @subpackage Admin
+ * @since 2.6.0
+ * @package LearnDash\Question\Edit
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,10 +11,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learndash_Admin_Question_Edit' ) ) ) {
+
 	/**
-	 * Class for LearnDash Admin Question Edit.
+	 * Class LearnDash Admin Question Edit.
+	 *
+	 * @since 2.6.0
+	 * @uses Learndash_Admin_Post_Edit
 	 */
 	class Learndash_Admin_Question_Edit extends Learndash_Admin_Post_Edit {
+
 		/**
 		 * WPProQuiz Question instance.
 		 * This is used to bridge the WPProQuiz to WP systems.
@@ -25,6 +30,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 
 		/**
 		 * Public constructor for class.
+		 *
+		 * @since 2.6.0
 		 */
 		public function __construct() {
 			$this->post_type = learndash_get_post_type_slug( 'question' );
@@ -36,6 +43,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * On Load handler function for this post type edit.
 		 * This function is called by a WP action when the admin
 		 * page 'post.php' or 'post-new.php' are loaded.
+		 *
+		 * @since 2.6.0
 		 */
 		public function on_load() {
 			if ( $this->post_type_check() ) {
@@ -53,6 +62,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 
 		/**
 		 * Hook into the WP admin footer logic to add custom JavaScript to replce the default page title.
+		 *
+		 * @since 2.6.0
 		 */
 		public function admin_footer() {
 			global $post_type, $post_type_object;
@@ -109,7 +120,9 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Filter the SFWD display options logic to set a default value for the Quiz.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param array $options Array of settings values for the current post_type.
+		 *
 		 * @return array of $options.
 		 */
 		public function display_options( $options = array() ) {
@@ -148,6 +161,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Initialize the ProQuiz Question being edited.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function init_question_edit( $post ) {
@@ -194,6 +208,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Save Question handler function.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param integer $post_id Post ID Question being edited.
 		 * @param object  $post WP_Post Question being edited.
 		 * @param boolean $update If update true, else false.
@@ -226,17 +241,16 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		}
 
 		/**
-		 * Register metaboxes for Question edit.
+		 * Register metaboxes for Question editing
 		 *
 		 * @since 2.6.0
 		 *
-		 * @param string $post_type Port Type being edited.
+		 * @param string $post_type Post Type being edited.
+		 * @param object $post      WP_Post Post being edited.
 		 */
-		public function add_metaboxes( $post_type = '' ) {
-			global $post;
-
+		public function add_metaboxes( $post_type = '', $post = null ) {
 			if ( $this->post_type_check( $post_type ) ) {
-				parent::add_metaboxes( $post_type );
+				parent::add_metaboxes( $post_type, $post );
 
 				$this->init_question_edit( $post );
 
@@ -395,6 +409,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Shows the Question Types metabox.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function question_type_page_box( $post ) {
@@ -426,6 +441,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Shows the Question Category metabox.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function question_category_proquiz_page_box( $post ) {
@@ -472,6 +488,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Shows the Question Points metabox.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function question_points_page_box( $post ) {
@@ -526,6 +543,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Shows the Question Correct Answer Message metabox.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function question_message_correct_answer_page_box( $post ) {
@@ -557,6 +575,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Shows the Question Incorrect Answer Message metabox.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function question_message_incorrect_answer_page_box( $post ) {
@@ -580,6 +599,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Shows the Question Hint metabox.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function question_hint_page_box( $post ) {
@@ -610,6 +630,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Shows the Single Choice Question Optionc metabox.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function question_single_choice_options( $post ) {
@@ -641,6 +662,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Shows the Question Answers metabox.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function question_answers_page_box( $post ) {
@@ -713,6 +735,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Shows the Question Template metabox.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param object $post WP_Post Question being edited.
 		 */
 		public function question_template_page_box( $post ) {
@@ -785,6 +808,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 
 		/**
 		 * Display special answer points diagram.
+		 *
+		 * @since 2.6.0
 		 */
 		private function answerPointDia() {
 			?>

@@ -1,10 +1,10 @@
 <?php
 /**
- * Course info and navigation widgets
+ * Course info functions
  *
  * @since 2.1.0
  *
- * @package LearnDash\Widgets
+ * @package LearnDash
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -77,8 +77,6 @@ function learndash_course_navigation( $course_id, $widget_instance = array(), $l
 	}
 }
 
-
-
 /**
  * Outputs the course navigation admin template for the widget.
  *
@@ -148,6 +146,8 @@ function learndash_course_navigation_admin( $course_id, $instance = array(), $le
 /**
  * Includes the course navigation switcher admin template.
  *
+ * @since 2.5.0
+ *
  * @param int $course_id Course ID.
  */
 function learndash_course_switcher_admin( $course_id ) {
@@ -168,7 +168,7 @@ function learndash_course_switcher_admin( $course_id ) {
  *
  * Fires on `load-post.php` and `load-post-new.php` hook.
  *
- * @since 2.5.4
+ * @since 2.5.5
  */
 function learndash_course_step_edit_init() {
 	global $learndash_assets_loaded;
@@ -304,6 +304,8 @@ function learndash_course_info( $user_id, $atts = array() ) {
 /**
  * Handles the AJAX pagination for the courses registered.
  *
+ * @since 3.4.0
+ *
  * Fires on `ld_course_registered_pager` AJAX action.
  *
  * @return void|string
@@ -398,6 +400,8 @@ add_action( 'wp_ajax_ld_course_registered_pager', 'learndash_ajax_course_registe
 
 /**
  * Handles the AJAX pagination for the course progress.
+ *
+ * @since 3.4.0
  *
  * Fires on `ld_course_progress_pager` AJAX action.
  *
@@ -496,6 +500,8 @@ add_action( 'wp_ajax_nopriv_ld_course_progress_pager', 'learndash_ajax_course_pr
  *
  * Fires on `ld_course_progress_pager` AJAX action.
  *
+ * @since 3.4.0
+ *
  * @return void|string
  */
 function learndash_ajax_quiz_progress_pager() {
@@ -588,7 +594,7 @@ add_action( 'wp_ajax_ld_quiz_progress_pager', 'learndash_ajax_quiz_progress_page
  *
  * Fires on `ld_course_navigation_pager` AJAX action.
  *
- * @since 2.5.4
+ * @since 3.4.0
  */
 function learndash_ajax_course_navigation_pager() {
 	$reply_data = array();
@@ -642,7 +648,7 @@ add_action( 'wp_ajax_nopriv_ld_course_navigation_pager', 'learndash_ajax_course_
  *
  * Fires on `ld_course_navigation_admin_pager` AJAX action.
  *
- * @since 2.5.4
+ * @since 3.4.0
  */
 function learndash_ajax_course_navigation_admin_pager() {
 	$reply_data = array();
@@ -691,6 +697,8 @@ add_action( 'wp_ajax_ld_course_navigation_admin_pager', 'learndash_ajax_course_n
 
 /**
  * Verifies the attributes for AJAX pagination.
+ *
+ * @since 2.5.7
  *
  * @param int   $user_id        User ID.
  * @param array $shortcode_atts Shortcode attributes.

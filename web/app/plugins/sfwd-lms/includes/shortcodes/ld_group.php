@@ -1,6 +1,6 @@
 <?php
 /**
- * Shortcode for ld_group
+ * LearnDash `[ld_group]` shortcode processing.
  *
  * @since 2.1.0
  *
@@ -12,13 +12,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `ld_group` shortcode output.
+ * Builds the `[ld_group]` shortcode output.
  *
  * Shortcode to display content to users that have access to current group id.
  *
  * @global boolean $learndash_shortcode_used
- *
- * @todo  function is duplicate of learndash_visitor_check_shortcode()
  *
  * @since 2.3.0
  *
@@ -30,11 +28,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  *    @type string  $content  The shortcode content.
  *    @type boolean $autop    Whether to replace linebreaks with paragraph elements.
  * }
- * @param string $content The shortcode content.
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string The `ld_group` shortcode output.
  */
-function learndash_ld_group_check_shortcode( $atts, $content = null ) {
+function learndash_ld_group_check_shortcode( $atts = array(), $content = '' ) {
 	global $learndash_shortcode_used;
 
 	if ( ( is_singular() ) && ( ! is_null( $content ) ) && ( is_user_logged_in() ) ) {
@@ -81,5 +79,4 @@ function learndash_ld_group_check_shortcode( $atts, $content = null ) {
 
 	return '';
 }
-
-add_shortcode( 'ld_group', 'learndash_ld_group_check_shortcode' );
+add_shortcode( 'ld_group', 'learndash_ld_group_check_shortcode', 10, 2 );

@@ -1,28 +1,89 @@
 <?php
+/**
+ * LearnDash Quiz Reports.
+ *
+ * @since 2.3.0
+ *
+ * @package LearnDash\Quiz\Reports
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'Learndash_Admin_Data_Reports_Quizzes' ) ) {
+if ( ( ! class_exists( 'Learndash_Admin_Data_Reports_Quizzes' ) ) && ( class_exists( 'Learndash_Admin_Settings_Data_Reports' ) ) ) {
+
+	/**
+	 * Class LearnDash Quiz Reports.
+	 *
+	 * @since 2.3.0
+	 * @uses Learndash_Admin_Settings_Data_Reports
+	 */
 	class Learndash_Admin_Data_Reports_Quizzes extends Learndash_Admin_Settings_Data_Reports {
 
+		/**
+		 * @var object $instance Object instance of class.
+		 */
 		public static $instance = null;
-		private $data_slug      = 'user-quizzes';
 
-		private $data_headers    = array();
+		/**
+		 * Data slug
+		 *
+		 * @var string $data_slug
+		 */
+		private $data_slug = 'user-quizzes';
+
+		/**
+		 * Data headers
+		 *
+		 * @var string $data_headers
+		 */
+		private $data_headers = array();
+
+		/**
+		 * Report filename
+		 *
+		 * @var string $report_filename
+		 */
 		private $report_filename = '';
 
-		private $transient_key  = '';
+		/**
+		 * Transient key
+		 *
+		 * @var string $transient_key
+		 */
+		private $transient_key = '';
+
+		/**
+		 * Transient data
+		 *
+		 * @var array $transient_data
+		 */
 		private $transient_data = array();
 
+		/**
+		 * CSV Parse instance
+		 *
+		 * @var object $csv_parse
+		 */
 		private $csv_parse;
 
+		/**
+		 * Public constructor for class
+		 *
+		 * @since 2.3.0
+		 */
 		public function __construct() {
 			self::$instance =& $this;
 
 			add_filter( 'learndash_admin_report_register_actions', array( $this, 'register_report_action' ) );
 		}
 
+		/**
+		 * Get the single instance of the class
+		 *
+		 * @since 2.3.0
+		 */
 		public static function getInstance() {
 			if ( ! isset( self::$_instance ) ) {
 				self::$_instance = new self();
@@ -30,6 +91,15 @@ if ( ! class_exists( 'Learndash_Admin_Data_Reports_Quizzes' ) ) {
 			return self::$_instance;
 		}
 
+		/**
+		 * Register Report Action
+		 *
+		 * @since 2.3.0
+		 *
+		 * @param array $report_actions Array of existing report actions.
+		 *
+		 * @return array
+		 */
 		public function register_report_action( $report_actions = array() ) {
 			// Add ourselved to the upgrade actions
 			$report_actions[ $this->data_slug ] = array(
@@ -43,6 +113,11 @@ if ( ! class_exists( 'Learndash_Admin_Data_Reports_Quizzes' ) ) {
 			return $report_actions;
 		}
 
+		/**
+		 * Show Report Action
+		 *
+		 * @since 2.3.0
+		 */
 		public function show_report_action() {
 			?>
 			<tr id="learndash-data-reports-container-<?php echo esc_attr( $this->data_slug ); ?>" class="learndash-data-reports-container">
@@ -74,10 +149,11 @@ if ( ! class_exists( 'Learndash_Admin_Data_Reports_Quizzes' ) ) {
 		 * This function will determine what users need to be converted. Then the course and quiz functions
 		 * will be called to convert each individual user data set.
 		 *
-		 * @since 2.3
+		 * @since 2.3.0
 		 *
-		 * @param  array $data       Post data from AJAX call
-		 * @return array    $data       Post data from AJAX call
+		 * @param  array $data Post data from AJAX call
+		 *
+		 * @return array $data Post data from AJAX call
 		 */
 		public function process_report_action( $data = array() ) {
 			global $wpdb;
@@ -144,7 +220,9 @@ if ( ! class_exists( 'Learndash_Admin_Data_Reports_Quizzes' ) ) {
 						$data['total_count']          = $this->transient_data['total_users'];
 
 						// Clear out any previous file
+						// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fopen
 						$reports_fp = fopen( $this->report_filename, 'w' );
+						// phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_read_fclose
 						fclose( $reports_fp );
 
 						$this->set_option_cache( $this->transient_key, $this->transient_data );
@@ -285,6 +363,11 @@ if ( ! class_exists( 'Learndash_Admin_Data_Reports_Quizzes' ) ) {
 			return $data;
 		}
 
+		/**
+		 * Set Report Headers
+		 *
+		 * @since 2.3.0
+		 */
 		public function set_report_headers() {
 			$this->data_headers              = array();
 			$this->data_headers['user_id']   = array(
@@ -377,6 +460,11 @@ if ( ! class_exists( 'Learndash_Admin_Data_Reports_Quizzes' ) ) {
 			$this->data_headers = apply_filters( 'learndash_data_reports_headers', $this->data_headers, $this->data_slug );
 		}
 
+		/**
+		 * Send Report Headers to CSV
+		 *
+		 * @since 2.3.0
+		 */
 		public function send_report_headers_to_csv() {
 			if ( ! empty( $this->data_headers ) ) {
 				$this->csv_parse->file            = $this->report_filename;
@@ -392,6 +480,13 @@ if ( ! class_exists( 'Learndash_Admin_Data_Reports_Quizzes' ) ) {
 			}
 		}
 
+		/**
+		 * Set Report Filenames
+		 *
+		 * @since 2.3.0
+		 *
+		 * @param array $data Report data.
+		 */
 		public function set_report_filenames( $data ) {
 			$wp_upload_dir = wp_upload_dir();
 
@@ -420,7 +515,7 @@ if ( ! class_exists( 'Learndash_Admin_Data_Reports_Quizzes' ) ) {
 		/**
 		 * Handles display formatting of report column value.
 		 *
-		 * @since 2.4.7
+		 * @since 2.3.0
 		 *
 		 * @param int|string $column_value Report column value.
 		 * @param string     $column_key   Column key.

@@ -1,14 +1,14 @@
 <?php
 /**
- * Assignment list individual row
+ * LearnDash LD30 Display lesson/topic assignment uploads listing row
  *
  * Available Variables:
  *
  * $course_step_post: WP_Post object for the Lesson/Topic being shown
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\Lesson
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -214,6 +214,8 @@ $assignment_points = learndash_get_points_awarded_array( $assignment->ID ); ?>
 			/**
 			 * Filters assignment list columns content.
 			 *
+			 * @since 3.0.0
+			 *
 			 * @param array $row_columns Array of assignment row columns content
 			 */
 			$row_columns = apply_filters( 'learndash-assignment-list-columns-content', $row_columns );
@@ -224,6 +226,8 @@ $assignment_points = learndash_get_points_awarded_array( $assignment->ID ); ?>
 					 * Fires before an assignment row.
 					 *
 					 * The dynamic part of the hook `$slug` refers to the slug of the column.
+					 *
+					 * @since 3.0.0
 					 *
 					 * @param WP_Post $assignment WP_Post object for assignment.
 					 * @param int     $post_id    Post ID.
@@ -239,6 +243,8 @@ $assignment_points = learndash_get_points_awarded_array( $assignment->ID ); ?>
 					 *
 					 * The dynamic part of the hook `$slug` refers to the slug of the column.
 					 *
+					 * @since 3.0.0
+					 *
 					 * @param WP_Post $assignment WP_Post object for assignment.
 					 * @param int     $post_id    Post ID.
 					 * @param int     $course_id  Course ID.
@@ -252,6 +258,8 @@ $assignment_points = learndash_get_points_awarded_array( $assignment->ID ); ?>
 					 * Fires after an assignment row content.
 					 *
 					 * The dynamic part of the hook `$slug` refers to the slug of the column.
+					 *
+					 * @since 3.0.0
 					 *
 					 * @param WP_Post $assignment WP_Post object for assignment.
 					 * @param int     $post_id    Post ID.
@@ -267,6 +275,8 @@ $assignment_points = learndash_get_points_awarded_array( $assignment->ID ); ?>
 					 * Fires after an assignment row.
 					 *
 					 * The dynamic part of the hook `$slug` refers to the slug of the column.
+					 *
+					 * @since 3.0.0
 					 *
 					 * @param WP_Post $assignment WP_Post object for assignment.
 					 * @param int     $post_id    Post ID.

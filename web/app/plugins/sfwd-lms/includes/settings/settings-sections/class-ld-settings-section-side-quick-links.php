@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section Side Quick Links Metabox.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.6.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Section_Side_Quick_Links' ) ) ) {
 	/**
-	 * Class to create the settings metabox.
+	 * Class LearnDash Settings Section Side Quick Links Metabox.
+	 *
+	 * @since 2.6.0
 	 */
 	class LearnDash_Settings_Section_Side_Quick_Links extends LearnDash_Settings_Section {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 2.6.0
 		 *
 		 * @param array $args Array of class args.
 		 */
@@ -48,7 +52,7 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * Show custom metabox output for Quick Links.
 		 *
-		 * @since 2.5.9
+		 * @since 2.6.0
 		 */
 		public function show_meta_box() {
 			global $wp_meta_boxes;

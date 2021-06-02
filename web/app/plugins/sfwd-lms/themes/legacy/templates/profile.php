@@ -12,7 +12,7 @@
  *
  * @since 2.1.0
  *
- * @package LearnDash\User
+ * @package LearnDash\Templates\Legacy\Shortcodes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

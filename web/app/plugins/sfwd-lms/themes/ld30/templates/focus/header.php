@@ -1,4 +1,12 @@
 <?php
+/**
+ * LearnDash LD30 focus mode header.
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -13,6 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		wp_head();
 		/**
 		 * Fires in the head tag in focus mode.
+		 *
+		 * @since 3.0.0
 		 */
 		do_action( 'learndash-focus-head' );
 		?>

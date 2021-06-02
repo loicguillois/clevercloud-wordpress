@@ -1,5 +1,13 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+/**
+ * LearnDash LD30 Displays the listing of course row
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
+ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -10,6 +18,8 @@ $course      = get_post( $course_id );
 $course_link = get_permalink( $course_id );
 /**
  * Filters course list shortcode course CSS class. Used to add CSS class to the wrapper of each course item
+ *
+ * @since 3.0.0
  *
  * @param string $course_class Course item CSS class
  */

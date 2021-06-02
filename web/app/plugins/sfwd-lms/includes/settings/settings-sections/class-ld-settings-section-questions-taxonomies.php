@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section for Question Taxonomies Metabox.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.6.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Questions_Taxonomies' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Section for Question Taxonomies Metabox.
+	 *
+	 * @since 2.6.0
 	 */
 	class LearnDash_Settings_Questions_Taxonomies extends LearnDash_Settings_Section {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 2.6.0
 		 */
 		protected function __construct() {
 
@@ -59,6 +63,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings values.
+		 *
+		 * @since 2.6.0
 		 */
 		public function load_settings_values() {
 			parent::load_settings_values();
@@ -115,6 +121,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings fields.
+		 *
+		 * @since 2.6.0
 		 */
 		public function load_settings_fields() {
 
@@ -166,10 +174,10 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 			parent::load_settings_fields();
 		}
 
-				/**
+		/**
 		 * This function handles the AJAX actions from the browser.
 		 *
-		 * @since 2.5.9
+		 * @since 2.6.0
 		 */
 		public function ajax_action() {
 			$reply_data = array( 'status' => false );

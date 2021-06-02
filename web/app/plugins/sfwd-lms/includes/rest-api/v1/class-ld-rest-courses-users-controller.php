@@ -1,11 +1,32 @@
 <?php
+/**
+ * LearnDash REST API V1 Courses Users Post Controller.
+ *
+ * @since 2.5.8
+ * @package LearnDash\REST\V1
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( ! class_exists( 'LD_REST_Courses_Users_Controller_V1' ) ) && ( class_exists( 'LD_REST_Users_Controller_V1' ) ) ) {
+
+	/**
+	 * Class LearnDash REST API V1 Courses Users Post Controller.
+	 *
+	 * @since 2.5.8
+	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Courses_Users_Controller_V1 extends LD_REST_Users_Controller_V1 {
 
+		/**
+		 * Supported Collection Parameters.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @var array $supported_collection_params.
+		 */
 		private $supported_collection_params = array(
 			'exclude'  => 'exclude',
 			'include'  => 'include',
@@ -18,6 +39,13 @@ if ( ( ! class_exists( 'LD_REST_Courses_Users_Controller_V1' ) ) && ( class_exis
 			'slug'     => 'nicename__in',
 		);
 
+		/**
+		 * Public constructor for class
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param string $post_type Post type.
+		 */
 		public function __construct() {
 
 			parent::__construct();
@@ -25,6 +53,13 @@ if ( ( ! class_exists( 'LD_REST_Courses_Users_Controller_V1' ) ) && ( class_exis
 			$this->rest_base = LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Section_General_REST_API', 'sfwd-courses' );
 		}
 
+		/**
+		 * Registers the routes for the objects of the controller.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @see register_rest_route() in WordPress core.
+		 */
 		public function register_routes() {
 			$this->meta = new WP_REST_User_Meta_Fields();
 
@@ -99,6 +134,8 @@ if ( ( ! class_exists( 'LD_REST_Courses_Users_Controller_V1' ) ) && ( class_exis
 		/**
 		 * Gets the course users schema.
 		 *
+		 * @since 2.5.8
+		 *
 		 * @return array
 		 */
 		public function get_schema() {
@@ -129,24 +166,52 @@ if ( ( ! class_exists( 'LD_REST_Courses_Users_Controller_V1' ) ) && ( class_exis
 			return $schema;
 		}
 
+		/**
+		 * Check Courses Users Update Permissions.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function update_courses_users_permissions_check( $request ) {
 			if ( learndash_is_admin_user() ) {
 				return true;
 			}
 		}
 
+		/**
+		 * Check Courses Users Delete Permissions.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function delete_courses_users_permissions_check( $request ) {
 			if ( learndash_is_admin_user() ) {
 				return true;
 			}
 		}
 
+		/**
+		 * Check Courses Users Read Permissions.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function get_courses_users_permissions_check( $request ) {
 			if ( learndash_is_admin_user() ) {
 				return true;
 			}
 		}
 
+		/**
+		 * Update Courses Users.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function update_courses_users( $request ) {
 			$course_id = $request['id'];
 			if ( empty( $course_id ) ) {
@@ -187,6 +252,13 @@ if ( ( ! class_exists( 'LD_REST_Courses_Users_Controller_V1' ) ) && ( class_exis
 			return $response;
 		}
 
+		/**
+		 * Delete Courses Users.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function delete_courses_users( $request ) {
 			$course_id = $request['id'];
 			if ( empty( $course_id ) ) {
@@ -227,6 +299,13 @@ if ( ( ! class_exists( 'LD_REST_Courses_Users_Controller_V1' ) ) && ( class_exis
 			return $response;
 		}
 
+		/**
+		 * Get Courses Users.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function get_courses_users( $request ) {
 
 			$course_id = $request['id'];
@@ -378,6 +457,11 @@ if ( ( ! class_exists( 'LD_REST_Courses_Users_Controller_V1' ) ) && ( class_exis
 			return $response;
 		}
 
+		/**
+		 * Get Collection parameters
+		 *
+		 * @since 2.5.8
+		 */
 		public function get_collection_params() {
 			$query_params_default = parent::get_collection_params();
 

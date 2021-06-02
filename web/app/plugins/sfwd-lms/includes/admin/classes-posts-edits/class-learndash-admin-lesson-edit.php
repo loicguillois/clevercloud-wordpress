@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Admin Lesson Edit Class.
+ * LearnDash Admin Lesson Edit.
  *
- * @package LearnDash
- * @subpackage Admin
+ * @since 2.6.0
+ * @package LearnDash\Lesson\Edit
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,13 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learndash_Admin_Lesson_Edit' ) ) ) {
+
 	/**
-	 * Class for LearnDash Admin Lesson Edit.
+	 * Class LearnDash Admin Lesson Edit.
+	 *
+	 * @since 2.6.0
+	 * @uses Learndash_Admin_Post_Edit
 	 */
 	class Learndash_Admin_Lesson_Edit extends Learndash_Admin_Post_Edit {
 
 		/**
 		 * Public constructor for class.
+		 *
+		 * @since 2.6.0
 		 */
 		public function __construct() {
 			$this->post_type = learndash_get_post_type_slug( 'lesson' );
@@ -29,6 +35,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * On Load handler function for this post type edit.
 		 * This function is called by a WP action when the admin
 		 * page 'post.php' or 'post-new.php' are loaded.
+		 *
+		 * @since 3.0.0
 		 */
 		public function on_load() {
 			if ( $this->post_type_check() ) {
@@ -41,6 +49,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 
 		/**
 		 * Save metabox handler function.
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param integer $post_id Post ID Question being edited.
 		 * @param object  $post WP_Post Question being edited.

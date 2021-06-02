@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Metabox for Quiz Admin & Data Handling Settings.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Metaboxes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,13 +12,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'LearnDash_Settings_Metabox_Quiz_Admin_Data_Handling_Settings' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Metabox for Quiz Admin & Data Handling Settings.
+	 *
+	 * @since 3.0.0
 	 */
 	class LearnDash_Settings_Metabox_Quiz_Admin_Data_Handling_Settings extends LearnDash_Settings_Metabox {
 
 		protected $quiz_edit = null;
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		public function __construct() {
 			// What screen ID are we showing on.
@@ -79,39 +83,35 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 		 * Used to save the settings fields back to the global $_POST object so
 		 * the WPProQuiz normal form processing can take place.
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
+		 *
 		 * @param object $pro_quiz_edit WpProQuiz_Controller_Quiz instance (not used).
 		 * @param array  $settings_values Array of settings fields.
 		 */
 		public function save_fields_to_post( $pro_quiz_edit, $settings_values = array() ) {
-			$_POST['formActivated']             = $settings_values['formActivated'];
-			$_POST['formShowPosition']          = $settings_values['formShowPosition'];
-			$_POST['toplistActivated']          = $settings_values['toplistActivated'];
-			$_POST['toplistDataAddPermissions'] = $settings_values['toplistDataAddPermissions'];
-			$_POST['toplistDataAddMultiple']    = $settings_values['toplistDataAddMultiple'];
-			$_POST['toplistDataAddBlock']       = $settings_values['toplistDataAddBlock'];
-			$_POST['toplistDataAddAutomatic']   = $settings_values['toplistDataAddAutomatic'];
-			$_POST['toplistDataShowLimit']      = $settings_values['toplistDataShowLimit'];
-			$_POST['toplistDataSort']           = $settings_values['toplistDataSort'];
-			$_POST['toplistDataShowIn']         = $settings_values['toplistDataShowIn'];
-			$_POST['toplistDataCaptcha']        = $settings_values['toplistDataCaptcha'];
-			$_POST['statisticsOn']              = $settings_values['statisticsOn'];
-			$_POST['viewProfileStatistics']     = $settings_values['viewProfileStatistics'];
-			$_POST['statisticsIpLock']          = $settings_values['statisticsIpLock'];
-			$_POST['emailNotification']         = $settings_values['emailNotification'];
-			$_POST['userEmailNotification']     = $settings_values['userEmailNotification'];
-			$_POST['timeLimitCookie']           = $settings_values['timeLimitCookie'];
+			foreach( $settings_values as $setting_key => $setting_value ) {
+				if ( isset( $this->settings_fields_map[ $setting_key ] ) ) {
+					$_POST[ $setting_key ] = $setting_value;	
+				}
+			}
 		}
 
 		/**
 		 * Initialize the metabox settings values.
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_values() {
 			global $pagenow;
 
+			$reload_pro_quiz = false;
+			if ( true !== $this->settings_values_loaded ) {
+				$reload_pro_quiz = true;
+			}
+
 			parent::load_settings_values();
 			if ( true === $this->settings_values_loaded ) {
-				$this->quiz_edit = $this->init_quiz_edit( $this->_post );
+				$this->quiz_edit = $this->init_quiz_edit( $this->_post, $reload_pro_quiz );
 
 				if ( ( isset( $this->quiz_edit['quiz'] ) ) && ( ! empty( $this->quiz_edit['quiz'] ) ) ) {
 					$this->setting_option_values['formActivated'] = $this->quiz_edit['quiz']->isFormActivated();
@@ -288,6 +288,8 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings fields.
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_fields() {
 			global $sfwd_lms;
@@ -559,9 +561,9 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 								'type'      => 'string',
 								'default'   => '1',
 								'enum'      => array(
-									'1' => esc_html__( 'All user', 'learndash' ),
-									'2' => esc_html__( 'Registered users only', 'learndash' ),
-									'3' => esc_html__( 'Anonymous users only', 'learndash' ),
+									'1',
+									'2',
+									'3',
 								),
 							),
 						),
@@ -661,9 +663,9 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 								'type'      => 'string',
 								'default'   => '1',
 								'enum'      => array(
-									'1' => esc_html__( 'Best user', 'learndash' ),
-									'2' => esc_html__( 'Newest entry', 'learndash' ),
-									'3' => esc_html__( 'Oldest entry', 'learndash' ),
+									'1',
+									'2',
+									'3',
 								),
 							),
 						),
@@ -958,9 +960,12 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * Filter settings values for metabox before save to database.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param array  $settings_values Array of settings values.
 		 * @param string $settings_metabox_key Metabox key.
 		 * @param string $settings_screen_id Screen ID.
+		 *
 		 * @return array $settings_values.
 		 */
 		public function filter_saved_fields( $settings_values = array(), $settings_metabox_key = '', $settings_screen_id = '' ) {

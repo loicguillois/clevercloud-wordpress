@@ -1,13 +1,13 @@
 <?php
 /**
- * Displays a single lesson row that appears in the course content listing
+ * LearnDash LD30 Displays a single lesson row that appears in the course content listing
  *
  * Available Variables:
  * TBD
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @var $topics [array]
  * @var $quizzes [array]
- * @since 3.0
+ * @since 3.0.0
  */
 $topics        = ! empty( $lesson_topics ) && ! empty( $lesson_topics[ $lesson['post']->ID ] ) ? $lesson_topics[ $lesson['post']->ID ] : '';
 $quizzes       = learndash_get_lesson_quiz_list( $lesson['post']->ID, $user_id, $course_id );
@@ -32,6 +32,8 @@ $sections = ( isset( $sections ) ? $sections : array() );
 
 /**
  * Filters lesson row attributes. Used while displaying lesson lists in a course.
+ *
+ * @since 3.0.0
  *
  * @param string $attribute Lesson row attribute. The value is data-ld-tooltip if a user does not have access to the course otherwise an empty string.
  */
@@ -46,6 +48,8 @@ if ( ( empty( $atts ) ) && ( ! is_user_logged_in() ) ) {
 		if ( true !== (bool) apply_filters( 'learndash_lesson_sample_access', true, $lesson['post']->ID, $course_id, $user_id ) ) {
 			/**
 			 * Filters lesson row attributes if the access to sample lesson is not allowed to a user.
+			 *
+			 * @since 3.1.4
 			 *
 			 * @param string $attribute Lesson row attribute. The attribute value to show if the sample lesson is not accessible.
 			 * @param int    $lesson_id Lesson ID.
@@ -119,6 +123,8 @@ endif; ?>
 				/**
 				 * Filters whether to show lesson row attributes in lesson listing.
 				 *
+				 * @since 3.0.0
+				 *
 				 * @param boolean $show_row_attributes Whether to show lesson row attributes.
 				 */
 				if ( ! empty( $topics ) || ! empty( $quizzes ) || ! empty( $attributes ) || apply_filters( 'learndash-lesson-row-attributes', false ) ) :
@@ -153,18 +159,18 @@ endif; ?>
 							?>
 							<span class="ld-item-component">
 							<?php
-							echo sprintf(
+							printf(
 								// translators: placeholders: Topic Count, Topic/Topics Label.
-								esc_html_x( '%1$d %2$s', 'placeholders: Topic Count, Topic/Topics Label', 'learndash' ),
-								esc_html( $content_count['topics'] ),
-								esc_html(
-									_n(
-										LearnDash_Custom_Label::get_label( 'topic' ),
-										LearnDash_Custom_Label::get_label( 'topics' ),
-										$content_count['topics'],
-										'learndash'
-									)
-								)
+								_nx(
+									'%1$d %2$s',
+									'%1$d %2$s',
+									$content_count['topics'],
+									'placeholders: Topic Count, Topic/Topics Label',
+									'learndash'
+								),
+								$content_count['topics'],
+								( $content_count['topics'] < 2 ? esc_attr( LearnDash_Custom_Label::get_label( 'topic' ) ) : esc_attr( LearnDash_Custom_Label::get_label( 'topics' ) ) ),
+								number_format_i18n( $content_count['topics'] )
 							);
 							?>
 							</span>
@@ -179,18 +185,18 @@ endif; ?>
 							?>
 							<span class="ld-item-component">
 							<?php
-							echo sprintf(
+							printf(
 								// translators: placeholders: Quiz Count, Quiz/Quizzes Label.
-								esc_html_x( '%1$d %2$s', 'placeholders: Quiz Count, Quiz/Quizzes Label', 'learndash' ),
-								esc_html( $content_count['quizzes'] ),
-								esc_html(
-									_n(
-										LearnDash_Custom_Label::get_label( 'quiz' ),
-										LearnDash_Custom_Label::get_label( 'quizzes' ),
-										$content_count['quizzes'],
-										'learndash'
-									)
-								)
+								_nx(
+									'%1$d %2$s',
+									'%1$d %2$s',
+									$content_count['quizzes'],
+									'placeholders: Quiz Count, Quiz/Quizzes Label',
+									'learndash'
+								),
+								$content_count['quizzes'],
+								( $content_count['quizzes'] < 2 ? esc_attr( LearnDash_Custom_Label::get_label( 'quiz' ) ) : esc_attr( LearnDash_Custom_Label::get_label( 'quizzes' ) ) ),
+								number_format_i18n( $content_count['quizzes'] )
 							);
 							?>
 							</span>
@@ -323,7 +329,7 @@ endif; ?>
 	 * If the lesson has associated topics, display a list
 	 *
 	 * @var $topics [array]
-	 * @since 3.0
+	 * @since 3.0.0
 	 */
 	if ( ! empty( $topics ) || ! empty( $quizzes ) ) :
 		?>

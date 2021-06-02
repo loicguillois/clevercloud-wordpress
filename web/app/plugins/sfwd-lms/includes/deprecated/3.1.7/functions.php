@@ -15,7 +15,7 @@ if ( ! function_exists( 'learndash_user_can_bypass_course_limits' ) ) {
 	/**
 	 * LearnDash user can bypass course limits
 	 *
-	 * @deprecated 3.1.7 Use learndash_can_user_bypass()
+	 * @deprecated 3.1.7 Use {@see 'learndash_can_user_bypass'} instead.
 	 */
 	function learndash_user_can_bypass_course_limits( $user_id = null ) {
 		if ( function_exists( '_deprecated_function' ) ) {
@@ -30,7 +30,7 @@ if ( ! function_exists( 'is_course_prerequities_completed' ) ) {
 	/**
 	 * Is course prerequities completed
 	 *
-	 * @deprecated 3.1.7 Use learndash_is_course_prerequities_completed()
+	 * @deprecated 3.1.7 Use {@see 'learndash_is_course_prerequities_completed'} instead.
 	 */
 	function is_course_prerequities_completed( $course_id = null ) {
 		if ( function_exists( '_deprecated_function' ) ) {

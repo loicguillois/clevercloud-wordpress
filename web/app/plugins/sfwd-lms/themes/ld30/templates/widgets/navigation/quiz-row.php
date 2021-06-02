@@ -1,4 +1,12 @@
 <?php
+/**
+ * LearnDash LD30 Displays course navigation quiz row
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30\Widgets
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

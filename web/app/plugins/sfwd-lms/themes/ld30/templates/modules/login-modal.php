@@ -1,8 +1,10 @@
 <?php
 /**
- * LearnDash Login Modal
+ * LearnDash LD30 Displays the login modal
  *
- * @package LearnDash
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -24,7 +26,7 @@ if ( is_multisite() ) {
 	$can_register = get_option( 'users_can_register' );
 }
 ?>
-<div class="ld-modal ld-login-modal 
+<div class="ld-modal ld-login-modal
 <?php
 if ( $can_register ) {
 	echo esc_attr( 'ld-can-register' ); }
@@ -134,6 +136,8 @@ if ( $can_register ) {
 				/**
 				 * Filters list of login form arguments to be used in wp_login_form.
 				 *
+				 * @since 3.0.0
+				 *
 				 * @param array $login_form_args An Array of login form arguments to be used in wp_login_form.
 				 */
 				$login_form_args = apply_filters( 'learndash-login-form-args', $login_form_args );
@@ -183,17 +187,23 @@ if ( $can_register ) {
 		/**
 		 * Filters the LearnDash login modal registration URL.
 		 *
+		 * @since 3.1.0
+		 *
 		 * @param string $registration_url    Login modal registration url.
 		 */
 		$register_url = apply_filters( 'learndash_login_model_register_url', '#ld-user-register' );
 		/**
 		 * Filters the LearnDash login modal registration header text.
 		 *
+		 * @since 3.1.0
+		 *
 		 * @param string $registration_header Login modal registration header text.
 		 */
 		$register_header = apply_filters( 'learndash_login_model_register_header', esc_html__( 'Register', 'learndash' ) );
 		/**
 		 * Filters the LearnDash login modal registration text.
+		 *
+		 * @since 3.1.0
 		 *
 		 * @param string $registration_text   Login Modal registration text.
 		 */
@@ -226,7 +236,7 @@ if ( $can_register ) {
 					<div class="ld-modal-text"><?php echo esc_html( $register_text ); ?></div>
 					<?php
 					/**
-					 * Fires before the register modal heading.
+					 * Fires after the register modal heading.
 					 *
 					 * @since 3.0.0
 					 */
@@ -294,6 +304,8 @@ if ( $can_register ) {
 						/**
 						 * Filters the LearnDash Login modal register button CSS class.
 						 *
+						 * @since 3.1.0
+						 *
 						 * @param string $register_button_class Register button CSS class.
 						 */
 						$register_button_class = apply_filters( 'learndash_login_model_register_button_class', 'ld-js-register-account' );
@@ -307,7 +319,7 @@ if ( $can_register ) {
 
 					<?php
 					/**
-					 * Fires before the register modal heading.
+					 * Fires after the register modal heading.
 					 *
 					 * @since 3.0.0
 					 */
@@ -381,6 +393,8 @@ if ( $can_register ) {
 
 								/**
 								 * Fires inside the registration form.
+								 *
+								 * @since 3.0.0
 								 */
 								do_action( 'learndash_register_form' );
 

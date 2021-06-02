@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Admin Group Edit Class.
+ * LearnDash Admin Group Edit.
  *
- * @package LearnDash
- * @subpackage Admin
+ * @since 3.2.0
+ * @package LearnDash\Group\Edit
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,8 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learndash_Admin_Group_Edit' ) ) ) {
+
 	/**
-	 * Class for LearnDash Admin Group Edit.
+	 * Class LearnDash Admin Group Edit.
+	 *
+	 * @since 3.2.0
+	 * @uses Learndash_Admin_Post_Edit
 	 */
 	class Learndash_Admin_Group_Edit extends Learndash_Admin_Post_Edit {
 
@@ -25,6 +29,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 
 		/**
 		 * Public constructor for class.
+		 *
+		 * @since 3.2.0
 		 */
 		public function __construct() {
 			$this->post_type = learndash_get_post_type_slug( 'group' );
@@ -35,6 +41,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * On Load handler function for this post type edit.
 		 * This function is called by a WP action when the admin
 		 * page 'post.php' or 'post-new.php' are loaded.
+		 *
+		 * @since 3.2.0
 		 */
 		public function on_load() {
 			if ( $this->post_type_check() ) {
@@ -61,13 +69,15 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * Register Groups meta box for admin
 		 * Managed enrolled groups, users and group leaders
 		 *
-		 * @since 2.1.2
-		 * @param string $post_type Port Type being edited.
+		 * @since 3.2.0
+		 *
+		 * @param string $post_type Post Type being edited.
+		 * @param object $post      WP_Post Post being edited.
 		 */
 		public function add_metaboxes( $post_type = '', $post = null ) {
 
 			if ( $this->post_type_check( $post_type ) ) {
-				parent::add_metaboxes( $post_type );
+				parent::add_metaboxes( $post_type, $post );
 			}
 
 			add_meta_box(
@@ -83,7 +93,14 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 			);
 		}
 
-		public function group_attributes_metabox_content( $post, $something = '' ) {
+		/**
+		 * Show Metabox
+		 *
+		 * @since 3.2.0
+		 *
+		 * @param object $post WP_Post object.
+		 */
+		public function group_attributes_metabox_content( $post ) {
 			if ( is_post_type_hierarchical( $post->post_type ) ) {
 				$dropdown_args = array(
 					'post_type'        => $post->post_type,
@@ -121,6 +138,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 
 		/**
 		 * Save metabox handler function.
+		 *
+		 * @since 3.2.0
 		 *
 		 * @param integer $post_id Post ID Question being edited.
 		 * @param object  $post WP_Post Question being edited.
@@ -175,7 +194,9 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 			/**
 			 * Fires after the group post data is updated.
 			 *
-			 * @deprecated 3.1.7 No replacement.
+			 * @since 2.3.1
+			 * @deprecated 3.1.7
+			 *
 			 * @param integer $post_id       Post ID of the group
 			 * @param array   $group_leaders An array of group leaders.
 			 * @param array   $group_users   An array of group users.

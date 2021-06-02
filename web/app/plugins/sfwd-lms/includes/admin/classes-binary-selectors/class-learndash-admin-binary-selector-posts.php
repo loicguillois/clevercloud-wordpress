@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Binary Selector Posts Class.
+ * LearnDash Binary Selector Posts.
  *
- * @package LearnDash
- * @subpackage Admin Settings
+ * @since 2.2.1
+ * @package LearnDash\Settings
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,12 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( ! class_exists( 'Learndash_Binary_Selector_Posts' ) ) && ( class_exists( 'Learndash_Binary_Selector' ) ) ) {
+
 	/**
-	 * Class for LearnDash Binary Selector Posts.
+	 * Class LearnDash Binary Selector Posts.
+	 *
+	 * @since 2.2.1
+	 * @uses Learndash_Binary_Selector
 	 */
 	class Learndash_Binary_Selector_Posts extends Learndash_Binary_Selector {
+
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 2.2.1
 		 *
 		 * @param array $args Array of arguments for class.
 		 */
@@ -47,6 +54,8 @@ if ( ( ! class_exists( 'Learndash_Binary_Selector_Posts' ) ) && ( class_exists( 
 
 		/**
 		 * Get selector section items.
+		 *
+		 * @since 2.2.1
 		 *
 		 * @param string $position Value for 'left' or 'right' position.
 		 */
@@ -83,8 +92,10 @@ if ( ( ! class_exists( 'Learndash_Binary_Selector_Posts' ) ) && ( class_exists( 
 		/**
 		 * Process selector section query.
 		 *
+		 * @since 2.2.1
+		 *
 		 * @param array  $query_args Array of query args.
-		 * @param string $position Value for 'left' or 'right' position.
+		 * @param string $position   Value for 'left' or 'right' position.
 		 */
 		protected function process_query( $query_args = array(), $position = '' ) {
 			if ( $this->is_valid_position( $position ) ) {
@@ -110,6 +121,8 @@ if ( ( ! class_exists( 'Learndash_Binary_Selector_Posts' ) ) && ( class_exists( 
 
 		/**
 		 * Get selector section pager data.
+		 *
+		 * @since 2.2.1
 		 *
 		 * @param string $position Value for 'left' or 'right' position.
 		 */
@@ -149,6 +162,8 @@ if ( ( ! class_exists( 'Learndash_Binary_Selector_Posts' ) ) && ( class_exists( 
 		/**
 		 * Build selector section options HTML.
 		 *
+		 * @since 2.2.1
+		 *
 		 * @param string $position Value for 'left' or 'right' position.
 		 */
 		protected function build_options_html( $position = '' ) {
@@ -158,7 +173,7 @@ if ( ( ! class_exists( 'Learndash_Binary_Selector_Posts' ) ) && ( class_exists( 
 					foreach ( $this->element_items[ $position ] as $post ) {
 						$disabled_class = '';
 						$disabled_state = '';
-						/** This filter is documented in includes/admin/class-learndash-admin-binary-selector.php */
+						/** This filter is documented in includes/admin/classes-binary-selectors/class-learndash-admin-binary-selector-users.php */
 						$item_title = apply_filters( 'learndash_binary_selector_item', $post->post_title, $post, $position, $this->selector_class );
 						if ( ! empty( $item_title ) ) {
 							$item_title = wp_strip_all_tags( $item_title );
@@ -193,6 +208,8 @@ if ( ( ! class_exists( 'Learndash_Binary_Selector_Posts' ) ) && ( class_exists( 
 		/**
 		 * Load selector section search AJAX.
 		 *
+		 * @since 2.2.1
+		 *
 		 * @param string $position Value for 'left' or 'right' position.
 		 */
 		public function load_search_ajax( $position = '' ) {
@@ -218,6 +235,8 @@ if ( ( ! class_exists( 'Learndash_Binary_Selector_Posts' ) ) && ( class_exists( 
 
 		/**
 		 * Search filter by Title.
+		 *
+		 * @since 2.2.1
 		 *
 		 * @param string   $search Search pattern.
 		 * @param WP_Query $wp_query WP_Query object.

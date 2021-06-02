@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section for Course Themes Metabox.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,13 +12,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Courses_Themes' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Section for Course Themes Metabox.
+	 *
+	 * @since 3.0.0
 	 */
 	class LearnDash_Settings_Courses_Themes extends LearnDash_Settings_Section {
 
 		private $themes_list = array();
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		protected function __construct() {
 
@@ -47,6 +51,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings values.
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_values() {
 			parent::load_settings_values();
@@ -70,6 +76,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings fields.
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_fields() {
 			$this->setting_option_fields = array(
@@ -89,6 +97,14 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 			parent::load_settings_fields();
 		}
 
+		/**
+		 * Section Fields After
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param string $settings_section_key Section Key
+		 * @param string $settings_screen_id   Screen ID
+		 */
 		public function learndash_section_fields_after( $settings_section_key, $settings_screen_id ) {
 			if ( $settings_section_key === $this->settings_section_key ) {
 

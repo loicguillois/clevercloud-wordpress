@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Courses (sfwd-courses) Posts Listing Class.
+ * LearnDash Courses (sfwd-courses) Posts Listing.
  *
- * @package LearnDash
- * @subpackage admin
+ * @since 2.6.0
+ * @package LearnDash\Course\Listing
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,13 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'Learndash_Admin_Courses_Listing' ) ) ) {
+
 	/**
-	 * Class for LearnDash Courses Listing Pages.
+	 * Class LearnDash Courses (sfwd-courses) Posts Listing.
+	 *
+	 * @since 2.6.0
+	 * @uses Learndash_Admin_Posts_Listing
 	 */
 	class Learndash_Admin_Courses_Listing extends Learndash_Admin_Posts_Listing {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.2.3
 		 */
 		public function __construct() {
 			$this->post_type = learndash_get_post_type_slug( 'course' );
@@ -27,6 +33,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Called via the WordPress init action hook.
+		 *
+		 * @since 3.2.3
 		 */
 		public function listing_init() {
 			if ( $this->listing_init_done ) {
@@ -79,16 +87,36 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Call via the WordPress load sequence for admin pages.
+		 *
+		 * @since 3.2.3
 		 */
 		public function on_load_listing() {
 			if ( $this->post_type_check() ) {
 				parent::on_load_listing();
 
 				add_filter( 'learndash_listing_table_query_vars_filter', array( $this, 'listing_table_query_vars_filter_courses' ), 30, 3 );
+
+				/**
+				 * Convert the Course Post Meta items.
+				 *
+				 * @since 3.4.1
+				 */
+				$ld_data_upgrade_course_post_meta = Learndash_Admin_Data_Upgrades::get_instance( 'Learndash_Admin_Data_Upgrades_Course_Post_Meta' );
+				if ( ( $ld_data_upgrade_course_post_meta ) && ( is_a( $ld_data_upgrade_course_post_meta, 'Learndash_Admin_Data_Upgrades_Course_Post_Meta' ) ) ) {
+					$ld_data_upgrade_course_post_meta->process_post_meta( true );
+				}
 			}
 		}
 
-		/** This function is documented in includes/admin/class-learndash-admin-posts-listing.php */
+		/**
+		 * Listing table query vars
+		 *
+		 * @since 3.2.3
+		 *
+		 * @param array  $q_vars    Array of query vars.
+		 * @param string $post_type Post Type being displayed.
+		 * @param array  $query     Main Query.
+		 */
 		public function listing_table_query_vars_filter_courses( $q_vars, $post_type, $query ) {
 			$user_selector = $this->get_selector( 'user_id' );
 			if ( ( $user_selector ) && ( isset( $user_selector['selected'] ) ) && ( ! empty( $user_selector['selected'] ) ) ) {
@@ -100,13 +128,26 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 				}
 			}
 
+			if ( isset( $_GET['certificate_id'] ) ) {
+				$certificate_id = absint( $_GET['certificate_id'] );
+				if ( ! empty( $certificate_id ) ) {
+					$used_posts = learndash_certificate_get_used_by( $certificate_id, $this->post_type );
+					if ( ! empty( $used_posts ) ) {
+						$q_vars['post__in'] = $used_posts;
+					} else {
+						$q_vars['post__in'] = array( 0 );
+					}
+				}
+			}
+
+
 			return $q_vars;
 		}
 
 		/**
 		 * Add Course Builder link to Courses row action array.
 		 *
-		 * @since 2.5.0
+		 * @since 3.0.0
 		 *
 		 * @param array   $row_actions Existing Row actions for course.
 		 * @param WP_Post $course_post Course Post object for current row.
@@ -120,6 +161,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 				if ( ( LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Courses_Builder', 'enabled' ) == 'yes' ) && ( current_user_can( 'edit_post', $post->ID ) ) && ( ! isset( $row_actions['ld-course-builder'] ) ) ) {
 					/**
 					 * Filters whether to show course builder row actions or not.
+					 *
+					 * @since 2.5.0
 					 *
 					 * @param boolean      $show_row_actions Whether to show row actions.
 					 * @param WP_Post|null $course_post      Course post object.

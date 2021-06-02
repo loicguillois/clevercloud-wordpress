@@ -2,27 +2,26 @@
 /**
  * LearnDash V2 REST API User Course Progress Controller.
  *
- * @package LearnDash
- * @subpackage REST_API
- * @since 3.3.0
- */
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
-/**
  * This Controller class is used to GET/UPDATE/DELETE the user
  * course progress.
  *
  * This class extends the LD_REST_Posts_Controller_V2 class.
  *
  * @since 3.3.0
+ * @package LearnDash\REST\V2
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( ( ! class_exists( 'LD_REST_Users_Course_Progress_Controller_V2' ) ) && ( class_exists( 'LD_REST_Posts_Controller_V2' ) ) ) {
+
 	/**
-	 * Class REST API Topics Post Controller.
+	 * Class LearnDash V2 REST API User Course Progress Controller.
+	 *
+	 * @since 3.3.0
+	 * @uses LD_REST_Posts_Controller_V2
 	 */
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Users_Course_Progress_Controller_V2 extends LD_REST_Posts_Controller_V2 {
@@ -58,6 +57,8 @@ if ( ( ! class_exists( 'LD_REST_Users_Course_Progress_Controller_V2' ) ) && ( cl
 
 		/**
 		 * Public constructor for class
+		 *
+		 * 3.3.0
 		 */
 		public function __construct() {
 			$this->post_type  = learndash_get_post_type_slug( 'course' );
@@ -498,18 +499,7 @@ if ( ( ! class_exists( 'LD_REST_Users_Course_Progress_Controller_V2' ) ) && ( cl
 			$args['post__in']  = $user_course_ids;
 			$args['fields']    = 'ids';
 
-			/**
-			 * Filters the query arguments for a request.
-			 *
-			 * Enables adding extra arguments or setting defaults for a post collection request.
-			 *
-			 * @since 3.3.0
-			 *
-			 * @link https://developer.wordpress.org/reference/classes/wp_query/
-			 *
-			 * @param array           $args    Key value array of query var to query value.
-			 * @param WP_REST_Request $request The request used.
-			 */
+			/** This filter is documeted in includes/rest-api/v1/class-ld-rest-users-course-progress-controller.php */
 			$args = apply_filters( 'learndash_rest_users_course_progress_query', $args, $request );
 
 			return $args;
@@ -949,12 +939,9 @@ if ( ( ! class_exists( 'LD_REST_Users_Course_Progress_Controller_V2' ) ) && ( cl
 				$user_course_progress_header['date_completed'] = '';
 			}
 
-			if ( isset( $user_course_progress_header['status'] ) ) {
-				$user_course_progress_header['progress_status'] = $user_course_progress_header['status'];
-				unset( $user_course_progress_header['status'] );
-			} else {
-				$user_course_progress_header['progress_status'] = learndash_course_status( $course_id, $user_id, true );
-			}
+			$user_course_progress_header['status'] = learndash_course_status( $course_id, $user_id, true );
+			$user_course_progress_header['progress_status'] = str_replace( '_', '-', $user_course_progress_header['status'] );
+			unset( $user_course_progress_header['status'] );
 
 			$user_course_progress_header['_links'] = array(
 				'self'       => array(
@@ -1107,6 +1094,7 @@ if ( ( ! class_exists( 'LD_REST_Users_Course_Progress_Controller_V2' ) ) && ( cl
 			$activity_query_args = array(
 				'user_ids'   => array( absint( $user_id ) ),
 				'course_ids' => array( absint( $course_id ) ),
+				'per_page'   => 0,
 			);
 
 			$user_courses_reports = learndash_reports_get_activity( $activity_query_args );
@@ -1129,14 +1117,14 @@ if ( ( ! class_exists( 'LD_REST_Users_Course_Progress_Controller_V2' ) ) && ( cl
 					}
 
 					if ( $result->activity_status ) {
-						$user_course_activity_row['step_status'] = 'complete';
+						$user_course_activity_row['step_status'] = 'completed';
 					} else {
 						if ( empty( $user_course_activity_row['step_started'] ) ) {
 							$user_course_activity_row['step_status'] = 'not-started';
 						} elseif ( empty( $user_course_activity_row['step_completed'] ) ) {
 							$user_course_activity_row['step_status'] = 'in-progress';
 						} else {
-							$user_course_activity_row['step_status'] = 'complete';
+							$user_course_activity_row['step_status'] = 'completed';
 						}
 					}
 
@@ -1146,6 +1134,7 @@ if ( ( ! class_exists( 'LD_REST_Users_Course_Progress_Controller_V2' ) ) && ( cl
 
 			return $user_course_activity;
 		}
+
 
 		// End of functions.
 	}

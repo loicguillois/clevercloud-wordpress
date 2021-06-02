@@ -1,10 +1,10 @@
 <?php
 /**
- * Displays the course navigation widget.
+ * LearnDash LD30 Displays the course navigation widget row.
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\LD30\Widgets
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

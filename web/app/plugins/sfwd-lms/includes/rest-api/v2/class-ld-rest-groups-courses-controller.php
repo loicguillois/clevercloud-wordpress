@@ -1,17 +1,7 @@
 <?php
 /**
- * LearnDash V2 REST API Groups Courses Controller.
+ * LearnDash REST API V2 Groups Courses Controller.
  *
- * @package LearnDash
- * @subpackage REST_API
- * @since 3.3.0
- */
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
-/*
  * This Controller class is used to GET/UPDATE/DELETE the association
  * between the LearnDash Groups (groups) and Courses (sfwd-courses)
  * custom post types.
@@ -19,16 +9,28 @@ if ( ! defined( 'ABSPATH' ) ) {
  * This class extends the LD_REST_Posts_Controller_V2 class.
  *
  * @since 3.3.0
+ * @package LearnDash\REST\V2
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( ( ! class_exists( 'LD_REST_Groups_Courses_Controller_V2' ) ) && ( class_exists( 'LD_REST_Posts_Controller_V2' ) ) ) {
+
 	/**
-	 * Class REST API Courses Post Controller.
+	 * Class LearnDash REST API V2 Groups Courses Controller.
+	 *
+	 * @since 3.3.0
+	 * @uses LD_REST_Posts_Controller_V2
 	 */
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Groups_Courses_Controller_V2 extends LD_REST_Posts_Controller_V2 {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.3.0
 		 */
 		public function __construct( $post_type = '' ) {
 			if ( empty( $post_type ) ) {

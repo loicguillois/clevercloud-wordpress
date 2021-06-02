@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section for Data Upgrades Metabox.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.6.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Section_Data_Upgrades' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Section for Data Upgrades Metabox.
+	 *
+	 * @since 2.6.0
 	 */
 	class LearnDash_Settings_Section_Data_Upgrades extends LearnDash_Settings_Section {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 2.6.0
 		 */
 		protected function __construct() {
 			$this->settings_page_id = 'learndash_data_upgrades';
@@ -39,6 +43,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Show Settings Section meta box.
+		 *
+		 * @since 2.6.0
 		 */
 		public function show_meta_box() {
 			$ld_admin_data_upgrades = Learndash_Admin_Data_Upgrades::get_instance();

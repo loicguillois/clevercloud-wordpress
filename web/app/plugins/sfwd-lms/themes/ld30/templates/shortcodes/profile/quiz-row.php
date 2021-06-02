@@ -1,4 +1,11 @@
 <?php
+/**
+ * LearnDash LD30 Displays a user's profile quiz row.
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -71,6 +78,8 @@ $quiz_link = ! empty( $quiz_attempt['post']->ID ) ? learndash_get_step_permalink
 			/**
 			 * Filters LearnDash profile quiz column list.
 			 *
+			 * @since 3.0.0
+			 *
 			 * @param array $quiz_columns      An array of quiz columns list.
 			 * @param array $quiz_attempt      This is the quiz attempt array read from the user meta.
 			 * @param array $quiz_list_columns An array of quiz list columns data.
@@ -133,6 +142,8 @@ $quiz_link = ! empty( $quiz_attempt['post']->ID ) ? learndash_get_step_permalink
 
 						/**
 						 * Filters essay column heading details.
+						 *
+						 * @since 3.0.0
 						 *
 						 * @param array $column_headings An array of essay column heading details array. Heading details array can have keys for id and label.
 						 */

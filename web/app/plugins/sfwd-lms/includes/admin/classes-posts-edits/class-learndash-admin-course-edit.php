@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Admin Course Edit Class.
+ * LearnDash Admin Course Edit.
  *
- * @package LearnDash
- * @subpackage Admin
+ * @since 2.2.1
+ * @package LearnDash\Course\Edit
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,8 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learndash_Admin_Course_Edit' ) ) ) {
+
 	/**
-	 * Class for LearnDash Admin Course Edit.
+	 * Class LearnDash Admin Course Edit.
+	 *
+	 * @since 2.2.1
+	 * @uses Learndash_Admin_Post_Edit
 	 */
 	class Learndash_Admin_Course_Edit extends Learndash_Admin_Post_Edit {
 
@@ -41,6 +45,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 
 		/**
 		 * Public constructor for class.
+		 *
+		 * @since 2.2.1
 		 */
 		public function __construct() {
 			$this->post_type = learndash_get_post_type_slug( 'course' );
@@ -52,6 +58,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * On Load handler function for this post type edit.
 		 * This function is called by a WP action when the admin
 		 * page 'post.php' or 'post-new.php' are loaded.
+		 *
+		 * @since 2.2.1
 		 */
 		public function on_load() {
 			if ( $this->post_type_check() ) {
@@ -64,6 +72,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 				if ( false === learndash_use_legacy_course_access_list() ) {
 					/**
 					 * Filters Whether to show course users metabox or not.
+					 *
+					 * @since 3.1.0
 					 *
 					 * @param boolean $show_metabox Whether to show metabox or not.
 					 */
@@ -95,14 +105,14 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		}
 
 		/**
-		 * Register Groups meta box for admin
-		 * Managed enrolled groups, users and group leaders
+		 * Registers the course builder metabox for the admin
 		 *
-		 * @since 2.1.2
-		 * @param string $post_type Port Type being edited.
+		 * @since 2.4.0
+		 *
+		 * @param string $post_type Post Type being edited.
+		 * @param object $post WP_Post Post being edited.
 		 */
 		public function add_metaboxes( $post_type = '', $post = null ) {
-
 			if ( $this->post_type_check( $post_type ) ) {
 
 				/** This filter is documented in includes/admin/classes-posts-edits/class-learndash-admin-course-edit.php */
@@ -121,12 +131,14 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 					);
 				}
 
-				parent::add_metaboxes( $post_type );
+				parent::add_metaboxes( $post_type, $post );
 			}
 		}
 
 		/**
 		 * Save metabox handler function.
+		 *
+		 * @since 2.6.0
 		 *
 		 * @param integer $post_id Post ID Question being edited.
 		 * @param object  $post WP_Post Question being edited.

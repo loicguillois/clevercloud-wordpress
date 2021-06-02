@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Displays the infobar in course context
+ * LearnDash LD30 Displays the infobar in course context
  *
  * Will have access to same variables as course.php
  *
@@ -31,9 +31,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * $has_topics                 : (true/false)
  * $lesson_topics              : (array) lessons topics
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\LD30\Modules
  */ ?>
 
 <?php
@@ -116,6 +116,8 @@ if ( is_user_logged_in() && isset( $has_access ) && $has_access ) :
 			/**
 			 * Fires before the course infobar status cell.
 			 *
+			 * @since 3.0.0
+			 *
 			 * @param string|false $post_type Post type slug.
 			 * @param int          $course_id Course ID.
 			 * @param int          $user_id   User ID.
@@ -140,6 +142,8 @@ if ( is_user_logged_in() && isset( $has_access ) && $has_access ) :
 			<?php
 			/**
 			 * Fires after the course infobar status cell.
+			 *
+			 * @since 3.0.0
 			 *
 			 * @param string|false $post_type Post type slug.
 			 * @param int          $course_id Course ID.
@@ -169,6 +173,8 @@ if ( is_user_logged_in() && isset( $has_access ) && $has_access ) :
 			/**
 			 * Fires before the course infobar price cell.
 			 *
+			 * @since 3.0.0
+			 *
 			 * @param string|false $post_type Post type slug.
 			 * @param int          $course_id Course ID.
 			 * @param int          $user_id   User ID.
@@ -189,6 +195,8 @@ if ( is_user_logged_in() && isset( $has_access ) && $has_access ) :
 						else :
 								/**
 								 * Filters label to be displayed when there is no price set for a course or it is closed.
+								 *
+								 * @since 3.0.0
 								 *
 								 * @param string $label The label displayed when there is no price.
 								 */
@@ -216,6 +224,8 @@ if ( is_user_logged_in() && isset( $has_access ) && $has_access ) :
 			/**
 			 * Fires after the infobar price cell.
 			 *
+			 * @since 3.0.0
+			 *
 			 * @param string|false $post_type Post type slug.
 			 * @param int          $course_id Course ID.
 			 * @param int          $user_id   User ID.
@@ -240,6 +250,8 @@ if ( is_user_logged_in() && isset( $has_access ) && $has_access ) :
 		/**
 		 * Filters infobar course status segment CSS class.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param string $segment_class The List of course segment CSS class.
 		 */
 		$course_status_class = apply_filters(
@@ -257,6 +269,8 @@ if ( is_user_logged_in() && isset( $has_access ) && $has_access ) :
 						/**
 						 * Fires before the course infobar action cell.
 						 *
+						 * @since 3.0.0
+						 *
 						 * @param string|false $post_type Post type slug.
 						 * @param int          $course_id Course ID.
 						 * @param int          $user_id   User ID.
@@ -265,7 +279,7 @@ if ( is_user_logged_in() && isset( $has_access ) && $has_access ) :
 
 						$login_model = LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Theme_LD30', 'login_mode_enabled' );
 
-						/** This filter is documented in themes/ld30/includes/shortcode.php */
+						/** This filter is documented in themes/ld30/includes/shortcodes.php */
 						$login_url = apply_filters( 'learndash_login_url', ( 'yes' === $login_model ? '#login' : wp_login_url( get_permalink() ) ) );
 
 					switch ( $course_pricing['type'] ) {
@@ -273,6 +287,8 @@ if ( is_user_logged_in() && isset( $has_access ) && $has_access ) :
 						case ( 'free' ):
 							/**
 							 * Filters whether to show login modal.
+							 *
+							 * @since 3.0.0
 							 *
 							 * @param boolean $show_login_modal Whether to show login modal.
 							 * @param int     $course_id        Course ID.
@@ -316,6 +332,8 @@ if ( is_user_logged_in() && isset( $has_access ) && $has_access ) :
 
 					/**
 					 * Fires after the course infobar action cell.
+					 *
+					 * @since 3.0.0
 					 *
 					 * @param string|false $post_type Post type slug.
 					 * @param int          $course_id Course ID.

@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Course Builder Metabox Class.
+ * LearnDash Course Builder Metabox Base.
  *
- * @package LearnDash
- * @subpackage admin
+ * @since 2.6.0
+ * @package LearnDash\Builder
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,14 +11,32 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'Learndash_Admin_Builder' ) ) {
+
 	/**
-	 * Class for LearnDash Admin Builder.
+	 * Class LearnDash Course Builder Metabox Base.
+	 *
+	 * @since 2.6.0
 	 */
 	class Learndash_Admin_Builder {
 
+		/**
+		 * @var string $builder_post_type
+		 */
 		protected $builder_post_type;
-		protected $builder_prefix      = 'learndash_builder';
-		protected $builder_assets      = array();
+
+		/**
+		 * @var string $builder_prefix
+		 */
+		protected $builder_prefix = 'learndash_builder';
+
+		/**
+		 * @var array $builder_assets
+		 */
+		protected $builder_assets = array();
+
+		/**
+		 * @var array $selector_post_types
+		 */
 		protected $selector_post_types = array();
 
 		/**
@@ -30,6 +48,8 @@ if ( ! class_exists( 'Learndash_Admin_Builder' ) ) {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 2.6.0
 		 */
 		public function __construct() {
 			if ( ! isset( $this->builder_assets[ $this->builder_post_type ] ) ) {
@@ -46,10 +66,10 @@ if ( ! class_exists( 'Learndash_Admin_Builder' ) ) {
 			}
 		}
 
-				/**
+		/**
 		 * Add instance to static tracking array
 		 *
-		 * @since 2.4.0
+		 * @since 2.6.0
 		 */
 		final public static function add_instance() {
 			$called_class = get_called_class();
@@ -68,9 +88,10 @@ if ( ! class_exists( 'Learndash_Admin_Builder' ) ) {
 		/**
 		 * Get the current instance of this class or new.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 *
 		 * @param string $called_class Class for instance.
+		 *
 		 * @return object instance of class.
 		 */
 		public static function get_instance( $called_class = '' ) {
@@ -94,12 +115,16 @@ if ( ! class_exists( 'Learndash_Admin_Builder' ) ) {
 
 		/**
 		 * Call via the WordPress load sequence for admin pages.
+		 *
+		 * @since 2.6.0
 		 */
 		public function builder_on_load() {
 		}
 
 		/**
 		 * Call via the WordPress admin_footer action hook.
+		 *
+		 * @since 2.6.0
 		 */
 		public function builder_admin_footer() {
 			global $post;
@@ -154,9 +179,10 @@ if ( ! class_exists( 'Learndash_Admin_Builder' ) ) {
 		 * Prints content for Course Builder meta box for admin
 		 * This function is called from other add_meta_box functions
 		 *
-		 * @since 2.5
+		 * @since 2.6.0
 		 *
 		 * @param object $post WP_Post.
+		 *
 		 * @return string meta box HTML output.
 		 */
 		public function show_builder_box( $post ) {
@@ -172,11 +198,21 @@ if ( ! class_exists( 'Learndash_Admin_Builder' ) ) {
 			<?php
 		}
 
+		/**
+		 * Show builder headers
+		 *
+		 * @since 2.6.0
+		 */
 		public function show_builder_headers() {
 			$this->show_builder_header_left();
 			$this->show_builder_header_right();
 		}
 
+		/**
+		 * Show builder header left
+		 *
+		 * @since 2.6.0
+		 */
 		public function show_builder_header_left() {
 			?>
 			<div class="learndash-header-left">
@@ -185,6 +221,11 @@ if ( ! class_exists( 'Learndash_Admin_Builder' ) ) {
 			<?php
 		}
 
+		/**
+		 * Show builder header right
+		 *
+		 * @since 2.6.0
+		 */
 		public function show_builder_header_right() {
 			?>
 			<div class="learndash-header-right">
@@ -198,10 +239,11 @@ if ( ! class_exists( 'Learndash_Admin_Builder' ) ) {
 		/**
 		 * Utility function to get the label for Post Type.
 		 *
-		 * @since 2.5.0
+		 * @since 2.6.0
 		 *
 		 * @param string  $post_type Post Type slug.
-		 * @param boolean $singular True if singular label needed. False for plural.
+		 * @param boolean $singular  True if singular label needed. False for plural.
+		 *
 		 * @return string.
 		 */
 		public function get_label_for_post_type( $post_type = '', $singular = true ) {
@@ -210,6 +252,8 @@ if ( ! class_exists( 'Learndash_Admin_Builder' ) ) {
 
 		/**
 		 * Show the Course Box Selectors - Left side sections. There will be one selector per post type.
+		 *
+		 * @since 2.6.0
 		 */
 		public function show_builder_selectors() {
 			$builder_post_type_label = $this->get_label_for_post_type( $this->builder_post_type );
@@ -277,8 +321,10 @@ if ( ! class_exists( 'Learndash_Admin_Builder' ) ) {
 		/**
 		 * Common function to show Selector pager buttons.
 		 *
-		 * @since 2.5.0
+		 * @since 2.6.0
+		 *
 		 * @param object $post_type_query WP_Query instance.
+		 *
 		 * @return string Button(s) HTML.
 		 */
 		public function build_selector_pages_buttons( $post_type_query ) {
@@ -322,7 +368,8 @@ if ( ! class_exists( 'Learndash_Admin_Builder' ) ) {
 		/**
 		 * Show selector rows.
 		 *
-		 * @since 2.5.0
+		 * @since 2.6.0
+		 *
 		 * @param object $post_type_query WP_Query instance.
 		 */
 		protected function build_selector_rows( $post_type_query ) {
@@ -345,6 +392,8 @@ if ( ! class_exists( 'Learndash_Admin_Builder' ) ) {
 
 		/**
 		 * Build Course Steps HTML.
+		 *
+		 * @since 2.6.0
 		 */
 		public function build_course_steps_html() {
 			$steps_html = '';
@@ -540,6 +589,13 @@ add_action(
 	}
 );
 
+/**
+ * Verify builder data
+ *
+ * @since 3.0.0
+ *
+ * @param array $builder_data Builder Data
+ */
 function learndash_verify_builder_data( $builder_data = array() ) {
 	if ( empty( $builder_data ) ) {
 		echo wp_json_encode( array() );

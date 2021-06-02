@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Settings field Date Entry.
+ * LearnDash Date Entry Settings Field.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Field
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,12 +13,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ( class_exists( 'LearnDash_Settings_Fields' ) ) && ( ! class_exists( 'LearnDash_Settings_Fields_Date_Entry' ) ) ) {
 
 	/**
-	 * Class to create the settings field.
+	 * Class LearnDash Date Entry Settings Field.
+	 *
+	 * @since 3.0.0
+	 * @uses LearnDash_Settings_Fields
 	 */
 	class LearnDash_Settings_Fields_Date_Entry extends LearnDash_Settings_Fields {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		public function __construct() {
 			$this->field_type = 'date-entry';
@@ -29,7 +34,7 @@ if ( ( class_exists( 'LearnDash_Settings_Fields' ) ) && ( ! class_exists( 'Learn
 		/**
 		 * Function to crete the settiings field.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param array $field_args An array of field arguments used to process the ouput.
 		 * @return void
@@ -47,7 +52,7 @@ if ( ( class_exists( 'LearnDash_Settings_Fields' ) ) && ( ! class_exists( 'Learn
 			if ( isset( $field_args['value'] ) ) {
 				if ( ! empty( $field_args['value'] ) ) {
 					if ( ! is_numeric( $field_args['value'] ) ) {
-						$date_value = learndash_get_timestamp_from_date_string( $value );
+						$date_value = learndash_get_timestamp_from_date_string( $field_args['value'] );
 					} else {
 						// If we have a timestamp we assume it is GMT. So we need to convert it to local.
 						// phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date
@@ -109,7 +114,7 @@ if ( ( class_exists( 'LearnDash_Settings_Fields' ) ) && ( ! class_exists( 'Learn
 		/**
 		 * Validate field
 		 *
-		 * @since 2.6.0
+		 * @since 3.0.0
 		 *
 		 * @param mixed  $val Value to validate.
 		 * @param string $key Key of value being validated.
@@ -122,9 +127,9 @@ if ( ( class_exists( 'LearnDash_Settings_Fields' ) ) && ( ! class_exists( 'Learn
 		}
 
 		/**
-		 * Default validation function. Should be overriden in Field subclass.
+		 * Get Settings Field Value
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param mixed  $val Value to validate.
 		 * @param string $key Key of value being validated.

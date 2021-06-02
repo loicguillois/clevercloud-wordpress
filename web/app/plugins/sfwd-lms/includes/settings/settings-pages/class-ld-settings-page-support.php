@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Page Support.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.1.0
+ * @package LearnDash\Settings\Pages
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,7 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDash_Settings_Page_Support' ) ) ) {
 	/**
-	 * Class to create the settings page.
+	 * Class LearnDash Settings Page Support.
+	 *
+	 * @since 3.1.0
 	 */
 	class LearnDash_Settings_Page_Support extends LearnDash_Settings_Page {
 
@@ -25,6 +27,8 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.1.0
 		 */
 		public function __construct() {
 			$this->parent_menu_page_url  = 'admin.php?page=learndash_lms_settings';
@@ -42,6 +46,13 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 			parent::__construct();
 		}
 
+		/**
+		 * Setting Page Load
+		 *
+		 * @since 3.1.0
+		 *
+		 * @param string $settings_screen_id Screen ID
+		 */
 		public function learndash_settings_page_load( $settings_screen_id = '' ) {
 			global $sfwd_lms;
 
@@ -77,7 +88,7 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 		/**
 		 * Used to collect all needed display elements. Many filters by section as well as a final filter
 		 *
-		 * @since v2.5.4
+		 * @since 3.1.0
 		 */
 		public function gather_system_details() {
 
@@ -98,14 +109,21 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 
 		}
 
+		/**
+		 * Get Support Sections
+		 *
+		 * @since 3.1.0
+		 */
 		public function get_support_sections() {
 			return $this->system_info;
 		}
+
 		/**
 		 * Show System Info section
 		 *
-		 * @since 2.3
+		 * @since 3.1.0
 		 *
+		 * @param string $section_key Section Key.
 		 * @param string $output_type Controls formatting. 'html' or 'text'.
 		 */
 		public function show_support_section( $section_key = '', $output_type = 'html' ) {

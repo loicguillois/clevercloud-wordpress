@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Admin Essay Edit Class.
+ * LearnDash Admin Essay Edit.
  *
- * @package LearnDash
- * @subpackage Admin
+ * @since 3.2.3
+ * @package LearnDash\Essay\Edit
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,12 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learndash_Admin_Essay_Edit' ) ) ) {
+
 	/**
-	 * Class for LearnDash Admin Essay Edit.
+	 * Class LearnDash Admin Essay Edit.
+	 *
+	 * @since 3.2.3
+	 * @uses Learndash_Admin_Post_Edit
 	 */
 	class Learndash_Admin_Essay_Edit extends Learndash_Admin_Post_Edit {
+
 		/**
 		 * Public constructor for class.
+		 *
+		 * @since 3.2.3
 		 */
 		public function __construct() {
 			$this->post_type = learndash_get_post_type_slug( 'essay' );
@@ -28,6 +35,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * On Load handler function for this post type edit.
 		 * This function is called by a WP action when the admin
 		 * page 'post.php' or 'post-new.php' are loaded.
+		 *
+		 * @since 3.2.3
 		 */
 		public function on_load() {
 			if ( $this->post_type_check() ) {
@@ -65,7 +74,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 *
 		 * Copied/modified version of submitdiv from core.
 		 *
-		 * @since 2.2.0
+		 * @since 3.2.3
 		 *
 		 * @param WP_Post $essay The `WP_Post` essay object.
 		 */
@@ -145,15 +154,11 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 								<input name="quiz_id" type="hidden" value="<?php echo esc_attr( $quiz_id ); ?>">
 								<input name="question_id" type="hidden" value="<?php echo esc_attr( $question->getId() ); ?>">
 							<?php else : ?>
-								<p>
-								<?php
-									sprintf(
-										// translators: placeholder: question
-										esc_html_x( 'We could not find the essay %s for this response', 'placeholder: question', 'learndash' ),
-										learndash_get_custom_label_lower( 'question' )
-									)
-								?>
-								</p>
+								<p> <?php printf( // phpcs:ignore Squiz.PHP.EmbeddedPhp.ContentBeforeOpen,Squiz.PHP.EmbeddedPhp.ContentAfterOpen
+									// translators: placeholder: question
+									esc_html_x( 'We could not find the essay %s for this response', 'placeholder: question', 'learndash' ),
+									esc_html( learndash_get_custom_label_lower( 'question' ) )
+								) ?> </p> <?php // phpcs:ignore Generic.WhiteSpace.ScopeIndent.Incorrect,Squiz.PHP.EmbeddedPhp.ContentBeforeEnd,Squiz.PHP.EmbeddedPhp.ContentAfterEnd ?>
 							<?php endif; ?>
 						</div>
 
@@ -180,11 +185,11 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 										<strong>
 										<?php
 										// translators: placeholder: Quiz.
-										echo sprintf( esc_html_x( 'Essay %s', 'placeholder: Quiz.', 'learndash' ), LearnDash_Custom_Label::get_label( 'quiz' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
+										printf( esc_html_x( 'Essay %s', 'placeholder: Quiz.', 'learndash' ), LearnDash_Custom_Label::get_label( 'quiz' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
 										?>
 										:</strong>
 										<select name="essay_quiz_post_id">
-											<option value=""><?php echo sprintf( // phpcs:ignore Squiz.PHP.EmbeddedPhp.ContentBeforeOpen,Squiz.PHP.EmbeddedPhp.ContentAfterOpen
+											<option value=""><?php printf( // phpcs:ignore Squiz.PHP.EmbeddedPhp.ContentBeforeOpen,Squiz.PHP.EmbeddedPhp.ContentAfterOpen
 												// translators: placeholder: Quiz.
 												esc_html_x( 'No %s', 'placeholder: Quiz', 'learndash' ),
 												LearnDash_Custom_Label::get_label( 'quiz' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
@@ -209,7 +214,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 							if ( ! empty( $essay_quiz_post_id ) ) {
 								$essay_quiz_edit_link = get_edit_post_link( $essay_quiz_post_id );
 								?>
-									<p><strong><?php echo sprintf( // phpcs:ignore Squiz.PHP.EmbeddedPhp.ContentBeforeOpen,Squiz.PHP.EmbeddedPhp.ContentAfterOpen
+									<p><strong><?php printf( // phpcs:ignore Squiz.PHP.EmbeddedPhp.ContentBeforeOpen,Squiz.PHP.EmbeddedPhp.ContentAfterOpen
 										// translators: placeholder: Quiz.
 										esc_html_x( 'Essay %s', 'placeholder: Quiz', 'learndash' ),
 										LearnDash_Custom_Label::get_label( 'quiz' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
@@ -224,7 +229,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 								if ( ! empty( $essay_quiz_course_id ) ) {
 									$course_quiz_edit_link = get_edit_post_link( $essay_quiz_course_id );
 									?>
-										<p><strong><?php echo sprintf( // phpcs:ignore Squiz.PHP.EmbeddedPhp.ContentBeforeOpen,Squiz.PHP.EmbeddedPhp.ContentAfterOpen
+										<p><strong><?php printf( // phpcs:ignore Squiz.PHP.EmbeddedPhp.ContentBeforeOpen,Squiz.PHP.EmbeddedPhp.ContentAfterOpen
 											// translators: placeholder: Course.
 											esc_html_x( 'Essay %s', 'placeholder: Course', 'learndash' ),
 											LearnDash_Custom_Label::get_label( 'course' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
@@ -239,7 +244,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 									if ( ! empty( $essay_quiz_lesson_id ) ) {
 										$lesson_quiz_edit_link = get_edit_post_link( $essay_quiz_lesson_id );
 										?>
-											<p><strong><?php echo sprintf( // phpcs:ignore Squiz.PHP.EmbeddedPhp.ContentBeforeOpen,Squiz.PHP.EmbeddedPhp.ContentAfterOpen
+											<p><strong><?php printf( // phpcs:ignore Squiz.PHP.EmbeddedPhp.ContentBeforeOpen,Squiz.PHP.EmbeddedPhp.ContentAfterOpen
 												// translators: placeholder: Lesson.
 												esc_html_x( 'Essay %s', 'placeholder: Lesson', 'learndash' ),
 												LearnDash_Custom_Label::get_label( 'lesson' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
@@ -264,7 +269,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 						if ( $can_publish ) : // Contributors don't get to choose the date of publish
 							?>
 							<div class="misc-pub-section curtime misc-pub-curtime">
-								<span id="timestamp"><?php echo sprintf( // phpcs:ignore Squiz.PHP.EmbeddedPhp.ContentBeforeOpen,Squiz.PHP.EmbeddedPhp.ContentAfterOpen
+								<span id="timestamp"><?php printf( // phpcs:ignore Squiz.PHP.EmbeddedPhp.ContentBeforeOpen,Squiz.PHP.EmbeddedPhp.ContentAfterOpen
 									// translators: placeholder: Essay submit date.
 									wp_kses_post( 'Submitted on: <b>%s</b>', 'placeholder: Essay submit date', 'learndash' ),
 									esc_html( $date )
@@ -315,17 +320,20 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		/**
 		 * Prints the essay upload metabox content.
 		 *
-		 * @since 2.2.0
+		 * @since 3.2.3
 		 *
 		 * @param WP_Post $essay The `WP_Post` essay object.
 		 */
 		public function essay_upload_meta_box( $essay ) {
 			$upload = get_post_meta( $essay->ID, 'upload', true );
 			if ( ! empty( $upload ) ) {
-				echo sprintf( '<a target="_blank" href="%1$s">%s</a>', esc_url( $upload ) );
+				printf( '<a target="_blank" href="%1$s">%s</a>', esc_url( $upload ) );
 			} else {
-				// translators: placeholder: question
-				sprintf( esc_html_x( 'Upload was not provided for this %s', 'placeholder: question', 'learndash' ), learndash_get_custom_label_lower( 'question' ) );
+				printf(
+					// translators: placeholder: question
+					esc_html_x( 'Upload was not provided for this %s', 'placeholder: question', 'learndash' ),
+					esc_html( learndash_get_custom_label_lower( 'question' ) )
+				);
 			}
 		}
 
@@ -334,7 +342,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 *
 		 * Fires on `admin_menu` hook.
 		 *
-		 * @since 2.2.0
+		 * @since 3.2.3
 		 */
 		protected function remove_subbmitdiv_metabox() {
 			remove_meta_box( 'submitdiv', learndash_get_post_type_slug( 'essay' ), 'side' );
@@ -342,6 +350,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 
 		/**
 		 * Save metabox handler function.
+		 *
+		 * @since 3.2.3
 		 *
 		 * @param integer $post_id Post ID Question being edited.
 		 * @param object  $post WP_Post Question being edited.
@@ -364,7 +374,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 *
 		 * Fires on `save_post_sfwd-essays` hook.
 		 *
-		 * @since 2.2.0
+		 * @since 3.2.3
 		 *
 		 * @param int     $essay_id ID of the essay to be saved.
 		 * @param WP_Post $essay    The `WP_Post` essay object.
@@ -408,6 +418,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 			/**
 			 * Filters essay status data.
 			 *
+			 * @since 2.2.0
+			 *
 			 * @param array $essay_data An array of essay status data.
 			 */
 			$submitted_essay = apply_filters( 'learndash_essay_status_data', $submitted_essay );
@@ -432,6 +444,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 				/**
 				 * Filters updated essay scoring data before saving it to post meta.
 				 *
+				 * @since 2.2.0
+				 *
 				 * @param array $updated_scoring An array of updated essay score data.
 				 */
 				$updated_scoring = apply_filters( 'learndash_updated_essay_scoring', $updated_scoring );
@@ -439,6 +453,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 
 				/**
 				 * Fires after all the quiz data is updated.
+				 *
+				 * @since 2.2.0
 				 *
 				 * @param int     $quiz_id         Quiz ID.
 				 * @param int     $question_id     Question_id.

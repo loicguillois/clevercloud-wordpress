@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section for Login Registration Metabox.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Section_General_Login_Registration' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Section for Login Registration Metabox.
+	 *
+	 * @since 3.0.0
 	 */
 	class LearnDash_Settings_Section_General_Login_Registration extends LearnDash_Settings_Section {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		protected function __construct() {
 			$this->settings_page_id = 'learndash_lms_settings';
@@ -39,6 +43,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings values.
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_values() {
 			parent::load_settings_values();
@@ -54,6 +60,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings fields.
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_fields() {
 
@@ -93,6 +101,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Validate settings field.
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param string $val Value to be validated.
 		 * @param string $key settings fields key.

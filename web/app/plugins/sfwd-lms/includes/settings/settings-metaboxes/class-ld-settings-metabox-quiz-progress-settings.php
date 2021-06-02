@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Metabox for Quiz Progess Settings.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Metaboxes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,13 +12,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'LearnDash_Settings_Metabox_Quiz_Progress_Settings' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Metabox for Quiz Progess Settings.
+	 *
+	 * @since 3.0.0
 	 */
 	class LearnDash_Settings_Metabox_Quiz_Progress_Settings extends LearnDash_Settings_Metabox {
 
 		protected $quiz_edit = null;
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		public function __construct() {
 			// What screen ID are we showing on.
@@ -63,27 +67,34 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 		 * Used to save the settings fields back to the global $_POST object so
 		 * the WPProQuiz normal form processing can take place.
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
+		 *
 		 * @param object $pro_quiz_edit WpProQuiz_Controller_Quiz instance (not used).
 		 * @param array  $settings_values Array of settings fields.
 		 */
 		public function save_fields_to_post( $pro_quiz_edit, $settings_values = array() ) {
-			$_POST['quizRunOnce']       = $settings_values['quizRunOnce'];
-			$_POST['quizRunOnceType']   = $settings_values['quizRunOnceType'];
-			$_POST['quizRunOnceCookie'] = $settings_values['quizRunOnceCookie'];
-
-			$_POST['forcingQuestionSolve'] = $settings_values['forcingQuestionSolve'];
-			$_POST['timeLimit']            = $settings_values['timeLimit'];
+			foreach( $settings_values as $setting_key => $setting_value ) {
+				if ( isset( $this->settings_fields_map[ $setting_key ] ) ) {
+					$_POST[ $setting_key ] = $setting_value;	
+				}
+			}
 		}
 
 		/**
 		 * Initialize the metabox settings values.
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_values() {
+			$reload_pro_quiz = false;
+			if ( true !== $this->settings_values_loaded ) {
+				$reload_pro_quiz = true;
+			}
+
 			parent::load_settings_values();
 
 			if ( true === $this->settings_values_loaded ) {
-				$this->quiz_edit = $this->init_quiz_edit( $this->_post );
+				$this->quiz_edit = $this->init_quiz_edit( $this->_post, $reload_pro_quiz );
 
 				if ( ( isset( $this->setting_option_values['passingpercentage'] ) ) && ( '' !== $this->setting_option_values['passingpercentage'] ) ) {
 					$this->setting_option_values['passingpercentage'] = floatval( $this->setting_option_values['passingpercentage'] );
@@ -156,6 +167,8 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings fields.
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_fields() {
 			global $sfwd_lms;
@@ -462,9 +475,12 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * Filter settings values for metabox before save to database.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param array  $settings_values Array of settings values.
 		 * @param string $settings_metabox_key Metabox key.
 		 * @param string $settings_screen_id Screen ID.
+		 *
 		 * @return array $settings_values.
 		 */
 		public function filter_saved_fields( $settings_values = array(), $settings_metabox_key = '', $settings_screen_id = '' ) {

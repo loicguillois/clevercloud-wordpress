@@ -204,14 +204,9 @@ function learndash_user_get_enrolled_courses( $user_id = 0, $course_query_args =
 			}
 		} else {
 
-			$course_ids_open = learndash_get_open_courses();
+			$course_ids_open = learndash_get_posts_by_price_type( learndash_get_post_type_slug( 'course' ), 'open' );
 			if ( ! empty( $course_ids_open ) ) {
 				$course_ids = array_merge( $course_ids, $course_ids_open );
-			}
-
-			$course_ids_paynow = learndash_get_paynow_courses();
-			if ( ! empty( $course_ids_paynow ) ) {
-				$course_ids = array_merge( $course_ids, $course_ids_paynow );
 			}
 
 			if ( true === learndash_use_legacy_course_access_list() ) {
@@ -292,7 +287,7 @@ function learndash_user_set_enrolled_courses( $user_id = 0, $user_courses_new = 
 
 		// Finally clear our cache for other services.
 		$transient_key = 'learndash_user_courses_' . $user_id;
-		delete_transient( $transient_key );
+		LDLMS_Transients::delete( $transient_key );
 	}
 }
 
@@ -356,7 +351,7 @@ function learndash_show_user_course_complete( $user_id = 0 ) {
 		}
 	}
 
-	// See example snippet of this filter https://bitbucket.org/snippets/learndash/bMA7r .
+	// See example snippet of this filter https://developers.learndash.com/hook/learndash_show_user_course_complete_options/
 	/**
 	 * Filters the status of whether the course is completed for a user or not.
 	 *
@@ -780,7 +775,7 @@ function learndash_course_item_to_activity_sync( $user_id = 0, $course_id = 0, $
 	}
 
 	// Finally we recalculate the course completed steps from the new course data.
-	$completed_steps = learndash_course_get_completed_steps( $user_id, $course_id, $course_data_new );
+	$completed_steps = (int) learndash_course_get_completed_steps( $user_id, $course_id, $course_data_new );
 	if ( ( ! isset( $course_data_new['completed'] ) ) || ( $completed_steps != $course_data_new['completed'] ) ) {
 		$course_args = array(
 			'course_id'     => $course_id,
@@ -795,13 +790,16 @@ function learndash_course_item_to_activity_sync( $user_id = 0, $course_id = 0, $
 			$course_args['activity_completed'] = 0;
 			$course_args['activity_updated']   = 0;
 		} else {
-			$course_activity = learndash_get_user_activity( $course_args );
-			if ( $course_activity ) {
-				if ( intval( $course_activity->activity_started ) ) {
-					$course_args['activity_started'] = intval( $course_activity->activity_started );
-				} else {
-					$course_args['activity_started'] = time();
-				}
+			$course_activity = (array) learndash_get_user_activity( $course_args );
+			if ( ! isset( $course_activity['activity_id'] ) ) {
+				$course_args['activity_status']    = false;
+				$course_args['activity_started']   = time();
+				$course_args['activity_completed'] = 0;
+			} else {
+				$course_args = $course_activity;
+			}
+			if ( empty( $course_args['activity_started'] ) ) {
+				$course_args['activity_started'] = time();
 			}
 		}
 
@@ -838,8 +836,8 @@ function learndash_get_user_course_access_list( $user_id = 0 ) {
 			if ( ( isset( $data_settings_courses['version'] ) ) && ( version_compare( $data_settings_courses['version'], LEARNDASH_SETTINGS_TRIGGER_UPGRADE_VERSION, '>=' ) ) ) {
 
 				$is_like = " postmeta.meta_value = '" . $user_id . "'
-					OR postmeta.meta_value REGEXP '^" . $user_id . ",' 
-					OR postmeta.meta_value REGEXP '," . $user_id . ",' 
+					OR postmeta.meta_value REGEXP '^" . $user_id . ",'
+					OR postmeta.meta_value REGEXP '," . $user_id . ",'
 					OR postmeta.meta_value REGEXP  '," . $user_id . "$'";
 
 				$sql_str = 'SELECT post_id FROM ' . $wpdb->prefix . 'postmeta as postmeta INNER JOIN ' . $wpdb->prefix . "posts as posts ON posts.ID = postmeta.post_id WHERE posts.post_status='publish' AND posts.post_type='sfwd-courses' AND postmeta.meta_key='course_access_list' AND (" . $is_like . ')';
@@ -854,22 +852,22 @@ function learndash_get_user_course_access_list( $user_id = 0 ) {
 				// 2. The user ID is at the front of the list as in "sfwd-courses_course_access_list";*:"X,*";
 				// 3. The user ID is in middle "sfwd-courses_course_access_list";*:"*,X,*";
 				// 4. The user ID is at the end "sfwd-courses_course_access_list";*:"*,X";.
-				$is_like = " 
-					postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";i:" . $user_id . ";s:34:\"sfwd-courses_course_lesson_orderby\"' 
-					OR postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";i:" . $user_id . ";s:40:\"sfwd-courses_course_prerequisite_compare\"' 
-					OR postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";i:" . $user_id . ";s:35:\"sfwd-courses_course_lesson_per_page\"' 
-				
-					OR postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";s:(.*):\"" . $user_id . "\";s:34:\"sfwd-courses_course_lesson_orderby\"' 
-					OR postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";s:(.*):\"" . $user_id . "\";s:40:\"sfwd-courses_course_prerequisite_compare\"' 
-					OR postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";s:(.*):\"" . $user_id . "\";s:35:\"sfwd-courses_course_lesson_per_page\"' 
+				$is_like = "
+					postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";i:" . $user_id . ";s:34:\"sfwd-courses_course_lesson_orderby\"'
+					OR postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";i:" . $user_id . ";s:40:\"sfwd-courses_course_prerequisite_compare\"'
+					OR postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";i:" . $user_id . ";s:35:\"sfwd-courses_course_lesson_per_page\"'
 
-					OR postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";s:(.*):\"" . $user_id . ",(.*)\";s:34:\"sfwd-courses_course_lesson_orderby\"' 
-					OR postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";s:(.*):\"" . $user_id . ",(.*)\";s:40:\"sfwd-courses_course_prerequisite_compare\"' 
-					OR postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";s:(.*):\"" . $user_id . ",(.*)\";s:35:\"sfwd-courses_course_lesson_per_page\"' 
+					OR postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";s:(.*):\"" . $user_id . "\";s:34:\"sfwd-courses_course_lesson_orderby\"'
+					OR postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";s:(.*):\"" . $user_id . "\";s:40:\"sfwd-courses_course_prerequisite_compare\"'
+					OR postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";s:(.*):\"" . $user_id . "\";s:35:\"sfwd-courses_course_lesson_per_page\"'
 
-					OR postmeta.meta_value REGEXP  's:31:\"sfwd-courses_course_access_list\";s:(.*):\"(.*)," . $user_id . ",(.*)\";s:34:\"sfwd-courses_course_lesson_orderby\"' 
-					OR postmeta.meta_value REGEXP  's:31:\"sfwd-courses_course_access_list\";s:(.*):\"(.*)," . $user_id . ",(.*)\";s:40:\"sfwd-courses_course_prerequisite_compare\"' 
-					OR postmeta.meta_value REGEXP  's:31:\"sfwd-courses_course_access_list\";s:(.*):\"(.*)," . $user_id . ",(.*)\";s:35:\"sfwd-courses_course_lesson_per_page\"' 
+					OR postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";s:(.*):\"" . $user_id . ",(.*)\";s:34:\"sfwd-courses_course_lesson_orderby\"'
+					OR postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";s:(.*):\"" . $user_id . ",(.*)\";s:40:\"sfwd-courses_course_prerequisite_compare\"'
+					OR postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";s:(.*):\"" . $user_id . ",(.*)\";s:35:\"sfwd-courses_course_lesson_per_page\"'
+
+					OR postmeta.meta_value REGEXP  's:31:\"sfwd-courses_course_access_list\";s:(.*):\"(.*)," . $user_id . ",(.*)\";s:34:\"sfwd-courses_course_lesson_orderby\"'
+					OR postmeta.meta_value REGEXP  's:31:\"sfwd-courses_course_access_list\";s:(.*):\"(.*)," . $user_id . ",(.*)\";s:40:\"sfwd-courses_course_prerequisite_compare\"'
+					OR postmeta.meta_value REGEXP  's:31:\"sfwd-courses_course_access_list\";s:(.*):\"(.*)," . $user_id . ",(.*)\";s:35:\"sfwd-courses_course_lesson_per_page\"'
 
 					OR postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";s:(.*):\"(.*)," . $user_id . "\";s:34:\"sfwd-courses_course_lesson_orderby\"'
 					OR postmeta.meta_value REGEXP 's:31:\"sfwd-courses_course_access_list\";s:(.*):\"(.*)," . $user_id . "\";s:40:\"sfwd-courses_course_prerequisite_compare\"'
@@ -1011,15 +1009,15 @@ function learndash_get_user_course_points( $user_id = 0 ) {
 		$course_points_results = $wpdb->get_results(
 			$wpdb->prepare(
 				'SELECT DISTINCT postmeta.post_id as post_id, postmeta.meta_value as points
-				FROM ' . $wpdb->postmeta . " as postmeta 
-				WHERE postmeta.post_id IN 
+				FROM ' . $wpdb->postmeta . " as postmeta
+				WHERE postmeta.post_id IN
 				(
-					SELECT DISTINCT REPLACE(user_meta.meta_key, 'course_completed_', '') as course_id 
-					FROM " . $wpdb->usermeta . " as user_meta 
-					WHERE user_meta.meta_key LIKE %s 
+					SELECT DISTINCT REPLACE(user_meta.meta_key, 'course_completed_', '') as course_id
+					FROM " . $wpdb->usermeta . " as user_meta
+					WHERE user_meta.meta_key LIKE %s
 						AND user_meta.user_id = %d and user_meta.meta_value != ''
-				) 
-				AND postmeta.meta_key=%s 
+				)
+				AND postmeta.meta_key=%s
 				AND postmeta.meta_value != ''",
 				'course_completed_%',
 				$user_id,

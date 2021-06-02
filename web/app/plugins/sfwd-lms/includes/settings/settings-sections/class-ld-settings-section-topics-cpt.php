@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section for Topics Custom Post Type Metabox.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.4.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Topics_CPT' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Section for Topics Custom Post Type Metabox.
+	 *
+	 * @since 2.4.0
 	 */
 	class LearnDash_Settings_Topics_CPT extends LearnDash_Settings_Section {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 2.4.0
 		 */
 		protected function __construct() {
 
@@ -55,6 +59,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings values.
+		 *
+		 * @since 2.4.0
 		 */
 		public function load_settings_values() {
 			parent::load_settings_values();
@@ -105,6 +111,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings fields.
+		 *
+		 * @since 2.4.0
 		 */
 		public function load_settings_fields() {
 			$cpt_archive_url = home_url( LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Section_Permalinks', 'topics' ) );
@@ -232,7 +240,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * Intercept the WP options save logic and check that we have a valid nonce.
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
+		 *
 		 * @param array  $value Array of section fields values.
 		 * @param array  $old_value Array of old values.
 		 * @param string $section_key Section option key should match $this->setting_option_key.

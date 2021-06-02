@@ -1,33 +1,43 @@
 <?php
 /**
- * LearnDash V2 REST API Quizzes Post Controller.
+ * LearnDash REST API V2 Quizzes Post Controller.
  *
- * @package LearnDash
- * @subpackage REST_API
- * @since 3.3.0
- */
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
-/**
  * This Controller class is used to GET/UPDATE/DELETE the LearnDash
  * custom post type Quizzes (sfwd-quiz).
  *
  * This class extends the LD_REST_Posts_Controller_V2 class.
  *
  * @since 3.3.0
+ * @package LearnDash\REST\V2
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V2' ) ) && ( class_exists( 'LD_REST_Posts_Controller_V2' ) ) ) {
+
 	/**
-	 * Class REST API Courses Post Controller.
+	 * Class LearnDash REST API V2 Quizzes Post Controller.
+	 *
+	 * @since 3.3.0
+	 * @uses LD_REST_Posts_Controller_V2
 	 */
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Quizzes_Controller_V2 extends LD_REST_Posts_Controller_V2 {
 
 		/**
+		 * WPProQuiz Quiz instance.
+		 * This is used to bridge the WPProQuiz to WP systems.
+		 *
+		 * @var object $pro_quiz_edit WPProQuiz instance.
+		 */
+		private $pro_quiz_edit = null;
+
+		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.3.0
 		 */
 		public function __construct( $post_type = '' ) {
 			if ( empty( $post_type ) ) {
@@ -47,6 +57,8 @@ if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V2' ) ) && ( class_exists( 'L
 
 		/**
 		 * Prepare the LearnDash Post Type Settings.
+		 *
+		 * @since 3.3.0
 		 */
 		protected function register_fields() {
 			$this->register_fields_metabox();
@@ -56,6 +68,8 @@ if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V2' ) ) && ( class_exists( 'L
 
 		/**
 		 * Register the Settings Fields from the Post Metaboxes.
+		 *
+		 * @since 3.3.0
 		 */
 		protected function register_fields_metabox() {
 			require_once LEARNDASH_LMS_PLUGIN_DIR . '/includes/settings/settings-metaboxes/class-ld-settings-metabox-quiz-access-settings.php';
@@ -72,8 +86,6 @@ if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V2' ) ) && ( class_exists( 'L
 
 			require_once LEARNDASH_LMS_PLUGIN_DIR . '/includes/settings/settings-metaboxes/class-ld-settings-metabox-quiz-admin-data-handling-settings.php';
 			$this->metaboxes['LearnDash_Settings_Metabox_Quiz_Admin_Data_Handling_Settings'] = LearnDash_Settings_Metabox_Quiz_Admin_Data_Handling_Settings::add_metabox_instance();
-
-			//$this->metaboxes = apply_filters( 'learndash_post_settings_metaboxes_init_' . $this->post_type, $this->metaboxes );
 
 			if ( ! empty( $this->metaboxes ) ) {
 				foreach ( $this->metaboxes as $metabox ) {
@@ -104,6 +116,8 @@ if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V2' ) ) && ( class_exists( 'L
 		/**
 		 * For LearnDash post type we override the default order/orderby
 		 * to ASC/title instead of the WP default DESC/date.
+		 *
+		 * @since 3.3.0
 		 *
 		 * @param array  $query_params Quest params array.
 		 * @param string $post_type    Post type string.
@@ -160,6 +174,8 @@ if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V2' ) ) && ( class_exists( 'L
 		/**
 		 * Check user permission to get/access single Quiz.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @param object $request  WP_REST_Request instance.
 		 * @return bool True is used can get item.
 		 */
@@ -169,6 +185,7 @@ if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V2' ) ) && ( class_exists( 'L
 
 				$course_id = (int) $request['course'];
 				if ( ! empty( $course_id ) ) {
+					// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 					$GLOBALS['course_id'] = $course_id;
 				}
 
@@ -235,6 +252,8 @@ if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V2' ) ) && ( class_exists( 'L
 
 		/**
 		 * Check user permission to get/access Quizzes.
+		 *
+		 * @since 3.3.0
 		 *
 		 * @param object $request  WP_REST_Request instance.
 		 * @return bool True is used can get item.
@@ -347,6 +366,8 @@ if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V2' ) ) && ( class_exists( 'L
 		/**
 		 * Get REST Setting Field value.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @param array  $postdata   Post data array.
 		 * @param string $field_name Field Name for $postdata value.
 		 * @param object $request    Request object.
@@ -405,6 +426,90 @@ if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V2' ) ) && ( class_exists( 'L
 			}
 
 			return $response;
+		}
+
+		/**
+		 * Fires after a single post is completely created or updated via the REST API.
+		 *
+		 * @since 3.4.0
+		 *
+		 * @param WP_Post         $post     Inserted or updated post object.
+		 * @param WP_REST_Request $request  Request object.
+		 * @param bool            $creating True when creating a post, false when updating.
+		 */
+		public function rest_after_insert_action( $post, $request, $creating ) {
+			if ( ( $post ) && ( is_a( $post, 'WP_Post' ) ) && ( $post->post_type === $this->post_type ) ) {
+				$this->init_quiz_edit( $post );
+
+				parent::rest_after_insert_action( $post, $request, $creating );
+
+				$quiz_post_data     = array();
+				$quiz_post_data_tmp = get_post_meta( $post->ID, '_' . $this->post_type, true );
+				if ( ! empty( $quiz_post_data_tmp ) ) {
+					foreach( $quiz_post_data_tmp as $_key => $_val ) {
+						if ( substr( $_key, 0, strlen( $this->post_type . '_' ) ) === $this->post_type . '_' ) {
+							$_key = str_replace( $this->post_type . '_', '', $_key );
+							$quiz_post_data[ $_key ] = $_val;
+						}
+					}
+				}
+
+				/**
+				 * Clear ouf the form array as it will be set when saving
+				 * the Quiz post and is handled in 
+				 * includes/admin/classes-posts-edits/class-learndash-admin-quiz-edit.php
+				 */
+				$quiz_post_data['form'] = array();
+				
+				if ( ! isset( $quiz_post_data['post_ID'] ) ) {
+					$quiz_post_data['post_ID'] = $post->ID;
+				}
+
+				$quiz_id  = absint( learndash_get_setting( $post->ID, 'quiz_pro', true ) );
+				$pro_quiz = new WpProQuiz_Controller_Quiz();
+				$pro_quiz->route(
+					array(
+						'action'  => 'addUpdateQuiz',
+						'quizId'  => $quiz_id,
+						'post_id' => $post->ID,
+					),
+					$quiz_post_data
+				);
+
+				foreach ( $this->metaboxes as $metabox ) {
+					$metabox->init( $post, true );
+				}
+			}
+		}
+
+		/**
+		 * Initialize the ProQuiz Quiz being edited.
+		 *
+		 * @since 3.4.1
+		 * @param object $post WP_Post Question being edited.
+		 */
+		public function init_quiz_edit( $post ) {
+			if ( is_null( $this->pro_quiz_edit ) ) {
+				$quiz_pro_id = (int) learndash_get_setting( $post->ID, 'quiz_pro' );
+
+				$this->_post = array( '1' );
+				$this->_get  = array(
+					'action'  => 'getEdit',
+					'quizId'  => $quiz_pro_id,
+					'post_id' => $post->ID,
+				);
+
+				if ( ( isset( $_GET['templateLoadId'] ) ) && ( ! empty( $_GET['templateLoadId'] ) ) ) {
+					$this->_get['templateLoad']   = 'yes';
+					$this->_get['templateLoadId'] = $_GET['templateLoadId'];
+				}
+
+				$pro_quiz            = new WpProQuiz_Controller_Quiz();
+				$this->pro_quiz_edit = $pro_quiz->route(
+					$this->_get,
+					$this->_post
+				);
+			}
 		}
 
 		// End of functions

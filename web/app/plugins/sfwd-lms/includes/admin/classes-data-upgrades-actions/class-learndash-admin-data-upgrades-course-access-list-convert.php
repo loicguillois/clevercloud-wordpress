@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Data Upgrades for Course Access List
+ * LearnDash Data Upgrades for Course Access List.
  *
- * @package LearnDash
- * @subpackage Data Upgrades
+ * @since 3.1.0
+ * @package LearnDash\Data_Upgrades
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,12 +13,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'Learndash_Admin_Data_Upgrades_Course_Access_List_Convert' ) ) ) {
 
 	/**
-	 * Class to create the Data Upgrade for Course Access List Convert.
+	 * Class LearnDash Data Upgrades for Course Access List.
+	 *
+	 * @since 3.1.0
+	 * @uses Learndash_Admin_Data_Upgrades
 	 */
 	class Learndash_Admin_Data_Upgrades_Course_Access_List_Convert extends Learndash_Admin_Data_Upgrades {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 3.1.0
 		 */
 		protected function __construct() {
 			$this->data_slug = 'course-access-lists-convert';
@@ -29,7 +34,7 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		/**
 		 * Show data upgrade row for this instance.
 		 *
-		 * @since 2.3
+		 * @since 3.1.0
 		 */
 		public function show_upgrade_action() {
 			?>
@@ -125,7 +130,7 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		 * This function will determine what users need to be converted. Then the course and quiz functions
 		 * will be called to convert each individual user data set.
 		 *
-		 * @since 2.3
+		 * @since 3.1.0
 		 *
 		 * @param  array $data Post data from AJAX call.
 		 * @return array $data Post data from AJAX call
@@ -209,7 +214,7 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		/**
 		 * Common function to query needed items.
 		 *
-		 * @since 2.6.0
+		 * @since 3.1.0
 		 *
 		 * @param boolean $increment_paged default true to increment paged.
 		 */
@@ -234,6 +239,8 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 			/**
 			 * Filters data upgrade query arguments.
 			 *
+			 * @since 2.6.0
+			 *
 			 * @param array  $query_args An array of query arguments.
 			 * @param string $data_slug  Data Slug used to identify each instance.
 			 */
@@ -248,7 +255,7 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		/**
 		 * Common function to build the returned data progress output.
 		 *
-		 * @since 2.6.0
+		 * @since 3.1.0
 		 *
 		 * @param array $data Array of existing data elements.
 		 * @return array or data.
@@ -300,9 +307,10 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		/**
 		 * Convert single course access list.
 		 *
-		 * @since 2.3
+		 * @since 3.1.0
 		 *
 		 * @param int $course_id Course ID of post to convert.
+		 *
 		 * @return boolean true if complete, false if not.
 		 */
 		private function process_course_access_list( $course_id = 0 ) {
@@ -420,6 +428,13 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 			return true;
 		}
 
+		/**
+		 * Get course access list for Course
+		 *
+		 * @since 3.1.0
+		 *
+		 * @param integer $course_id Course ID
+		 */
 		private function get_course_access_list( $course_id = 0 ) {
 			$course_access_list = array();
 
@@ -442,15 +457,37 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 			return $course_access_list;
 		}
 
+		/**
+		 * Get course activity access for user
+		 *
+		 * @since 3.1.0
+		 *
+		 * @param integer $course_id Course ID
+		 * @param integer $user_id   User ID
+		 *
+		 * @return array activity row
+		 */
 		private function get_course_activity_access_for_user( $course_id = 0, $user_id = 0 ) {
 			global $wpdb;
 			if ( ( ! empty( $course_id ) ) && ( ! empty( $user_id ) ) ) {
-				$sql_str      = $wpdb->prepare( 'SELECT * FROM ' . esc_sql( LDLMS_DB::get_table_name( 'user_activity' ) ) . ' WHERE activity_type=%s AND user_id = %d AND ( post_id = %d OR course_id = %d )', 'access', $user_id, $course_id, $course_id );
+				$sql_str = $wpdb->prepare( 'SELECT * FROM ' . esc_sql( LDLMS_DB::get_table_name( 'user_activity' ) ) . ' WHERE activity_type=%s AND user_id = %d AND ( post_id = %d OR course_id = %d )', 'access', $user_id, $course_id, $course_id );
+
+				//phpcs:ignore: WordPress.DB.PreparedSQL.NotPrepared
 				$activity_row = $wpdb->get_row( $sql_str, ARRAY_A );
 				return $activity_row;
 			}
 		}
 
+		/**
+		 * Remove course activity access for users
+		 *
+		 * @since 3.1.0
+		 *
+		 * @param integer $course_id Course ID
+		 * @param array   $user_ids  User IDs
+		 *
+		 * @return array activity row
+		 */
 		private function remove_course_activity_access( $course_id = 0, $user_ids = array() ) {
 			global $wpdb;
 
@@ -459,12 +496,12 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 				$user_ids = array_map( 'absint', $user_ids );
 				$sql_str .= 'AND user_id NOT IN (' . implode( ',', $user_ids ) . ')';
 
+				//phpcs:ignore: WordPress.DB.PreparedSQL.NotPrepared
 				$activity_ids = $wpdb->get_col( $sql_str );
 				if ( ! empty( $activity_ids ) ) {
 					learndash_report_clear_by_activity_ids( $activity_ids );
 				}
 			}
-
 		}
 
 		// End of functions.

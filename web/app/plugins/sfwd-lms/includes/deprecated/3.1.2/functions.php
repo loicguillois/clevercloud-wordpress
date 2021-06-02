@@ -15,7 +15,7 @@ if ( ! function_exists( 'learndash_get_prior_installed_version' ) ) {
 	/**
 	 * Gets the prior installed version.
 	 *
-	 * @deprecated 3.1.2 Use LDLMS_Transients::purge_all()
+	 * @deprecated 3.1.2 Use {@see 'LDLMS_Transients::purge_all'} instead.
 	 *
 	 * @return mixed
 	 */

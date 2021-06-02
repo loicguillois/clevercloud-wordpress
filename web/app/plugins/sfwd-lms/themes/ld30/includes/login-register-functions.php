@@ -4,7 +4,9 @@
  *
  * Handles authentication, registering, resetting passwords and other user handling.
  *
- * @package LearnDash
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -34,7 +36,9 @@ function learndash_add_login_field_top( $content = '' ) {
 		$course_id = learndash_get_course_id( get_the_ID() );
 
 		/**
-		 * Filters whether to allow enrolment of course with the login. The default value is true.
+		 * Filters whether to allow enrollment of course with the login. The default value is true.
+		 *
+		 * @since 3.1.0
 		 *
 		 * @param boolean $include_course Whether to allow login from the course.
 		 * @param int     $course_id      Course ID.
@@ -47,9 +51,11 @@ function learndash_add_login_field_top( $content = '' ) {
 		$group_id = get_the_ID();
 
 		/**
-		 * Filters whether to allow enrolment of course with the login. The default value is true.
+		 * Filters whether to allow enrollment of group with the login. The default value is true.
 		 *
-		 * @param boolean $include_course Whether to allow login from the course.
+		 * @since 3.2.0
+		 *
+		 * @param boolean $include_group Whether to allow login from the group.
 		 * @param int     $group_id       Group ID.
 		 */
 		if ( ( ! empty( $group_id ) ) && ( in_array( learndash_get_setting( $group_id, 'group_price_type' ), array( 'free' ), true ) ) && ( apply_filters( 'learndash_login_form_include_group', true, $group_id ) ) ) {
@@ -68,6 +74,8 @@ add_filter( 'login_form_top', 'learndash_add_login_field_top' );
  * Updates user course data on user login.
  *
  * Fires on `authenticate` hook.
+ *
+ * @since 3.0.7
  *
  * @param WP_User $user     WP_User object if success. wp_error is error.
  * @param string  $username Login form entered user login.
@@ -237,6 +245,8 @@ add_action( 'user_register', 'learndash_register_user_success', 10, 1 );
  * From this function we capture the failed registration errors and send the user
  * back to the registration form part of the LD login modal.
  *
+ * @since 3.1.1.1
+ *
  * @param string $sanitized_user_login User entered login (sanitized).
  * @param string $user_email           User entered email.
  * @param array  $errors               Array of registration errors.
@@ -268,6 +278,8 @@ function learndash_user_register_error( $sanitized_user_login, $user_email, $err
 			/**
 			 * Filters URL that a user should be redirected when there is an error while registration.
 			 *
+			 * @since 3.1.1.1
+			 *
 			 * @param string  $redirect_url The URL to be redirected when there are errors.
 			 */
 			$redirect_url = apply_filters( 'learndash_registration_error_url', $redirect_url );
@@ -296,6 +308,8 @@ function learndash_validation_registration_form_course() {
 					/**
 					 * Filters whether to allow user registration from the course.
 					 *
+					 * @since 3.1.0
+					 *
 					 * @param boolean $include_course whether to allow user registration from the course.
 					 * @param int     $post_id      Course ID.
 					 */
@@ -306,9 +320,11 @@ function learndash_validation_registration_form_course() {
 					}
 				} elseif ( ! in_array( get_post_type( $post_id ), array( learndash_get_post_type_slug( 'group' ) ), true ) ) {
 					/**
-					 * Filters whether to allow user registration from the course.
+					 * Filters whether to allow user registration from the group.
 					 *
-					 * @param boolean $include_course whether to allow user registration from the course.
+					 * @since 3.2.0
+					 *
+					 * @param boolean $include_group whether to allow user registration from the group.
 					 * @param int     $post_id      Course ID.
 					 */
 					if ( ( ! empty( $post_id ) ) && ( apply_filters( 'learndash_registration_form_include_group', true, $post_id ) ) ) {
@@ -340,7 +356,7 @@ function learndash_validation_registration_form_redirect_to() {
 }
 
 /**
- * PASSWORD RESET FUNCTINS
+ * PASSWORD RESET FUNCTIONS
  */
 
 /**
@@ -428,6 +444,8 @@ function learndash_password_reset_login_url( $login_url = '', $redirect = '', $f
  * login link. That login URL will be the stored 'redirect_to' user meta value.
  * See the function learndash_password_reset_login_url() for that stage of the
  * processing.
+ *
+ * @since 3.1.1.1
  */
 function learndash_login_form_lostpassword() {
 	if ( isset( $_POST['learndash-registration-form'], $_REQUEST['redirect_to'] ) &&
@@ -492,6 +510,8 @@ function learndash_login_error_conditions( $return_keys = false ) {
 
 	/**
 	 * Filters list of User registration errors.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param array $registration_errors An Associative array of Registration error and description.
 	 */

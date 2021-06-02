@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Metabox for Group Courses Settings.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.2.0
+ * @package LearnDash\Settings\Metaboxes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'LearnDash_Settings_Metabox_Group_Courses_Settings' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Metabox for Group Courses Settings.
+	 *
+	 * @since 3.2.0
 	 */
 	class LearnDash_Settings_Metabox_Group_Courses_Settings extends LearnDash_Settings_Metabox {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.2.0
 		 */
 		public function __construct() {
 			// What screen ID are we showing on.
@@ -37,6 +41,14 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 			parent::__construct();
 		}
 
+		/**
+		 * Show Settings Section Fields.
+		 *
+		 * @since 3.2.0
+		 *
+		 * @param string $page Page shown.
+		 * @param string $section Section shown.
+		 */
 		protected function show_settings_metabox_fields( $metabox = null ) {
 			if ( ( is_object( $metabox ) ) && ( is_a( $metabox, 'LearnDash_Settings_Metabox' ) ) && ( $metabox->settings_metabox_key === $this->settings_metabox_key ) ) {
 				if ( ( isset( $metabox->post ) ) && ( is_a( $metabox->post, 'WP_Post ' ) ) ) {
@@ -67,6 +79,8 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Save Settings Metabox
+		 *
+		 * @since 3.2.0
 		 *
 		 * @param integer $post_id $Post ID is post being saved.
 		 * @param object  $saved_post WP_Post object being saved.

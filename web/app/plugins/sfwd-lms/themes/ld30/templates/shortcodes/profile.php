@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays a user's profile.
+ * LearnDash LD30 Displays a user's profile.
  *
  * Available Variables:
  *
@@ -10,9 +10,9 @@
  * $quiz_attempts  : Array of quiz attempts of the current user
  * $shortcode_atts : Array of values passed to shortcode
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\User
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -85,6 +85,8 @@ endif; ?>
 					/**
 					 * Filters whether to show the user profile link.
 					 *
+					 * @since 2.5.8
+					 *
 					 * @param boolean $show_profile Whether to show profile link.
 					 */
 					if ( current_user_can( 'read' ) && isset( $shortcode_atts['profile_link'] ) && true === (bool) $shortcode_atts['profile_link'] && apply_filters( 'learndash_show_profile_link', $shortcode_atts['profile_link'] ) ) :
@@ -126,8 +128,10 @@ endif; ?>
 					/**
 					 * Filters LearnDash user profile statistics.
 					 *
-					 * @param array $ld_profile_stats An array of profile stats data.
-					 * @param int   $user_id         User ID.
+					 * @since 3.1.0
+					 *
+					 * @param array $learndash_profile_stats An array of profile stats data.
+					 * @param int   $user_id                 User ID.
 					 */
 					$learndash_profile_stats = apply_filters( 'learndash_profile_stats', $learndash_profile_stats, $user_id );
 					if ( ( ! empty( $learndash_profile_stats ) ) && ( is_array( $learndash_profile_stats ) ) ) {

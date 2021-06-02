@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays a quiz.
+ * LearnDash LD30 Displays a quiz.
  *
  * Available Variables:
  *
@@ -32,7 +32,7 @@
  *
  * @since 2.1.0
  *
- * @package LearnDash\Quiz
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

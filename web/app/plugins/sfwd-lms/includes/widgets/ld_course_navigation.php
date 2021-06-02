@@ -1,9 +1,8 @@
 <?php
 /**
- * Widget for Course Navigation
+ * LearnDash `Course Navigation` Widget Class.
  *
  * @since 2.1.0
- *
  * @package LearnDash\Widgets
  */
 
@@ -12,10 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( ! class_exists( 'LearnDash_Course_Navigation_Widget' ) ) && ( class_exists( 'WP_Widget' ) ) ) {
+
+	/**
+	 * Class for LearnDash `Course Navigation` Widget.
+	 *
+	 * @since 2.1.0
+	 * @uses WP_Widget
+	 */
 	class LearnDash_Course_Navigation_Widget extends WP_Widget {
 
 		/**
-		 * Setup Course Navigation Widget
+		 * Public constructor for Widget Class.
+		 *
+		 * @since 2.1.0
 		 */
 		public function __construct() {
 			$widget_ops  = array(
@@ -35,6 +43,7 @@ if ( ( ! class_exists( 'LearnDash_Course_Navigation_Widget' ) ) && ( class_exist
 		 *
 		 * @param  array $args     widget arguments
 		 * @param  array $instance widget instance
+		 *
 		 * @return string          widget output
 		 */
 		public function widget( $args, $instance ) {
@@ -131,6 +140,7 @@ if ( ( ! class_exists( 'LearnDash_Course_Navigation_Widget' ) ) && ( class_exist
 		 *
 		 * @param  array $new_instance
 		 * @param  array $old_instance
+		 *
 		 * @return array $instance
 		 */
 		public function update( $new_instance, $old_instance ) {

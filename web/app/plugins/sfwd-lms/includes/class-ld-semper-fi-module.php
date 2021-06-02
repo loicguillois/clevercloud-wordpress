@@ -850,6 +850,8 @@ if ( ! class_exists( 'Semper_Fi_Module' ) ) {
 								/**
 								 * Filters whether to show legacy quiz metaboxes or not.
 								 *
+								 * @since 3.0.0
+								 *
 								 * @param boolean $show_legacy_quiz Whether to show legacy quiz metabox or not.
 								 * @param string  $post_type        Post type slug.
 								 */

@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Admin Assignment Edit Class.
+ * LearnDash Admin Assignment Edit.
  *
- * @package LearnDash
- * @subpackage Admin
+ * @since 3.2.3
+ * @package LearnDash\Assignment\Edit
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,12 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learndash_Admin_Assignment_Edit' ) ) ) {
+
 	/**
-	 * Class for LearnDash Admin Assignment Edit.
+	 * Class LearnDash Admin Assignment Edit.
+	 *
+	 * @since 3.2.3
+	 * @uses Learndash_Admin_Post_Edit
 	 */
 	class Learndash_Admin_Assignment_Edit extends Learndash_Admin_Post_Edit {
+
 		/**
 		 * Public constructor for class.
+		 *
+		 * @since 3.2.3
 		 */
 		public function __construct() {
 			$this->post_type = learndash_get_post_type_slug( 'assignment' );
@@ -28,6 +35,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * On Load handler function for this post type edit.
 		 * This function is called by a WP action when the admin
 		 * page 'post.php' or 'post-new.php' are loaded.
+		 *
+		 * @since 3.2.3
 		 */
 		public function on_load() {
 			if ( $this->post_type_check() ) {
@@ -51,7 +60,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 * @global WP_Post  $post     Global post object.
 		 * @global SFWD_LMS $sfwd_lms Global SFWD_LMS object.
 		 *
-		 * @since 2.1.0
+		 * @since 3.2.3
 		 */
 		public function assignment_metabox_content() {
 			global $post, $sfwd_lms;
@@ -247,6 +256,8 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		/**
 		 * Save metabox handler function.
 		 *
+		 * @since 3.2.3
+		 *
 		 * @param integer $post_id Post ID Question being edited.
 		 * @param object  $post WP_Post Question being edited.
 		 * @param boolean $update If update true, else false.
@@ -268,7 +279,7 @@ if ( ( class_exists( 'Learndash_Admin_Post_Edit' ) ) && ( ! class_exists( 'Learn
 		 *
 		 * Fires on `save_post` hook.
 		 *
-		 * @since 2.1.0
+		 * @since 3.2.3
 		 *
 		 * @param int $assignment_id Assignment ID.
 		 */

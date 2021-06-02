@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash [ld_quiz_list] Shortcode options.
+ * LearnDash Shortcode Section for Quizzes List [ld_quiz_list].
  *
- * @package LearnDash
- * @subpackage shortcode/ld_quiz_list
+ * @since 2.4.0
+ * @package LearnDash\Settings\Shortcodes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,13 +12,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'LearnDash_Shortcodes_Section_ld_quiz_list' ) ) ) {
 	/**
-	 * Class for LearnDash Shortcode Section.
+	 * Class LearnDash Shortcode Section for Quizzes List [ld_quiz_list].
+	 *
+	 * @since 2.4.0
 	 */
 	//phpcs:ignore PEAR.NamingConventions.ValidClassName.Invalid
 	class LearnDash_Shortcodes_Section_ld_quiz_list extends LearnDash_Shortcodes_Section {
 
 		/**
 		 * Public constructor for class.
+		 *
+		 * @since 2.4.0
 		 *
 		 * @param array $fields_args Field Args.
 		 */

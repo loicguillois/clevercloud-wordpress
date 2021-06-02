@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Page General.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.4.0
+ * @package LearnDash\Settings\Pages
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,11 +12,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDash_Settings_Page_General' ) ) ) {
 	/**
-	 * Class to create the settings page.
+	 * Class LearnDash Settings Page General.
+	 *
+	 * @since 2.4.0
 	 */
 	class LearnDash_Settings_Page_General extends LearnDash_Settings_Page {
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 2.4.0
 		 */
 		public function __construct() {
 			$this->parent_menu_page_url  = 'admin.php?page=learndash_lms_settings';

@@ -4,8 +4,7 @@
  *
  * @since 2.5.4
  *
- * @package LearnDash
- * @subpackage Settings
+ * @package LearnDash\Settings\Pages
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,12 +13,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDash_Settings_Page_Addons' ) ) ) {
 	/**
-	 * Class to create the settings page.
+	 * Class LearnDash Settings Page Add-ons.
+	 *
+	 * @since 2.5.4
 	 */
 	class LearnDash_Settings_Page_Addons extends LearnDash_Settings_Page {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 2.5.4
 		 */
 		public function __construct() {
 			$this->parent_menu_page_url  = 'admin.php?page=learndash_lms_addons';
@@ -64,7 +67,8 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 		/**
 		 * Filter the admin header data. We don't want to show the header panel on the Overview page.
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
+		 *
 		 * @param array $header_data Array of header data used by the Header Panel React app.
 		 * @param string $menu_key The menu key being displayed.
 		 * @param array $menu_items Array of menu/tab items.
@@ -390,16 +394,16 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 						<li><strong><?php esc_html_e( 'Compatible up to:', 'learndash' ); ?></strong> <?php echo esc_html( $api->tested ); ?></li>
 					<?php } if ( isset( $api->active_installs ) ) { ?>
 						<li><strong><?php esc_html_e( 'Active Installations:', 'learndash' ); ?></strong>
-												<?php
-												if ( $api->active_installs >= 1000000 ) {
-													esc_html_ex( '1+ Million', 'Active plugin installations', 'learndash' );
-												} elseif ( 0 == $api->active_installs ) {
-													esc_html_ex( 'Less Than 10', 'Active plugin installations', 'learndash' );
-												} else {
-													echo esc_html( number_format_i18n( $api->active_installs ) ) . '+';
-												}
-												?>
-							</li>
+						<?php
+						if ( $api->active_installs >= 1000000 ) {
+							echo esc_html_x( '1+ Million', 'Active plugin installations', 'learndash' );
+						} elseif ( 0 == $api->active_installs ) {
+							echo esc_html_x( 'Less Than 10', 'Active plugin installations', 'learndash' );
+						} else {
+							echo esc_html( number_format_i18n( $api->active_installs ) ) . '+';
+						}
+						?>
+						</li>
 					<?php } if ( ! empty( $api->slug ) && empty( $api->external ) ) { ?>
 						<li><a target="_blank" href="<?php echo esc_url( __( 'https://wordpress.org/plugins/', 'learndash' ) ) . esc_html( $api->slug ); ?>/"><?php esc_html_e( 'WordPress.org Plugin Page &#187;', 'learndash' ); ?></a></li>
 					<?php } if ( ! empty( $api->homepage ) ) { ?>

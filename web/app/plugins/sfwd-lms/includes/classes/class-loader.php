@@ -1,4 +1,11 @@
 <?php
+/**
+ * LearnDash Classes Loader.
+ *
+ * @since 3.4.0
+ * @package LearnDash
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

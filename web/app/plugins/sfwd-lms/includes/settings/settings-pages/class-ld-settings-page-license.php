@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Page License.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.4.0
+ * @package LearnDash\Settings\Pages
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDash_Settings_Page_License' ) ) ) {
 	/**
-	 * Class to create the settings page.
+	 * Class LearnDash Settings Page License.
+	 *
+	 * @since 2.4.0
 	 */
 	class LearnDash_Settings_Page_License extends LearnDash_Settings_Page {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 2.4.0
 		 */
 		public function __construct() {
 			$this->parent_menu_page_url  = 'admin.php?page=learndash_lms_settings';

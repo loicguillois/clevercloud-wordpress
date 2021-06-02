@@ -1,9 +1,8 @@
 <?php
 /**
- * Shortcode for course_inprogress
+ * LearnDash `[course_inprogress]` shortcode processing.
  *
  * @since 2.1.0
- *
  * @package LearnDash\Shortcodes
  */
 
@@ -12,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `course_inprogress` shortcode output.
+ * Builds the `[course_inprogress]` shortcode output.
  *
  * Shortcode that shows the content if the user is in progress on the course.
  *
@@ -23,12 +22,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array  $atts {
  *    An array of shortcode attributes.
  *
- *    @type string  $content    Optional. The shortcode content. Default empty.
- *    @type int     $course_id  Optional. Course ID. Default false.
- *    @type int     $user_id    Optional. User ID. Default false.
- *    @type boolean $autop      Optional. Whether to replace linebreaks with paragraph elements. Default true.
+ *    @type string  $content   The shortcode content. Default empty.
+ *    @type int     $course_id Course ID. Default false.
+ *    @type int     $user_id   User ID. Default false.
+ *    @type boolean $autop     Whether to replace linebreaks with paragraph elements. Default true.
  * }
- * @param string $content The shortcode content.
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string The `course_inprogress` shortcode output.
  */
@@ -77,4 +76,4 @@ function learndash_course_inprogress_shortcode( $atts = array(), $content = '' )
 	}
 }
 
-add_shortcode( 'course_inprogress', 'learndash_course_inprogress_shortcode' );
+add_shortcode( 'course_inprogress', 'learndash_course_inprogress_shortcode', 10, 2 );

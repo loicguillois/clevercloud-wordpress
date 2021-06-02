@@ -134,7 +134,7 @@ class WpProQuiz_View_GobalSettings extends WpProQuiz_View_View {
 						<tr>
 							<th scope="row">
 							<?php
-								sprintf(
+								printf(
 								// translators: Question
 									esc_html_x( '%s Category Management', 'placeholder: Question', 'learndash' ),
 									learndash_get_custom_label( 'question' )
@@ -146,7 +146,7 @@ class WpProQuiz_View_GobalSettings extends WpProQuiz_View_View {
 									<legend class="screen-reader-text">
 										<span>
 										<?php
-										sprintf(
+										printf(
 											// translators: Question
 											esc_html_x( '%s Category Management', 'placeholder: Question', 'learndash' ),
 											learndash_get_custom_label( 'question' )
@@ -156,7 +156,7 @@ class WpProQuiz_View_GobalSettings extends WpProQuiz_View_View {
 									<select name="category">
 										<option value="">
 										<?php
-										sprintf(
+										printf(
 											// translators: Question
 											esc_html_x( 'Select %s Category', 'placeholder: Question', 'learndash' ),
 											learndash_get_custom_label( 'question' )
@@ -175,7 +175,7 @@ class WpProQuiz_View_GobalSettings extends WpProQuiz_View_View {
 									<div style="padding-top: 5px;">
 										<input type="button" title="
 										<?php
-										sprintf(
+										printf(
 										// translators: Question
 											esc_html_x( 'Delete selected %s Category', 'placeholder: Question', 'learndash' ),
 											learndash_get_custom_label( 'question' )
@@ -184,7 +184,7 @@ class WpProQuiz_View_GobalSettings extends WpProQuiz_View_View {
 										" value="<?php esc_html_e( 'Delete', 'learndash' ); ?>" name="categoryDelete" class="button-secondary">
 										<input type="button" title="
 										<?php
-										sprintf(
+										printf(
 										// translators: Question
 											esc_html_x( 'Save changes to selected %s Category', 'placeholder: Question', 'learndash' ),
 											learndash_get_custom_label( 'question' )
@@ -194,7 +194,7 @@ class WpProQuiz_View_GobalSettings extends WpProQuiz_View_View {
 										<div class="categorySpinner spinner"></div>
 										<span class="categoryEditUpdate" style="display:none">
 										<?php
-										sprintf(
+										printf(
 										// translators: Question Category Saved
 											esc_html_x( '%s Category Saved', 'placeholder: Question Category Saved', 'learndash' ),
 											learndash_get_custom_label( 'question' )
@@ -203,7 +203,7 @@ class WpProQuiz_View_GobalSettings extends WpProQuiz_View_View {
 										</span>
 										<span class="categoryDeleteUpdate" style="display:none">
 										<?php
-										sprintf(
+										printf(
 										// translators: Question Category Deleted
 											esc_html_x( '%s Category Deleted', 'placeholder: Question Category Deleted', 'learndash' ),
 											learndash_get_custom_label( 'question' )
@@ -220,7 +220,7 @@ class WpProQuiz_View_GobalSettings extends WpProQuiz_View_View {
 							<th scope="row">
 								<?php
 								// translators: placeholder: Quiz.
-								echo sprintf( esc_html_x( '%s template management', 'placeholder: Quiz', 'learndash' ), LearnDash_Custom_Label::get_label( 'quiz' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
+								printf( esc_html_x( '%s template management', 'placeholder: Quiz', 'learndash' ), LearnDash_Custom_Label::get_label( 'quiz' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
 								?>
 							</th>
 							<td>
@@ -229,7 +229,7 @@ class WpProQuiz_View_GobalSettings extends WpProQuiz_View_View {
 										<span>
 										<?php
 										// translators: placeholder: Quiz.
-										echo sprintf( esc_html_x( '%s template management', 'placeholder: Quiz', 'learndash' ), LearnDash_Custom_Label::get_label( 'quiz' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
+										printf( esc_html_x( '%s template management', 'placeholder: Quiz', 'learndash' ), LearnDash_Custom_Label::get_label( 'quiz' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
 										?>
 										</span>
 									</legend>
@@ -237,7 +237,7 @@ class WpProQuiz_View_GobalSettings extends WpProQuiz_View_View {
 										<option value="">
 										<?php
 										// translators: placeholder: Quiz.
-										echo sprintf( esc_html_x( 'Select %s template', 'placeholder: Quiz', 'learndash' ), LearnDash_Custom_Label::get_label( 'quiz' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
+										printf( esc_html_x( 'Select %s template', 'placeholder: Quiz', 'learndash' ), LearnDash_Custom_Label::get_label( 'quiz' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
 										?>
 										</option>
 										<?php
@@ -254,26 +254,26 @@ class WpProQuiz_View_GobalSettings extends WpProQuiz_View_View {
 										<input type="button" title="
 										<?php
 										// translators: placeholder: Quiz.
-										echo sprintf( esc_html_x( 'Delete selected %s template', 'placeholder: Quiz', 'learndash' ), LearnDash_Custom_Label::get_label( 'quiz' ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
+										printf( esc_html_x( 'Delete selected %s template', 'placeholder: Quiz', 'learndash' ), LearnDash_Custom_Label::get_label( 'quiz' ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
 										?>
 										" value="<?php esc_html_e( 'Delete', 'learndash' ); ?>" name="templateQuizDelete" class="button-secondary">
 										<input type="button" title="
 										<?php
 										// translators: placeholder: Quiz.
-										echo sprintf( esc_html_x( 'Save changed to selected %s template', 'placeholder: Quiz', 'learndash' ), LearnDash_Custom_Label::get_label( 'quiz' ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
+										printf( esc_html_x( 'Save changed to selected %s template', 'placeholder: Quiz', 'learndash' ), LearnDash_Custom_Label::get_label( 'quiz' ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
 										?>
 										" value="<?php esc_html_e( 'Save Changes', 'learndash' ); ?>" name="templateQuizEdit" class="button-secondary">
 										<div class="templateQuizSpinner spinner"></div>
 										<span class="templateQuizEditUpdate" style="display:none">
 										<?php
 										// translators: placeholder: Quiz.
-										echo sprintf( esc_html_x( '%s template Saved', 'placeholder: Quiz', 'learndash' ), LearnDash_Custom_Label::get_label( 'quiz' ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
+										printf( esc_html_x( '%s template Saved', 'placeholder: Quiz', 'learndash' ), LearnDash_Custom_Label::get_label( 'quiz' ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
 										?>
 										</span>
 										<span class="templateQuizDeleteUpdate" style="display:none">
 										<?php
 										// translators: placeholder: Quiz.
-										echo sprintf( esc_html_x( '%s template Deleted', 'placeholder: Quiz', 'learndash' ), LearnDash_Custom_Label::get_label( 'quiz' ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
+										printf( esc_html_x( '%s template Deleted', 'placeholder: Quiz', 'learndash' ), LearnDash_Custom_Label::get_label( 'quiz' ) ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
 										?>
 										</span>
 									</div>
@@ -285,7 +285,7 @@ class WpProQuiz_View_GobalSettings extends WpProQuiz_View_View {
 						<tr>
 							<th scope="row">
 							<?php
-								sprintf(
+								printf(
 								// translators: Question
 									esc_html_x( '%s Template Management', 'placeholder: Question', 'learndash' ),
 									learndash_get_custom_label( 'question' )
@@ -297,7 +297,7 @@ class WpProQuiz_View_GobalSettings extends WpProQuiz_View_View {
 									<legend class="screen-reader-text">
 										<span>
 										<?php
-										sprintf(
+										printf(
 											// translators: Question
 											esc_html_x( '%s Template Management', 'placeholder: Question', 'learndash' ),
 											learndash_get_custom_label( 'question' )
@@ -308,7 +308,7 @@ class WpProQuiz_View_GobalSettings extends WpProQuiz_View_View {
 									<select name="templateQuestion">
 										<option value="">
 										<?php
-										sprintf(
+										printf(
 											// translators: Question
 											esc_html_x( 'Select %s Template', 'placeholder: Question', 'learndash' ),
 											learndash_get_custom_label( 'question' )
@@ -329,7 +329,7 @@ class WpProQuiz_View_GobalSettings extends WpProQuiz_View_View {
 									<div style="padding-top: 5px;">
 										<input type="button" title="
 										<?php
-										sprintf(
+										printf(
 											// translators: Question
 											esc_html_x( 'Delete selected %s template', 'placeholder: Question', 'learndash' ),
 											learndash_get_custom_label_lower( 'question' )
@@ -338,7 +338,7 @@ class WpProQuiz_View_GobalSettings extends WpProQuiz_View_View {
 										" value="<?php esc_html_e( 'Delete', 'learndash' ); ?>" name="templateQuestionDelete" class="button-secondary">
 										<input type="button" title="
 										<?php
-										sprintf(
+										printf(
 											// translators: Question
 											esc_html_x( 'Save changes to selected %s template', 'placeholder: Question', 'learndash' ),
 											learndash_get_custom_label_lower( 'question' )
@@ -348,7 +348,7 @@ class WpProQuiz_View_GobalSettings extends WpProQuiz_View_View {
 										<div class="templateQuestionSpinner spinner"></div>
 										<span class="templateQuestionEditUpdate" style="display:none">
 										<?php
-										sprintf(
+										printf(
 											// translators: Question
 											esc_html_x( '%s template saved', 'placeholder: Question', 'learndash' ),
 											learndash_get_custom_label( 'question' )
@@ -357,7 +357,7 @@ class WpProQuiz_View_GobalSettings extends WpProQuiz_View_View {
 										</span>
 										<span class="templateQuestionDeleteUpdate" style="display:none">
 										<?php
-										sprintf(
+										printf(
 											// translators: Question
 											esc_html_x( '%s template deleted', 'placeholder: Question', 'learndash' ),
 											learndash_get_custom_label( 'question' )

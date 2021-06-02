@@ -1,17 +1,30 @@
 <?php
+/**
+ * LearnDash REST API V1 Echo Controller.
+ *
+ * @since 3.0.7
+ * @package LearnDash\REST\V1
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( ! class_exists( 'LD_REST_Echo_Controller_V1' ) ) && ( class_exists( 'WP_REST_Controller' ) ) ) {
 
+	/**
+	 * Class LearnDash REST API V1 Echo Controller.
+	 *
+	 * @since 3.0.7
+	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Echo_Controller_V1 extends WP_REST_Controller {
 		protected $version = 'v1';
 
 		/**
 		 * Constructor.
 		 *
-		 * @since 5.0.0
+		 * @since 3.0.7
 		 */
 		public function __construct() {
 			$this->namespace = LEARNDASH_REST_API_NAMESPACE . '/' . $this->version;
@@ -21,7 +34,7 @@ if ( ( ! class_exists( 'LD_REST_Echo_Controller_V1' ) ) && ( class_exists( 'WP_R
 		/**
 		 * Registers the routes for the objects of the controller.
 		 *
-		 * @since 5.0.0
+		 * @since 3.0.7
 		 *
 		 * @see register_rest_route()
 		 */
@@ -53,9 +66,10 @@ if ( ( ! class_exists( 'LD_REST_Echo_Controller_V1' ) ) && ( class_exists( 'WP_R
 		/**
 		 * Checks if a given request has access to read the theme.
 		 *
-		 * @since 5.0.0
+		 * @since 3.0.7
 		 *
 		 * @param WP_REST_Request $request Full details about the request.
+		 *
 		 * @return true|WP_Error True if the request has read access for the item, otherwise WP_Error object.
 		 */
 		public function get_repsonse_permissions_check( $request ) {
@@ -63,11 +77,12 @@ if ( ( ! class_exists( 'LD_REST_Echo_Controller_V1' ) ) && ( class_exists( 'WP_R
 		}
 
 		/**
-		 * Retrieves a collection of themes.
+		 * Retrieves a response.
 		 *
-		 * @since 5.0.0
+		 * @since 3.0.7
 		 *
 		 * @param WP_REST_Request $request Full details about the request.
+		 *
 		 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
 		 */
 		public function get_repsonse( $request ) {
@@ -95,9 +110,9 @@ if ( ( ! class_exists( 'LD_REST_Echo_Controller_V1' ) ) && ( class_exists( 'WP_R
 		}
 
 		/**
-		 * Retrieves the theme's schema, conforming to JSON Schema.
+		 * Retrieves the schema, conforming to JSON Schema.
 		 *
-		 * @since 5.0.0
+		 * @since 3.0.7
 		 *
 		 * @return array Item schema data.
 		 */

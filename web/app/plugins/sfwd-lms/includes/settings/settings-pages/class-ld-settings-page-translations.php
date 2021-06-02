@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Page Translations.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.5.2
+ * @package LearnDash\Settings\Pages
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,13 +12,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDash_Settings_Page_Translations' ) ) ) {
 	/**
-	 * Class to create the settings page.
+	 * Class LearnDash Settings Page Translations.
+	 *
+	 * @since 2.5.2
 	 */
 	class LearnDash_Settings_Page_Translations extends LearnDash_Settings_Page {
 		private $ld_options_key = 'ld-translatation-message';
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 2.5.2
 		 */
 		public function __construct() {
 			$this->parent_menu_page_url  = 'admin.php?page=learndash_lms_settings';
@@ -34,6 +38,8 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 
 		/**
 		 * On load function to load resources needed to page functionality.
+		 *
+		 * @since 2.5.2
 		 */
 		public function load_settings_page() {
 			global $learndash_assets_loaded;
@@ -64,11 +70,23 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 
 		/**
 		 * Show translation status message before title.
+		 *
+		 * @since 2.5.2
 		 */
 		public function settings_page_before_title() {
 			$this->handle_translation_message();
 		}
 
+		/**
+		 * Class utility function to return the form wrapper. Supports
+		 * the beginning <form> an ending </form>.
+		 *
+		 * @since 2.5.2
+		 *
+		 * @param boolean $start Flag to indicate if showing start or end of form.
+		 *
+		 * @return string form HTML.
+		 */
 		public function get_admin_page_form( $start = true ) {
 			if ( true === $start ) {
 				return '';
@@ -77,6 +95,11 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 			}
 		}
 
+		/**
+		 * Handle Translation Message
+		 *
+		 * @since 2.5.2
+		 */
 		public function handle_translation_message() {
 			$reply = get_option( $this->ld_options_key, array() );
 			if ( ! empty( $reply ) ) {
@@ -107,6 +130,11 @@ if ( ( class_exists( 'LearnDash_Settings_Page' ) ) && ( ! class_exists( 'LearnDa
 			}
 		}
 
+		/**
+		 * Handle Translation Actions
+		 *
+		 * @since 2.5.2
+		 */
 		public function handle_translation_actions() {
 			if ( isset( $_GET['action'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 				$action = esc_attr( $_GET['action'] ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended

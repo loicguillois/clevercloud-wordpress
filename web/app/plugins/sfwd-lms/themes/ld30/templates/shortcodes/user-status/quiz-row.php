@@ -1,4 +1,22 @@
 <?php
+/**
+ * LearnDash LD30 Displays quiz data for user in ld_profile shortcode
+ *
+ * Available Variables:
+ * $quizzes                  : (array) List of quizzes taken by user
+ * $quiz                     : (object) User's quiz data
+ * $quiz_post_id             : (int) ID of quiz
+ * $certificateLink          : (string) Link to earned certificate
+ * $certificate_threshold    : (int) Percentage required to receive quiz, seperate from passing quiz
+ * $passstatus               : (string) Whether the quiz was passed or not
+ * $quiz_title               : (string) Title of the quiz
+ * $quiz_course_id           : (int) ID of the course the quiz is set in
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

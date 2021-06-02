@@ -9,7 +9,7 @@
  * Text Domain: ld-multisite
  * Doman Path: /languages/
  *
- * @since 1.0.0
+ * @since 3.1.8
  *
  * @package LearnDash
  */

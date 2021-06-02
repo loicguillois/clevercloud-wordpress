@@ -2,9 +2,8 @@
 /**
  * LearnDash User Progress Course Class.
  *
- * @package LearnDash
- * @subpackage User Course Progression
  * @since 3.4.0
+ * @package LearnDash\User\Progression
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,7 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ( ! class_exists( 'LDLMS_Model_User_Course_Progress' ) ) && ( class_exists( 'LDLMS_Model_User' ) ) ) {
 
 	/**
-	 * Class for LearnDash LDLMS_Model_User_Course_Progress.
+	 * Class for LearnDash LearnDash User Progress Course Class.
+	 *
+	 * @since 3.4.0
+	 * @uses LDLMS_Model_User
 	 */
 	class LDLMS_Model_User_Course_Progress extends LDLMS_Model_User {
 
@@ -66,6 +68,7 @@ if ( ( ! class_exists( 'LDLMS_Model_User_Course_Progress' ) ) && ( class_exists(
 		 * Public constructor for class.
 		 *
 		 * @since 3.4.0
+		 *
 		 * @param integer $user_id User ID.
 		 */
 		public function __construct( $user_id = 0 ) {
@@ -463,13 +466,14 @@ if ( ( ! class_exists( 'LDLMS_Model_User_Course_Progress' ) ) && ( class_exists(
 						$activity_item['activity_id']        = ( isset( $activity_item['activity_id'] ) ) ? absint( $activity_item['activity_id'] ) : 0;
 						$activity_item['user_id']            = ( isset( $activity_item['user_id'] ) ) ? absint( $activity_item['user_id'] ) : 0;
 						$activity_item['post_id']            = ( isset( $activity_item['post_id'] ) ) ? absint( $activity_item['post_id'] ) : 0;
+						$activity_item['course_id']          = ( isset( $activity_item['course_id'] ) ) ? absint( $activity_item['course_id'] ) : 0;
 						$activity_item['activity_status']    = ( isset( $activity_item['activity_status'] ) ) ? (bool) $activity_item['activity_status'] : 0;
 						$activity_item['activity_started']   = ( isset( $activity_item['activity_started'] ) ) ? absint( $activity_item['activity_started'] ) : 0;
 						$activity_item['activity_completed'] = ( isset( $activity_item['activity_completed'] ) ) ? absint( $activity_item['activity_completed'] ) : 0;
 						$activity_item['activity_updated']   = ( isset( $activity_item['activity_updated'] ) ) ? absint( $activity_item['activity_updated'] ) : 0;
 
 						if ( ! empty( $activity_item['post_id'] ) ) {
-							if ( in_array( $activity_item['activity_type'], array( 'course', 'lesson', 'topic', 'quiz', 'group' ), true ) ) {
+							if ( in_array( $activity_item['activity_type'], array( 'course', 'lesson', 'topic', 'quiz' ), true ) ) {
 								$activity_item_post_type = get_post_type( $activity_item['post_id'] );
 								if ( in_array( $activity_item_post_type, learndash_get_post_types( 'course' ), true ) ) {
 									$progress_activity[ $activity_item_post_type . ':' . $activity_item['post_id'] ] = $activity_item;
@@ -518,10 +522,14 @@ if ( ( ! class_exists( 'LDLMS_Model_User_Course_Progress' ) ) && ( class_exists(
 				$this->load_course_progress( $course_id );
 
 				if ( isset( $this->progress[ $course_id ] ) ) {
-					if ( ( ! empty( $progress_type ) ) && ( isset( $this->progress[ $course_id ][ $progress_type ] ) ) ) {
-						return $this->progress[ $course_id ][ $progress_type ];
+					if ( 'activity' === $progress_type ) {
+						return $this->build_course_progress_by_activity( $course_id );
 					} else {
-						return $this->progress[ $course_id ];
+						if ( ( ! empty( $progress_type ) ) && ( isset( $this->progress[ $course_id ][ $progress_type ] ) ) ) {
+							return $this->progress[ $course_id ][ $progress_type ];
+						} else {
+							return $this->progress[ $course_id ];
+						}
 					}
 				}
 			}

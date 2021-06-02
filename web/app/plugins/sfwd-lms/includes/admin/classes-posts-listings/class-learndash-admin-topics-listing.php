@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Topics (sfwd-topic) Posts Listing Class.
+ * LearnDash Topics (sfwd-topic) Posts Listing.
  *
- * @package LearnDash
- * @subpackage admin
+ * @since 3.0.0
+ * @package LearnDash\Topic\Listing
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,13 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'Learndash_Admin_Topics_Listing' ) ) ) {
+
 	/**
-	 * Class for LearnDash Topics Listing Pages.
+	 * Class LearnDash Topics (sfwd-topic) Posts Listing.
+	 *
+	 * @since 3.0.0
+	 * @uses Learndash_Admin_Posts_Listing
 	 */
 	class Learndash_Admin_Topics_Listing extends Learndash_Admin_Posts_Listing {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		public function __construct() {
 			$this->post_type = learndash_get_post_type_slug( 'topic' );
@@ -27,6 +33,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Called via the WordPress init action hook.
+		 *
+		 * @since 3.2.3
 		 */
 		public function listing_init() {
 			if ( $this->listing_init_done ) {
@@ -132,6 +140,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Call via the WordPress load sequence for admin pages.
+		 *
+		 * @since 3.2.3
 		 */
 		public function on_load_listing() {
 			if ( $this->post_type_check() ) {
@@ -142,8 +152,10 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		/**
 		 * Filter the Topics Lessons selector filters.
 		 *
+		 * @since 3.2.3
+		 *
 		 * @param array  $query_args Query Args for Selector.
-		 * @param string $post_type Post Type slug for selector.
+		 * @param string $post_type  Post Type slug for selector.
 		 */
 		public function filter_course_lessons_selector( $query_args = array(), $post_type = '' ) {
 			global $sfwd_lms;

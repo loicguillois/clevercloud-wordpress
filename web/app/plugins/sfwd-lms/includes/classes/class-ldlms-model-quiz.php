@@ -2,9 +2,8 @@
 /**
  * Class to extend LDLMS_Model_Post to LDLMS_Model_Quiz.
  *
- * @package LearnDash
- * @subpackage Quiz
- * @since 3.2.0
+ * @since 2.6.0
+ * @package LearnDash\Quiz
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,6 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( ! class_exists( 'LDLMS_Model_Quiz' ) ) && ( class_exists( 'LDLMS_Model_Post' ) ) ) {
+	/**
+	 * Class for LearnDash Quiz.
+	 *
+	 * @since 2.6.0
+	 * @uses LDLMS_Model
+	 */
 	class LDLMS_Model_Quiz extends LDLMS_Model_Post {
 
 		/**

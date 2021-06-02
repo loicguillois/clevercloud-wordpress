@@ -1,10 +1,9 @@
 <?php
 /**
- * LearnDash V2 REST API Progress Status Controller.
+ * LearnDash REST API V2 Progress Status Controller.
  *
- * @package LearnDash
- * @subpackage REST_API
  * @since 3.4.0
+ * @package LearnDash\REST\V2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,8 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( ! class_exists( 'LD_REST_Progress_Status_Controller_V2' ) ) && ( class_exists( 'WP_REST_Controller' ) ) ) {
+
 	/**
-	 * Class REST API Progress Status Controller.
+	 * Class LearnDash REST API V2 Progress Status Controller.
+	 *
+	 * @since 3.4.0
+	 * @uses WP_REST_Controller
 	 */
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Progress_Status_Controller_V2 extends WP_REST_Controller {
@@ -96,8 +99,8 @@ if ( ( ! class_exists( 'LD_REST_Progress_Status_Controller_V2' ) ) && ( class_ex
 			$this->types = array();
 			foreach ( $learndash_course_statuses as $status_slug => $status_label ) {
 				$this->types[ str_replace( '_', '-', $status_slug ) ] = array(
-					'slug'        => str_replace( '_', '-', $status_slug ),
-					'name'        => $status_label,
+					'slug' => str_replace( '_', '-', $status_slug ),
+					'name' => $status_label,
 				);
 			}
 		}

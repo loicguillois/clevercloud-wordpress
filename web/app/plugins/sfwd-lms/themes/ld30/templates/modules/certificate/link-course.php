@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Displays the infobar in course context
+ * LearnDash LD30 Displays the infobar in course context
  *
  * Will have access to same variables as course.php
  *
@@ -31,9 +31,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * $has_topics                 : (true/false)
  * $lesson_topics              : (array) lessons topics
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\LD30\Modules
  */
 
 if ( ! empty( $course_certficate_link ) ) : ?>

@@ -1,10 +1,12 @@
 <?php
 /**
+ * LearnDash Data Upgrades Base.
+ *
  * This class handles the data upgrade from the user meta arrays into a DB structure to
  * allow on the floy reporting. Plus to not bloat the user meta table.
  *
- * @package LearnDash
- * @subpackage Data Upgrades
+ * @since 2.6.0
+ * @package LearnDash\Data_Upgrades
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,8 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
+
 	/**
-	 * Class to create the Data Upgrade for Courses.
+	 * Class LearnDash Data Upgrades Base.
+	 *
+	 * @since 2.6.0
 	 */
 	class Learndash_Admin_Data_Upgrades {
 
@@ -104,6 +109,8 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 2.6.0
 		 */
 		protected function __construct() {
 			$this->meta_key = $this->transient_prefix . $this->data_slug;
@@ -112,20 +119,48 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 			/**
 			 * Filters value of process time percentage.
 			 *
+			 * @since 2.3.0
+			 *
 			 * @param int $process_time_percent Process time percentage.
 			 */
 			$process_time_percent = apply_filters( 'learndash_process_time_percent', 80 );
 			if ( ! defined( 'LEARNDASH_PROCESS_TIME_PERCENT' ) ) {
+				/**
+				 * Define LearnDash LMS - Set the processing time (percent) for Data
+				 * Upgrade and Report Export processing.
+				 *
+				 * During the Data Upgrade or Reporting processing there is a series of AJAX
+				 * calls made. This define controls how long the AJAX call can run before
+				 * returning and starting a new AJAX process.
+				 * 
+				 * @since 2.3.0
+				 *
+				 * @var int Default is 80 percent.
+				 */
 				define( 'LEARNDASH_PROCESS_TIME_PERCENT', $process_time_percent );
 			}
 
 			/**
 			 * Filters value of process time seconds.
 			 *
+			 * @since 2.3.0
+			 *
 			 * @param int $process_time_seconds Process time seconds.
 			 */
 			$process_time_seconds = apply_filters( 'learndash_process_time_seconds', 10 );
 			if ( ! defined( 'LEARNDASH_PROCESS_TIME_SECONDS' ) ) {
+				/**
+				 * Define LearnDash LMS - Set the processing time (seconds) for Data
+				 * Upgrade and Report Export processing.
+				 *
+				 * During the Data Upgrade or Reporting processing there is a series of AJAX
+				 * calls made. This define controls how long the AJAX call can run before
+				 * returning and starting a new AJAX process.
+				 * 
+				 * @since 2.3.0
+				 *
+				 * @var int Default is 10 seconds.
+				 */
 				define( 'LEARNDASH_PROCESS_TIME_SECONDS', $process_time_seconds );
 			}
 		}
@@ -133,9 +168,10 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 		/**
 		 * Get the current instance of this class or new.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 *
 		 * @param string $instance_key Unique identifier for instance.
+		 *
 		 * @return object instance of class.
 		 */
 		public static function get_instance( $instance_key = '' ) {
@@ -155,7 +191,7 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 		/**
 		 * Add instance to static tracking array
 		 *
-		 * @since 2.4.0
+		 * @since 2.6.0
 		 */
 		final public static function add_instance() {
 			$section = get_called_class();
@@ -168,7 +204,7 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 		/**
 		 * Register the data upgrade action.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 */
 		public function register_upgrade_action() {
 			// Add ourselved to the upgrade actions.
@@ -184,9 +220,10 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 		/**
 		 * Initialize the LearnDash Settings array
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 *
 		 * @param bool $force_reload optional to force reload from database.
+		 *
 		 * @return void.
 		 */
 		private function init_data_settings( $force_reload = false ) {
@@ -259,9 +296,10 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 		/**
 		 * Get the LearnDash Settings array
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 *
 		 * @param string $key optional to return only specifc key value.
+		 *
 		 * @return mixed.
 		 */
 		public function get_data_settings( $key = '' ) {
@@ -279,9 +317,9 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 		/**
 		 * Set data upgrade option for instance.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 *
-		 * @param string $key Key to data upgrade instance.
+		 * @param string $key   Key to data upgrade instance.
 		 * @param string $value Value for key iinstance.
 		 */
 		public function set_data_settings( $key = '', $value = '' ) {
@@ -298,7 +336,7 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 		/**
 		 * General admin_init hook function to check admin notices.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 */
 		public function admin_init() {
 
@@ -312,7 +350,7 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 		/**
 		 * Shows Data Upgrade admin notice.
 		 *
-		 * @version 2.3
+		 * @version 2.6.0
 		 */
 		public function show_upgrade_admin_notice() {
 			if ( true !== self::$admin_notice_shown ) {
@@ -334,7 +372,7 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 		/**
 		 * Trigger admin notice if Data Upgrades need to be performed.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 */
 		public function check_upgrade_admin_notice() {
 			$show_admin_notice = false;
@@ -353,7 +391,7 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 		/**
 		 * Show the admin page content.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 */
 		public function admin_page() {
 			?>
@@ -371,6 +409,8 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 
 		/**
 		 * Placeholder function. This function is called when displaying the admin page.
+		 *
+		 * @snce 2.6.0
 		 */
 		public function show_upgrade_action() {
 			// Does nothing.
@@ -378,6 +418,8 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 
 		/**
 		 * Placeholder function. This function is called when processing the upgrade action.
+		 *
+		 * @since 2.6.0
 		 */
 		public function process_upgrade_action() {
 			// Does nothing.
@@ -386,7 +428,7 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 		/**
 		 * Set the last run completed data upgrade for instance.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 *
 		 * @param array $data Last run data array.
 		 */
@@ -418,7 +460,7 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 		/**
 		 * Return the last run details for the last completed data upgrade for the instance.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 */
 		public function get_last_run_info() {
 			$last_run_info = '';
@@ -446,7 +488,7 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 		/**
 		 * Entry point to perform data upgrade for instance.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 *
 		 * @param array $post_data Array of post dats sent via AJAX.
 		 * @param array $reply_data Array of return data returned to browser.
@@ -474,7 +516,7 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 		/**
 		 * Initialize the processing timer.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 */
 		protected function init_process_times() {
 			$this->process_times['started'] = time();
@@ -487,7 +529,7 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 		/**
 		 * Check if the process timer is out of time.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 */
 		protected function out_of_timer() {
 			$this->process_times['current_time'] = time();
@@ -506,7 +548,7 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 		/**
 		 * Remove the processing transient for instance.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 *
 		 * @param string $transient_key Transient key to identify transient.
 		 */
@@ -521,7 +563,7 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 		/**
 		 * Get the processing transient for instance.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 *
 		 * @param string $transient_key Transient key to identify transient.
 		 * @return mixed transient data.
@@ -537,7 +579,7 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 		/**
 		 * Set the processing transient for instance.
 		 *
-		 * @since 2.3
+		 * @since 3.1.0
 		 *
 		 * @param string $transient_key Transient key to identify transient.
 		 * @param array  $transient_data Array for transient data.
@@ -562,6 +604,9 @@ if ( ! class_exists( 'Learndash_Admin_Data_Upgrades' ) ) {
 // Go ahead and inlcude out User Meta Courses upgrade class.
 require_once LEARNDASH_LMS_PLUGIN_DIR . 'includes/admin/classes-data-upgrades-actions/class-learndash-admin-data-upgrades-translations.php';
 require_once LEARNDASH_LMS_PLUGIN_DIR . 'includes/admin/classes-data-upgrades-actions/class-learndash-admin-data-upgrades-group-leader-role.php';
+require_once LEARNDASH_LMS_PLUGIN_DIR . 'includes/admin/classes-data-upgrades-actions/class-learndash-admin-data-upgrades-course-post-meta.php';
+require_once LEARNDASH_LMS_PLUGIN_DIR . 'includes/admin/classes-data-upgrades-actions/class-learndash-admin-data-upgrades-group-post-meta.php';
+require_once LEARNDASH_LMS_PLUGIN_DIR . 'includes/admin/classes-data-upgrades-actions/class-learndash-admin-data-upgrades-quiz-post-meta.php';
 require_once LEARNDASH_LMS_PLUGIN_DIR . 'includes/admin/classes-data-upgrades-actions/class-learndash-admin-data-upgrades-user-activity-db-table.php';
 require_once LEARNDASH_LMS_PLUGIN_DIR . 'includes/admin/classes-data-upgrades-actions/class-learndash-admin-data-upgrades-user-meta-courses.php';
 require_once LEARNDASH_LMS_PLUGIN_DIR . 'includes/admin/classes-data-upgrades-actions/class-learndash-admin-data-upgrades-user-meta-quizzes.php';
@@ -579,6 +624,8 @@ do_action( 'learndash_data_upgrades_init' );
 
 /**
  * AJAX function to handle calls from browser on Data Upgrade cycles.
+ *
+ * @since 2.3.0
  */
 function learndash_data_upgrades_ajax() {
 
@@ -617,7 +664,13 @@ function learndash_is_data_upgrade_quiz_questions_updated() {
 	}
 }
 
-
+/**
+ * Utility function to get the data upgrade settings.
+ *
+ * @since 3.1.3
+ *
+ * @param string $settings_key Settings key
+ */
 function learndash_data_upgrades_setting( $settings_key = '' ) {
 	$element = Learndash_Admin_Data_Upgrades::get_instance();
 	if ( ( $element ) && ( is_a( $element, 'Learndash_Admin_Data_Upgrades' ) ) ) {

@@ -1,0 +1,384 @@
+# Translation of Plugins - Elementor Custom Skin - Development (trunk) in French (France)
+# This file is distributed under the same license as the Plugins - Elementor Custom Skin - Development (trunk) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2021-01-28 23:20:08+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"Language: fr\n"
+"Project-Id-Version: Plugins - Elementor Custom Skin - Development (trunk)\n"
+
+#: includes/ajax-pagination.php:517
+msgid "Ball Slide"
+msgstr "Balle de diapositive"
+
+#: includes/ajax-pagination.php:513
+msgid "Running Dots"
+msgstr "Points de fonctionnement"
+
+#: includes/ajax-pagination.php:509
+msgid "Progress Bar"
+msgstr "Barre de progression"
+
+#: includes/ajax-pagination.php:396
+msgid "Padding"
+msgstr "Marge interne"
+
+#: includes/ajax-pagination.php:376
+msgid "Border Radius"
+msgstr "Rayon de bordure"
+
+#: includes/ajax-pagination.php:355
+msgid "Hover Animation"
+msgstr "Animation au survol"
+
+#: includes/ajax-pagination.php:341
+msgid "Border Color"
+msgstr "Couleur de bordure"
+
+#: includes/ajax-pagination.php:311
+msgid "Hover"
+msgstr "Survol"
+
+#: includes/ajax-pagination.php:294 includes/ajax-pagination.php:330
+msgid "Background Color"
+msgstr "Couleur de l’arrière-plan"
+
+#: includes/ajax-pagination.php:282 includes/ajax-pagination.php:318
+msgid "Text Color"
+msgstr "Couleur du texte"
+
+#: includes/ajax-pagination.php:275
+msgid "Normal"
+msgstr "Normale"
+
+#: includes/ajax-pagination.php:188
+msgid "Button Spacing"
+msgstr "Espacement des boutons"
+
+#: includes/ajax-pagination.php:177 includes/ajax-pagination.php:178
+msgid "Loading..."
+msgstr "Chargement…"
+
+#: includes/ajax-pagination.php:175
+msgid "Loading Text"
+msgstr "Chargement du texte"
+
+#: includes/ajax-pagination.php:164 includes/ajax-pagination.php:165
+msgid "Load More"
+msgstr "Charger plus"
+
+#: includes/ajax-pagination.php:162
+msgid "Text"
+msgstr "Texte"
+
+#: includes/ajax-pagination.php:150 includes/ajax-pagination.php:245
+msgid "Load More Button"
+msgstr "Bouton « Charger plus »"
+
+#: includes/ajax-pagination.php:128
+msgid "Animation Size"
+msgstr "Taille de l’animation"
+
+#: includes/ajax-pagination.php:106
+msgid "Animation Spacing"
+msgstr "Espacement de l’animation"
+
+#: includes/ajax-pagination.php:91
+msgid "Animation Color"
+msgstr "Couleur de l’animation"
+
+#: includes/ajax-pagination.php:79
+msgid "Loading Animation"
+msgstr "Chargement de l’animation"
+
+#: includes/ajax-pagination.php:67
+msgid "Infinite Load"
+msgstr "Chargement infini"
+
+#: includes/ajax-pagination.php:58 includes/ajax-pagination.php:59
+msgid "Previous/Next"
+msgstr "Précédent/suivant"
+
+#: includes/ajax-pagination.php:57
+msgid "Infinite Load (Custom Skin Pro)"
+msgstr "Chargement infini (Custom Skin Pro)"
+
+#: includes/ajax-pagination.php:56
+msgid "Load More (Custom Skin)"
+msgstr "Charger plus (Custom Skin)"
+
+#: includes/ajax-pagination.php:55 includes/ajax-pagination.php:59
+msgid "Numbers"
+msgstr "Nombres"
+
+#: includes/pro-preview.php:320
+msgid "For this link to be SEO friendly please add a link to title or other widgets inside Loop Template."
+msgstr "Pour que ce lien soit favorable au référencement, veuillez ajouter un lien vers le titre ou d’autres widgets à l’intérieur du modèle de boucle."
+
+#: includes/pro-preview.php:319
+msgid "Link"
+msgstr "Lien"
+
+#: includes/pro-preview.php:301
+msgid "Make the entire Loop Template clickable."
+msgstr "Rendre le modèle de boucle entier cliquable."
+
+#: includes/pro-preview.php:300
+msgid "<b>Make entire post a link?</b>"
+msgstr "<b>Faire de la publication entière un lien ?</b>"
+
+#: includes/pro-preview.php:31
+msgid "Use templates based on Display Conditions set on Loop Templates"
+msgstr "Utiliser des modèles basés sur les conditions d’affichage définies dans les modèles de boucle"
+
+#: includes/pro-preview.php:30
+msgid "<b>Enable Display Conditions</b>"
+msgstr "<b>Activer les conditions d’affichage</b>"
+
+#: theme-builder/conditions/custom-grid.php:29 theme-builder/init.php:97
+#: theme-builder/documents/custom-grid.php:35
+#: theme-builder/documents/custom-grid.php:41
+msgid "Custom Grid"
+msgstr "Grille personnalisée"
+
+#: modules/loop-item/widgets/loop-item.php:87
+msgid "Place this widget where the Loop Item you want to show in Ele Custom Skin."
+msgstr "Placez ce widget là où vous souhaitez afficher l’élément de la boucle dans Ele Custom Skin."
+
+#: modules/loop-item/widgets/loop-item.php:85
+msgid "Loop Item Place Holder"
+msgstr "Texte indicatif d’élément de boucle"
+
+#: modules/loop-item/widgets/loop-item.php:77
+msgid "Content"
+msgstr "Contenu"
+
+#: modules/loop-item/widgets/loop-item.php:33
+msgid "Loop Item"
+msgstr "Élément de boucle"
+
+#: skins/skin-custom.php:107
+msgid "Create/edit a Custom Grid"
+msgstr "Créer/modifier une grille personnalisée"
+
+#: skins/skin-custom.php:90
+msgid "Use custom grid?"
+msgstr "Utiliser une grille personnalisée ?"
+
+#: includes/pro-preview.php:15
+msgid "See <b>Pro</b> features"
+msgstr "Voir les fonctionnalités <b>Pro</b>"
+
+#: theme-builder/documents/loop.php:55
+msgid "404"
+msgstr "404"
+
+#: theme-builder/documents/loop.php:52
+msgid "Single"
+msgstr "Unique"
+
+#: includes/pro-preview.php:112
+msgid "th post"
+msgstr "ème publication"
+
+#: includes/pro-preview.php:112
+msgid "Template for every "
+msgstr "Modèle pour chaque "
+
+#: includes/pro-preview.php:242 includes/ajax-pagination.php:54
+msgid "None"
+msgstr "Aucun"
+
+#: includes/pro-preview.php:241
+msgid "Dots"
+msgstr "Points"
+
+#: includes/pro-preview.php:240
+msgid "Arrows"
+msgstr "Flèches"
+
+#: includes/pro-preview.php:239
+msgid "Arrows and Dots"
+msgstr "Flèches et points"
+
+#: includes/pro-preview.php:235
+msgid "Navigation"
+msgstr "Navigation"
+
+#: includes/pro-preview.php:220
+msgid "Set how many slides are scrolled per swipe."
+msgstr "Définir combien de diapositives faire défiler par balayage."
+
+#: includes/pro-preview.php:218
+msgid "Slides to Scroll"
+msgstr "Diapositives à faire défiler"
+
+#: includes/pro-preview.php:206 includes/pro-preview.php:222
+#: includes/ajax-pagination.php:505
+msgid "Default"
+msgstr "Par défaut"
+
+#: includes/pro-preview.php:203
+msgid "Slides to Show"
+msgstr "Diapositives à afficher"
+
+#: includes/pro-preview.php:189
+msgid "Slider Options"
+msgstr "Options du diaporama"
+
+#: includes/pro-preview.php:171
+msgid "Show in Slider"
+msgstr "Afficher dans le diaporama"
+
+#: includes/pro-preview.php:131
+msgid "Masonry"
+msgstr "Masonry"
+
+#: includes/pro-preview.php:18 includes/pro-preview.php:53
+msgid "Show"
+msgstr "Afficher"
+
+#: includes/pro-preview.php:17 includes/pro-preview.php:52
+msgid "Hide"
+msgstr "Masquer"
+
+#: includes/pro-preview.php:50
+msgid "<b>Alternating templates</b>"
+msgstr "<b>Modèles alternatifs</b>"
+
+#: skins/skin-custom.php:461 includes/ajax-pagination.php:50
+msgid "Pagination"
+msgstr "Pagination"
+
+#: skins/skin-custom.php:438
+msgid "Page"
+msgstr "Page"
+
+#: skins/skin-custom.php:331
+msgid "Please select a default template! "
+msgstr "Veuillez sélectionner un modèle par défaut ! "
+
+#: skins/skin-custom.php:68
+msgid "Create/edit a Loop Template"
+msgstr "Créer/modifier un modèle de boucle"
+
+#: includes/pro-preview.php:134 includes/pro-preview.php:151
+#: includes/pro-preview.php:174
+msgid "On"
+msgstr "Actif"
+
+#: includes/pro-preview.php:133 includes/pro-preview.php:150
+#: includes/pro-preview.php:173
+msgid "Off"
+msgstr "Inactif"
+
+#: includes/pro-preview.php:148
+msgid "Same Height"
+msgstr "Même hauteur"
+
+#: includes/pro-preview.php:120
+msgid "Display Mode"
+msgstr "Mode d’affichage"
+
+#: ele-custom-skin.php:58
+msgid "<b>Ele Custom Skin</b> needs <b>Elementor</b> and <b>Elementor Pro</b> to work. Make sure you have them <b>both</b> installed."
+msgstr "<b>Ele Custom Skin</b> nécessite <b>Elementor</b> et <b>Elementor Pro</b> pour fonctionner. Assurez-vous que vous les avez installés <b>tous les deux</b>."
+
+#: includes/pro-preview.php:340
+msgid "Get full features with <b><i>Ele Custom Skin PRO</i></b>, "
+msgstr "Obtenir toutes les fonctionnalités avec <b><i>Ele Custom Skin Pro</i></b>, "
+
+#: includes/pro-preview.php:337
+msgid "Unlock PRO features. "
+msgstr "Débloquer les fonctionnalités Pro. "
+
+#: skins/skin-custom.php:92 includes/pro-preview.php:33
+#: includes/pro-preview.php:276 includes/pro-preview.php:303
+#: includes/ajax-pagination.php:212 includes/ajax-pagination.php:226
+msgid "No"
+msgstr "Non"
+
+#: skins/skin-custom.php:93 includes/pro-preview.php:34
+#: includes/pro-preview.php:275 includes/pro-preview.php:304
+#: includes/ajax-pagination.php:213 includes/ajax-pagination.php:227
+msgid "Yes"
+msgstr "Oui"
+
+#: includes/pro-preview.php:273
+msgid "Using Dynamic Keywords"
+msgstr "Utilisation de mots clés dynamiques"
+
+#: includes/pro-preview.php:262
+msgid "Dynamic Everywhere"
+msgstr "Dynamique partout"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://dudaster.com"
+msgstr "https://dudaster.com"
+
+#: includes/pro-features.php:51 includes/pro-preview.php:340
+msgid "Go Pro"
+msgstr "Passer Pro"
+
+#: includes/pro-features.php:47
+msgid "Add Loop Template"
+msgstr "Ajouter un modèle de boucle"
+
+#: includes/pro-features.php:37
+msgid "Video Tutorial"
+msgstr "Tutoriel vidéo"
+
+#: includes/pro-preview.php:76
+msgid "1"
+msgstr "1"
+
+#: includes/pro-preview.php:75
+msgid "nth"
+msgstr "ème"
+
+#: includes/pro-preview.php:71
+msgid "<i><b>n</b></i> th post"
+msgstr "<i><b>n</b></i> ème publication."
+
+#: skins/skin-custom.php:65 skins/skin-custom.php:104
+#: includes/pro-preview.php:88
+msgid "Select a default template"
+msgstr "Sélectionner un modèle par défaut"
+
+#. Author of the plugin
+msgid "Dudaster.com"
+msgstr "Dudaster.com"
+
+#: skins/skin-custom.php:80
+msgid "View"
+msgstr "Voir"
+
+#: theme-builder/dynamic-tags/tags/post-summary.php:33
+msgid "Length"
+msgstr "Longueur"
+
+#: theme-builder/dynamic-tags/tags/post-summary.php:18
+msgid "Post Summary"
+msgstr "Résumé de la publication"
+
+#: theme-builder/conditions/loop.php:31 theme-builder/init.php:60
+#: theme-builder/documents/loop.php:32
+msgid "Loop"
+msgstr "Boucle"
+
+#. Description of the plugin
+msgid "Elementor Custom Skin for Posts and Archive Posts. You can create a skin as you want."
+msgstr "Elementor Custom Skin pour les publications et les archives de publication. Vous pouvez créer un design comme vous le souhaitez."
+
+#. Plugin Name of the plugin
+msgid "Ele Custom Skin"
+msgstr "Ele Custom Skin"
+
+#: skins/skin-custom.php:37 skins/skin-custom.php:626
+msgid "Custom"
+msgstr "Personnalisé"

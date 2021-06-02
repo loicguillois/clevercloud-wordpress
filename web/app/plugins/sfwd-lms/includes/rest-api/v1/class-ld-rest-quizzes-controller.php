@@ -1,11 +1,32 @@
 <?php
+/**
+ * LearnDash REST API V1 Quizzes Post Controller.
+ *
+ * @since 2.5.8
+ * @package LearnDash\REST\V1
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V1' ) ) && ( class_exists( 'LD_REST_Posts_Controller_V1' ) ) ) {
+
+	/**
+	 * Class LearnDash REST API V1 Quizzes Post Controller.
+	 *
+	 * @since 2.5.8
+	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Quizzes_Controller_V1 extends LD_REST_Posts_Controller_V1 {
 
+		/**
+		 * Public constructor for class
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param string $post_type Post type.
+		 */
 		public function __construct( $post_type = '' ) {
 			$this->post_type = 'sfwd-quiz';
 
@@ -14,6 +35,13 @@ if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V1' ) ) && ( class_exists( 'L
 			$this->rest_base = LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Section_General_REST_API', $this->post_type );
 		}
 
+		/**
+		 * Registers the routes for the objects of the controller.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @see register_rest_route() in WordPress core.
+		 */
 		public function register_routes() {
 			$this->register_fields();
 
@@ -100,6 +128,8 @@ if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V1' ) ) && ( class_exists( 'L
 		/**
 		 * Gets sfwd-quiz schema.
 		 *
+		 * @since 2.5.8
+		 *
 		 * @return array
 		 */
 		public function get_schema() {
@@ -110,6 +140,14 @@ if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V1' ) ) && ( class_exists( 'L
 			return $schema;
 		}
 
+		/**
+		 * Filters collection parameters for the posts controller.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param array $query_params Quest params array.
+		 * @param WP_Post_Type $post_type    Post type object.
+		 */
 		public function rest_collection_params_filter( $query_params, $post_type ) {
 			$query_params = parent::rest_collection_params_filter( $query_params, $post_type );
 
@@ -163,6 +201,13 @@ if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V1' ) ) && ( class_exists( 'L
 			return $query_params;
 		}
 
+		/**
+		 * Check Single Quiz Read Permissions.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function get_item_permissions_check( $request ) {
 			$return = parent::get_item_permissions_check( $request );
 			if ( ( true === $return ) && ( ! learndash_is_admin_user() ) ) {
@@ -216,7 +261,7 @@ if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V1' ) ) && ( class_exists( 'L
 						return new WP_Error( 'ld_rest_cannot_view', __( 'Sorry, you are not allowed to view this item.', 'learndash' ), array( 'status' => rest_authorization_required_code() ) );
 					}
 
-					if ( ! in_array( $request['id'], $lesson_ids ) ) {
+					if ( ! in_array( $request['id'], $lesson_ids, true ) ) {
 						return new WP_Error( 'ld_rest_cannot_view', __( 'Sorry, you are not allowed to view this item.', 'learndash' ), array( 'status' => rest_authorization_required_code() ) );
 					}
 				}
@@ -225,10 +270,15 @@ if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V1' ) ) && ( class_exists( 'L
 			return $return;
 		}
 
-		public function get_item( $request ) {
-			return parent::get_item( $request );
-		}
-
+		/**
+		 * Check if a given request has access manage the item.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param WP_REST_Request $request Full data about the request.
+		 *
+		 * @return WP_Error|bool
+		 */
 		public function get_items_permissions_check( $request ) {
 			$return = parent::get_items_permissions_check( $request );
 			if ( ( true === $return ) && ( 'view' === $request['context'] ) ) {
@@ -354,10 +404,16 @@ if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V1' ) ) && ( class_exists( 'L
 			return $return;
 		}
 
-		public function get_items( $request ) {
-			return parent::get_items( $request );
-		}
-
+		/**
+		 * Filter query args.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param array           $query_args Key value array of query var to query value.
+		 * @param WP_REST_Request $request    The request used.
+		 *
+		 * @return array Key value array of query var to query value.
+		 */
 		public function rest_query_filter( $args, $request ) {
 
 			$step_ids = array();
@@ -370,11 +426,7 @@ if ( ( ! class_exists( 'LD_REST_Quizzes_Controller_V1' ) ) && ( class_exists( 'L
 				} elseif ( $this->lesson_post ) {
 					$step_ids = learndash_course_get_children_of_step( $this->course_post->ID, $this->lesson_post->ID, $this->post_type );
 				} elseif ( $this->course_post ) {
-					//$global_quizzes = $request['global'];
-					//if ( $global_quizzes == "true" ) {
-
 					$lesson_id = $request['lesson'];
-					//error_log('lesson_id=['. $lesson_id .']');
 					if ( 0 === $lesson_id ) {
 						$step_ids = learndash_course_get_children_of_step( $this->course_post->ID, $this->course_post->ID, $this->post_type );
 					} else {

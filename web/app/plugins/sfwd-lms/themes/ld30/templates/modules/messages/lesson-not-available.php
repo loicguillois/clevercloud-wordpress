@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays the Course Lesson Not Available message
+ * LearnDash LD30 Displays the Course Lesson Not Available message
  *
  * Available Variables:
  * user_id                    : (integer) The user_id whose points to show
@@ -10,9 +10,9 @@
  * ld_lesson_access_from_date : (string) Formatted human readable date/time of ld_lesson_access_from_int
  * context                    : (string) The context will be set based on where this message is shown. course, lesson, loop, etc.
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -53,6 +53,8 @@ if ( 'lesson' === $context ) {
 			'button'  => $button,
 			/**
 			 * Filters the message markup for when the lesson will be available.
+			 *
+			 * @since 2.2.1
 			 *
 			 * @param string $message Markup for lesson available message.
 			 * @param object $lesson  Lesson Object.

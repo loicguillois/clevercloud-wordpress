@@ -1,9 +1,8 @@
 <?php
 /**
- * Shortcode for learndash_course_progress
+ * LearnDash `[learndash_course_progress]` shortcode processing.
  *
  * @since 2.1.0
- *
  * @package LearnDash\Shortcodes
  */
 
@@ -12,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `learndash_course_progress` shortcode output.
+ * Builds the `[learndash_course_progress]` shortcode output.
  *
  * @since 2.1.0
  *
@@ -21,14 +20,15 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $atts {
  *    An array of shortcode attributes.
  *
- *    @type int     $course_id Optional. Course ID. Default 0.
- *    @type int     $user_id   Optional. User ID. Default 0.
- *    @type boolean $array     Optional. Whether to return array. Default false.
+ *    @type int     $course_id Course ID. Default 0.
+ *    @type int     $user_id   User ID. Default 0.
+ *    @type boolean $array     Whether to return array. Default false.
  * }
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string|array The `learndash_course_progress` shortcode output.
  */
-function learndash_course_progress( $atts ) {
+function learndash_course_progress( $atts = array(), $content = '' ) {
 	global $learndash_shortcode_used;
 	$learndash_shortcode_used = true;
 
@@ -104,5 +104,4 @@ function learndash_course_progress( $atts ) {
 		)
 	);
 }
-
-add_shortcode( 'learndash_course_progress', 'learndash_course_progress' );
+add_shortcode( 'learndash_course_progress', 'learndash_course_progress', 10, 2 );

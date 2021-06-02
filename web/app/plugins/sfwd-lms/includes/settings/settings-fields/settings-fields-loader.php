@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Fields Loader.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Field
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

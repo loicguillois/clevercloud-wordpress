@@ -3,8 +3,7 @@
  * Functions for wp-admin
  *
  * @since 2.1.0
- *
- * @package LearnDash\Admin
+ * @package LearnDash
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -318,6 +317,8 @@ function learndash_select_menu() {
  * Prints the AJAX lazy loaded element results.
  *
  * Fires on `learndash_element_lazy_loader` AJAX action.
+ *
+ * @since 2.2.1
  */
 function learndash_element_lazy_loader() {
 
@@ -375,6 +376,8 @@ add_action( 'wp_ajax_learndash_element_lazy_loader', 'learndash_element_lazy_loa
  *
  * Fires on `plugin_row_meta` hook.
  *
+ * @since 2.4.0
+ *
  * @param array  $plugin_meta An array of the plugin's metadata.
  * @param string $plugin_file  Path to the plugin file.
  * @param array  $plugin_data An array of plugin data.
@@ -397,6 +400,8 @@ add_filter( 'plugin_row_meta', 'learndash_plugin_row_meta', 10, 4 );
  * Overrides the post tag edit 'count' column to show only the related count for the LearnDash post types.
  *
  * Fires on `manage_edit-post_tag_columns` and `manage_edit-category_columns` hook.
+ *
+ * @since 2.4.0
  *
  * @param array $columns Optional. An array of column headers. Default empty array.
  *
@@ -421,6 +426,8 @@ add_filter( 'manage_edit-category_columns', 'learndash_manage_edit_post_tag_colu
  * Gets the custom column content for post_tag taxonomy in the terms list table.
  *
  * Fires on `manage_post_tag_custom_column` hook.
+ *
+ * @since 2.4.0
  *
  * @param string $column_content Column content. Default empty.
  * @param string $column_name    Name of the column.
@@ -471,6 +478,8 @@ add_filter( 'manage_post_tag_custom_column', 'learndash_manage_post_tag_custom_c
  *
  * Fires on `manage_category_custom_column` hook.
  *
+ * @since 2.4.0
+ *
  * @param string $column_content Column content. Default empty.
  * @param string $column_name    Name of the column.
  * @param int    $term_id        Term ID.
@@ -516,6 +525,8 @@ add_filter( 'manage_category_custom_column', 'learndash_manage_category_custom_c
 
 /**
  * Deletes all the LearnDash data.
+ *
+ * @since 2.4.5
  *
  * @global wpdb  $wpdb                 WordPress database abstraction object.
  * @global array $learndash_post_types An array of learndash post types.
@@ -726,6 +737,11 @@ function learndash_get_jed_locale_data() {
 
 $learndash_other_plugins_active_text = '';
 global $learndash_other_plugins_active_text;
+/**
+ * Check for other LMS plugins
+ *
+ * @since 3.2.3
+ */
 function learndash_check_other_lms_plugins() {
 	global $learndash_other_plugins_active_text;
 
@@ -791,6 +807,11 @@ function learndash_check_other_lms_plugins() {
 
 add_action( 'admin_init', 'learndash_check_other_lms_plugins' );
 
+/**
+ * Admin notice other LMS plugins
+ *
+ * @since 3.2.3
+ */
 function learndash_admin_notice_other_lms_plugins() {
 	global $learndash_other_plugins_active_text;
 

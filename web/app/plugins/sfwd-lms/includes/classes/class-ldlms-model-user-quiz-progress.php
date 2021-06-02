@@ -2,9 +2,8 @@
 /**
  * LearnDash User Quiz Progress Class.
  *
- * @package LearnDash
- * @subpackage User Quiz Progression
  * @since 3.4.0
+ * @package LearnDash\User\Progression
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -15,6 +14,9 @@ if ( ( ! class_exists( 'LDLMS_Model_User_Quiz_Progress' ) ) && ( class_exists( '
 
 	/**
 	 * Class for LearnDash LDLMS_Model_User_Quiz_Progress.
+	 *
+	 * @since 3.4.0
+	 * @uses LDLMS_Model_User
 	 */
 	class LDLMS_Model_User_Quiz_Progress extends LDLMS_Model_User {
 
@@ -333,7 +335,8 @@ if ( ( ! class_exists( 'LDLMS_Model_User_Quiz_Progress' ) ) && ( class_exists( '
 /**
  * Return Data from Instance.
  *
- * @since 3.2.0
+ * @since 3.4.0
+ *
  * @param integer $user_id   User ID.
  * @param integer $quiz_id   Quiz Post ID.
  * @param integer $course_id Course Post ID.

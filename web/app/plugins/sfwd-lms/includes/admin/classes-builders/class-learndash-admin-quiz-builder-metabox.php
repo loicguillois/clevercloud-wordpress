@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Quiz Builder Metabox Class.
+ * LearnDash Quiz Builder Metabox.
  *
- * @package LearnDash
- * @subpackage admin
+ * @since 2.6.0
+ * @package LearnDash\Builder
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,13 +12,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exists( 'Learndash_Admin_Builder' ) ) ) {
+
 	/**
-	 * Class for LearnDash Quiz Builder.
+	 * Class LearnDash Quiz Builder Metabox.
+	 *
+	 * @since 2.6.0
+	 * @uses Learndash_Admin_Builder
 	 */
 	class Learndash_Admin_Metabox_Quiz_Builder extends Learndash_Admin_Builder {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 2.6.0
 		 */
 		public function __construct() {
 			$this->builder_post_type   = 'sfwd-quiz';
@@ -33,6 +39,7 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 		 * Iniitialize builder for specific Quiz Item.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param integer $post_id Post ID to load.
 		 */
 		public function builder_init( $post_id = 0 ) {
@@ -43,17 +50,10 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 		}
 
 		/**
-		 * Call via the WordPress load sequence for admin pages.
-		 */
-		public function builder_on_load() {
-			parent::builder_on_load();
-		}
-
-		/**
 		 * Prints content for Quiz Builder meta box for admin
 		 * This function is called from other add_meta_box functions
 		 *
-		 * @since 2.5
+		 * @since 2.6.0
 		 *
 		 * @param object $post WP_Post.
 		 */
@@ -96,8 +96,10 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 		 * Get the selected items for a post type.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param string $selector_post_type Post Type is selector being processed.
-		 * @retrurn array Selector post IDs.
+		 *
+		 * @return array Selector post IDs.
 		 */
 		public function get_selector_selected_steps( $selector_post_type = '' ) {
 			$selector_post_type_steps = array();
@@ -112,6 +114,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 
 		/**
 		 * Get the number of current items in the builder.
+		 *
+		 * @since 2.6.0
 		 */
 		public function get_build_items_count() {
 			?>
@@ -130,6 +134,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 
 		/**
 		 * Call via the WordPress admin_footer action hook.
+		 *
+		 * @since 2.6.0
 		 */
 		public function builder_admin_footer() {
 			$builder_post_type_label = $this->get_label_for_post_type( $this->builder_post_type );
@@ -166,10 +172,11 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 		/**
 		 * Utility function to get the label for Post Type.
 		 *
-		 * @since 2.5.0
+		 * @since 2.6.0
 		 *
 		 * @param string  $post_type Post Type slug.
 		 * @param boolean $singular True if singular label needed. False for plural.
+		 *
 		 * @return string.
 		 */
 		public function get_label_for_post_type( $post_type = '', $singular = true ) {
@@ -194,9 +201,10 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 
 		/** Utility function to build the selector query args array.
 		 *
-		 * @since 2.5.0
+		 * @since 2.6.0
 		 *
 		 * @param array $args Array of query args.
+		 *
 		 * @return array
 		 */
 		public function build_selector_query( $args = array() ) {
@@ -205,8 +213,15 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 				$per_page = 10;
 			}
 
+			$step_post_statuses = learndash_get_step_post_statuses();
+			if ( ! empty( $step_post_statuses ) ) {
+				$step_post_statuses = array_keys( $step_post_statuses );
+			} else {
+				$step_post_statuses = array( 'publish' );
+			}
+
 			$defaults = array(
-				'post_status'    => array( 'publish' ),
+				'post_status'    => $step_post_statuses,
 				'posts_per_page' => $per_page,
 				'paged'          => 1,
 				'orderby'        => 'title',
@@ -262,7 +277,7 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 				/**
 				 * Filters whether to include orphaned steps or not. Orphaned steps are the steps that are not attached to a quiz.
 				 *
-				 * @since 2.5.9
+				 * @since 2.6.0
 				 *
 				 * @param boolean $include_orphaned_steps Whether to include orphaned steps.
 				 * @param array   $args                   An array of query arguments.
@@ -313,6 +328,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 			/**
 			 * Filters quiz builder query arguments.
 			 *
+			 * @since 2.6.0
+			 *
 			 * @param array $args An array of query arguments.
 			 */
 			return apply_filters( 'learndash_quiz_builder_selector_args', $args );
@@ -321,8 +338,10 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 		/**
 		 * Common function to show Selector pager buttons.
 		 *
-		 * @since 2.5.0
+		 * @since 2.6.0
+		 *
 		 * @param object $post_type_query WP_Query instance.
+		 *
 		 * @return string Button(s) HTML.
 		 */
 		public function build_selector_pages_buttons( $post_type_query ) {
@@ -366,8 +385,10 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 		/**
 		 * Common function to show Selector pager buttons.
 		 *
-		 * @since 2.5.0
+		 * @since 3.0.0
+		 *
 		 * @param object $post_type_query WP_Query instance.
+		 *
 		 * @return string Button(s) HTML.
 		 */
 		public function build_selector_pages_buttons_json( $post_type_query ) {
@@ -415,7 +436,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 		/**
 		 * Show selector rows.
 		 *
-		 * @since 2.5.0
+		 * @since 2.6.0
+		 *
 		 * @param object $post_type_query WP_Query instance.
 		 */
 		public function build_selector_rows( $post_type_query ) {
@@ -439,7 +461,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 		/**
 		 * Show selector rows.
 		 *
-		 * @since 2.5.0
+		 * @since 3.0.0
+		 *
 		 * @param object $post_type_query WP_Query instance.
 		 */
 		public function build_selector_rows_json( $post_type_query ) {
@@ -494,7 +517,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 					$selector_rows[] = [
 						'ID'              => $p->ID,
 						'expanded'        => false,
-						'post_title'      => $question_data['_title'],
+						'post_title'      => wp_kses_post( $question_data['_title'] ),
+						'post_status'     => learndash_get_step_post_status_slug( $p ),
 						'post_content'    => $question_data['_question'],
 						'edit_link'       => get_edit_post_link( $p->ID, '' ),
 						'type'            => $selector_post_type,
@@ -516,9 +540,11 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 		/**
 		 * Show selector single row.
 		 *
-		 * @since 2.5.0
+		 * @since 2.6.0
+		 *
 		 * @param object $p WP_Post object to show.
 		 * @param string $selector_post_type Post type slug.
+		 *
 		 * @return string Row HTML.
 		 */
 		protected function build_selector_row_single( $p = null, $selector_post_type = '' ) {
@@ -641,6 +667,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 		/**
 		 * This function is empty on purpose and overrides the parent function
 		 * with the same name. The purpose is to prevent the default output.
+		 *
+		 * @since 2.6.0
 		 */
 		public function show_builder_header_right() {
 			$total_question_points = 0;
@@ -665,6 +693,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 
 		/**
 		 * Build Course Steps HTML.
+		 *
+		 * @since 2.6.0
 		 */
 		public function build_course_steps_html() {
 			$questions_html = '';
@@ -679,8 +709,10 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 		/**
 		 * Build course steps HTML.
 		 *
-		 * @since 2.5.0
+		 * @since 2.6.0
+		 *
 		 * @param array $questions Array of current Quiz questions.
+		 *
 		 * @return string Steps HTML.
 		 */
 		protected function process_quiz_questions( $questions = array() ) {
@@ -752,7 +784,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 
 		/** Save Course Builder steps
 		 *
-		 * @since 2.5.0
+		 * @since 2.6.0
+		 *
 		 * @param integer $post_id Post ID of course being saved.
 		 * @param object  $post WP_Post object instance being saved.
 		 * @param boolean $update False is an update. True if new post.
@@ -788,6 +821,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 
 		/**
 		 * Handle AJAX pager requests.
+		 *
+		 * @since 2.6.0
 		 *
 		 * @param array $query_args array of values for AJAX request.
 		 */
@@ -827,6 +862,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 		/**
 		 * Handle AJAX search requests.
 		 *
+		 * @since 2.6.0
+		 *
 		 * @param array $query_args array of values for AJAX request.
 		 */
 		public function learndash_builder_selector_search( $query_args = array() ) {
@@ -864,6 +901,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 		/**
 		 * Handle AJAX new step requests.
 		 *
+		 * @since 2.6.0
+		 *
 		 * @param array $query_args array of values for AJAX request.
 		 */
 		public function learndash_builder_selector_step_new( $query_args = array() ) {
@@ -892,6 +931,7 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 							}
 						}
 						/** This filter is documented in includes/admin/classes-builders/class-learndash-admin-course-builder-metabox.php */
+						// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 						$new_step_id = wp_insert_post( apply_filters( 'course_builder_selector_new_step_post_args', $post_args ) );
 						if ( $new_step_id ) {
 							/**
@@ -926,6 +966,7 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 							$reply_data['new_steps'][ $old_step_id ]['post_id']  = $new_step_id;
 							$reply_data['new_steps'][ $old_step_id ]['view_url'] = get_permalink( $new_step_id );
 							$reply_data['new_steps'][ $old_step_id ]['edit_url'] = get_edit_post_link( $new_step_id );
+							$reply_data['new_steps'][ $old_step_id ]['post_status']  = get_post_status( $new_step_id );
 
 							learndash_update_setting( $new_step_id, 'quiz', '0' );
 							update_post_meta( $new_step_id, 'quiz_id', '0' );
@@ -940,6 +981,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 
 		/**
 		 * Handle AJAX trash step requests.
+		 *
+		 * @since 2.6.0
 		 *
 		 * @param array $query_args array of values for AJAX request.
 		 */
@@ -973,6 +1016,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Quiz_Builder' ) ) && ( class_exi
 
 		/**
 		 * Handle AJAX set title requests.
+		 *
+		 * @since 2.6.0
 		 *
 		 * @param array $query_args array of values for AJAX request.
 		 */

@@ -1,11 +1,32 @@
 <?php
+/**
+ * LearnDash REST API V1 Group Users Controller.
+ *
+ * @since 2.5.8
+ * @package LearnDash\REST\V1
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( ! class_exists( 'LD_REST_Groups_Users_Controller_V1' ) ) && ( class_exists( 'LD_REST_Users_Controller_V1' ) ) ) {
+
+	/**
+	 * Class LearnDash REST API V1 Group Users Controller.
+	 *
+	 * @since 2.5.8
+	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Groups_Users_Controller_V1 extends LD_REST_Users_Controller_V1 {
 
+		/**
+		 * Supported Collection Parameters.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @var array $supported_collection_params.
+		 */
 		private $supported_collection_params = array(
 			'exclude'  => 'exclude',
 			'include'  => 'include',
@@ -18,12 +39,24 @@ if ( ( ! class_exists( 'LD_REST_Groups_Users_Controller_V1' ) ) && ( class_exist
 			'slug'     => 'nicename__in',
 		);
 
+		/**
+		 * Public constructor for class
+		 *
+		 * @since 2.5.8
+		 */
 		public function __construct() {
 			parent::__construct();
 			$this->namespace = LEARNDASH_REST_API_NAMESPACE . '/' . $this->version;
 			$this->rest_base = LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Section_General_REST_API', 'groups' );
 		}
 
+		/**
+		 * Registers the routes for the objects of the controller.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @see register_rest_route() in WordPress core.
+		 */
 		public function register_routes() {
 			$this->meta = new WP_REST_User_Meta_Fields();
 
@@ -47,7 +80,7 @@ if ( ( ! class_exists( 'LD_REST_Groups_Users_Controller_V1' ) ) && ( class_exist
 					'args'   => array(
 						'id' => array(
 							// translators: group, group leader
-							'description'         => sprintf( esc_html_x( '%1$s ID to enroll %2$s into.', 'placeholder: group, group leader', 'learndash' ), learndash_get_custom_label_lower( 'group' ), learndash_get_custom_label_lower( 'group_leader' ) ),
+							'description' => sprintf( esc_html_x( '%1$s ID to enroll %2$s into.', 'placeholder: group, group leader', 'learndash' ), learndash_get_custom_label_lower( 'group' ), learndash_get_custom_label_lower( 'group_leader' ) ),
 							'required'    => true,
 							'type'        => 'integer',
 						),
@@ -96,6 +129,8 @@ if ( ( ! class_exists( 'LD_REST_Groups_Users_Controller_V1' ) ) && ( class_exist
 		/**
 		 * Gets the group users schema.
 		 *
+		 * @since 2.5.8
+		 *
 		 * @return array
 		 */
 		public function get_schema() {
@@ -125,6 +160,13 @@ if ( ( ! class_exists( 'LD_REST_Groups_Users_Controller_V1' ) ) && ( class_exist
 			return $schema;
 		}
 
+		/**
+		 * Check Group Users Read Permissions.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function get_groups_users_permissions_check( $request ) {
 			if ( learndash_is_admin_user() ) {
 				return true;
@@ -135,12 +177,19 @@ if ( ( ! class_exists( 'LD_REST_Groups_Users_Controller_V1' ) ) && ( class_exist
 
 				$leader_groups = learndash_get_administrators_group_ids( get_current_user_id() );
 
-				if ( ( ! empty( $leader_groups ) ) && ( in_array( $group_id, $leader_groups ) ) ) {
+				if ( ( ! empty( $leader_groups ) ) && ( in_array( $group_id, $leader_groups, true ) ) ) {
 					return true;
 				}
 			}
 		}
 
+		/**
+		 * Get Group Users.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function get_groups_users( $request ) {
 
 			$group_id = $request['id'];
@@ -291,18 +340,39 @@ if ( ( ! class_exists( 'LD_REST_Groups_Users_Controller_V1' ) ) && ( class_exist
 			return $response;
 		}
 
+		/**
+		 * Check Group Leaders Delete Permissions.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function delete_groups_users_permissions_check( $request ) {
 			if ( learndash_is_admin_user() ) {
 				return true;
 			}
 		}
 
+		/**
+		 * Check Group Leaders Update Permissions.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function update_groups_users_permissions_check( $request ) {
 			if ( learndash_is_admin_user() ) {
 				return true;
 			}
 		}
 
+		/**
+		 * Update Group Users.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function update_groups_users( $request ) {
 			$group_id = $request['id'];
 			if ( empty( $group_id ) ) {
@@ -343,6 +413,13 @@ if ( ( ! class_exists( 'LD_REST_Groups_Users_Controller_V1' ) ) && ( class_exist
 			return $response;
 		}
 
+		/**
+		 * Delete Group Users.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function delete_groups_users( $request ) {
 			$group_id = $request['id'];
 			if ( empty( $group_id ) ) {
@@ -383,7 +460,11 @@ if ( ( ! class_exists( 'LD_REST_Groups_Users_Controller_V1' ) ) && ( class_exist
 			return $response;
 		}
 
-
+		/**
+		 * Get Collection parameters
+		 *
+		 * @since 2.5.8
+		 */
 		public function get_collection_params() {
 			$query_params_default = parent::get_collection_params();
 

@@ -1,13 +1,13 @@
 <?php
 /**
- * Displays a single lesson row that appears in the group course content listing
+ * LearnDash LD30 Displays a single lesson row that appears in the group course content listing
  *
  * Available Variables:
  * TBD
  *
  * @since 3.2.0
  *
- * @package LearnDash\Group
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -60,7 +60,11 @@ $group_course_row_class = 'ld-item-list-item ld-expandable ld-item-lesson-item l
 		/**
 		 * Action to add custom content before lesson title
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
+		 *
+		 * @param int $course_id Course ID.
+		 * @param int $group_id Group ID.
+		 * @param int $user_id User ID.
 		 */
 		do_action( 'learndash-lesson-row-title-before', $course->ID, $group_id, $user_id );
 		?>
@@ -113,7 +117,7 @@ $group_course_row_class = 'ld-item-list-item ld-expandable ld-item-lesson-item l
 	/**
 	 * Action to add custom content after a row
 	 *
-	 * @since 3.0
+	 * @since 3.0.0
 	 *
 	 * @param int $course_id Course ID.
 	 * @param int $group_id  Group ID.

@@ -1,10 +1,9 @@
 <?php
 /**
- * LearnDash V2 REST API Post Controller.
+ * LearnDash REST API Quiz Statistics Controller.
  *
- * @package LearnDash
- * @subpackage REST
  * @since 3.3.0
+ * @package LearnDash\REST\V2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,7 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exists( 'WP_REST_Controller' ) ) {
 
 	/**
-	 * Class LD_REST_Quiz_Statistics_V2
+	 * Class LearnDash REST API Quiz Statistics Controller.
+	 *
+	 * @since 3.3.0
+	 * @uses WP_REST_Controller
 	 */
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Quiz_Statistics_Controller_V2 extends WP_REST_Controller implements Iterator {
@@ -84,7 +86,9 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		private $users_for_stats = null;
 
 		/**
-		 * LD_REST_Quiz_Statistics_V2 constructor.
+		 * Constructor.
+		 *
+		 * @since 3.3.0
 		 */
 		public function __construct() {
 
@@ -96,6 +100,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Retrieve current node.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @return mixed
 		 */
 		public function current() {
@@ -105,6 +111,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 
 		/**
 		 * Retrieve next node
+		 *
+		 * @since 3.3.0
 		 */
 		public function next() {
 
@@ -113,6 +121,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 
 		/**
 		 * Retrieve current position of traversal pointer.
+		 *
+		 * @since 3.3.0
 		 *
 		 * @return bool|float|int|string|null
 		 */
@@ -124,6 +134,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Check if node is valid.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @return bool
 		 */
 		public function valid() {
@@ -132,6 +144,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 
 		/**
 		 * Reset the pointer to first node.
+		 *
+		 * @since 3.3.0
 		 *
 		 * @return void
 		 */
@@ -142,6 +156,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 
 		/**
 		 * Find the statistics record in memory.
+		 *
+		 * @since 3.3.0
 		 *
 		 * @param int $stat_ref_id Statistics reference ID.
 		 *
@@ -162,6 +178,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 
 		/**
 		 * Register API routes.
+		 *
+		 * @since 3.3.0
 		 */
 		public function register_routes() {
 			if ( version_compare( PHP_VERSION, '7.3', '<' ) ) {
@@ -185,6 +203,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Set the current request object in property.
 		 * Also includes the necessary files.
+		 *
+		 * @since 3.3.0
 		 *
 		 * @param WP_REST_Response $response Response object.
 		 * @param array            $handler  Route handler used for the request.
@@ -227,6 +247,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Perform operations after the callback is executed.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @param WP_REST_Response $response Response object.
 		 * @param array            $handler  Route handler used for the request.
 		 * @param WP_REST_Request  $request  Request object.
@@ -242,6 +264,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 
 		/**
 		 * Retrieve list of quiz statistics.
+		 *
+		 * @since 3.3.0
 		 *
 		 * @param WP_REST_Request $request Request object from REST.
 		 *
@@ -304,6 +328,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Retrieve a single item from statistics based on ID.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @param WP_REST_Request $request Request object from REST.
 		 *
 		 * @return WP_Error|WP_REST_Response
@@ -322,6 +348,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 
 		/**
 		 * Retrieve list of questions for a particular stat ref ID.
+		 *
+		 * @since 3.3.0
 		 *
 		 * @param WP_REST_Request $request Request object from REST.
 		 *
@@ -452,6 +480,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Permission callback for quiz-statistics endpoint.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @param WP_REST_Request $request Request object.
 		 *
 		 * @return bool If stats can be accessed by user.
@@ -488,6 +518,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Permission callback for quiz-statistics endpoint.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @param WP_REST_Request $request Request object.
 		 *
 		 * @return bool If stats can be accessed by user.
@@ -521,9 +553,10 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 			return true;
 		}
 
-
 		/**
 		 * Add the embed links to quiz statistic response item.
+		 *
+		 * @since 3.3.0
 		 *
 		 * @param array $response    Response object in which link will be added.
 		 *
@@ -586,6 +619,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Add the embed links to quiz statistic question response item.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @param array $response    Response object in which link will be added.
 		 *
 		 * @return array
@@ -625,7 +660,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 				}
 
 				if ( ( isset( $response['question_type'] ) ) && ( ! empty( $response['question_type'] ) ) ) {
-					$question_type_rest_base             = $this->namespace . '/' . $this->get_rest_base( 'question-types' );
+					$question_type_rest_base = $this->namespace . '/' . $this->get_rest_base( 'question-types' );
+
 					$response['_links'][ $this->get_rest_base( 'question-types' ) ] = array(
 						array(
 							'href'       => rest_url( $question_type_rest_base . '/' . $response['question_type'] ),
@@ -670,10 +706,11 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 			return $response;
 		}
 
-
 		/**
 		 * Join query for fetching statistics for which quiz_setting is enabled.
 		 * Quiz > Settings > Quiz statistics > Enable front end display
+		 *
+		 * @since 3.3.0
 		 *
 		 * @param string $join Join clause for query.
 		 *
@@ -688,6 +725,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Filter the where clause of the query to fetch statistics refs.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @param string $where Where clause.
 		 *
 		 * @return string
@@ -699,6 +738,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Filter the where clause of the query to fetch statistics refs
 		 * based on user IDs.
+		 *
+		 * @since 3.3.0
 		 *
 		 * 1. Admins have access to all statistics.
 		 * 2. Group leaders will have access to statistics of only those
@@ -734,6 +775,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * If quiz id is passed explicitly via request, filter the results.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @param string $where Where clause.
 		 *
 		 * @return string
@@ -756,6 +799,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * If before date and/or after date are passed, add
 		 * conditions in where clause.
+		 *
+		 * @since 3.3.0
 		 *
 		 * @param string $where WHERE Clause for query.
 		 *
@@ -781,6 +826,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 
 		/**
 		 * Return the route information in form of an array.
+		 *
+		 * @since 3.3.0
 		 *
 		 * @return array
 		 */
@@ -929,6 +976,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Check if the current endpoint is quiz statistics endpoint.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @param WP_REST_Request $request Request object.
 		 *
 		 * @return bool
@@ -954,6 +1003,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		 * the properties based on their values; else default
 		 * will be assigned.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @return void
 		 */
 		private function build_params() {
@@ -964,6 +1015,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 
 		/**
 		 * Fetch the stat refs records for current request.
+		 *
+		 * @since 3.3.0
 		 *
 		 * @return void
 		 */
@@ -1004,6 +1057,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 
 		/**
 		 * User IDs for fetching statistics.
+		 *
+		 * @since 3.3.0
 		 *
 		 * 1. Admins have access to all statistics, thus null will be returned.
 		 * 2. Group leaders will have access to statistics of only those
@@ -1099,6 +1154,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Get correct/incorrect count for a partiular statistics_ref_id.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @param array  $stats Stats for particular statistic ref.
 		 * @param string $type  Correct or incorrect count.
 		 *
@@ -1116,6 +1173,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 
 		/**
 		 * Prepare the single statistics object for API response.
+		 *
+		 * @since 3.3.0
 		 *
 		 * @return stdClass
 		 */
@@ -1136,6 +1195,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 
 		/**
 		 * Get user's quiz details from usermeta.
+		 *
+		 * @since 3.3.0
 		 *
 		 * @return array
 		 */
@@ -1169,6 +1230,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Get quiz id for current statistics.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @return int
 		 */
 		private function getQuizId() {
@@ -1186,6 +1249,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		 * Build the answer type object and returns it.
 		 * It throws exception for any invalid type which will
 		 * be caught by callee.
+		 *
+		 * @since 3.3.0
 		 *
 		 * @param string $type Type of answer object we want to build.
 		 * @param array  $args Argument for class constructor.
@@ -1232,6 +1297,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Get WpProQuiz_Model_Statistic object from list of a particular stat.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @param array  $stats    Statistics for the current ref id.
 		 * @param string $method   Method to call.
 		 * @param mixed  $expected Expected result.
@@ -1260,6 +1327,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		 * This will be useful because if we pass embed parameter, same class
 		 * will be called with a new request and Iterator pointers need to be
 		 * reset at that time.
+		 *
+		 * @since 3.3.0
 		 */
 		private function reset_state() {
 
@@ -1270,8 +1339,12 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 			 * available in memory.
 			 */
 			if ( ! empty( $this->stat_refs ) ) {
-				$GLOBALS['ld_qs_api_vars']   = $ld_qs_api_vars ? $ld_qs_api_vars : array();
-				$object_vars                 = get_object_vars( $this );
+				// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+				$GLOBALS['ld_qs_api_vars'] = $ld_qs_api_vars ? $ld_qs_api_vars : array();
+
+				$object_vars = get_object_vars( $this );
+
+				// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
 				$GLOBALS['ld_qs_api_vars'][] = $object_vars;
 
 				foreach ( $object_vars as $property => $var ) {
@@ -1297,6 +1370,8 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Restore the previously stored state of an object from
 		 * global variable.
+		 *
+		 * @since 3.3.0
 		 */
 		private function restore_state() {
 			global $ld_qs_api_vars;
@@ -1313,7 +1388,7 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Retrieves the query params for the posts collection.
 		 *
-		 * @since 3.3
+		 * @since 3.3.0
 		 *
 		 * @return array Collection parameters.
 		 */
@@ -1387,7 +1462,7 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Retrieves the query params for the posts collection.
 		 *
-		 * @since 3.3
+		 * @since 3.3.0
 		 *
 		 * @return array Collection parameters.
 		 */
@@ -1404,7 +1479,7 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Get the REST URL setting.
 		 *
-		 * @since 3.3
+		 * @since 3.3.0
 		 *
 		 * @param string $rest_slug Settings REST slug.
 		 * @param string $default_value Default value if rest_slug is not found.
@@ -1426,7 +1501,7 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Retrieves the Stats schema, conforming to JSON Schema.
 		 *
-		 * @since 3.3
+		 * @since 3.3.0
 		 *
 		 * @return array Item schema data.
 		 */
@@ -1532,7 +1607,7 @@ if ( ( ! class_exists( 'LD_REST_Quiz_Statistics_Controller_V2' ) ) && class_exis
 		/**
 		 * Retrieves the Stats schema, conforming to JSON Schema.
 		 *
-		 * @since 3.3
+		 * @since 3.3.0
 		 *
 		 * @return array Item schema data.
 		 */

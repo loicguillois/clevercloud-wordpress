@@ -1,6 +1,10 @@
 <?php
 /**
- * @param array $course_info
+ * LearnDash LD30 Displays a user status.
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

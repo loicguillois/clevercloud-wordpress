@@ -1,4 +1,11 @@
 <?php
+/**
+ * Group Leader Groups Listing table.
+ *
+ * @since 2.3.0
+ * @package LearnDash\Group_Users
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -8,14 +15,39 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 }
 
 if ( ! class_exists( 'Learndash_Admin_Groups_Users_List_Table' ) ) {
+	/**
+	 * Class Group Leader Groups Listing table.
+	 *
+	 * @since 2.3.0
+	 * @uses WP_List_Table
+	 */
 	class Learndash_Admin_Groups_Users_List_Table extends WP_List_Table {
 
-		public $filters  = array();
-		public $per_page = 20;
-		public $columns  = array();
+		/**
+		 * @var array $filters
+		 */
+		public $filters = array();
 
+		/**
+		 * @var integer $per_page
+		 */
+		public $per_page = 20;
+
+		/**
+		 * @var array $columns
+		 */
+		public $columns = array();
+
+		/**
+		 * @var integer $group_id
+		 */
 		public $group_id = 0;
 
+		/**
+		 * Public constructor for class
+		 *
+		 * @since 2.3.0
+		 */
 		public function __construct() {
 			global $status, $page;
 
@@ -29,6 +61,11 @@ if ( ! class_exists( 'Learndash_Admin_Groups_Users_List_Table' ) ) {
 			);
 		}
 
+		/**
+		 * Check table filters
+		 *
+		 * @since 2.3.0
+		 */
 		public function check_table_filters() {
 			$this->filters = array();
 
@@ -37,6 +74,14 @@ if ( ! class_exists( 'Learndash_Admin_Groups_Users_List_Table' ) ) {
 			}
 		}
 
+		/**
+		 * Table search box
+		 *
+		 * @since 2.3.0
+		 *
+		 * @param string $text      Search text
+		 * @param string $input_id  Search field HTML ID
+		 */
 		public function search_box( $text, $input_id ) {
 			if ( empty( $_REQUEST['s'] ) && ! $this->has_items() ) {
 				return;
@@ -50,6 +95,13 @@ if ( ! class_exists( 'Learndash_Admin_Groups_Users_List_Table' ) ) {
 			<?php
 		}
 
+		/**
+		 * Extra table nav
+		 *
+		 * @since 2.3.0
+		 *
+		 * @param string $which Which (top/bottom ) nav being rendered.
+		 */
 		public function extra_tablenav( $which ) {
 			if ( 'top' == $which ) {
 				if ( ! empty( $this->group_id ) ) {
@@ -71,13 +123,22 @@ if ( ! class_exists( 'Learndash_Admin_Groups_Users_List_Table' ) ) {
 			}
 		}
 
+		/**
+		 * Get table columns
+		 *
+		 * @since 2.3.0
+		 */
 		public function get_columns() {
 			return $this->columns;
 		}
 
-		public function column_default( $item, $column_name ) {
-		}
-
+		/**
+		 * Show row item group name column
+		 *
+		 * @since 2.3.0
+		 *
+		 * @param object $item Group WP_Post object.
+		 */
 		public function column_group_name( $item ) {
 			$output = '';
 
@@ -94,6 +155,13 @@ if ( ! class_exists( 'Learndash_Admin_Groups_Users_List_Table' ) ) {
 			echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Need to output HTML
 		}
 
+		/**
+		 * Show row item group actions column
+		 *
+		 * @since 2.3.0
+		 *
+		 * @param object $item Group WP_Post object.
+		 */
 		public function column_group_actions( $item ) {
 			$data_settings_courses = learndash_data_upgrades_setting( 'user-meta-courses' );
 			$data_settings_quizzes = learndash_data_upgrades_setting( 'user-meta-quizzes' );
@@ -148,11 +216,20 @@ if ( ! class_exists( 'Learndash_Admin_Groups_Users_List_Table' ) ) {
 			/**
 			 * Fires after admin page group actions column.
 			 *
+			 * @since 2.3.0
+			 *
 			 * @param int $group_id Group ID.
 			 */
 			do_action( 'learndash_group_admin_page_actions', $item->ID );
 		}
 
+		/**
+		 * Show row item username column
+		 *
+		 * @since 2.3.0
+		 *
+		 * @param object $item Group WP_Post object.
+		 */
 		public function column_username( $item ) {
 			$output = '';
 
@@ -170,10 +247,24 @@ if ( ! class_exists( 'Learndash_Admin_Groups_Users_List_Table' ) ) {
 			echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Need to output HTML
 		}
 
+		/**
+		 * Show row item name column
+		 *
+		 * @since 2.3.0
+		 *
+		 * @param object $item Group WP_Post object.
+		 */
 		public function column_name( $item ) {
 			echo esc_html( $item->user_login );
 		}
 
+		/**
+		 * Show row item email column
+		 *
+		 * @since 2.3.0
+		 *
+		 * @param object $item Group WP_Post object.
+		 */
 		public function column_email( $item ) {
 			echo esc_html( $item->user_email );
 		}
@@ -184,7 +275,12 @@ if ( ! class_exists( 'Learndash_Admin_Groups_Users_List_Table' ) ) {
 			<?php
 		}
 
-
+		/**
+		 * Prepare table list items
+		 * This function performs the query and sets up the items to display.
+		 *
+		 * @since 2.3.0
+		 */
 		public function prepare_items() {
 
 			$current_page = $this->get_pagenum();
@@ -254,6 +350,14 @@ if ( ! class_exists( 'Learndash_Admin_Groups_Users_List_Table' ) ) {
 			);
 		}
 
+		/**
+		 * Search filter by title
+		 *
+		 * @since 2.3.0
+		 *
+		 * @param string $search   Search SQL for WHERE clause.
+		 * @param object $wp_query The current WP_Query object.
+		 */
 		public function search_filter_by_title( $search, $wp_query ) {
 			if ( ! empty( $search ) && ! empty( $wp_query->query_vars['search_terms'] ) ) {
 				global $wpdb;

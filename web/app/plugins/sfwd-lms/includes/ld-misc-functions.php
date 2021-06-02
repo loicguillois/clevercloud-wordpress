@@ -189,6 +189,14 @@ function learndash_update_setting( $post, $setting, $value ) {
 			} else {
 				delete_post_meta( $post->ID, 'course_points' );
 			}
+		} elseif ( 'course_price_type' === $setting ) {
+			update_post_meta( $post->ID, '_ld_price_type', $value );
+		} elseif ( 'group_price_type' === $setting ) {
+			update_post_meta( $post->ID, '_ld_price_type', $value );
+		} elseif ( 'certificate' === $setting ) {
+			update_post_meta( $post->ID, '_ld_certificate', $value );
+		} elseif ( 'threshold' === $setting ) {
+			update_post_meta( $post->ID, '_ld_certificate_threshold', $value );
 		} elseif ( 'lesson' === $setting ) {
 			$value = intval( $value );
 			if ( ! empty( $value ) ) {

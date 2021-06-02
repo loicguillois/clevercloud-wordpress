@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Fields API.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Fields
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,8 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
+
 	/**
 	 * Class to create the settings field.
+	 *
+	 * @since 3.0.0
 	 */
 	abstract class LearnDash_Settings_Fields {
 
@@ -32,6 +35,8 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		public function __construct() {
 		}
@@ -39,7 +44,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Get field instance by key
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param string $field_key Key to unique field instance.
 		 *
@@ -56,7 +61,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Add field instance by key
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param string $field_key Key to unique field instance.
 		 *
@@ -76,7 +81,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		 * Utility function so we are not hard coding the create/validate
 		 * member functions in various settings files.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @return reference to validation function.
 		 */
@@ -88,7 +93,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		 * Utility function so we are not hard coding the create/validate
 		 * member functions in various settings files.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @return reference to validation function.
 		 */
@@ -100,7 +105,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		 * Utility function so we are not hard coding the create/validate
 		 * member functions in various settings files.
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
 		 *
 		 * @return reference to validation function.
 		 */
@@ -111,7 +116,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Show all fields in section.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param array $section_fields Array of fields for section.
 		 */
@@ -182,7 +187,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Shows the field row
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param array $field Array of field settings.
 		 */
@@ -452,7 +457,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Skeleton function to create the field output.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param array $field_args main field args array.
 		 */
@@ -462,10 +467,11 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Create the HTML output from the field args 'id' attribute.
 		 *
-		 * @since 2.4
+		 * @since 3.4.0.5
 		 *
 		 * @param array   $field_args main field args array. should contain element for 'attrs'.
 		 * @param boolean $wrap Flag to wrap field atrribute in normal output or just return value.
+		 *
 		 * @return string of HTML representation of the attrs array attributes.
 		 */
 		public function get_field_attribute_id( $field_args = array(), $wrap = true ) {
@@ -485,7 +491,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Create the HTML output from the field args 'required' attribute.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param array $field_args main field args array. should contain element for 'attrs'.
 		 *
@@ -504,7 +510,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Create the HTML output from the field args 'input_label_before' attribute.
 		 *
-		 * @since 3.2
+		 * @since 3.3.0
 		 *
 		 * @param array $field_args main field args array. should contain element for 'attrs'.
 		 *
@@ -523,7 +529,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Create the HTML output from the field args 'input_mask_before' attribute.
 		 *
-		 * @since 3.2
+		 * @since 3.3.0
 		 *
 		 * @param array $field_args main field args array.
 		 *
@@ -542,7 +548,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Create the HTML output from the field args 'name' attribute.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param array   $field_args main field args array. should contain element for 'attrs'.
 		 * @param boolean $wrap Flag to wrap field atrribute in normal output or just return value.
@@ -587,7 +593,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Create the HTML output from the field args 'placeholder' attribute.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param array $field_args main field args array. should contain element for 'attrs'.
 		 *
@@ -606,7 +612,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Create the HTML output from the field args 'placeholder' attribute.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param array   $field_args main field args array. should contain element for 'attrs'.
 		 * @param boolean $wrap Flag to wrap field atrribute in normal output or just return value.
@@ -629,7 +635,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Create the HTML output from the field args 'legend' attribute.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param array $field_args main field args array. should contain element for 'attrs'.
 		 *
@@ -650,7 +656,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Create the HTML output from the field args 'type' attribute.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param array $field_args main field args array. should contain element for 'attrs'.
 		 *
@@ -669,7 +675,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Create the HTML output from the field args 'class' attribute.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param array $field_args main field args array. should contain element for 'attrs'.
 		 *
@@ -696,7 +702,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Create the HTML output from the field args 'attrs' attribute.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param array $field_args main field args array. should contain element for 'attrs'.
 		 *
@@ -718,7 +724,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Create the HTML output from the field args 'input_label' attribute.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param array $field_args main field args array. Should contain element for 'input_label'.
 		 *
@@ -734,6 +740,13 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 			return $field_attribute;
 		}
 
+		/**
+		 * Get Field Error Message
+		 *
+		 * @since 3.0.7
+		 *
+		 * @param array $field_args Array of field args
+		 */
 		public function get_field_error_message( $field_args = array() ) {
 			$field_attribute = '';
 
@@ -744,6 +757,13 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 			return $field_attribute;
 		}
 
+		/**
+		 * Get Field Attribute Input Description
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array $field_args Array of field args
+		 */
 		public function get_field_attribute_input_description( $field_args = array() ) {
 			$field_attribute = '';
 
@@ -754,6 +774,13 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 			return $field_attribute;
 		}
 
+		/**
+		 * Get Field Sub-Field Trigger
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array $field_args Array of field args
+		 */
 		public function get_field_sub_trigger( $field_args = array() ) {
 			$field_attribute = '';
 
@@ -764,6 +791,13 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 			return $field_attribute;
 		}
 
+		/**
+		 * Get Field Inner-Field Trigger
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param array $field_args Array of field args
+		 */
 		public function get_field_inner_trigger( $field_args = array() ) {
 			$field_attribute = '';
 
@@ -778,7 +812,7 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Default validation function. Should be overriden in Field subclass.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param mixed  $val Value to validate.
 		 * @param string $key Key of value being validated.
@@ -795,9 +829,9 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		}
 
 		/**
-		 * Default validation function. Should be overriden in Field subclass.
+		 * Get Settings Field Value.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param mixed  $val Value to validate.
 		 * @param string $key Key of value being validated.
@@ -826,7 +860,8 @@ if ( ! class_exists( 'LearnDash_Settings_Fields' ) ) {
 		/**
 		 * Convert REST submit value to internal Settings Field acceptable value.
 		 *
-		 * @since 3.2
+		 * @since 3.3.0
+		 *
 		 * @param mixed  $val        Value from REST to be converted to internal value.
 		 * @param string $key        Key field for value.
 		 * @param array  $field_args Array of field args.

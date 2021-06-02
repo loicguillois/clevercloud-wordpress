@@ -1,4 +1,12 @@
 <?php
+/**
+ * LearnDash LD30 focus mode.
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -13,6 +21,8 @@ if ( have_posts() ) :
 
 		/**
 		 * Fires before the header in the focus template.
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param int $course_id Course ID.
 		 * @param int $user_id   User ID.
@@ -31,6 +41,8 @@ if ( have_posts() ) :
 
 		/**
 		 * Fires before the sidebar in the focus template.
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param int $course_id Course ID.
 		 * @param int $user_id   User ID.
@@ -53,6 +65,8 @@ if ( have_posts() ) :
 		/**
 		 * Fires before the masthead in the focus template.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param int $course_id Course ID.
 		 * @param int $user_id   User ID.
 		 */
@@ -71,6 +85,8 @@ if ( have_posts() ) :
 		/**
 		 * Fires after the masthead in the focus template.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param int $course_id Course ID.
 		 * @param int $user_id   User ID.
 		 */
@@ -82,6 +98,8 @@ if ( have_posts() ) :
 			<?php
 			/**
 			 * Fires before the title in the focus template.
+			 *
+			 * @since 3.0.0
 			 *
 			 * @param int $course_id Course ID.
 			 * @param int $user_id   User ID.
@@ -95,6 +113,8 @@ if ( have_posts() ) :
 			/**
 			 * Fires before the content in the focus template.
 			 *
+			 * @since 3.0.0
+			 *
 			 * @param int $course_id Course ID.
 			 * @param int $user_id   User ID.
 			 */
@@ -106,6 +126,8 @@ if ( have_posts() ) :
 			<?php
 			/**
 			 * Fires after the content in the focus template.
+			 *
+			 * @since 3.0.0
 			 *
 			 * @param int $course_id Course ID.
 			 * @param int $user_id   User ID.
@@ -126,7 +148,9 @@ if ( have_posts() ) :
 			/**
 			 * Filters whether to load comments in focus mode or not.
 			 *
-			 * @param boolean $load_focus_comments Whether to comments in focus mode or not.
+			 * @since 3.1.4
+			 *
+			 * @param boolean $load_focus_comments Whether to show comments in focus mode or not.
 			 */
 			if ( apply_filters( 'learndash_focus_mode_can_view_comments', is_user_logged_in() ) && comments_open() ) :
 				learndash_get_template_part(
@@ -145,6 +169,8 @@ if ( have_posts() ) :
 			/**
 			 * Fires at the focus mode content end.
 			 *
+			 * @since 3.1.4
+			 *
 			 * @param int $course_id Course ID.
 			 * @param int $user_id   User ID.
 			 */
@@ -157,6 +183,8 @@ if ( have_posts() ) :
 		<?php
 		/**
 		 * Fires before the footer in the focus template.
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param int $course_id Course ID.
 		 * @param int $user_id   User ID.
@@ -175,6 +203,8 @@ if ( have_posts() ) :
 
 		/**
 		 * Fires after the footer in the focus template.
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param int $course_id Course ID.
 		 * @param int $user_id   User ID.

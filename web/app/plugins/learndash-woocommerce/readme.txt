@@ -8,7 +8,7 @@ Tags: integration, woocommerce,
 Requires at least: 5.0
 Tested up to: 5.6
 Requires PHP: 7.0
-Stable tag: 1.9.1
+Stable tag: 1.9.2
 
 Integrate LearnDash LMS with WooCommerce.
 
@@ -40,6 +40,12 @@ Alternatively, you always have the option to update manually. Please note, a ful
 1. Activate the add-on plugin via the PLUGINS menu.
 
 == Changelog ==
+
+= 1.9.2 = 
+
+* Updated use global variable instead of debug backtrace to enable subscription products filter  
+* Fixed conflict with WooCommerce product bundle extension, better code logic                                                                                      
+* Fixed typo in get_type method name
 
 = 1.9.1 = 
 

@@ -1,5 +1,13 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+/**
+ * LearnDash LD30 Displays course navigation lesson row
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30\Widgets
+ */
+
+ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -39,7 +47,9 @@ if ( isset( $_GET['widget_instance']['widget_instance']['current_lesson_id'] ) )
 	$current_lesson_id = intval( $_GET['widget_instance']['widget_instance']['current_lesson_id'] );
 }
 
-$is_current_lesson = ( absint( $current_lesson_id ) === absint( $lesson['post']->ID ) ? true : false );
+if ( ( ! isset( $is_current_lesson ) ) || ( ! is_bool( $is_current_lesson ) ) ) {
+    $is_current_lesson = ( absint( $current_lesson_id ) === absint( $lesson['post']->ID ) ? true : false );
+}
 
 $lesson_class = 'ld-lesson-item ' . ( $is_current_lesson ? 'ld-is-current-lesson' : 'ld-is-not-current-lesson' );
 
@@ -53,6 +63,8 @@ $lesson_class .= ( isset( $lesson['sample'] ) ? ' ' . $lesson['sample'] : '' );
 
 /**
  * Filters navigation widget lesson item class
+ *
+ * @since 3.0.0
  *
  * @param string $lesson_class List of lesson item CSS class.
  */
@@ -129,18 +141,18 @@ endif; ?>
 				<span class="ld-text ld-primary-color">
 					<?php
 					if ( $content_count['topics'] > 0 ) {
-						echo sprintf(
+						printf(
 							// translators: placeholders: Topic Count, Topic/Topics Label.
-							esc_html_x( '%1$d %2$s', 'placeholders: Topic Count, Topic/Topics Label', 'learndash' ),
-							esc_html( $content_count['topics'] ),
-							esc_html(
-								_n(
-									LearnDash_Custom_Label::get_label( 'topic' ),
-									LearnDash_Custom_Label::get_label( 'topics' ),
-									$content_count['topics'],
-									'learndash'
-								)
-							)
+							_nx(
+								'%1$d %2$s',
+								'%1$d %2$s',
+								$content_count['topics'],
+								'placeholders: Topic Count, Topic/Topics Label',
+								'learndash'
+							),
+							$content_count['topics'],
+							( $content_count['topics'] < 2 ? esc_attr( LearnDash_Custom_Label::get_label( 'topic' ) ) : esc_attr( LearnDash_Custom_Label::get_label( 'topics' ) ) ),
+							number_format_i18n( $content_count['topics'] )
 						);
 					}
 
@@ -149,18 +161,18 @@ endif; ?>
 					}
 
 					if ( $content_count['quizzes'] > 0 ) {
-						echo sprintf(
+						printf(
 							// translators: placeholders: Quiz Count, Quiz/Quizzes Label.
-							esc_html_x( '%1$d %2$s', 'placeholders: Quiz Count, Quiz/Quizzes Label', 'learndash' ),
-							esc_html( $content_count['quizzes'] ),
-							esc_html(
-								_n(
-									LearnDash_Custom_Label::get_label( 'quiz' ),
-									LearnDash_Custom_Label::get_label( 'quizzes' ),
-									$content_count['quizzes'],
-									'learndash'
-								)
-							)
+							_nx(
+								'%1$d %2$s',
+								'%1$d %2$s',
+								$content_count['quizzes'],
+								'placeholders: Quiz Count, Quiz/Quizzes Label',
+								'learndash'
+							),
+							$content_count['quizzes'],
+							( $content_count['quizzes'] < 2 ? esc_attr( LearnDash_Custom_Label::get_label( 'quiz' ) ) : esc_attr( LearnDash_Custom_Label::get_label( 'quizzes' ) ) ),
+							number_format_i18n( $content_count['quizzes'] )
 						);
 					}
 					?>

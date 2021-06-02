@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Pages Loader.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Pages
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

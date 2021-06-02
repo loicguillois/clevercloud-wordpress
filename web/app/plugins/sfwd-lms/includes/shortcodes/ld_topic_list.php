@@ -1,6 +1,6 @@
 <?php
 /**
- * Shortcode for ld_topic_list
+ * LearnDash `[ld_topic_list]` shortcode processing.
  *
  * @since 2.1.0
  *
@@ -12,17 +12,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `ld_topic_list` shortcode output.
+ * Builds the `[ld_topic_list]` shortcode output.
  *
  * @global boolean $learndash_shortcode_used
  *
  * @since 2.1.0
  *
- * @param array $attr Optional. An array of shortcode attributes. Default empty array. @see ld_course_list()
+ * @param array $attr {
+ *    An array of shortcode attributes.
+ *
+ *    Default empty array. {@see 'ld_course_list'}
+ * }
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string The `ld_topic_list` shortcode output.
  */
-function ld_topic_list( $attr = array() ) {
+function ld_topic_list( $attr = array(), $content = '' ) {
 	global $learndash_shortcode_used;
 	$learndash_shortcode_used = true;
 
@@ -70,5 +75,4 @@ function ld_topic_list( $attr = array() ) {
 
 	return ld_course_list( $attr );
 }
-
-add_shortcode( 'ld_topic_list', 'ld_topic_list' );
+add_shortcode( 'ld_topic_list', 'ld_topic_list', 10, 2 );

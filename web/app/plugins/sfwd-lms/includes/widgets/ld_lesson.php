@@ -1,9 +1,8 @@
 <?php
 /**
- * Widget for Lessons
+ * LearnDash `Lessons` Widget Class.
  *
  * @since 2.1.0
- *
  * @package LearnDash\Widgets
  */
 
@@ -11,18 +10,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- * Adds widget for displaying lessons
- */
 if ( ( ! class_exists( 'Lesson_Widget' ) ) && ( class_exists( 'WP_Widget' ) ) ) {
+
+	/**
+	 * Class for LearnDash `Lessons` Widget.
+	 *
+	 * @since 2.1.0
+	 * @uses WP_Widget
+	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class Lesson_Widget extends WP_Widget {
 
+		/**
+		 * @var string $post_type.
+		 */
 		protected $post_type = 'sfwd-lessons';
+
+		/**
+		 * @var string $post_name.
+		 */
 		protected $post_name = 'Lesson';
+
+		/**
+		 * @var object $post_arga.
+		 */
 		protected $post_args;
 
 		/**
-		 * Set up post arguments for widget
+		 * Public constructor for Widget Class.
 		 *
 		 * @since 2.1.0
 		 */
@@ -51,6 +66,7 @@ if ( ( ! class_exists( 'Lesson_Widget' ) ) && ( class_exists( 'WP_Widget' ) ) ) 
 		 *
 		 * @param  array $args     widget arguments
 		 * @param  array $instance widget instance
+		 *
 		 * @return string          widget output
 		 */
 		public function widget( $args, $instance ) {
@@ -100,8 +116,9 @@ if ( ( ! class_exists( 'Lesson_Widget' ) ) && ( class_exists( 'WP_Widget' ) ) ) 
 		 *
 		 * @since 2.1.0
 		 *
-		 * @param  int $course_id  course id
-		 * @return string   $html       output
+		 * @param int $course_id course id
+		 *
+		 * @return string $html output
 		 */
 		public function course_lessons_list( $course_id ) {
 			$course = get_post( $course_id );
@@ -146,6 +163,7 @@ if ( ( ! class_exists( 'Lesson_Widget' ) ) && ( class_exists( 'WP_Widget' ) ) ) 
 		 *
 		 * @param  array $new_instance
 		 * @param  array $old_instance
+		 *
 		 * @return array $instance
 		 */
 		public function update( $new_instance, $old_instance ) {

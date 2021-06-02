@@ -195,6 +195,7 @@ class WpProQuiz_Controller_Admin {
 		}
 
 		learndash_quiz_debug_log_init( $quiz_post_id );
+		learndash_quiz_debug_log_message( 'Browser version: ' . $_SERVER['HTTP_USER_AGENT'] );
 		learndash_quiz_debug_log_message( '---------------------------------' );
 		learndash_quiz_debug_log_message( 'in ' . __FUNCTION__ );
 		learndash_quiz_debug_log_message( '_POST<pre>' . print_r( $_POST, true ) . '</pre>' );

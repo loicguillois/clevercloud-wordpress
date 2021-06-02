@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section Quiz Email Settings.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Quizzes_Email' ) ) ) {
 	/**
-	 * Class to create the Quiz Email Section.
+	 * Class LearnDash Settings Section Quiz Email Settings.
+	 *
+	 * @since 3.0.0
 	 */
 	class LearnDash_Settings_Quizzes_Email extends LearnDash_Settings_Section {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		protected function __construct() {
 			// What screen ID are we showing on.
@@ -81,6 +85,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Load the field settings values
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_values() {
 			parent::load_settings_values();
@@ -120,6 +126,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Load the field settings fields
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_fields() {
 			$this->setting_option_fields = array(
@@ -254,7 +262,7 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * Hook into action after the fieldset is output. This allows adding custom content like JS/CSS.
 		 *
-		 * @since 2.5.9
+		 * @since 3.0.0
 		 *
 		 * @param string $html This is the field output which will be send to the screen.
 		 * @param array  $field_args Array of field args used to build the field HTML.
@@ -276,7 +284,12 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 		}
 
 		/**
-		 * Add Header and description on email sections.
+		 * Settings row outside before
+		 *
+		 * @since 3.0.0
+		 *
+		 * @param string $content    Content to show before row
+		 * @param array  $field_args Row field Args
 		 */
 		public function learndash_settings_row_outside_before( $content = '', $field_args = array() ) {
 			if ( ( isset( $field_args['name'] ) ) && ( in_array( $field_args['name'], array( 'admin_mail_from_name', 'user_mail_from_name' ), true ) ) ) {

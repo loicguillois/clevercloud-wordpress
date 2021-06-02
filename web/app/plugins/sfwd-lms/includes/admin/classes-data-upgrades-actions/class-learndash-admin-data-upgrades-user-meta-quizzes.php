@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Data Upgrades for User Quizzes
+ * LearnDash Data Upgrades for User Quizzes.
  *
- * @package LearnDash
- * @subpackage Data Upgrades
+ * @since 2.6.0
+ * @package LearnDash\Data_Upgrades
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,13 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'Learndash_Admin_Data_Upgrades_User_Meta_Quizzes' ) ) ) {
+
 	/**
-	 * Class to create the Data Upgrade for Quizzes.
+	 * Class LearnDash Data Upgrades for User Quizzes.
+	 *
+	 * @since 2.6.0
+	 * @uses Learndash_Admin_Data_Upgrades
 	 */
 	class Learndash_Admin_Data_Upgrades_User_Meta_Quizzes extends Learndash_Admin_Data_Upgrades {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 2.3.0
 		 */
 		protected function __construct() {
 
@@ -29,7 +35,7 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		/**
 		 * Show data upgrade row for this instance.
 		 *
-		 * @since 2.3
+		 * @since 2.3.0
 		 */
 		public function show_upgrade_action() {
 			?>
@@ -126,7 +132,7 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		 * This function will determine what users need to be converted. Then the course and quiz functions
 		 * will be called to convert each individual user data set.
 		 *
-		 * @since 2.3
+		 * @since 2.3.0
 		 *
 		 * @param  array $data Post data from AJAX call.
 		 * @return array $data Post data from AJAX call
@@ -297,7 +303,7 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		/**
 		 * Convert single user quiz attempts to Activity DB entries.
 		 *
-		 * @since 2.3
+		 * @since 2.3.0
 		 *
 		 * @param int $user_id User ID of user to convert.
 		 * @return boolean true if complete, false if not.

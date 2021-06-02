@@ -15,14 +15,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+/**
+ * @ignore
+ */
 define( 'WPPROQUIZ_VERSION', '0.28' );
+
+/**
+ * @ignore
+ */
 define( 'WPPROQUIZ_PATH', dirname( __FILE__ ) );
+
+/**
+ * @ignore
+ */
 define( 'WPPROQUIZ_URL', plugins_url( '', __FILE__ ) );
+
+/**
+ * @ignore
+ */
 define( 'WPPROQUIZ_FILE', __FILE__ );
 
 $wpproquiz_upload_dir = wp_upload_dir();
 
+/**
+ * @ignore
+ */
 define( 'WPPROQUIZ_CAPTCHA_DIR', $wpproquiz_upload_dir['basedir'] . '/wp_pro_quiz_captcha' );
+
+/**
+ * @ignore
+ */
 define( 'WPPROQUIZ_CAPTCHA_URL', $wpproquiz_upload_dir['baseurl'] . '/wp_pro_quiz_captcha' );
 
 spl_autoload_register( 'wpProQuiz_autoload' );

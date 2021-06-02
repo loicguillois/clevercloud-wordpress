@@ -2,7 +2,8 @@
 /**
  * LearnDash Settings Admin Menus and Tabs class.
  *
- * @package LearnDash
+ * @since 2.4.0
+ * @package LearnDash\Admin
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -10,8 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
+
 	/**
 	 * Class to create the settings section.
+	 *
+	 * @since 2.4.0
 	 */
 	class Learndash_Admin_Menus_Tabs {
 
@@ -22,7 +26,18 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 		 */
 		private static $instance;
 
-		protected $admin_tab_sets    = array();
+		/**
+		 * Admin tab sets
+		 *
+		 * @var array $admin_tab_sets
+		 */
+		protected $admin_tab_sets = array();
+
+		/**
+		 * Admin Tab Priorities
+		 *
+		 * @var array $admin_tab_priorities
+		 */
 		public $admin_tab_priorities = array(
 			'private'  => 0,
 			'high'     => 10,
@@ -33,6 +48,8 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 2.4.0
 		 */
 		public function __construct() {
 			// We first add this hook so we are calling 'admin_menu' early.
@@ -48,6 +65,11 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 			add_action( 'in_admin_header', array( $this, 'learndash_admin_tabs' ), 20 );
 		}
 
+		/**
+		 * Get instance of class
+		 *
+		 * @since 2.4.0
+		 */
 		public static function get_instance() {
 			if ( null === self::$instance ) {
 				self::$instance = new static();
@@ -60,6 +82,8 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 		 * We hook into the 'wp_loaded' action which comes just before the
 		 * 'admin_menu' action. The reason for this we want to add a special
 		 * 'admin_menu' and ensure it is the last action taken on the menu.
+		 *
+		 * @since 2.4.0
 		 */
 		public function wp_loaded() {
 
@@ -85,6 +109,13 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 			add_action( 'admin_menu', array( $this, 'learndash_admin_menu_last' ), $top_priority );
 		}
 
+		/**
+		 * Menu Args
+		 *
+		 * @since 2.4.0
+		 *
+		 * @param array $menu_args Menu args.
+		 */
 		public function learndash_menu_args( $menu_args = array() ) {
 			if ( ( is_array( $menu_args['admin_tabs'] ) ) && ( ! empty( $menu_args['admin_tabs'] ) ) ) {
 				foreach ( $menu_args['admin_tabs'] as &$admin_tab_item ) {
@@ -106,6 +137,13 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 			return $menu_args;
 		}
 
+		/**
+		 * Admin menu tabs
+		 *
+		 * @since 2.4.0
+		 *
+		 * @param array $menu_args Menu args
+		 */
 		public function learndash_admin_menu_tabs( $menu_args = array() ) {
 			$menu_item_tabs = array();
 
@@ -137,7 +175,14 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 			return $menu_item_tabs;
 		}
 
-
+		/**
+		 * Add admin tab set
+		 *
+		 * @since 2.4.0
+		 *
+		 * @param string $menu_slug Menu slug
+		 * @param array  $menu_item Menu item. See WP $submenu global.
+		 */
 		public function add_admin_tab_set( $menu_slug, $menu_item ) {
 			global $learndash_post_types, $learndash_taxonomies;
 
@@ -203,6 +248,15 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 			}
 		}
 
+		/**
+		 * Add admin tab item
+		 *
+		 * @since 2.4.0
+		 *
+		 * @param string  $menu_slug     Menu slug
+		 * @param array   $menu_item     Menu item. See WP $submenu global.
+		 * @param integer $menu_priority Tab priority.
+		 */
 		public function add_admin_tab_item( $menu_slug, $menu_item, $menu_priority = 20 ) {
 
 			if ( ! isset( $this->admin_tab_sets[ $menu_slug ] ) ) {
@@ -225,9 +279,12 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 		}
 
 
-		/* The purpose of this early function is to setup the main 'learndash-lms' menu page. Then
+		/**
+		 * The purpose of this early function is to setup the main 'learndash-lms' menu page. Then
 		 * re-position the various custom post type submenu items to be found under it.
-		*/
+		 *
+		 * @since 2.4.0
+		 */
 		public function learndash_admin_menu_early() {
 			if ( ! is_admin() ) {
 				return;
@@ -374,6 +431,8 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 				/**
 				 * Filters LearnDash settings submenu menu position.
 				 *
+				 * @since 2.4.0
+				 *
 				 * @param int $menu_position Menu position.
 				 */
 				$menu_position = apply_filters( 'learndash-menu-position', $menu_position );
@@ -436,6 +495,11 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 			}
 		}
 
+		/**
+		 * Admin menu last or late items.
+		 *
+		 * @since 2.4.0
+		 */
 		public function learndash_admin_menu_last() {
 			global $submenu, $menu, $_wp_real_parent_file, $_wp_submenu_nopriv, $_registered_pages, $_parent_pages;
 			$_parent_file = get_admin_page_parent();
@@ -476,7 +540,7 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 		/**
 		 * Set up admin tabs for each admin menu page under LearnDash
 		 *
-		 * @since 2.1.0
+		 * @since 2.4.0
 		 */
 		public function learndash_admin_tabs() {
 			if ( ! is_admin() ) {
@@ -750,6 +814,8 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 			/**
 			 * Filters admin setting tabs.
 			 *
+			 * @since 2.4.0
+			 *
 			 * @param array $admin_tabs An array of admin setting tabs data.
 			 */
 			$admin_tabs_legacy = apply_filters( 'learndash_admin_tabs', array() );
@@ -814,6 +880,8 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 			/**
 			 * Filters List of admin tabs on a page.
 			 *
+			 * @since 2.4.0
+			 *
 			 * @param array  $admin_tabs An array of admin tabs on a page.
 			 * @param array  Unused filter parameter.
 			 * @param string $current_page_id Current page id.
@@ -851,8 +919,11 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 		/**
 		 * Get admin tabs data to new tabs system.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param string $menu_tab_key    The menu tab key.
 		 * @param string $current_page_id The current page id.
+		 *
 		 * @return array
 		 */
 		public function get_admin_tabs( $menu_tab_key = '', $current_page_id = '' ) {
@@ -868,7 +939,9 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 					 *
 					 * @since 2.5.0
 					 *
-					 * @param array $admin_tab_sets An array of admin tab sets data.
+					 * @param array  $admin_tab_sets  An array of admin tab sets data.
+					 * @param string $menu_tab_key    The menu tab key.
+		 			 * @param string $current_page_id The current page id.
 					 */
 					$this->admin_tab_sets[ $menu_tab_key ] = apply_filters( 'learndash_admin_tab_sets', $this->admin_tab_sets[ $menu_tab_key ], $menu_tab_key, $current_page_id );
 
@@ -889,6 +962,14 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 			return [];
 		}
 
+		/**
+		 * Show admin tabs
+		 *
+		 * @since 2.4.0
+		 *
+		 * @param string $menu_tab_key    Menu tab key
+		 * @param string $current_page_id Current Page ID
+		 */
 		public function show_admin_tabs( $menu_tab_key = '', $current_page_id = '' ) {
 
 			/**
@@ -925,6 +1006,8 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 
 						/**
 						 * Filters whether to show admin settings header panel or not.
+						 *
+						 * @since 3.0.0
 						 *
 						 * @param boolean $setting_header_panel Whether to show admin header panel or not.
 						 */
@@ -990,7 +1073,8 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 		/**
 		 * Show the new Admin header panel
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
+		 *
 		 * @param string $menu_tab_key Current tab key to show.
 		 */
 		protected function admin_header_panel( $menu_tab_key = '' ) {
@@ -1742,6 +1826,8 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 						/**
 						 * Filters whether to show course groups metabox or not.
 						 *
+						 * @since 3.1.0
+						 *
 						 * @param boolean $show_metabox Whether to show course groups metaboxes or not.
 						 */
 						if ( true === apply_filters( 'learndash_show_metabox_course_groups', true ) ) {
@@ -1972,6 +2058,8 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 							/**
 							 * Filters whether to show group courses metabox or not.
 							 *
+							 * @since 3.2.0
+							 *
 							 * @param boolean $show_metabox Whether to show group courses metaboxes or not.
 							 */
 							if ( true === apply_filters( 'learndash_show_metabox_group_courses', true ) ) {
@@ -1989,9 +2077,11 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 							}
 
 							/**
-							 * Filters whether to show group courses metabox or not.
+							 * Filters whether to show group users metabox or not.
 							 *
-							 * @param boolean $show_metabox Whether to show group courses metaboxes or not.
+							 * @since 3.2.0
+							 *
+							 * @param boolean $show_metabox Whether to show group users metaboxes or not.
 							 */
 							if ( true === apply_filters( 'learndash_show_metabox_group_users', true ) ) {
 								$header_data['tabs'] = array_merge(
@@ -2049,6 +2139,8 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 			/**
 			 * Filters admin settings header action menu.
 			 *
+			 * @since 3.0.0
+			 *
 			 * @param array  $action_menu      An array of header action menu items.
 			 * @param string $menu_tab_key     Menu tab key.
 			 * @param string $screen_post_type Screen post type slug.
@@ -2065,6 +2157,8 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 
 			/**
 			 * Filters the list of header tabs data.
+			 *
+			 * @since 3.0.0
 			 *
 			 * @param array  $header_tabs_data An array of header tabs data.
 			 * @param string $menu_tab_key     Menu tab key.
@@ -2088,9 +2182,11 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 			 *
 			 * May be used to localize dynamic data to LearnDashData global at front-end.
 			 *
-			 * @param array $header_data    Menu header data.
-			 * @param string $menu_tab_key  Menu tab key.
-			 * @param array $admin_tab_sets An array of admin tab sets data.
+			 * @since 3.0.0
+			 *
+			 * @param array  $header_data    Menu header data.
+			 * @param string $menu_tab_key   Menu tab key.
+			 * @param array  $admin_tab_sets An array of admin tab sets data.
 			 */
 			$learndash_data = apply_filters(
 				'learndash_header_data',
@@ -2137,6 +2233,7 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 					content: '{$css_topic_label}';
 				}
 				.learndash_navigation_lesson_topics_list .quiz_list_item .lesson > a:before,
+				.learndash_navigation_lesson_topics_list .quiz-item > a > span:before,
 				#sfwd-course-quizzes h2:before {
 					content: '{$css_quiz_label}';
 				}
@@ -2162,6 +2259,11 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 			}
 		}
 
+		/**
+		 * Get Quiz base URL
+		 *
+		 * @since 3.0.0
+		 */
 		public function get_quiz_base_url() {
 			$quiz_post_id = get_the_ID();
 			if ( ! $quiz_post_id ) {
@@ -2200,12 +2302,23 @@ if ( ! class_exists( 'Learndash_Admin_Menus_Tabs' ) ) {
 
 $ld_admin_menus_tabs = Learndash_Admin_Menus_Tabs::get_instance();
 
+/**
+ * Add admin tab item interface function
+ *
+ * @since 2.4.0
+ *
+ * @param string  $menu_slug     Menu slug
+ * @param array   $menu_item     Menu item. See WP $submenu global.
+ * @param integer $menu_priority Tab priority.
+ */
 function learndash_add_admin_tab_item( $menu_slug, $menu_item, $menu_priority ) {
 	Learndash_Admin_Menus_Tabs::get_instance()->add_admin_tab_item( $menu_slug, $menu_item, $menu_priority );
 }
 
 /**
  * Get current admin tabs set.
+ *
+ * @since 3.0.0
  *
  * @return array
  */

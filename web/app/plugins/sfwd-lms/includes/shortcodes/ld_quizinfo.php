@@ -1,6 +1,6 @@
 <?php
 /**
- * Shortcode for quizinfo
+ * LearnDash `[quizinfo]` shortcode processing.
  *
  * @since 2.1.0
  *
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `ld_quiz_complete` shortcode output.
+ * Builds the `[quizinfo]` shortcode output.
  *
  * Shortcode that displays the requested quiz information.
  *
@@ -23,17 +23,18 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $attr {
  *    An array of shortcode attributes.
  *
- *    @type string     $show    Optional. The quiz info field to display. Default empty.
- *    @type int|string $user_id Optional. User ID. Default empty.
- *    @type int|string $quiz    Optional. Quiz ID. Default empty.
- *    @type int|string $time    Optional. Timestamp. Default empty.
- *    @type string     $field_id Optional. ID of the field. Default empty.
- *    @type string     $format  Optional. Date display format. Default 'F j, Y, g:i a'.
+ *    @type string     $show     The quiz info field to display. Default empty.
+ *    @type int|string $user_id  User ID. Default empty.
+ *    @type int|string $quiz     Quiz ID. Default empty.
+ *    @type int|string $time     Timestamp. Default empty.
+ *    @type string     $field_id ID of the field. Default empty.
+ *    @type string     $format   Date display format. Default 'F j, Y, g:i a'.
  * }
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string The `ld_quiz_complete` shortcode output.
  */
-function learndash_quizinfo( $attr ) {
+function learndash_quizinfo( $attr = array(), $content = '' ) {
 	global $learndash_shortcode_used;
 	$learndash_shortcode_used = true;
 
@@ -201,5 +202,4 @@ function learndash_quizinfo( $attr ) {
 		return apply_filters( 'learndash_quizinfo', '', $shortcode_atts, $selected_quizinfo );
 	}
 }
-
-add_shortcode( 'quizinfo', 'learndash_quizinfo' );
+add_shortcode( 'quizinfo', 'learndash_quizinfo', 10, 2 );

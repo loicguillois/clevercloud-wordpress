@@ -2,9 +2,10 @@
 /**
  * LearnDash Theme Loader.
  *
- * @package LearnDash
- * @subpackage Themes
- */
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates
+  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

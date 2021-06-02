@@ -1,17 +1,28 @@
 <?php
+/**
+ * LearnDash Shortcode Section for Course Resume [ld_course_resume].
+ *
+ * @since 3.1.4
+ * @package LearnDash\Settings\Shortcodes
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'LearnDash_Shortcodes_Section_ld_course_resume' ) ) ) {
 	/**
-	 * Class for LearnDash Shortcode Section.
+	 * Class LearnDash Shortcode Section for Course Resume [ld_course_resume].
+	 *
+	 * @since 3.1.4
 	 */
 	//phpcs:ignore PEAR.NamingConventions.ValidClassName.Invalid
 	class LearnDash_Shortcodes_Section_ld_course_resume extends LearnDash_Shortcodes_Section {
 
 		/**
 		 * Public constructor for class.
+		 *
+		 * @since 3.1.4
 		 *
 		 * @param array $fields_args Field Args.
 		 */
@@ -37,6 +48,8 @@ if ( ( class_exists( 'LearnDash_Shortcodes_Section' ) ) && ( ! class_exists( 'Le
 
 		/**
 		 * Initialize the shortcode fields.
+		 *
+		 * @since 3.1.4
 		 */
 		public function init_shortcodes_section_fields() {
 			$this->shortcodes_option_fields = array(

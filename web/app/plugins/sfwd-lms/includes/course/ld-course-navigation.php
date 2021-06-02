@@ -179,8 +179,6 @@ function learndash_next_post_link( $prevlink = '', $url = false, $post = null ) 
 	}
 }
 
-
-
 /**
  * Hides the next/previous post links in certain situations.
  *
@@ -201,11 +199,8 @@ function learndash_clear_prev_next_links( $prevlink = '' ) {
 		return '';
 	}
 }
-
 add_filter( 'previous_post_link', 'learndash_clear_prev_next_links', 1, 2 );
 add_filter( 'next_post_link', 'learndash_clear_prev_next_links', 1, 2 );
-
-
 
 /**
  * Outputs the quiz continue link.

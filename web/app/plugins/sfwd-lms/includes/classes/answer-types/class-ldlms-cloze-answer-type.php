@@ -2,7 +2,8 @@
 /**
  * Class for getting answers and student nodes for `fill in the blank` type questions.
  *
- * @package Learndash
+ * @since 3.3.0
+ * @package Learndash\Question\Cloze
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

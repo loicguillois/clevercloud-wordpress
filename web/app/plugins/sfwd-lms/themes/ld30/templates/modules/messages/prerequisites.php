@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays the Prerequisites
+ * LearnDash LD30 Displays the Prerequisites
  *
  * Available Variables:
  * $current_post           : (WP_Post Object) Current Post object being display. Equal to global $post in most cases.
@@ -9,9 +9,9 @@
  * $content_type           : (string) Will contain the singlar lowercase common label 'course', 'lesson', 'topic', 'quiz'
  * $course_settings        : (array) Settings specific to current course
  *
- * @since 2.2.1.2
+ * @since 3.0.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

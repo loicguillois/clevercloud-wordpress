@@ -2,7 +2,9 @@
 /**
  * LearnDash LD30 shortcodes functions
  *
- * @package LearnDash
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -37,6 +39,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  *    @type string $preview_action    Preview action
  *    @type string $return            Whether to return the output.
  * }
+ *
+ * @since 3.0.0
+ *
  * @param string $content Content to append to and return.
  *
  * @return string $content.
@@ -92,6 +97,8 @@ function learndash_login_shortcode( $atts = array(), $content = '' ) {
 
 	/**
 	 * Filters learndash_login shortcode attributes.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param array $attributes Shortcode attributes.
 	 */
@@ -235,6 +242,8 @@ function learndash_login_shortcode( $atts = array(), $content = '' ) {
 	 * filter can also be used for logout URL the user will be sent to after
 	 * the logout action.
 	 *
+	 * @since 3.0.0
+	 *
 	 * @param string $url    URL to be redirected
 	 * @param string $action The action attribute with two possible values login if the user is logged in and logout otherwise.
 	 * @param array  $atts   Shortcode Attributes.
@@ -287,6 +296,8 @@ add_shortcode( 'learndash_login', 'learndash_login_shortcode' );
 
 /**
  * Builds the `learndash_user_status` shortcode output.
+ *
+ * @since 3.0.0
  *
  * @param array $atts {
  *    An array of shortcode attributes.

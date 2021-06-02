@@ -2,9 +2,8 @@
 /**
  * Class to extend LDLMS_Model_Post to LDLMS_Model_Topic.
  *
- * @package LearnDash
- * @subpackage Topic
- * @since 3.2.0
+ * @since 2.6.1
+ * @package LearnDash\Topic
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +11,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'LDLMS_Model_Post' ) ) && ( ! class_exists( 'LDLMS_Model_Topic' ) ) ) {
+	/**
+	 * Class for LearnDash Topic.
+	 *
+	 * @since 2.6.1
+	 * @uses LDLMS_Model
+	 */
 	class LDLMS_Model_Topic extends LDLMS_Model_Post {
 
 		/**
 		 * Initialize post.
 		 *
-		 * @since 3.2.0
+		 * @since 2.6.1
 		 *
 		 * @param int $post_id Topic Post ID to load.
 		 *

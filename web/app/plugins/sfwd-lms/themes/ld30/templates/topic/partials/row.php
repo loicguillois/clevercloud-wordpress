@@ -1,19 +1,17 @@
 <?php
 /**
- * Displays a single topic row
+ * LearnDash LD30 Displays a single topic row
  *
  * Available Variables:
  *
  * $user_id   : The current user ID
  * $course_id : The current course ID
- *
  * $lesson    : The current lesson
- *
  * $topic     : The current topic object
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -31,6 +29,8 @@ $post_id  = ( isset( $_GET['widget_instance']['widget_instance']['current_step_i
 /**
  * Filters topic row CSS class. Used while listing a topic row.
  *
+ * @since 3.0.0
+ *
  * @param string $row_class The list of topic row CSS classes.
  * @param object $topic     The Topic object.
  */
@@ -44,6 +44,8 @@ $topic_class = apply_filters(
 
 /**
  * Filters the status of the topic. Used while listing a topic.
+ *
+ * @since 3.0.0
  *
  * @param string $topic_status The topic status. The value can be completed or not-completed.
  * @param object $topic        The topic object

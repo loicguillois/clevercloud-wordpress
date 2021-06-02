@@ -1,4 +1,12 @@
 <?php
+/**
+ * LearnDash LD30 focus mode sidebar.
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -15,6 +23,8 @@ do_action( 'learndash-focus-sidebar-before', $course_id, $user_id ); ?>
 		/**
 		 * Fires before the sidebar trigger wrapper in the focus template.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param int $course_id Course ID.
 		 * @param int $user_id   User ID.
 		 */
@@ -25,6 +35,8 @@ do_action( 'learndash-focus-sidebar-before', $course_id, $user_id ); ?>
 			<?php
 			/**
 			 * Fires before the sidebar trigger in the focus template.
+			 *
+			 * @since 3.0.0
 			 *
 			 * @param int $course_id Course ID.
 			 * @param int $user_id   User ID.
@@ -40,6 +52,8 @@ do_action( 'learndash-focus-sidebar-before', $course_id, $user_id ); ?>
 			/**
 			 * Fires after the sidebar trigger in the focus template.
 			 *
+			 * @since 3.0.0
+			 *
 			 * @param int $course_id Course ID.
 			 * @param int $user_id   User ID.
 			 */
@@ -51,6 +65,8 @@ do_action( 'learndash-focus-sidebar-before', $course_id, $user_id ); ?>
 		/**
 		 * Fires after the sidebar trigger wrapper in the focus template.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param int $course_id Course ID.
 		 * @param int $user_id   User ID.
 		 */
@@ -60,6 +76,8 @@ do_action( 'learndash-focus-sidebar-before', $course_id, $user_id ); ?>
 		<?php
 		/**
 		 * Fires before the sidebar heading in the focus template.
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param int $course_id Course ID.
 		 * @param int $user_id   User ID.
@@ -77,6 +95,8 @@ do_action( 'learndash-focus-sidebar-before', $course_id, $user_id ); ?>
 		/**
 		 * Fires after the sidebar heading in the focus template.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param int $course_id Course ID.
 		 * @param int $user_id   User ID.
 		 */
@@ -87,6 +107,8 @@ do_action( 'learndash-focus-sidebar-before', $course_id, $user_id ); ?>
 		<?php
 		/**
 		 * Fires inside the sidebar heading navigation in the focus template.
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param int $course_id Course ID.
 		 * @param int $user_id   User ID.
@@ -101,6 +123,8 @@ do_action( 'learndash-focus-sidebar-before', $course_id, $user_id ); ?>
 						/**
 						 * Fires before the sidebar nav in the focus template.
 						 *
+						 * @since 3.0.0
+						 *
 						 * @param int $course_id Course ID.
 						 * @param int $user_id   User ID.
 						 */
@@ -110,6 +134,8 @@ do_action( 'learndash-focus-sidebar-before', $course_id, $user_id ); ?>
 
 						/**
 						 * Filters focus mode navigation setting arguments.
+						 *
+						 * @since 3.0.0
 						 *
 						 * @param array $navigation_setting_args An array of focus mode navigation settings.
 						 */
@@ -138,6 +164,8 @@ do_action( 'learndash-focus-sidebar-before', $course_id, $user_id ); ?>
 						/**
 						 * Fires after the sidebar nav in the focus template.
 						 *
+						 * @since 3.0.0
+						 *
 						 * @param int $course_id Course ID.
 						 * @param int $user_id   User ID.
 						 */
@@ -151,6 +179,8 @@ do_action( 'learndash-focus-sidebar-before', $course_id, $user_id ); ?>
 		/**
 		 * Fires after the sidebar nav wrapper in the focus template.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param int $course_id Course ID.
 		 * @param int $user_id   User ID.
 		 */
@@ -162,6 +192,8 @@ do_action( 'learndash-focus-sidebar-before', $course_id, $user_id ); ?>
 <?php
 /**
  * Fires after the sidebar in the focus template.
+ *
+ * @since 3.0.0
  *
  * @param int $course_id Course ID.
  * @param int $user_id   User ID.

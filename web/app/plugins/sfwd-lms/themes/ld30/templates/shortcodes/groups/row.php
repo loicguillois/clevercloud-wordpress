@@ -1,4 +1,12 @@
 <?php
+/**
+ * LearnDash LD30 Displays a group row.
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

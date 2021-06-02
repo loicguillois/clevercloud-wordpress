@@ -1,11 +1,32 @@
 <?php
+/**
+ * LearnDash REST API V1 Groups Post Controller.
+ *
+ * @since 2.5.8
+ * @package LearnDash\REST\V1
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( ! class_exists( 'LD_REST_Groups_Controller_V1' ) ) && ( class_exists( 'LD_REST_Posts_Controller_V1' ) ) ) {
+
+	/**
+	 * Class LearnDash REST API V1 Groups Post Controller.
+	 *
+	 * @since 2.5.8
+	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Groups_Controller_V1 extends LD_REST_Posts_Controller_V1 {
 
+		/**
+		 * Public constructor for class
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param string $post_type Post type.
+		 */
 		public function __construct( $post_type = '' ) {
 			$this->post_type  = 'groups';
 			$this->taxonomies = array();
@@ -15,6 +36,13 @@ if ( ( ! class_exists( 'LD_REST_Groups_Controller_V1' ) ) && ( class_exists( 'LD
 			$this->rest_base = LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Section_General_REST_API', $this->post_type );
 		}
 
+		/**
+		 * Registers the routes for the objects of the controller.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @see register_rest_route() in WordPress core.
+		 */
 		public function register_routes() {
 			$this->register_fields();
 
@@ -106,6 +134,13 @@ if ( ( ! class_exists( 'LD_REST_Groups_Controller_V1' ) ) && ( class_exists( 'LD
 
 		}
 
+		/**
+		 * Check Groups Read Permissions.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function get_items_permissions_check( $request ) {
 			if ( ( learndash_is_admin_user() ) || ( learndash_is_group_leader_user() ) ) {
 				return true;
@@ -114,6 +149,8 @@ if ( ( ! class_exists( 'LD_REST_Groups_Controller_V1' ) ) && ( class_exists( 'LD
 
 		/**
 		 * Gets groups schema.
+		 *
+		 * @since 2.5.8
 		 *
 		 * @return array
 		 */
@@ -125,21 +162,16 @@ if ( ( ! class_exists( 'LD_REST_Groups_Controller_V1' ) ) && ( class_exists( 'LD
 			return $schema;
 		}
 
-		public function get_items( $request ) {
-			return parent::get_items( $request );
-		}
-
-
-		public function get_item_permissions_check( $request ) {
-			if ( ( learndash_is_admin_user() ) || ( learndash_is_group_leader_user() ) ) {
-				return true;
-			}
-		}
-
-		public function get_item( $request ) {
-			return parent::get_item( $request );
-		}
-
+		/**
+		 * Filter query args.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param array           $query_args Key value array of query var to query value.
+		 * @param WP_REST_Request $request    The request used.
+		 *
+		 * @return array Key value array of query var to query value.
+		 */
 		public function rest_query_filter( $args, $request ) {
 			if ( learndash_is_group_leader_user() ) {
 				$group_ids = learndash_get_administrators_group_ids( get_current_user_id() );
@@ -153,6 +185,15 @@ if ( ( ! class_exists( 'LD_REST_Groups_Controller_V1' ) ) && ( class_exists( 'LD
 			return $args;
 		}
 
+		/**
+		 * Prepare REST response.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $response WP_REST_Response instance.
+		 * @param object $post     WP_Post instance.
+		 * @param object $request  WP_REST_Request instance.
+		 */
 		public function rest_prepare_response( $response, $post, $request ) {
 
 			$base = sprintf( '%s/%s', $this->namespace, $this->rest_base );

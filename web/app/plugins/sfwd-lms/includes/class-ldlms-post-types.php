@@ -250,3 +250,18 @@ function learndash_get_post_type_slug( $post_type_key = '', $return_type = '', $
 function learndash_get_post_type_key( $post_type_slug = '' ) {
 	return LDLMS_Post_Types::get_post_type_key( $post_type_slug );
 }
+
+/**
+ * Utility function to check if a post type slug is a valid LearnDash post type.
+ *
+ * @since 3.4.1
+ *
+ * @param string $post_type_slug Post Type slug.
+ *
+ * @return string post type key if found.
+ */
+function learndash_is_valid_post_type( $post_type_slug = '' ) {
+	if ( ( ! empty( $post_type_slug ) ) && ( in_array( $post_type_slug, LDLMS_Post_Types::get_post_types(), true ) ) ) {
+		return true;
+	}
+}

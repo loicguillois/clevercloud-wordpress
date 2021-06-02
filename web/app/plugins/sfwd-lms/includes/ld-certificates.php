@@ -747,3 +747,47 @@ function learndash_certificate_display() {
 	}
 }
 add_action( 'template_redirect', 'learndash_certificate_display', 5 );
+
+/**
+ * Get where the Certificate post is used. Course/Quiz/Group.
+ *
+ * @since 3.4.1
+ *
+ * @param integer $post_id   Certificate Post ID.
+ * @param string  $post_type Single post type slug to check.
+ * 
+ * @return array Array of post IDs.
+ */
+function learndash_certificate_get_used_by( $post_id = 0, $post_type = '' ) {
+	$post_ids = array();
+
+	$post_id = absint( $post_id );
+	$post_type = esc_attr( $post_type );
+
+	if ( ( ! empty( $post_id ) ) && ( ! empty( $post_type ) ) ) {
+		$transient_key = 'learndash_cert_used_' . $post_id . '_' . $post_type;
+		$post_ids_transient = LDLMS_Transients::get( $transient_key );
+		
+		if ( false === $post_ids_transient ) {
+			$query_args = array(
+				'post_type'    => $post_type,
+				'fields'       => 'ids',
+				'nopaging'     => true,
+				'meta_key'     => '_ld_certificate',
+				'meta_value'   => $post_id,
+				'meta_compare' => '=',
+			);
+
+			$query = new WP_Query( $query_args );
+			if ( property_exists( $query, 'posts' ) ) {
+				$post_ids = array_map( 'absint', $query->posts );
+			}
+
+			LDLMS_Transients::set( $transient_key, $post_ids, MINUTE_IN_SECONDS );
+		}
+	} else {
+		$post_ids = $post_ids_transient;
+	}
+
+	return $post_ids;
+}

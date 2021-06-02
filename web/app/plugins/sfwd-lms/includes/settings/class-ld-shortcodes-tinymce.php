@@ -1,14 +1,36 @@
 <?php
+/**
+ * LearnDash Admin Shortcods TinyMCE Class.
+ *
+ * @since 2.4.0
+ * @package LearnDash\Settings\Shortcodes
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ! class_exists( 'LearnDash_Shortcodes_TinyMCE' ) ) {
 
+	/**
+	 * Class for LearnDash Admin Shortcods TinyMCE.
+	 *
+	 * @since 2.4.0
+	 */
 	class LearnDash_Shortcodes_TinyMCE {
 
+		/**
+		 * Shortocde assets
+		 *
+		 * @var array learndash_admin_shortcodes_assets
+		 */
 		protected $learndash_admin_shortcodes_assets = array();
 
+		/**
+		 * Public constructor for class.
+		 *
+		 * @since 2.4.0
+		 */
 		public function __construct() {
 			add_action( 'wp_enqueue_editor', array( $this, 'wp_enqueue_editor' ) );
 
@@ -20,6 +42,11 @@ if ( ! class_exists( 'LearnDash_Shortcodes_TinyMCE' ) ) {
 			add_action( 'wp_ajax_learndash_generate_shortcodes_content', array( $this, 'learndash_generate_shortcodes_content' ) );
 		}
 
+		/**
+		 * Shortcodes assets init
+		 *
+		 * @since 3.0.7
+		 */
 		protected function shortcodes_assets_init() {
 			global $typenow, $pagenow, $post;
 
@@ -38,6 +65,15 @@ if ( ! class_exists( 'LearnDash_Shortcodes_TinyMCE' ) ) {
 			}
 		}
 
+		/**
+		 * Enqueue Editor
+		 *
+		 * Fires on `wp_enqueue_editor` hook.
+		 *
+		 * @since 3.0.7
+		 *
+		 * @param array $editor_args Editor args array
+		 */
 		public function wp_enqueue_editor( $editor_args = array() ) {
 			$this->shortcodes_assets_init();
 
@@ -58,6 +94,13 @@ if ( ! class_exists( 'LearnDash_Shortcodes_TinyMCE' ) ) {
 			}
 		}
 
+		/**
+		 * Quicktags hooks
+		 *
+		 * Fires on `admin_print_footer_scripts` hook.
+		 *
+		 * @since 2.4.0
+		 */
 		public function qt_button_script() {
 			?>
 			<script type="text/javascript">
@@ -73,22 +116,45 @@ if ( ! class_exists( 'LearnDash_Shortcodes_TinyMCE' ) ) {
 			<?php
 		}
 
+		/**
+		 * Add TinyMCE buttons
+		 *
+		 * @since 2.4.0
+		 */
 		public function add_button() {
 			add_filter( 'mce_external_plugins', array( $this, 'add_tinymce_plugin' ), 1 );
 			add_filter( 'mce_buttons', array( $this, 'register_button' ), 1 );
 		}
 
+		/**
+		 * Add TinyMCE support
+		 *
+		 * @since 2.4.0
+		 */
 		public function add_tinymce_plugin( $plugin_array ) {
 			$plugin_array['learndash_shortcodes_tinymce'] = LEARNDASH_LMS_PLUGIN_URL . 'assets/js/learndash-admin-shortcodes-tinymce' . learndash_min_asset() . '.js';
 
 			return $plugin_array;
 		}
 
+		/**
+		 * Register TinyMCE button callback
+		 *
+		 * @since 2.4.0
+		 *
+		 * @var array $buttons Array of buttons
+		 */
+
 		public function register_button( $buttons ) {
 			array_push( $buttons, 'learndash_shortcodes_tinymce' );
 			return $buttons;
 		}
 
+		/**
+		 * Load admin scripts
+		 *
+		 * @since 2.4.0
+		 */
 		public function load_admin_scripts() {
 			global $typenow, $pagenow;
 			global $learndash_assets_loaded;
@@ -145,6 +211,11 @@ if ( ! class_exists( 'LearnDash_Shortcodes_TinyMCE' ) ) {
 			}
 		}
 
+		/**
+		 * Button callback content
+		 *
+		 * @since 2.4.0
+		 */
 		public function learndash_generate_shortcodes_content() {
 			if ( ( ! isset( $_POST['atts'] ) ) || ( empty( $_POST['atts'] ) ) ) {
 				die();

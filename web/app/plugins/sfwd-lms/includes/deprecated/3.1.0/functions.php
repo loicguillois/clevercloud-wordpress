@@ -15,7 +15,7 @@ if ( ! function_exists( 'learndash_get_valid_transient' ) ) {
 	/**
 	 * Gets the valid transient.
 	 *
-	 * @deprecated 3.1.0 Use LDLMS_Transients::get()
+	 * @deprecated 3.1.0 Use {@see 'LDLMS_Transients::get'} instead.
 	 *
 	 * @param string $transient_key Optional. Transient key. Default empty.
 	 *
@@ -35,7 +35,7 @@ if ( ! function_exists( 'learndash_set_transient' ) ) {
 	/**
 	 * Sets the transient data.
 	 *
-	 * @deprecated 3.1.0 Use LDLMS_Transients::set()
+	 * @deprecated 3.1.0 Use {@see 'LDLMS_Transients::set'} instead.
 	 *
 	 * @param string $transient_key    Optional. Transient key. Default empty
 	 * @param string $transient_data   Optional. Transient data. Default empty
@@ -56,7 +56,7 @@ if ( ! function_exists( 'learndash_purge_transients' ) ) {
 	/**
 	 * Purges all the transients.
 	 *
-	 * @deprecated 3.1.0 Use LDLMS_Transients::purge_all()
+	 * @deprecated 3.1.0 Use {@see 'LDLMS_Transients::purge_all'} instead.
 	 */
 	function learndash_purge_transients() {
 		if ( function_exists( '_deprecated_function' ) ) {

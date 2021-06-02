@@ -2,18 +2,20 @@
 /**
  * Class to extend LDLMS_Model_Post to LDLMS_Model_Course.
  *
- * @package LearnDash
- * @subpackage Course
- * @since 3.2.0
+ * @since 2.5.0
+ * @package LearnDash\Course
  */
 
- if ( ! defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( ! class_exists( 'LDLMS_Model_Course' ) ) && ( class_exists( 'LDLMS_Model_Post' ) ) ) {
 	/**
 	 * Class for LearnDash Model Course.
+	 *
+	 * @since 2.5.0
+	 * @uses LDLMS_Model_Post
 	 */
 	class LDLMS_Model_Course extends LDLMS_Model_Post {
 
@@ -33,7 +35,7 @@ if ( ( ! class_exists( 'LDLMS_Model_Course' ) ) && ( class_exists( 'LDLMS_Model_
 		 *
 		 * @param int $post_id Course Post ID to load.
 		 *
-		 * return mixed instance of class or exception.
+		 * @return mixed instance of class or exception.
 		 */
 		public function __construct( $post_id = 0 ) {
 			$this->post_type = learndash_get_post_type_slug( 'course' );
@@ -74,6 +76,8 @@ if ( ( ! class_exists( 'LDLMS_Model_Course' ) ) && ( class_exists( 'LDLMS_Model_
 		/**
 		 * Load the Post Settings.
 		 *
+		 * @since 2.5.0
+		 *
 		 * @param bool $force Force reload of settings.
 		 *
 		 * @return bool settings loaded.
@@ -86,8 +90,6 @@ if ( ( ! class_exists( 'LDLMS_Model_Course' ) ) && ( class_exists( 'LDLMS_Model_
 
 		/**
 		 * Get Lessons order/orderby setting
-		 *
-		 * @since 3.4.0
 		 */
 		public function get_settings_order() {
 			$course_lessons_args = array(
@@ -130,8 +132,6 @@ if ( ( ! class_exists( 'LDLMS_Model_Course' ) ) && ( class_exists( 'LDLMS_Model_
 
 		/**
 		 * Get Lessons per page setting
-		 *
-		 * @since 3.4.0
 		 */
 		public function get_settings_lessons_per_page() {
 			$course_lessons_per_page = 0;
@@ -156,8 +156,6 @@ if ( ( ! class_exists( 'LDLMS_Model_Course' ) ) && ( class_exists( 'LDLMS_Model_
 
 		/**
 		 * Get Topics per page setting
-		 *
-		 * @since 3.4.0
 		 */
 		public function get_settings_topics_per_page() {
 			$course_topics_per_page = 0;
@@ -242,8 +240,6 @@ if ( ( ! class_exists( 'LDLMS_Model_Course' ) ) && ( class_exists( 'LDLMS_Model_
 
 		/**
 		 * Get Course Steps Count.
-		 *
-		 * @since 2.5.0
 		 */
 		public function get_steps_count() {
 			if ( ! empty( $this->post_id ) ) {

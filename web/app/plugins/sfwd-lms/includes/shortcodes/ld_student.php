@@ -1,6 +1,6 @@
 <?php
 /**
- * Shortcode for student
+ * LearnDash `[student]` shortcode processing.
  *
  * @since 2.1.0
  *
@@ -12,28 +12,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `student` shortcode output.
+ * Builds the `[student]` shortcode output.
  *
  * Shortcode to display content to users that have access to current course ID.
  *
  * @global boolean $learndash_shortcode_used
  *
- * @todo  function is duplicate of learndash_visitor_check_shortcode()
- *
  * @since 2.1.0
  *
- * @param array       $atts {
+ * @param array $atts {
  *     An array of shortcode attributes.
- *    @type int     Optional. $course_id Course ID. Default current course ID.
- *    @type int     Optional. $user_id   User ID. Default current user ID.
- *    @type string  Optional. $content   The shortcode content. Default null.
- *    @type boolean Optional. $autop     Whether to replace linebreaks with paragraph elements. Default true.
+ *
+ *    @type int     $course_id Course ID. Default current course ID.
+ *    @type int     $user_id   User ID. Default current user ID.
+ *    @type string  $content   The shortcode content. Default null.
+ *    @type boolean $autop     Whether to replace linebreaks with paragraph elements. Default true.
  * }
- * @param string|null $content Optional. The shortcode content. Default null
+ * @param string $content The shortcode content. Default empty.
+ *
+ * @param string|null $content The shortcode content. Default null
  *
  * @return string The `student` shortcode output.
  */
-function learndash_student_check_shortcode( $atts, $content = null ) {
+function learndash_student_check_shortcode( $atts = array(), $content = '' ) {
 	global $learndash_shortcode_used;
 
 	if ( ( ! empty( $content ) ) && ( is_user_logged_in() ) ) {
@@ -89,5 +90,4 @@ function learndash_student_check_shortcode( $atts, $content = null ) {
 
 	return '';
 }
-
-add_shortcode( 'student', 'learndash_student_check_shortcode' );
+add_shortcode( 'student', 'learndash_student_check_shortcode', 10, 2 );

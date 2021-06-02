@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section for Translations Refresh Metabox.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.5.2
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Section_Translations_Refresh' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Section for Translations Refresh Metabox.
+	 *
+	 * @since 2.5.2
 	 */
 	class LearnDash_Settings_Section_Translations_Refresh extends LearnDash_Settings_Section {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 2.5.2
 		 */
 		protected function __construct() {
 
@@ -44,7 +48,7 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * Custom function to metabox.
 		 *
-		 * @since 2.4.0
+		 * @since 2.5.2
 		 */
 		public function show_meta_box() {
 			?>
@@ -75,10 +79,13 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 		}
 
 		/**
-		 * This is a requires function.
+		 * Load Settings Fields
 		 */
 		public function load_settings_fields() {
-
+			/**
+			 * This blank function is intentional in order
+			 * to override the default parent output.
+			 */
 		}
 	}
 }

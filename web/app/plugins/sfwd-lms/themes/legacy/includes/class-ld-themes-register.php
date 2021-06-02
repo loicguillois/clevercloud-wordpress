@@ -2,8 +2,9 @@
 /**
  * LearnDash LearnDash Legacy Theme Register.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

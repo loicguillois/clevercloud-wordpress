@@ -6,7 +6,7 @@
  *
  * @since 2.5.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\Legacy\Shortcodes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

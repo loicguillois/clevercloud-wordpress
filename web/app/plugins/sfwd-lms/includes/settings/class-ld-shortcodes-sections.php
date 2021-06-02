@@ -1,11 +1,11 @@
 <?php
+
 /**
  * LearnDash Admin Shortcods Section Class.
  *
- * @package LearnDash
- * @subpackage Admin
+ * @since 2.4.0
+ * @package LearnDash\Settings\Shortcodes
  */
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -14,6 +14,8 @@ if ( ! class_exists( 'LearnDash_Shortcodes_Section' ) ) {
 
 	/**
 	 * Class for LearnDash Admin Course Edit.
+	 *
+	 * @since 2.4.0
 	 */
 	class LearnDash_Shortcodes_Section {
 
@@ -82,6 +84,8 @@ if ( ! class_exists( 'LearnDash_Shortcodes_Section' ) ) {
 
 		/**
 		 * Public constructor for class.
+		 *
+		 * @since 2.4.0
 		 */
 		public function __construct() {
 			$this->init_shortcodes_section_fields();
@@ -89,6 +93,8 @@ if ( ! class_exists( 'LearnDash_Shortcodes_Section' ) ) {
 
 		/**
 		 * Initialize the Shortcodes Fields.
+		 *
+		 * @since 2.4.0
 		 */
 		public function init_shortcodes_section_fields() {
 			foreach ( $this->shortcodes_option_fields as $field_id => $setting_option_field ) {
@@ -123,6 +129,8 @@ if ( ! class_exists( 'LearnDash_Shortcodes_Section' ) ) {
 		/**
 		 * Section Fields Create.
 		 *
+		 * @since 2.4.0
+		 *
 		 * @param array $fields_args Field Args.
 		 */
 		public function field_element_create( $field_args = array() ) {
@@ -139,6 +147,8 @@ if ( ! class_exists( 'LearnDash_Shortcodes_Section' ) ) {
 
 		/**
 		 * Show Section Fields.
+		 *
+		 * @since 2.4.0
 		 */
 		public function show_section_fields() {
 			$this->show_shortcodes_section_header();
@@ -148,6 +158,8 @@ if ( ! class_exists( 'LearnDash_Shortcodes_Section' ) ) {
 
 		/**
 		 * Show Section Header.
+		 *
+		 * @since 2.4.0
 		 */
 		public function show_shortcodes_section_header() {
 			?><form id="learndash_shortcodes_form_<?php echo esc_attr( $this->shortcodes_section_key ); ?>" class="learndash_shortcodes_form" shortcode_slug="<?php echo esc_attr( $this->shortcodes_section_key ); ?>" shortcode_type="<?php echo esc_attr( $this->shortcodes_section_type ); ?>">
@@ -159,6 +171,8 @@ if ( ! class_exists( 'LearnDash_Shortcodes_Section' ) ) {
 
 		/**
 		 * Show Section Footer.
+		 *
+		 * @since 2.4.0
 		 */
 		public function show_shortcodes_section_footer() {
 			?>
@@ -171,6 +185,8 @@ if ( ! class_exists( 'LearnDash_Shortcodes_Section' ) ) {
 
 		/**
 		 * Show Section Footer Extra.
+		 *
+		 * @since 2.4.0
 		 */
 		public function show_shortcodes_section_footer_extra() {
 			// This is a hook called after the section closing </div> to allow adding JS/CSS
@@ -178,6 +194,8 @@ if ( ! class_exists( 'LearnDash_Shortcodes_Section' ) ) {
 
 		/**
 		 * Get Section Key.
+		 *
+		 * @since 2.4.0
 		 */
 		public function get_shortcodes_section_key() {
 			return $this->shortcodes_section_key;
@@ -185,6 +203,8 @@ if ( ! class_exists( 'LearnDash_Shortcodes_Section' ) ) {
 
 		/**
 		 * Get Section Title.
+		 *
+		 * @since 2.4.0
 		 */
 		public function get_shortcodes_section_title() {
 			return $this->shortcodes_section_title;
@@ -192,6 +212,8 @@ if ( ! class_exists( 'LearnDash_Shortcodes_Section' ) ) {
 
 		/**
 		 * Show Section Key.
+		 *
+		 * @since 2.4.0
 		 */
 		public function show_shortcodes_section_title() {
 			if ( ! empty( $this->shortcodes_section_title ) ) {
@@ -203,6 +225,8 @@ if ( ! class_exists( 'LearnDash_Shortcodes_Section' ) ) {
 
 		/**
 		 * Get Section Description.
+		 *
+		 * @since 2.4.0
 		 */
 		public function get_shortcodes_section_description() {
 			return $this->shortcodes_section_description;
@@ -210,6 +234,8 @@ if ( ! class_exists( 'LearnDash_Shortcodes_Section' ) ) {
 
 		/**
 		 * Show Section Description.
+		 *
+		 * @since 2.4.0
 		 */
 		public function show_shortcodes_section_description() {
 			if ( ! empty( $this->shortcodes_section_description ) ) {
@@ -219,6 +245,8 @@ if ( ! class_exists( 'LearnDash_Shortcodes_Section' ) ) {
 
 		/**
 		 * Get Shortcode field by key;
+		 *
+		 * @since 3.1.4
 		 */
 		public function get_shortcodes_section_field( $field_key = '' ) {
 			if ( ( ! empty( $field_key ) ) && ( isset( $this->shortcodes_option_fields[ $field_key ] ) ) ) {

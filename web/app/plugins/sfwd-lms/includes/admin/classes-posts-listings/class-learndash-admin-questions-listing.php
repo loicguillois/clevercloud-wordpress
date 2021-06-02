@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Quiz Questions (sfwd-question) Posts Listing Class.
+ * LearnDash Quiz Questions (sfwd-question) Posts Listing.
  *
- * @package LearnDash
- * @subpackage admin
+ * @since 2.6.0
+ * @package LearnDash\Question\Listing
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,8 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'Learndash_Admin_Questions_Listing' ) ) ) {
+
 	/**
-	 * Class for LearnDash Quiz Questions Listing Pages.
+	 * Class LearnDash Quiz Questions (sfwd-question) Posts Listing.
+	 *
+	 * @since 2.6.0
+	 * @uses Learndash_Admin_Posts_Listing
 	 */
 	class Learndash_Admin_Questions_Listing extends Learndash_Admin_Posts_Listing {
 
@@ -25,6 +29,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 2.6.0
 		 */
 		public function __construct() {
 			$this->post_type = learndash_get_post_type_slug( 'question' );
@@ -34,6 +40,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Called via the WordPress init action hook.
+		 *
+		 * @since 3.2.3
 		 */
 		public function listing_init() {
 			if ( $this->listing_init_done ) {
@@ -145,6 +153,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Call via the WordPress load sequence for admin pages.
+		 *
+		 * @since 3.2.3
 		 */
 		public function on_load_listing() {
 			if ( $this->post_type_check() ) {
@@ -157,6 +167,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Hook into the WP admin footer logic to add custom JavaScript to replce the default page title.
+		 *
+		 * @since 2.6.0
 		 */
 		public function admin_footer() {
 			global $post_type, $post_type_object;
@@ -195,6 +207,7 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 * Show Question Type column value.
 		 *
 		 * @since 3.2.3
+		 *
 		 * @param int   $post_id  The Step post ID shown.
 		 * @param array $selector Selector array.
 		 */
@@ -234,6 +247,7 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 * Show Question Points column value.
 		 *
 		 * @since 3.2.3
+		 *
 		 * @param int   $post_id  The Step post ID shown.
 		 * @param array $selector Selector array.
 		 */
@@ -273,6 +287,7 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 * Show selector for question type.
 		 *
 		 * @since 3.2.3
+		 *
 		 * @param array $selector Selector args.
 		 */
 		protected function show_selector_question_type( $selector = array() ) {
@@ -305,6 +320,7 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 * Show selector for legacy WPProQuiz category
 		 *
 		 * @since 3.2.3
+		 *
 		 * @param array $selector Selector args.
 		 */
 		protected function show_selector_question_pro_category( $selector = array() ) {
@@ -333,8 +349,10 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 * Filter listing query by Question Type.
 		 *
 		 * @since 3.2.3
+		 *
 		 * @param array $q_vars   Array of query vars.
 		 * @param array $selector Selector array.
+		 *
 		 * @return array $q_vars   Query Args array.
 		 */
 		protected function filter_by_question_type( $q_vars, $selector = array() ) {
@@ -357,8 +375,10 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 * Filter listing query by Question Type.
 		 *
 		 * @since 3.2.3
+		 *
 		 * @param array $q_vars   Array of query vars.
 		 * @param array $selector Selector array.
+		 *
 		 * @return array $q_vars   Query Args array.
 		 */
 		protected function filter_by_question_pro_category( $q_vars, $selector = array() ) {
@@ -382,7 +402,9 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 *
 		 * @since 3.2.3
 		 *
-		 * @param  object $q_vars      Query vars used for the table listing
+		 * @param object $q_vars   Query vars used for the table listing
+		 * @param array  $selector Selector array.
+		 *
 		 * @return object $q_vars.
 		 */
 		protected function filter_by_question_quiz_id( $q_vars, $selector = array() ) {
@@ -469,6 +491,7 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 * Utility function to get the question values.
 		 *
 		 * @since 3.2.3
+		 *
 		 * @param int $post_id  The Step post ID shown.
 		 */
 		protected function get_question_values( $post_id = 0 ) {
@@ -496,11 +519,11 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Initial hook for deleting a post.
-		 *
 		 * For the Questions post type we want to also remove the ProQuiz Question. So we grab
 		 * the reference from the post meta for 'question_pro_id'.
 		 *
-		 * @since 2.6.5
+		 * @since 3.0.0
+		 *
 		 * @param integer $post_id $Post ID to be deleted.
 		 */
 		public function before_delete_post( $post_id = 0 ) {
@@ -521,10 +544,10 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Called after the post has been deleted.
-		 *
 		 * Uses registered delete post ID
 		 *
-		 * @since 2.6.5
+		 * @since 3.0.0
+		 *
 		 * @param integer $post_id $Post ID to be deleted.
 		 */
 		public function deleted_post( $post_id = 0 ) {

@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Quiz Essays (sfwd-essays) Posts Listing Class.
+ * LearnDash Quiz Essays (sfwd-essays) Posts Listing.
  *
- * @package LearnDash
- * @subpackage admin
+ * @since 3.2.3
+ * @package LearnDash\Essay\Listing
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,13 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'Learndash_Admin_Essays_Listing' ) ) ) {
+
 	/**
-	 * Class for LearnDash Essays Listing Pages.
+	 * Class LearnDash Quiz Essays (sfwd-essays) Posts Listing.
+	 *
+	 * @since 3.2.3
+	 * @uses Learndash_Admin_Posts_Listing
 	 */
 	class Learndash_Admin_Essays_Listing extends Learndash_Admin_Posts_Listing {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.2.3
 		 */
 		public function __construct() {
 			$this->post_type = learndash_get_post_type_slug( 'essay' );
@@ -27,6 +33,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Called via the WordPress init action hook.
+		 *
+		 * @since 3.2.3
 		 */
 		public function listing_init() {
 			if ( $this->listing_init_done ) {
@@ -193,6 +201,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Call via the WordPress load sequence for admin pages.
+		 *
+		 * @since 3.2.3
 		 */
 		public function on_load_listing() {
 			if ( $this->post_type_check() ) {
@@ -207,7 +217,15 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 			}
 		}
 
-		/** This function is documented in includes/admin/class-learndash-admin-posts-listing.php */
+		/**
+		 * Listing table query vars
+		 *
+		 * @since 3.2.3
+		 *
+		 * @param array  $q_vars    Array of query vars.
+		 * @param string $post_type Post Type being displayed.
+		 * @param array  $query     Main Query.
+		 */
 		public function listing_table_query_vars_filter_essays( $q_vars, $post_type, $query ) {
 			if ( $post_type === $this->post_type ) {
 
@@ -260,7 +278,16 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 			return $q_vars;
 		}
 
-		/** This function is documented in includes/admin/class-learndash-admin-posts-listing.php */
+		/**
+		 * Listing user selector filter
+		 *
+		 * @since 3.2.3
+		 *
+		 * @param array  $q_vars    Array of query vars.
+		 * @param string $post_type Post Type being displayed.
+		 * @param array  $query     Main Query.
+		 */
+
 		public function learndash_listing_selector_user_query_args_essays( $q_vars, $selector, $post_type ) {
 			if ( $post_type === $this->post_type ) {
 				$group_selector = $this->get_selector( 'group_id' );
@@ -289,7 +316,7 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		/**
 		 * Filter the main query listing by the course_id
 		 *
-		 * @since 3.2.3
+		 * @since 3.2.3.4
 		 *
 		 * @param  object $q_vars   Query vars used for the table listing
 		 * @param  array  $selector Array of attributes used to display the filter selector.
@@ -345,7 +372,7 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		/**
 		 * Filter the main query listing by the lesson_id
 		 *
-		 * @since 3.2.3
+		 * @since 3.2.3.4
 		 *
 		 * @param  object $q_vars   Query vars used for the table listing.
 		 * @param  array  $selector Array of attributes used to display the filter selector.
@@ -375,10 +402,10 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 						$q_vars['meta_query'] = array();
 					}
 
-					$lesson_ids      = array( absint( $selector['selected'] ) );
-					$course_selector = $this->get_selector( 'course_id' );
-					if ( ( $course_selector ) && ( isset( $course_selector['selected'] ) ) && ( ! empty( $course_selector['selected'] ) ) ) {
-						$topics = learndash_get_topic_list( $selector['selected'], $course_selector['selected'] );
+					$lesson_ids = array( absint( $selector['selected'] ) );
+					$course_id  = (int) $this->get_selector( 'course_id', 'selected' );
+					if ( ! empty( $course_id ) ) {
+						$topics = learndash_get_topic_list( $selector['selected'], $course_id );
 						if ( ! empty( $topics ) ) {
 							$lesson_ids = array_merge( $lesson_ids, wp_list_pluck( $topics, 'ID' ) );
 						}
@@ -398,7 +425,7 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		/**
 		 * Filter the main query listing by the topic_id
 		 *
-		 * @since 3.2.3
+		 * @since 3.2.3.4
 		 *
 		 * @param  object $q_vars   Query vars used for the table listing
 		 * @param  array  $selector Array of attributes used to display the filter selector.
@@ -444,9 +471,9 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 *
 		 * Fires on `admin_footer` hook.
 		 *
-		 * @todo  check if needed, jQuery selector seems incorrect
+		 * @since 3.2.3
 		 *
-		 * @since 2.3.0
+		 * @todo  check if needed, jQuery selector seems incorrect
 		 */
 		public function essay_bulk_actions() {
 			global $post;
@@ -469,7 +496,7 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 *
 		 * Fires on `post_row_actions` hook.
 		 *
-		 * @since 2.1.0
+		 * @since 3.2.3
 		 *
 		 * @param array   $actions An array of post actions.
 		 * @param WP_Post $post    The `WP_Post` object.
@@ -492,7 +519,7 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 *
 		 * Fires on `load-edit.php` hook.
 		 *
-		 * @since 2.3.0
+		 * @since 3.2.3
 		 */
 		protected function essay_bulk_actions_approve() {
 			if ( ( ! isset( $_REQUEST['ld-listing-nonce'] ) ) || ( empty( $_REQUEST['ld-listing-nonce'] ) ) || ( ! wp_verify_nonce( $_REQUEST['ld-listing-nonce'], get_called_class() ) ) ) {
@@ -566,7 +593,13 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 							// get the new assigned points.
 							$submitted_essay_data['points_awarded'] = intval( $_REQUEST['essay_points'][ $essay_id ] );
 
-							/** This filter is documented in includes/quiz/ld-quiz-essays.php */
+							/**
+							 * Filter essay status data
+							 *
+							 * @since 2.5.0
+							 *
+							 * @param array $submitted_essay_data Essay data.
+	 						 */
 							$submitted_essay_data = apply_filters( 'learndash_essay_status_data', $submitted_essay_data );
 							learndash_update_submitted_essay_data( $quiz_id, $question_id, $essay_post, $submitted_essay_data );
 
@@ -583,11 +616,26 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 									'score_difference' => $quiz_score_difference,
 								);
 
-								/** This filter is documented in includes/quiz/ld-quiz-essays.php */
+								/**
+								 * Filter updated scoring data
+								 *
+								 * @since 2.2.0
+								 *
+								 * @param array $updated_scoring_data Essay scoring data
+								 */
 								$updated_scoring = apply_filters( 'learndash_updated_essay_scoring', $updated_scoring_data );
 								learndash_update_quiz_data( $quiz_id, $question_id, $updated_scoring_data, $essay_post );
 
-								/** This action is documented in includes/quiz/ld-quiz-essays.php */
+								/**
+								 * Perform action after all the quiz data is updated
+								 *
+								 * @since 2.2.0
+								 *
+								 * @param integer $quiz_id              Quiz Post ID
+								 * @param integer $question_id          Question Post ID
+								 * @param array   $updated_scoring_data Essay updated scoring data
+								 * @param object  $essay_post           Essay WP_Post object
+								 */
 								do_action( 'learndash_essay_all_quiz_data_updated', $quiz_id, $question_id, $updated_scoring_data, $essay_post );
 							}
 						}
@@ -847,10 +895,11 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 * This function fill filter the table listing items based on filters selected.
 		 * Called via 'parse_query' filter from WP.
 		 *
-		 * @since 3.2.0
+		 * @since 3.2.3
 		 *
 		 * @param  object $q_vars      Query vars used for the table listing
 		 * @param  array  $selector Array of attributes used to display the filter selector.
+		 *
 		 * @return object $q_vars.
 		 */
 		protected function filter_by_approval_status( $q_vars, $selector ) {
@@ -883,6 +932,7 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 *
 		 * @param  object $q_vars      Query vars used for the table listing
 		 * @param  array  $selector Array of attributes used to display the filter selector.
+		 *
 		 * @return object $q_vars.
 		 */
 		protected function filter_by_essay_quiz( $q_vars, $selector = array() ) {
@@ -908,8 +958,9 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 *
 		 * @since 3.2.3
 		 *
-		 * @param  object $q_vars      Query vars used for the table listing
+		 * @param  object $q_vars   Query vars used for the table listing
 		 * @param  array  $selector Array of attributes used to display the filter selector.
+		 *
 		 * @return object $q_vars.
 		 */
 		protected function filter_by_essay_question( $q_vars = array(), $selector = array() ) {
@@ -938,34 +989,31 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 *
 		 * @param  object $q_vars      Query vars used for the table listing
 		 * @param  array  $selector Array of attributes used to display the filter selector.
+		 *
 		 * @return object $q_vars.
 		 */
 		protected function selector_filter_for_essay_quiz( $q_vars = array(), $selector = array() ) {
 			global $sfwd_lms;
 
+			$course_id = (int) $this->get_selector( 'course_id', 'selected' );
+			$lesson_id = (int) $this->get_selector( 'lesson_id', 'selected' );
+
 			if ( ( learndash_is_group_leader_user( get_current_user_id() ) ) && ( 'advanced' !== learndash_get_group_leader_manage_courses() ) ) {
-				$course_id = 0;
-				$lesson_id = 0;
-
-				$course_selector = $this->get_selector( 'course_id' );
-				if ( ( $course_selector ) && ( isset( $course_selector['selected'] ) ) && ( ! empty( $course_selector['selected'] ) ) ) {
-					$course_id = absint( $course_selector['selected'] );
-				}
-
 				if ( empty( $course_id ) ) {
 					$q_vars['post__in'] = array( 0 );
 				} else {
-
-					$lesson_selector = $this->get_selector( 'lesson_id' );
-					if ( ( $lesson_selector ) && ( isset( $lesson_selector['selected'] ) ) && ( ! empty( $lesson_selector['selected'] ) ) ) {
-						$lesson_id = absint( $lesson_selector['selected'] );
-					}
-
 					$quiz_items = $sfwd_lms->select_a_quiz( $course_id, $lesson_id );
 					if ( ! empty( $quiz_items ) ) {
 						$q_vars['post__in'] = array_keys( $quiz_items );
 					} else {
 						$q_vars['post__in'] = array( 0 );
+					}
+				}
+			} else {
+				if ( ! empty( $course_id ) ) {
+					$quiz_items = $sfwd_lms->select_a_quiz( $course_id, $lesson_id );
+					if ( ! empty( $quiz_items ) ) {
+						$q_vars['post__in'] = array_keys( $quiz_items );
 					}
 				}
 			}
@@ -980,18 +1028,11 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 *
 		 * @param  object $q_vars      Query vars used for the table listing
 		 * @param  array  $selector Array of attributes used to display the filter selector.
+		 *
 		 * @return object $q_vars.
 		 */
 		protected function selector_filter_for_essay_question( $q_vars = array(), $selector = array() ) {
-			global $sfwd_lms;
-
-			$quiz_id = 0;
-
-			$quiz_selector = $this->get_selector( 'quiz_id' );
-			if ( ( $quiz_selector ) && ( isset( $quiz_selector['selected'] ) ) && ( ! empty( $quiz_selector['selected'] ) ) ) {
-				$quiz_id = absint( $quiz_selector['selected'] );
-			}
-
+			$quiz_id = (int) $this->get_selector( 'quiz_id', 'selected' );
 			if ( empty( $quiz_id ) ) {
 				$q_vars['post__in'] = array( 0 );
 			} else {
@@ -1019,9 +1060,9 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 			$this->show_selector_empty_option( $selector );
 
 			$selector_options = array();
-			$quiz_selector    = $this->get_selector( 'quiz_id' );
-			if ( ( $quiz_selector ) && ( isset( $quiz_selector['selected'] ) ) && ( ! empty( $quiz_selector['selected'] ) ) ) {
-				$quiz_questions = learndash_get_quiz_questions( $quiz_selector['selected'] );
+			$quiz_id = (int) $this->get_selector( 'quiz_id', 'selected' );
+			if ( ! empty( $quiz_id ) )  {
+				$quiz_questions = learndash_get_quiz_questions( $quiz_id );
 				if ( ! empty( $quiz_questions ) ) {
 					foreach ( $quiz_questions as $question_post_id => $question_pro_id ) {
 						$selector_options[ $question_post_id ] = get_the_title( $question_post_id );
@@ -1050,6 +1091,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 * Hides the list table views for non admin users.
 		 *
 		 * Fires on `views_edit-sfwd-essays` and `views_edit-sfwd-assignment` hook.
+		 *
+		 * @since 3.2.3
 		 *
 		 * @param array $views Optional. An array of available list table views. Default empty array.
 		 */

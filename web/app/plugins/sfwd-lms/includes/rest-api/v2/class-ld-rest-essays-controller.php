@@ -1,34 +1,33 @@
 <?php
 /**
- * LearnDash V2 REST API Essay (sfwd-essay) Post Controller.
+ * LearnDash REST API V2 Essays Post Controller.
  *
- * @package LearnDash
- * @subpackage REST_API
- * @since 3.3.0
- */
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
-/**
  * This Controller class is used to GET/UPDATE/DELETE the LearnDash
  * custom post type essays (sfwd-essay).
  *
  * This class extends the LD_REST_Posts_Controller_V2 class.
  *
  * @since 3.3.0
+ * @package LearnDash\REST\V2
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( ( ! class_exists( 'LD_REST_Essays_Controller_V2' ) ) && ( class_exists( 'LD_REST_Posts_Controller_V2' ) ) ) {
+
 	/**
-	 * Class REST API Essays Post Controller.
+	 * Class LearnDash REST API V2 Essays Post Controller.
+	 *
+	 * @since 3.3.0
+	 * @uses LD_REST_Posts_Controller_V2
 	 */
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Essays_Controller_V2 extends LD_REST_Posts_Controller_V2 {
 
 		/**
-		 * essay Post data
+		 * Essay Post data
 		 *
 		 * @var array $essat_post_data.
 		 */
@@ -36,6 +35,8 @@ if ( ( ! class_exists( 'LD_REST_Essays_Controller_V2' ) ) && ( class_exists( 'LD
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.3.0
 		 */
 		public function __construct( $post_type = '' ) {
 			if ( empty( $post_type ) ) {
@@ -43,6 +44,9 @@ if ( ( ! class_exists( 'LD_REST_Essays_Controller_V2' ) ) && ( class_exists( 'LD
 			}
 			$this->post_type = $post_type;
 			$this->metaboxes = array();
+
+			$this->route_methods_singular   = array( WP_REST_Server::READABLE, WP_REST_Server::EDITABLE );
+			$this->route_methods_collection = array( WP_REST_Server::READABLE, WP_REST_Server::EDITABLE, WP_REST_Server::DELETABLE );
 
 			parent::__construct( $this->post_type );
 
@@ -63,7 +67,7 @@ if ( ( ! class_exists( 'LD_REST_Essays_Controller_V2' ) ) && ( class_exists( 'LD
 		 * @see register_rest_route() in WordPress core.
 		 */
 		public function register_routes() {
-			$args = $this->get_collection_params();
+			//$args = $this->get_collection_params();
 
 			parent::register_routes();
 		}
@@ -202,6 +206,15 @@ if ( ( ! class_exists( 'LD_REST_Essays_Controller_V2' ) ) && ( class_exists( 'LD
 
 			$schema['title'] = 'essay';
 
+			/**
+			 * Limit the post status for Essays to 'graded' and 'not_graded'
+			 *
+			 * @since 3.4.1
+			 */
+			if ( ( isset( $schema['properties']['status']['enum'] ) ) && ( ! empty( $schema['properties']['status']['enum'] ) ) ) {
+				$schema['properties']['status']['enum'] = array_intersect( array( 'graded', 'not_graded' ), $schema['properties']['status']['enum'] );
+			}
+			
 			return $schema;
 		}
 
@@ -211,17 +224,7 @@ if ( ( ! class_exists( 'LD_REST_Essays_Controller_V2' ) ) && ( class_exists( 'LD
 		 * @since 3.3.0
 		 */
 		protected function register_fields_metabox() {
-			/*
-			$this->metaboxes = apply_filters( 'learndash_post_settings_metaboxes_init_' . $this->post_type, $this->metaboxes );
-			if ( ! empty( $this->metaboxes ) ) {
-				foreach ( $this->metaboxes as $metabox ) {
-					$metabox->load_settings_values();
-					$metabox->load_settings_fields();
-
-					$this->register_rest_fields( $metabox->get_settings_metabox_fields(), $metabox );
-				}
-			}
-			*/
+			return true;
 		}
 
 		/**
@@ -739,40 +742,81 @@ if ( ( ! class_exists( 'LD_REST_Essays_Controller_V2' ) ) && ( class_exists( 'LD
 		public function update_rest_settings_field_value( $post_value, WP_Post $post, $field_name, WP_REST_Request $request, $post_type ) {
 			if ( ( is_a( $post, 'WP_Post' ) ) && ( $post->post_type == $this->post_type ) ) {
 
-				$lesson_id = (int) get_post_meta( $post->ID, 'lesson_id', true );
-				if ( empty( $lesson_id ) ) {
-					return false;
-				}
+				//$lesson_id = (int) get_post_meta( $post->ID, 'lesson_id', true );
+				//if ( empty( $lesson_id ) ) {
+				//	return false;
+				//}
 
-				$lesson_post = get_post( $lesson_id );
-				if ( ( ! $lesson_post ) && ( ! is_a( $lesson_post, 'WP_Post' ) ) ) {
-					return false;
-				}
+				//$lesson_post = get_post( $lesson_id );
+				//if ( ( ! $lesson_post ) && ( ! is_a( $lesson_post, 'WP_Post' ) ) ) {
+				//	return false;
+				//}
 
 				switch ( $field_name ) {
-					case 'approved_status':
-						// We don't allow essay status to revert to unapproved.
-
-						// Commented for now per LEARNDASH-5779. Fix coming in a later release
-						/*
-						if ( $post_value ) {
-							learndash_essay_mark_approved( $post->ID );
-						}
-						*/
-						break;
-
 					case 'points_awarded':
-						// Commented for now per LEARNDASH-5779. Fix coming in a later release
-						/*
-						if ( learndash_essay_is_points_enabled( $post->ID ) ) {
-							$max_points     = absint( learndash_get_setting( $lesson_id, 'lesson_essay_points_amount' ) );
-							$points_awarded = absint( $post_value );
-							if ( $points_awarded > $max_points ) {
-								$points_awarded = $max_points;
+						$quiz_id     = get_post_meta( $post->ID, 'quiz_id', true );
+						$question_id = get_post_meta( $post->ID, 'question_id', true );
+
+						if ( ! empty( $quiz_id ) ) {
+							if ( 'graded' !== $post->post_status ) {
+								$quiz_score_difference = 1;
 							}
-							update_post_meta( $post->ID, 'points', $points_awarded );
+
+							$question_mapper = new WpProQuiz_Model_QuestionMapper();
+							$question        = $question_mapper->fetchById( intval( $question_id ), null );
+							if ( $question instanceof WpProQuiz_Model_Question ) {
+								$submitted_essay_data = learndash_get_submitted_essay_data( $quiz_id, $question_id, $post );
+
+								$max_points = $question->getPoints();
+								$max_points = absint( $max_points );
+								
+								if ( isset( $submitted_essay_data['points_awarded'] ) ) {
+									$original_points_awarded = intval( $submitted_essay_data['points_awarded'] );
+								} else {
+									$original_points_awarded = 0;
+								}
+
+								$awarded_points = absint( $post_value );
+
+								// Check that award points is not greater then max points
+								if ( $awarded_points > $max_points ) {
+									$awarded_points = $max_points;
+								}
+
+								if ( $awarded_points !== $original_points_awarded ) {
+									$submitted_essay_data['status'] = 'graded';
+
+									// set the new assigned points.
+									$submitted_essay_data['points_awarded'] = $awarded_points;
+
+									/** This filter is documented in includes/quiz/ld-quiz-essays.php */
+									$submitted_essay_data = apply_filters( 'learndash_essay_status_data', $submitted_essay_data );
+									learndash_update_submitted_essay_data( $quiz_id, $question_id, $post, $submitted_essay_data );
+
+									if ( ! is_null( $original_points_awarded ) && ! is_null( $submitted_essay_data['points_awarded'] ) ) {
+										if ( $submitted_essay_data['points_awarded'] > $original_points_awarded ) {
+											$points_awarded_difference = intval( $submitted_essay_data['points_awarded'] ) - intval( $original_points_awarded );
+										} else {
+											$points_awarded_difference = ( intval( $original_points_awarded ) - intval( $submitted_essay_data['points_awarded'] ) ) * -1;
+										}
+
+										$updated_scoring_data = array(
+											'updated_question_score' => $submitted_essay_data['points_awarded'],
+											'points_awarded_difference' => $points_awarded_difference,
+											'score_difference' => $quiz_score_difference,
+										);
+
+										/** This filter is documented in includes/quiz/ld-quiz-essays.php */
+										$updated_scoring = apply_filters( 'learndash_updated_essay_scoring', $updated_scoring_data );
+										learndash_update_quiz_data( $quiz_id, $question_id, $updated_scoring_data, $post );
+
+										/** This action is documented in includes/quiz/ld-quiz-essays.php */
+										do_action( 'learndash_essay_all_quiz_data_updated', $quiz_id, $question_id, $updated_scoring_data, $post );
+									}
+								}
+							}
 						}
-						*/
+
 						break;
 
 					// We don't allow updates to Course, Lesson, Lesson Points enabled, Lesson Points max

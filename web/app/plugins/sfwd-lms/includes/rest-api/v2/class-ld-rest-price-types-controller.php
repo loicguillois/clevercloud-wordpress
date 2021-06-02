@@ -1,10 +1,9 @@
 <?php
 /**
- * LearnDash V2 REST API Price Types Controller.
+ * LearnDash REST API V2 Price Types Controller.
  *
- * @package LearnDash
- * @subpackage REST_API
  * @since 3.3.0
+ * @package LearnDash\REST\V2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,8 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( ! class_exists( 'LD_REST_Price_Types_Controller_V2' ) ) && ( class_exists( 'WP_REST_Controller' ) ) ) {
+
 	/**
-	 * Class REST API Price Types Controller.
+	 * Class LearnDash REST API V2 Price Types Controller.
+	 *
+	 * @since 3.3.0
+	 * @uses WP_REST_Controller
 	 */
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Price_Types_Controller_V2 extends WP_REST_Controller {

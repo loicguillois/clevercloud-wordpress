@@ -1,9 +1,8 @@
 <?php
 /**
- * Shortcode for courseinfo
+ * LearnDash `[courseinfo]` shortcode processing.
  *
  * @since 2.1.0
- *
  * @package LearnDash\Shortcodes
  */
 
@@ -12,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `courseinfo` shortcode output.
+ * Builds the `[courseinfo]` shortcode output.
  *
  * Shortcode that displays the requested course information.
  *
@@ -23,17 +22,18 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $attr {
  *    An array of shortcode attributes.
  *
- *    @type string     $show           Optional. The course info field to display. Default 'course_title'.
- *    @type int|string $user_id        Optional. User ID. Default empty.
- *    @type int|string $course_id      Optional. Course ID. Default empty.
- *    @type int|string $format         Optional. Date display format. Default 'F j, Y, g:i a'.
- *    @type int|string $seconds_format Optional. Seconds format. Default 'time'.
- *    @type int        $decimals       Optional. The number of decimal points. Default 2.
+ *    @type string     $show           The course info field to display. Default 'course_title'.
+ *    @type int|string $user_id        User ID. Default empty.
+ *    @type int|string $course_id      Course ID. Default empty.
+ *    @type int|string $format         Date display format. Default 'F j, Y, g:i a'.
+ *    @type int|string $seconds_format Seconds format. Default 'time'.
+ *    @type int        $decimals       The number of decimal points. Default 2.
  * }
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string The `courseinfo` shortcode output.
  */
-function learndash_courseinfo( $attr ) {
+function learndash_courseinfo( $attr = array(), $content = '' ) {
 	global $learndash_shortcode_used;
 	$learndash_shortcode_used = true;
 
@@ -402,5 +402,4 @@ function learndash_courseinfo( $attr ) {
 			return apply_filters( 'learndash_courseinfo', '', $shortcode_atts );
 	}
 }
-
-add_shortcode( 'courseinfo', 'learndash_courseinfo' );
+add_shortcode( 'courseinfo', 'learndash_courseinfo', 10, 2 );

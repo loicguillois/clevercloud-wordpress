@@ -2,8 +2,8 @@
 /**
  * LearnDash Quiz and Question related functions.
  *
- * @package LearnDash
- * @subpackage Quiz
+ * @since 2.6.0
+ * @package LearnDash\Quiz
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @global wpdb  $wpdb                     WordPress database abstraction object.
  * @global array $learndash_shortcode_atts LearnDash global shortcode attributes.
  *
- * @since 2.1.0
+ * @since 2.6.0
  *
  * @param int $quiz_pro_id Optional. Pro quiz ID. Default 0.
  *
@@ -508,10 +508,6 @@ function learndash_quiz_navigation_admin_box_content() {
 			esc_html_x( 'No associated %s', 'placeholder: Questions', 'learndash' ),
 			LearnDash_Custom_Label::get_label( 'questions' ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Method escapes output
 		);
-		echo sprintf(
-			'<div class="quiz_navigation_app"></div>',
-			esc_attr( $quiz_id )
-		);
 	}
 }
 
@@ -639,7 +635,7 @@ function learndash_quiz_switcher_admin( $quiz_id ) {
 /**
  * Handles the AJAX pagination for the quiz questions navigation.
  *
- * @since 2.5.4
+ * @since 2.6.0
  */
 function learndash_wp_ajax_ld_quiz_navigation_admin_pager() {
 	$reply_data = array();
@@ -966,6 +962,8 @@ function learndash_get_quiz_primary_shared( $quiz_pro_id = 0, $set_first = true 
 /**
  * Sorts the quiz results messages.
  *
+ * @since 3.0.0
+ *
  * @param array $messages Optional. An array of quiz result messages. Default empty array.
  *
  * @return array An array of sorted quiz result messages.
@@ -1042,6 +1040,13 @@ function learndash_quiz_result_message_sort( $messages = array() ) {
 	return $result;
 }
 
+/**
+ * Get Quiz Repeats
+ *
+ * @since 3.2.3.4
+ *
+ * @param integer $quiz_post_id Quiz Post ID
+ */
 function learndash_quiz_get_repeats( $quiz_post_id = 0 ) {
 	$repeats = '';
 
@@ -1056,6 +1061,13 @@ function learndash_quiz_get_repeats( $quiz_post_id = 0 ) {
 	return $repeats;
 }
 
+/**
+ * Convert Quiz Lock Cookie
+ *
+ * @since 3.2.3.4
+ *
+ * @param array $cookie_quiz Array of Quiz cookie data
+ */
 function learndash_quiz_convert_lock_cookie( $cookie_quiz = null ) {
 	if ( ! is_array( $cookie_quiz ) ) {
 		$cookie_time = $cookie_quiz;

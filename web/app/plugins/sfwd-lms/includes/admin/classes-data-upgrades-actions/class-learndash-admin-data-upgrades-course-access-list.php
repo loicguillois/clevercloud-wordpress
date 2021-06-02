@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Data Upgrades for Course Access List
+ * LearnDash Data Upgrades for Course Access List.
  *
- * @package LearnDash
- * @subpackage Data Upgrades
+ * @since 2.6.0
+ * @package LearnDash\Data_Upgrades
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,12 +13,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'Learndash_Admin_Data_Upgrades_Course_Access_List' ) ) ) {
 
 	/**
-	 * Class to create the Data Upgrade for Course Access List.
+	 * Class LearnDash Data Upgrades for Course Access List.
+	 *
+	 * @since 2.6.0
+	 * @uses Learndash_Admin_Data_Upgrades
 	 */
 	class Learndash_Admin_Data_Upgrades_Course_Access_List extends Learndash_Admin_Data_Upgrades {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 2.6.0
 		 */
 		protected function __construct() {
 			$this->data_slug = 'course-access-lists';
@@ -29,7 +34,7 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		/**
 		 * Show data upgrade row for this instance.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 */
 		public function show_upgrade_action() {
 			?>
@@ -124,7 +129,7 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		 * This function will determine what users need to be converted. Then the course and quiz functions
 		 * will be called to convert each individual user data set.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 *
 		 * @param  array $data Post data from AJAX call.
 		 * @return array $data Post data from AJAX call
@@ -247,6 +252,7 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		 * @since 2.6.0
 		 *
 		 * @param array $data Array of existing data elements.
+		 *
 		 * @return array or data.
 		 */
 		private function build_progress_output( $data = array() ) {
@@ -296,9 +302,10 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		/**
 		 * Convert single course access list.
 		 *
-		 * @since 2.3
+		 * @since 2.6.0
 		 *
 		 * @param int $course_id Course ID of post to convert.
+		 *
 		 * @return boolean true if complete, false if not.
 		 */
 		private function convert_course_access_list( $course_id = 0 ) {

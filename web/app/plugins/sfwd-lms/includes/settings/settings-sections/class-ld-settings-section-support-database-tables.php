@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section for Support Database Tables Metabox.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.1.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,7 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Section_Support_Database_Tables' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Section for Support Database Tables Metabox.
+	 *
+	 * @since 3.1.0
 	 */
 	class LearnDash_Settings_Section_Support_Database_Tables extends LearnDash_Settings_Section {
 
@@ -23,10 +25,17 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 		 */
 		protected $settings_set = array();
 
+		/**
+		 * Settings tables.
+		 *
+		 * @var array $admin_notice_tables Array of settings tables.
+		 */
 		protected $admin_notice_tables = array();
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 3.1.0
 		 */
 		protected function __construct() {
 			$this->settings_page_id = 'learndash_support';
@@ -52,6 +61,13 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 			parent::__construct();
 		}
 
+		/**
+		 * Support Sections Init
+		 *
+		 * @since 3.1.0
+		 *
+		 * @param array $support_sections Support sections array
+		 */
 		public function learndash_support_sections_init( $support_sections = array() ) {
 			global $wpdb, $wp_version, $wp_rewrite;
 			global $sfwd_lms;
@@ -199,7 +215,7 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 		 * Support for admin notice header for "Upgrade Notice Admin" header
 		 * from readme.txt.
 		 *
-		 * @since 3.1.4
+		 * @since 3.2.0
 		 */
 		public function admin_notice_upgrade_notice() {
 			static $notices_shown = array();

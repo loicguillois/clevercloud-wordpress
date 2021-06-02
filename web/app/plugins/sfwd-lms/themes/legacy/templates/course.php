@@ -27,7 +27,7 @@
  *
  * @since 2.1.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\Legacy\Course
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -56,8 +56,18 @@ global $course_pager_results;
 	<br />
 
 	<?php
-		/** This filter is documeted in themes/ld30/templates/course.php */
-		echo apply_filters( 'ld_after_course_status_template_container', '', learndash_course_status_idx( $course_status ), $course_id, $user_id );
+	/**
+	 * Filters the content to be echoed after the course status section of the course template output.
+	 *
+	 * @since 2.3.0
+	 * See https://developers.learndash.com/hook/ld_after_course_status_template_container/ for example use of this filter.
+	 *
+	 * @param string $content             Custom content showed after the course status section. Can be empty.
+	 * @param string $course_status_index Course status index from the course status label
+	 * @param int    $course_id           Course ID.
+	 * @param int    $user_id             User ID.
+	 */
+	echo apply_filters( 'ld_after_course_status_template_container', '', learndash_course_status_idx( $course_status ), $course_id, $user_id );
 	?>
 
 	<?php if ( ! empty( $course_certficate_link ) ) : ?>
@@ -211,7 +221,7 @@ global $course_pager_results;
 								<?php $topics = @$lesson_topics[ $lesson['post']->ID ]; ?>
 
 								<?php if ( ! empty( $topics ) ) : ?>
-									<div id='learndash_topic_dots-<?php echo esc_attr( $lesson['post']->ID ); ?>' class="learndash_topic_dots type-list" 
+									<div id='learndash_topic_dots-<?php echo esc_attr( $lesson['post']->ID ); ?>' class="learndash_topic_dots type-list"
 																			 <?php
 																				if ( $paged_values['lesson'] == $lesson['post']->ID ) {
 																					echo ' style="display:block;"';

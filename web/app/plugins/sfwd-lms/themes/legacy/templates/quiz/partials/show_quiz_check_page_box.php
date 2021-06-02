@@ -11,7 +11,7 @@
  *
  * @since 3.2
  *
- * @package LearnDash\Quiz
+ * @package LearnDash\Templates\Legacy\Quiz
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

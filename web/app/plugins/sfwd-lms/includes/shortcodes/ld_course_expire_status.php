@@ -1,9 +1,8 @@
 <?php
 /**
- * Shortcode for ld_course_expire_status
+ * LearnDash `[ld_course_expire_status]` shortcode processing.
  *
  * @since 2.1.0
- *
  * @package LearnDash\Shortcodes
  */
 
@@ -12,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `ld_course_expire_status` shortcode output.
+ * Builds the `[ld_course_expire_status]` shortcode output.
  *
  * @global boolean $learndash_shortcode_used
  *
@@ -21,18 +20,18 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array  $atts {
  *    An array of shortcode attributes.
  *
- *    @type int     $course_id    Optional. Course ID. Default current course ID.
- *    @type int     $user_id      Optional. User ID. Default current user ID.
- *    @type string  $format       Optional. The date format. Default value of date_format option.
- *    @type boolean $autop        Optional. Whether to replace linebreaks with paragraph elements. Default true.
- *    @type string  $label_before Optional. The content to print before label. Default a translatable string.
- *    @type string  $label_after  Optional. The content to print after label. Default a translatable string.
+ *    @type int     $course_id    Course ID. Default current course ID.
+ *    @type int     $user_id      User ID. Default current user ID.
+ *    @type string  $format       The date format. Default value of date_format option.
+ *    @type boolean $autop        Whether to replace linebreaks with paragraph elements. Default true.
+ *    @type string  $label_before The content to print before label. Default a translatable string.
+ *    @type string  $label_after  The content to print after label. Default a translatable string.
  * }
- * @param string $content The shortcode content.
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string The `ld_course_expire_status` shortcode output.
  */
-function learndash_course_expire_status_shortcode( $atts, $content ) {
+function learndash_course_expire_status_shortcode( $atts = array(), $content = '' ) {
 	global $learndash_shortcode_used;
 	$learndash_shortcode_used = true;
 
@@ -120,4 +119,4 @@ function learndash_course_expire_status_shortcode( $atts, $content ) {
 	return $content;
 }
 
-add_shortcode( 'ld_course_expire_status', 'learndash_course_expire_status_shortcode' );
+add_shortcode( 'ld_course_expire_status', 'learndash_course_expire_status_shortcode', 10, 2 );

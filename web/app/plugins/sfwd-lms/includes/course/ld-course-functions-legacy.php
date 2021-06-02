@@ -5,7 +5,8 @@
  * Functions included here are considered legacy and are no longer used and
  * will soon be deprecated.
  *
- * @package LearnDash
+ * @since 3.4.0
+ * @package LearnDash\Course
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -103,6 +104,8 @@ function learndash_get_lesson_list( $id = null, $atts = array() ) {
 /**
  * LEGACY: Gets the lesson list output for a course.
  *
+ * Replaced by `learndash_get_course_lessons_list` in 3.4.0.
+ *
  * @since 2.1.0
  *
  * @param int|WP_Post|null $course       Optional. The `WP_Post` course object or course ID. Default null.
@@ -198,10 +201,12 @@ function learndash_get_course_lessons_list_legacy( $course = null, $user_id = nu
 /**
  * LEGACY: Gets the topics list for a lesson.
  *
+ * Replaced by `learndash_get_topic_list` in 3.4.0.
+ *
  * @since 2.1.0
  *
- * @param int|null $for_lesson_id The ID of the lesson to get topics.
- * @param int|null $course_id     Course ID.
+ * @param int|null $for_lesson_id Optional. The ID of the lesson to get topics.
+ * @param int|null $course_id     Optional. Course ID.
  *
  * @return array An array of topics list.
  */
@@ -308,6 +313,8 @@ function learndash_get_topic_list_legacy( $for_lesson_id = null, $course_id = nu
 /**
  * LEGACY: Gets the quiz list output for a course.
  *
+ * Replaced by `learndash_get_course_quiz_list` in 3.4.0.
+ *
  * @since 2.1.0
  *
  * @param int|WP_Post|null $course  Optional. The `WP_Post` course object or course ID. Default null.
@@ -369,6 +376,8 @@ function learndash_get_course_quiz_list_legacy( $course = null, $user_id = null 
 
 /**
  * LEGACY: Gets the quiz list output for a lesson.
+ *
+ * Replaced by `learndash_get_lesson_quiz_list` in 3.4.0.
  *
  * @since 2.1.0
  *
@@ -433,11 +442,13 @@ function learndash_get_lesson_quiz_list_legacy( $lesson, $user_id = null, $cours
 /**
  * LEGACY: Gets the quiz list for a resource.
  *
+ * Replaced by `learndash_get_global_quiz_list` in 3.4.0.
+ *
  * @global WP_Post $post Global post object.
  *
  * @since 2.1.0
  *
- * @param int|null $id An ID of the resource.
+ * @param int|null $id Optional. An ID of the resource.
  *
  * @return array An array of quizzes.
  */
@@ -509,6 +520,10 @@ function learndash_get_global_quiz_list_legacy( $id = null ) {
 
 /**
  * LEGACY: Gets the course data for the course builder.
+ *
+ * Replaced by `learndash_get_course_data` in 3.4.0.
+ *
+ * @since 3.4.0
  *
  * @param array $data The data passed down to the front-end.
  *
@@ -653,6 +668,10 @@ function learndash_get_course_data_legacy( $data ) {
 /**
  * LEGACY: Gets the total count of lessons and topics for a given course ID.
  *
+ * Replaced by `learndash_get_course_steps_count` in 3.4.0.
+ *
+ * @since 2.3.0
+ *
  * @param int $course_id Optional. The ID of the course. Default 0.
  *
  * @return int The count of the course steps.
@@ -678,9 +697,10 @@ function learndash_get_course_steps_count_legacy( $course_id = 0 ) {
 	return $courses_steps[ $course_id ];
 }
 
-
 /**
  * LEGACY: Outputs the current status of the course.
+ *
+ * Replaced by `learndash_course_status` in 3.4.0.
  *
  * @since 2.1.0
  * @since 2.5.8 Added $return_slug parameter.
@@ -876,10 +896,12 @@ function learndash_course_status_legacy( $id, $user_id = null, $return_slug = fa
 /**
  * LEGACY: Checks if a lesson is not complete.
  *
+ * Replaced by `learndash_is_lesson_notcomplete` in 3.4.0.
+ *
  * @since 2.1.0
  *
  * @param int|null $user_id   Optional. User ID. Defaults to the current logged-in user. Default null.
- * @param array    $lessons   An array of lesson IDs.
+ * @param array    $lessons   Optional. An array of lesson IDs.
  * @param int      $course_id Optional. Course ID. Default 0.
  *
  * @return boolean Returns true if the lesson is not complete otherwise false.
@@ -921,11 +943,14 @@ function learndash_is_lesson_notcomplete_legacy( $user_id = null, $lessons = arr
 /**
  * LEGACY: Checks if a topic is not complete.
  *
- * @since 2.1.0
+ * Replaced by `learndash_is_topic_notcomplete` in 3.4.0.
  *
- * @param int|null $user_id Optional. User ID. Defaults to the current logged-in user. Default null.
- * @param array    $topics  An array of topic IDs.
- * @param int $course_id Course ID. @since 3.20
+ * @since 2.3.1
+ * @since 3.2.0 Added `$course_id` parameter
+ *
+ * @param int|null $user_id   Optional. User ID. Defaults to the current logged-in user. Default null.
+ * @param array    $topics    Optional. An array of topic IDs.
+ * @param int      $course_id Optional. Course ID.
  *
  * @return boolean Returns true if the topic is not completed otherwise false.
  */
@@ -971,6 +996,10 @@ function learndash_is_topic_notcomplete_legacy( $user_id = null, $topics = array
 
 /**
  * Checks if the quiz is accessible to the user (legacy).
+ *
+ * Replaced by `learndash_is_quiz_accessable` in 3.4.0.
+ *
+ * @since 2.4.0
  *
  * @param int|null     $user_id   Optional. User ID. Default null.
  * @param WP_Post|null $post      Optional. The `WP_Post` quiz object. Default null.
@@ -1034,6 +1063,8 @@ function learndash_is_quiz_accessable_legacy( $user_id = null, $post = null, $co
 
 /**
  * LEGACY: Gets the user's current course progress.
+ *
+ * Replaced by `learndash_get_course_progress` in 3.4.0.
  *
  * @since 2.1.0
  *
@@ -1134,6 +1165,10 @@ function learndash_get_course_progress_legacy( $user_id = null, $postid = null, 
  *
  * For now excludes quizzes at lesson and topic level.
  *
+ * Replaced by `learndash_get_course_steps` in 3.4.0.
+ *
+ * @since 2.3.0
+ *
  * @param int   $course_id          Optional. The ID of the course. Default 0.
  * @param array $include_post_types Optional. An array of post types to include in course steps. Default array contains 'sfwd-lessons' and 'sfwd-topic'.
  *
@@ -1225,6 +1260,8 @@ function learndash_get_course_steps_legacy( $course_id = 0, $include_post_types 
 
 /**
  * LEGACY: Updates the user meta with completion status for any resource.
+ *
+ * Replaced by `learndash_process_mark_complete` in 3.4.0.
  *
  * @since 2.1.0
  *
@@ -1602,9 +1639,12 @@ function learndash_process_mark_complete_legacy( $user_id = null, $postid = null
 
 }
 
-
 /**
  * LEGACY: Gets the total completed steps for a given course progress array.
+ *
+ * Replaced by `learndash_course_get_completed_steps` in 3.4.0
+ *
+ * @since 2.3.0
  *
  * @param int   $user_id         Optional. The ID of the user. Default 0.
  * @param int   $course_id       Optional. The ID of the course. Default 0.

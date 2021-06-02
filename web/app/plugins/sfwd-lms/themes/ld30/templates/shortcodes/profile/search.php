@@ -1,17 +1,25 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+/**
+ * LearnDash LD30 Displays a user's profile search.
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
+ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 $learndash_profile_search_query = (
-	isset( $_GET['ld-profile-search'], $_GET['learndash_profile_course_search_nonce'] ) &&
+	isset( $_GET['ld-profile-search'], $_GET['ld-profile-search-nonce'] ) &&
 	! empty( $_GET['ld-profile-search'] ) &&
-	wp_verify_nonce( $_GET['learndash_profile_course_search_nonce'], $learndash_profile_course_search_nonce_field ) ?
+	wp_verify_nonce( $_GET['ld-profile-search-nonce'], 'learndash_profile_course_search_nonce' ) ?
 	sanitize_text_field( $_GET['ld-profile-search'] ) :
 	false
 );
-$learndash_search_is_expanded   = ( false !== (bool) $learndash_profile_search_query ? 'ld-expanded' : '' ); ?>
 
+$learndash_search_is_expanded = ( false !== (bool) $learndash_profile_search_query ? 'ld-expanded' : '' ); ?>
 <div class="ld-item-search ld-expandable <?php echo esc_attr( $learndash_search_is_expanded ); ?>" id="ld-course-search">
 <div class="ld-item-search-wrapper">
 

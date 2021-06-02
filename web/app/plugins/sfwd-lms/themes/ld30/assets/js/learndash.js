@@ -368,11 +368,14 @@ jQuery( function( $ ) {
 				$( '#learndash-tooltips' ).append( $tooltip );
 				$ctr++;
 				var $tooltip = $( '#ld-tooltip-' + $rel_id );
-				$( this ).on( 'mouseenter', function() {
-					$tooltip.addClass( 'ld-visible' );
-				} ).on( 'mouseleave', function() {
-					$tooltip.removeClass( 'ld-visible' );
-				} );
+				$( this ).hover(
+					function() {
+						$tooltip.addClass( 'ld-visible' );
+					},
+					function() {
+						$tooltip.removeClass( 'ld-visible' );
+					}
+				);
 			} );
 
 			$( window ).on( 'resize', function() {
@@ -479,9 +482,14 @@ jQuery( function( $ ) {
 	$( 'body' ).on( 'click', '#ld-profile .ld-reset-button', function( e ) {
 		e.preventDefault();
 
+		$( '#ld-profile #course_name_field' ).val('');
+
 		var searchVars = {
 			shortcode_instance: $( '#ld-profile' ).data( 'shortcode_instance' ),
 		};
+
+		searchVars['ld-profile-search'] = $( this ).parents( '.ld-item-search-wrapper' ).find( '#course_name_field' ).val();
+		searchVars['ld-profile-search-nonce'] = $( this ).parents( '.ld-item-search-wrapper' ).find( 'form.ld-item-search-fields' ).data( 'nonce' );
 
 		$( '#ld-profile #ld-main-course-list' ).addClass( 'ld-loading' );
 
@@ -492,6 +500,7 @@ jQuery( function( $ ) {
 			success: function( response ) {
 				if ( 'undefined' !== typeof response.data.markup ) {
 					$( '#ld-profile' ).html( response.data.markup );
+					ld_expand_element( '#ld-profile .ld-search-prompt', false );
 				}
 			},
 		} );
@@ -516,6 +525,7 @@ jQuery( function( $ ) {
 			success: function( response ) {
 				if ( 'undefined' !== typeof response.data.markup ) {
 					$( '#ld-profile' ).html( response.data.markup );
+					ld_expand_element( '#ld-profile .ld-search-prompt', false );
 				}
 			},
 		} );

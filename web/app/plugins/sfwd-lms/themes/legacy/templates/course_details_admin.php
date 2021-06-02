@@ -4,7 +4,7 @@
  *
  * @since 2.6.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\Legacy\Course
  *
  * @param integer $user_id User ID currently displayed.
  * @param integer $course_id Course ID currently displayed.

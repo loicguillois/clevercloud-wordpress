@@ -55,6 +55,9 @@ class WpProQuiz_Controller_ImportExport extends WpProQuiz_Controller_Controller 
 		$this->view->error = false;
 
 		if ( ! defined( 'LEARNDASH_PROQUIZ_IMPORT' ) ) {
+			/**
+			 * @ignore
+			 */
 			define( 'LEARNDASH_PROQUIZ_IMPORT', true );
 		}
 		if ( isset( $_FILES, $_FILES['import'] ) && substr( $_FILES['import']['name'], -3 ) == 'xml' || isset( $this->_post['importType'] ) && 'xml' == $this->_post['importType'] ) {

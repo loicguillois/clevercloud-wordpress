@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Data Upgrades for Translations
+ * LearnDash Data Upgrades for Translations.
  *
- * @package LearnDash
- * @subpackage Data Upgrades
+ * @since 2.5.5
+ * @package LearnDash\Data_Upgrades
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,13 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'Learndash_Admin_Data_Upgrades_Translations' ) ) ) {
+
 	/**
-	 * Class to create the Data Upgrade for Translations.
+	 * Class LearnDash Data Upgrades for Translations.
+	 *
+	 * @since 2.5.5
+	 * @uses Learndash_Admin_Data_Upgrades
 	 */
 	class Learndash_Admin_Data_Upgrades_Translations extends Learndash_Admin_Data_Upgrades {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 2.5.5
 		 */
 		protected function __construct() {
 			$this->data_slug = 'translations';
@@ -28,10 +34,9 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Update the LearnDash Translations
-		 *
 		 * Checks to see if settings needs to be updated.
 		 *
-		 * @since 2.3
+		 * @since 2.5.5
 		 */
 		public function upgrade_translations() {
 			if ( is_admin() ) {
@@ -46,7 +51,7 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		/**
 		 * Download the translations from glotpress server.
 		 *
-		 * @since 2.3.
+		 * @since 2.5.5
 		 */
 		public function download_translations() {
 			$wp_installed_languages = get_available_languages();

@@ -2,8 +2,8 @@
 /**
  * LearnDash Binary Selector Class.
  *
- * @package LearnDash
- * @subpackage Admin Settings
+ * @since 2.1.2
+ * @package LearnDash\Settings
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,8 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
+
 	/**
 	 * Class for LearnDash Binary Selector.
+	 *
+	 * @since 2.1.2
 	 */
 	class Learndash_Binary_Selector {
 
@@ -87,6 +90,8 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 		/**
 		 * Public constructor for class.
 		 *
+		 * @since 2.1.2
+		 *
 		 * @param array $args Array of selector args used to initialize instance.
 		 */
 		public function __construct( $args = array() ) {
@@ -111,7 +116,7 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 
 			$this->args['html_slug'] = sanitize_title_with_dashes( $this->args['html_id'] );
 
-			// We want to conver this to an array.
+			// We want to convert this to an array.
 			if ( ( ! empty( $this->args['selected_ids'] ) ) && ( is_string( $this->args['selected_ids'] ) ) ) {
 				$this->args['selected_ids'] = explode( ',', $this->args['selected_ids'] );
 			} elseif ( ( empty( $this->args['selected_ids'] ) ) && ( is_string( $this->args['selected_ids'] ) ) ) {
@@ -131,6 +136,8 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 			/**
 			 * Filters binary selector setting arguments.
 			 *
+			 * @since 2.2.1
+			 *
 			 * @param array  $args           An Array of arguments used by the selector.
 			 * @param string $selector_class Class reference to selector.
 			 */
@@ -145,6 +152,8 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 
 		/**
 		 * Show function for selector.
+		 *
+		 * @since 2.1.2
 		 */
 		public function show() {
 			$this->query_selection_section_items( 'left' );
@@ -217,8 +226,9 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 
 		/**
 		 * Show Selections Title.
-		 *
 		 * This is the title shown above the binary selector widget.
+		 *
+		 * @since 2.1.2
 		 */
 		protected function show_selections_title() {
 			if ( ! empty( $this->args['html_title'] ) ) {
@@ -228,8 +238,9 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 
 		/**
 		 * Show Selector Controls.
-		 *
 		 * Shows the Add/Remove buttons which lives betweeen the left/right side selectors.
+		 *
+		 * @since 2.2.1
 		 */
 		protected function show_selections_section_controls() {
 			?>
@@ -255,8 +266,9 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 
 		/**
 		 * Show Selector section.
-		 *
 		 * Shows the left/right selector sections.
+		 *
+		 * @since 2.2.1
 		 *
 		 * @param string $position Value for 'left' or 'right' position.
 		 */
@@ -282,6 +294,8 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 		/**
 		 * Show selector section items.
 		 *
+		 * @since 2.2.1
+		 *
 		 * @param string $position Value for 'left' or 'right' position.
 		 */
 		protected function show_selections_section_items( $position = '' ) {
@@ -292,6 +306,8 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 
 		/**
 		 * Show selector section legend.
+		 *
+		 * @since 2.2.1
 		 *
 		 * @param string $position Value for 'left' or 'right' position.
 		 */
@@ -311,6 +327,8 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 
 		/**
 		 * Show selector section pager.
+		 *
+		 * @since 2.2.1
 		 *
 		 * @param string $position Value for 'left' or 'right' position.
 		 */
@@ -336,6 +354,8 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 		/**
 		 * Get selector section search label.
 		 *
+		 * @since 2.1.2
+		 *
 		 * @param string $position Value for 'left' or 'right' position.
 		 */
 		protected function get_search_label( $position = '' ) {
@@ -353,6 +373,8 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 		/**
 		 * Get selector section pager data.
 		 *
+		 * @since 2.2.1
+		 *
 		 * @param string $position Value for 'left' or 'right' position.
 		 */
 		protected function get_pager_data( $position = '' ) {
@@ -360,6 +382,8 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 
 		/**
 		 * Get selector section items.
+		 *
+		 * @since 2.2.1
 		 *
 		 * @param string $position Value for 'left' or 'right' position.
 		 */
@@ -369,6 +393,8 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 		/**
 		 * Process selector section query.
 		 *
+		 * @since 2.2.1
+		 *
 		 * @param array  $query_args Array of query args.
 		 * @param string $position Value for 'left' or 'right' position.
 		 */
@@ -377,6 +403,8 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 
 		/**
 		 * Load selector section page AJAX.
+		 *
+		 * @since 2.2.1
 		 *
 		 * @param string $position Value for 'left' or 'right' position.
 		 */
@@ -393,6 +421,8 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 
 		/**
 		 * Load selector section search AJAX.
+		 *
+		 * @since 2.2.1
 		 *
 		 * @param string $position Value for 'left' or 'right' position.
 		 */
@@ -413,6 +443,8 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 
 		/**
 		 * Get selector section nonce.
+		 *
+		 * @since 2.2.1
 		 */
 		protected function get_nonce_data() {
 			return wp_create_nonce( $this->selector_class . '-' . $this->args['html_id'] );
@@ -420,6 +452,8 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 
 		/**
 		 * Validate selector section nonce.
+		 *
+		 * @since 2.2.1
 		 *
 		 * @param string $nonce Nonce value to validate.
 		 */
@@ -436,6 +470,7 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 		 * @since 2.6.0
 		 *
 		 * @param string $position Should have value 'left' or 'right'.
+		 *
 		 * @return true if valid.
 		 */
 		public function is_valid_position( $position = '' ) {
@@ -453,8 +488,10 @@ if ( ! class_exists( 'Learndash_Binary_Selector' ) ) {
 		 *
 		 * Used by the learndash_binary_selector_pager_ajax() function.
 		 *
-		 * @since 3.1.7
+		 * @since 3.2.0
+		 *
 		 * @param string $class_name Class name to check.
+		 *
 		 * @return true if valid.
 		 */
 		public static function check_class( $class_name ) {
@@ -481,6 +518,8 @@ require_once LEARNDASH_LMS_PLUGIN_DIR . 'includes/admin/classes-binary-selectors
 
 /**
  * Handler function for AJAX pager.
+ *
+ * @since 2.1.2
  */
 function learndash_binary_selector_pager_ajax() {
 

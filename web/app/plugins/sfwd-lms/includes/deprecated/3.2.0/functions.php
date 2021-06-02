@@ -15,7 +15,7 @@ if ( ! function_exists( 'post2pdf_conv_post_to_pdf' ) ) {
 	/**
 	 * Converts post data to pdf.
 	 *
-	 * @deprecated 3.2 Use learndash_certificate_post_shortcode()
+	 * @deprecated 3.2 Use {@see 'learndash_certificate_post_shortcode'} instead.
 	 */
 	function post2pdf_conv_post_to_pdf() {
 		if ( function_exists( '_deprecated_function' ) ) {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Shortcode for groupinfo
+ * LearnDash `[groupinfo]` shortcode processing.
  *
  * @since 3.2.0
  *
@@ -12,15 +12,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Shortcode that displays the requested group information
+ * Builds the `[groupinfo]` shortcode output.
  *
  * @since 3.2.0
  *
- * @param array $attr shortcode attributes.
+ * @param array $attr {
+ *    An array of shortcode attributes.
+ *
+ *    @type string     $show           The course info field to display. Default 'course_title'.
+ *    @type int|string $user_id        User ID. Default empty.
+ *    @type int|string $group_id       Group ID. Default empty.
+ *    @type int|string $format         Date display format. Default 'F j, Y, g:i a'.
+ *    @type int        $decimals       The number of decimal points. Default 2.
+ * }
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string shortcode output
  */
-function learndash_groupinfo_shortcode( $attr ) {
+function learndash_groupinfo_shortcode( $attr = array(), $content = '' ) {
 	global $learndash_shortcode_used;
 	$learndash_shortcode_used = true;
 
@@ -181,5 +190,4 @@ function learndash_groupinfo_shortcode( $attr ) {
 		}
 	}
 }
-
-add_shortcode( 'groupinfo', 'learndash_groupinfo_shortcode' );
+add_shortcode( 'groupinfo', 'learndash_groupinfo_shortcode', 10, 2 );

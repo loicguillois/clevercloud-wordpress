@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays the listing of course content
+ * LearnDash LD30 Displays the listing of group content
  *
  * @var int    $group_id            Group ID.
  * @var int    $user_id             User ID.
@@ -11,7 +11,7 @@
  *
  * @since 3.1.7
  *
- * @package LearnDash\Group
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -21,8 +21,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Display group courses if they exist
  *
- * @var $group_courses [array]
  * @since 3.1.7
+ *
+ * @var $group_courses [array]
  */
 
 if ( ! empty( $group_courses ) ) :
@@ -31,6 +32,7 @@ if ( ! empty( $group_courses ) ) :
 	 * Filters LearnDash Group Courses table CSS class.
 	 *
 	 * @since 3.1.7
+	 *
 	 * @param string $table_class CSS classes for group courses table.
 	 */
 	$table_class = apply_filters( 'learndash_group_courses_table_class', 'ld-item-list-items ld-group-courses ld-group-courses-' . $group_id );
@@ -38,8 +40,9 @@ if ( ! empty( $group_courses ) ) :
 	/**
 	 * Display the expand button if lesson has topics
 	 *
+	 * @since 3.0.0
+	 *
 	 * @var $lessons [array]
-	 * @since 3.0
 	 */
 	?>
 

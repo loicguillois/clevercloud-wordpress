@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Admin WP User Profile Edit Class.
+ * LearnDash Admin WP User Profile Edit.
  *
- * @package LearnDash
- * @subpackage Admin
+ * @since 2.2.1
+ * @package LearnDash\User\Edit
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,12 +11,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'Learndash_Admin_User_Profile_Edit' ) ) {
+
 	/**
-	 * Class for LearnDash WP User Profile Edit.
+	 * Class LearnDash Admin WP User Profile Edit.
+	 *
+	 * @since 2.2.1
 	 */
 	class Learndash_Admin_User_Profile_Edit {
 		/**
 		 * Public constructor for class.
+		 *
+		 * @since 2.2.1
 		 */
 		public function __construct() {
 			// Hook into the on-load action for our post_type editor.
@@ -36,6 +41,8 @@ if ( ! class_exists( 'Learndash_Admin_User_Profile_Edit' ) ) {
 		 * Function called when WP load the page.
 		 * Fires on action 'load-profile.php'
 		 * Fires on action 'load-user-edit.php'
+		 *
+		 * @since 2.2.1
 		 */
 		public function on_load_user_profile() {
 			global $learndash_assets_loaded;
@@ -133,6 +140,8 @@ if ( ! class_exists( 'Learndash_Admin_User_Profile_Edit' ) ) {
 		 * Fires on action 'show_user_profile'
 		 * Fires on action 'edit_user_profile'
 		 *
+		 * @since 2.2.1
+		 *
 		 * @param WP_User $user User object instance.
 		 */
 		public function show_user_profile( WP_User $user ) {
@@ -149,7 +158,7 @@ if ( ! class_exists( 'Learndash_Admin_User_Profile_Edit' ) ) {
 		 * Displays users course information at bottom of profile
 		 * called by show_user_profile().
 		 *
-		 * @since 2.1.0
+		 * @since 2.5.0
 		 *
 		 * @param WP_User $user wp user object.
 		 */
@@ -172,6 +181,8 @@ if ( ! class_exists( 'Learndash_Admin_User_Profile_Edit' ) ) {
 			/**
 			 * Filters profile course info attributes.
 			 *
+			 * @since 2.5.5
+			 *
 			 * @param array   $attributes An array of course info attributes.
 			 * @param WP_User $user       WP_User object to be checked.
 			 */
@@ -183,7 +194,7 @@ if ( ! class_exists( 'Learndash_Admin_User_Profile_Edit' ) ) {
 		/**
 		 * Output link to delete course data for user
 		 *
-		 * @since 2.1.0
+		 * @since 2.5.0
 		 *
 		 * @param WP_USer $user WP_User object.
 		 */
@@ -277,6 +288,8 @@ if ( ! class_exists( 'Learndash_Admin_User_Profile_Edit' ) ) {
 
 		/**
 		 * Save WP User Profile hook.
+		 *
+		 * @since 2.2.1
 		 *
 		 * @param integer $user_id ID of user being saved.
 		 */
@@ -392,6 +405,8 @@ if ( ! class_exists( 'Learndash_Admin_User_Profile_Edit' ) ) {
 		 * Show User Enrolled Courses Binary Selector.
 		 * called by show_user_profile().
 		 *
+		 * @since 2.2.1
+		 *
 		 * @param WP_User $user wp_user object.
 		 */
 		private function show_user_courses( WP_User $user ) {
@@ -428,6 +443,8 @@ if ( ! class_exists( 'Learndash_Admin_User_Profile_Edit' ) ) {
 		 * Show User Enrolled Groups Binary Selector.
 		 * called by show_user_profile().
 		 *
+		 * @since 2.2.1
+		 *
 		 * @param WP_User $user wp_user object.
 		 */
 		private function show_user_groups( WP_User $user ) {
@@ -446,6 +463,8 @@ if ( ! class_exists( 'Learndash_Admin_User_Profile_Edit' ) ) {
 		/**
 		 * Show User Leader of Groups Binary Selector.
 		 * called by show_user_profile().
+		 *
+		 * @since 2.2.1
 		 *
 		 * @param WP_User $user wp_user object.
 		 */
@@ -466,6 +485,8 @@ if ( ! class_exists( 'Learndash_Admin_User_Profile_Edit' ) ) {
 		/**
 		 * Show User Courses Progress.
 		 * called by show_user_profile().
+		 *
+		 * @since 2.5.0
 		 *
 		 * @param WP_User $user wp_user object.
 		 */
@@ -661,6 +682,8 @@ if ( ! class_exists( 'Learndash_Admin_User_Profile_Edit' ) ) {
 
 		/**
 		 * Remove Quiz AJAX handler.
+		 *
+		 * @since 2.5.0
 		 */
 		public function remove_quiz_ajax() {
 			$data = array();

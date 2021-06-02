@@ -2,22 +2,27 @@
 /**
  * Class to extend LDLMS_Model_Post to LDLMS_Model_Question.
  *
- * @package LearnDash
- * @subpackage Question
- * @since 3.2.0
+ * @since 3.4.0
+ * @package LearnDash\Question
  */
 
- if ( ! defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( class_exists( 'LDLMS_Model_Post' ) ) && ( ! class_exists( 'LDLMS_Model_Question' ) ) ) {
+	/**
+	 * Class for LearnDash Model Question.
+	 *
+	 * @since 3.4.0
+	 * @uses LDLMS_Model_Post
+	 */
 	class LDLMS_Model_Question extends LDLMS_Model_Post {
 
 		/**
 		 * Initialize post.
 		 *
-		 * @since 3.2.0
+		 * @since 3.4.0
 		 *
 		 * @param int $post_id Question Post ID to load.
 		 *

@@ -1,6 +1,6 @@
 <?php
 /**
- * Shortcode for ld_user_course_points
+ * LearnDash `[ld_user_course_points]` shortcode processing.
  *
  * @since 2.1.0
  *
@@ -12,21 +12,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `ld_user_course_points` shortcode output.
+ * Builds the `[ld_user_course_points]` shortcode output.
  *
  * @global boolean $learndash_shortcode_used
  *
  * @param array  $atts {
  *    An array of shortcode attributes.
  *
- *    @type int    $user_id Optional. User ID. Default to current user ID.
- *    @type string $context Optional. The shortcode context. Default empty.
+ *    @type int    $user_id User ID. Default to current user ID.
+ *    @type string $context The shortcode context. Default empty.
  * }
- * @param string $content Optional. Shortcode content. Default empty.
+ * @param string $content The shortcode content. Default empty.
  *
  * @return void|string The `ld_user_course_points` shortcode output.
  */
-function learndash_user_course_points_shortcode( $atts, $content = '' ) {
+function learndash_user_course_points_shortcode( $atts = array(), $content = '' ) {
 	global $learndash_shortcode_used;
 
 	$defaults = array(
@@ -54,4 +54,4 @@ function learndash_user_course_points_shortcode( $atts, $content = '' ) {
 	);
 	return $content;
 }
-add_shortcode( 'ld_user_course_points', 'learndash_user_course_points_shortcode' );
+add_shortcode( 'ld_user_course_points', 'learndash_user_course_points_shortcode', 10, 2 );

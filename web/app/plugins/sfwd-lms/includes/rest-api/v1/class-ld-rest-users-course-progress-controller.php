@@ -1,11 +1,30 @@
 <?php
+/**
+ * LearnDash REST API V1 Course Progress Controller.
+ *
+ * @since 2.5.8
+ * @package LearnDash\REST\V1
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( ! class_exists( 'LD_REST_Users_Course_Progress_Controller_V1' ) ) && ( class_exists( 'LD_REST_Posts_Controller_V1' ) ) ) {
+
+	/**
+	 * Class LearnDash REST API V1 Course Progress Controller.
+	 *
+	 * @since 2.5.8
+	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Users_Course_Progress_Controller_V1 extends LD_REST_Posts_Controller_V1 {
 
+		/**
+		 * Public constructor for class
+		 *
+		 * @since 2.5.8
+		 */
 		public function __construct() {
 			$this->post_type  = 'sfwd-courses';
 			$this->taxonomies = array();
@@ -18,9 +37,9 @@ if ( ( ! class_exists( 'LD_REST_Users_Course_Progress_Controller_V1' ) ) && ( cl
 		/**
 		 * Registers the routes for the objects of the controller.
 		 *
-		 * @since 4.7.0
+		 * @since 2.5.8
 		 *
-		 * @see register_rest_route()
+		 * @see register_rest_route() in WordPress core.
 		 */
 		public function register_routes() {
 
@@ -51,34 +70,15 @@ if ( ( ! class_exists( 'LD_REST_Users_Course_Progress_Controller_V1' ) ) && ( cl
 					),
 				)
 			);
-			/*
-			register_rest_route(
-				$this->namespace,
-				'/' . $this->rest_base . '/(?P<id>[\d]+)/course-progress/(?P<course_id>[\d]+)',
-				array(
-					'args' => array(
-						'id' => array(
-							'description' => esc_html__( 'User ID to enroll user into.', 'learndash' ),
-								'required' => true,
-							'type' => 'integer',
-						),
-						'course_id' => array(
-							'description' => esc_html__( 'Course ID to enroll.', 'learndash' ),
-								'required' => false,
-								'items'             => array(
-									'type'          => 'integer',
-								),
-						),
-					),
-					array(
-						'methods'             => 'POST',
-						'callback'            => array( $this, 'set_items' ),
-					),
-				)
-			);
-			*/
 		}
 
+		/**
+		 * Check User Progress Read Permissions.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function get_users_progress_permissions_check( $request ) {
 			$user_id = $request['id'];
 
@@ -93,6 +93,13 @@ if ( ( ! class_exists( 'LD_REST_Users_Course_Progress_Controller_V1' ) ) && ( cl
 			}
 		}
 
+		/**
+		 * Get User Progress.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function get_users_progress( $request ) {
 			$user_id = $request['id'];
 			if ( empty( $user_id ) ) {
@@ -119,7 +126,6 @@ if ( ( ! class_exists( 'LD_REST_Users_Course_Progress_Controller_V1' ) ) && ( cl
 
 			if ( ( ! empty( $user_course_ids ) ) && ( learndash_is_group_leader_user() ) ) {
 				$gl_groups_corses = learndash_get_group_leader_groups_courses( get_current_user_id() );
-				//error_log('gl_groups_corses<pre>'. print_r($gl_groups_corses, true) .'</pre>');
 
 				if ( ! empty( $gl_groups_corses ) ) {
 					$user_course_ids = array_intersect( $gl_groups_corses, $user_course_ids );
@@ -234,7 +240,7 @@ if ( ( ! class_exists( 'LD_REST_Users_Course_Progress_Controller_V1' ) ) && ( cl
 				 *
 				 * Enables adding extra arguments or setting defaults for a post collection request.
 				 *
-				 * @since 4.7.0
+				 * @since 2.5.8
 				 *
 				 * @link https://developer.wordpress.org/reference/classes/wp_query/
 				 *
@@ -269,11 +275,9 @@ if ( ( ! class_exists( 'LD_REST_Users_Course_Progress_Controller_V1' ) ) && ( cl
 						);
 					}
 				}
-				//error_log('query_args<pre>'. print_r($query_args, true) .'</pre>');
 
 				$posts_query  = new WP_Query();
 				$query_result = $posts_query->query( $query_args );
-				//error_log('query_result<pre>'. print_r($query_result, true) .'</pre>');
 
 				// Allow access to all password protected posts if the context is edit.
 				if ( 'edit' === $request['context'] ) {
@@ -356,6 +360,14 @@ if ( ( ! class_exists( 'LD_REST_Users_Course_Progress_Controller_V1' ) ) && ( cl
 			return $response;
 		}
 
+		/**
+		 * Get User Meta Progression.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param array $progress Array of course progress data
+		 */
+
 		public function user_meta_progress_normalized( $progress = array() ) {
 			$converted = array();
 
@@ -369,89 +381,8 @@ if ( ( ! class_exists( 'LD_REST_Users_Course_Progress_Controller_V1' ) ) && ( cl
 					}
 				}
 			}
-			//error_log('converted<pre>'. print_r($converted, true) .'</pre>');
 
 			return $converted;
 		}
-
-
-		/*
-		function set_items( $request ) {
-			$data = array();
-
-			// Create the response object
-			$response = rest_ensure_response( $data );
-
-			// Add a custom status code
-			$response->set_status( 200 );
-
-			return $response;
-		}
-		*/
-
-		/*
-		function lesson_mark_complete( $request ) {
-			$course_id = $request['course'];
-			$lesson_id = $request['id'];
-			if ( empty( $course_id ) ) {
-				return new WP_Error(
-					'rest_post_invalid_id',
-					sprintf(
-						// translators: placeholder: course.
-						esc_html_x(
-							'Invalid %s ID.',
-							'placeholder: course',
-							'learndash'
-						),
-						LearnDash_Custom_Label::get_label( 'course' )
-					),
-					array( 'status' => 404 )
-				);
-			}
-
-			if ( empty( $lesson_id ) ) {
-				return new WP_Error(
-					'rest_post_invalid_id',
-						sprintf(
-							// translators: placeholder: Lesson.
-							esc_html_x(
-								'Invalid %s ID.',
-								'placeholder: Lesson',
-								'learndash'
-							),
-							LearnDash_Custom_Label::get_label( 'lesson' )
-						),
-					array( 'status' => 404 )
-				);
-			}
-
-			$current_user_id = get_current_user_id();
-			if ( empty( $current_user_id ) ) {
-				return new WP_Error( 'rest_not_logged_in', esc_html__( 'You are not currently logged in.', 'learndash' ), array( 'status' => 401 ) );
-			}
-			//$current_user = wp_get_current_user();
-
-			$has_access = sfwd_lms_has_access( $course->ID, $current_user->ID );
-			if ( ( ! $has_access ) && ( $course_price_type != 'open' ) ) {
-				return new WP_Error( 'rest_cannot_view', esc_html__( 'Sorry, you are not allowed view items.', 'learndash' ), array( 'status' => rest_authorization_required_code() ) );
-			}
-
-			$return = learndash_process_mark_complete( $current_user_id, $lesson_id );
-			if ( $return === true ) {
-				$data = array(
-					'completed_status' => true,
-					'completed_date_gmt' => $this->prepare_date_response( current_time( 'mysql' ) )
-				);
-
-				// Create the response object
-				$response = rest_ensure_response( $data );
-
-				// Add a custom status code
-				$response->set_status( 200 );
-
-				return $response;
-			}
-		}
-		*/
 	}
 }

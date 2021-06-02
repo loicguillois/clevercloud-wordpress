@@ -193,6 +193,7 @@ registerBlockType(
 
 			const panelbody_header = (
 				<PanelBody
+					className="learndash-block-controls-panel learndash-block-controls-panel-ld-group-list"
 					title={__('Settings', 'learndash')}
 				>
 					<SelectControl

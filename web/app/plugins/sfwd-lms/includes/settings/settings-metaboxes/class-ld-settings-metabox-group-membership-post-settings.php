@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Metabox for Group Membership Settings for Post.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.2.0
+ * @package LearnDash\Settings\Metaboxes
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'LearnDash_Settings_Metabox_Group_Membership_Post_Settings' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Metabox for Group Membership Settings for Post.
+	 *
+	 * @since 3.2.0
 	 */
 	class LearnDash_Settings_Metabox_Group_Membership_Post_Settings extends LearnDash_Settings_Metabox {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.2.0
 		 */
 		public function __construct() {
 			global $typenow;
@@ -63,6 +67,8 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings values.
+		 *
+		 * @since 3.2.0
 		 */
 		public function load_settings_values() {
 			$this->setting_option_values = learndash_get_post_group_membership_settings( $this->_post->ID );
@@ -78,6 +84,8 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings fields.
+		 *
+		 * @since 3.2.0
 		 */
 		public function load_settings_fields() {
 			global $sfwd_lms;
@@ -208,9 +216,12 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * Filter settings values for metabox before save to database.
 		 *
+		 * @since 3.2.0
+		 *
 		 * @param array  $settings_values Array of settings values.
 		 * @param string $settings_metabox_key Metabox key.
 		 * @param string $settings_screen_id Screen ID.
+		 *
 		 * @return array $settings_values.
 		 */
 		public function filter_saved_fields( $settings_values = array(), $settings_metabox_key = '', $settings_screen_id = '' ) {
@@ -250,6 +261,8 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Save Settings Metabox
+		 *
+		 * @since 3.2.0
 		 *
 		 * @param integer $post_id $Post ID is post being saved.
 		 * @param object  $saved_post WP_Post object being saved.

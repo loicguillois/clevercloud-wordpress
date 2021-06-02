@@ -261,7 +261,7 @@ add_action( 'init', 'learndash_register_essay_post_status' );
  *
  * @global WP_Post $post Global post object.
  *
- * @since 2.1.0
+ * @since 2.2.1
  */
 function learndash_essay_permissions() {
 	if ( is_singular( learndash_get_post_type_slug( 'essay' ) ) ) {
@@ -647,6 +647,8 @@ function learndash_update_quiz_data( $quiz_id, $question_id, $updated_scoring, $
 
 /**
  * Updates the quiz activity for a user.
+ *
+ * @since 2.3.0
  *
  * @param int   $user_id   User ID.
  * @param array $quiz_data An array of quiz activity data to be updated.

@@ -1,33 +1,35 @@
 <?php
 /**
- * LearnDash V2 REST API Courses Users Controller.
+ * LearnDash REST API V2 Courses Users Controller.
  *
- * @package LearnDash
- * @subpackage REST_API
- * @since 3.3.0
- */
-
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
-}
-
-/**
  * This Controller class is used to GET/UPDATE/DELETE the association
  * between a Course (sfwd-courses) and Users enrolled.
  *
  * This class extends the LD_REST_Posts_Controller_V2 class.
  *
  * @since 3.3.0
+ * @package LearnDash\REST\V2
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 if ( ( ! class_exists( 'LD_REST_Courses_Users_Controller_V2' ) ) && ( class_exists( 'LD_REST_Users_Controller_V2' ) ) ) {
+
 	/**
-	 * Class REST API Courses Users Controller.
+	 * Class LearnDash REST API V2 Courses Users Controller.
+	 *
+	 * @since 3.3.0
+	 * @uses LD_REST_Users_Controller_V2
 	 */
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Courses_Users_Controller_V2 extends LD_REST_Users_Controller_V2 {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.3.0
 		 */
 		public function __construct() {
 			$this->rest_sub_base = $this->get_rest_base( 'courses-users' );
@@ -361,7 +363,7 @@ if ( ( ! class_exists( 'LD_REST_Courses_Users_Controller_V2' ) ) && ( class_exis
 					$data_item->user_id = $user_id;
 					$data_item->status  = 'success';
 					$data_item->code    = 'learndash_rest_enroll_success';
-					$data_item->message  = sprintf(
+					$data_item->message = sprintf(
 						// translators: placeholder: Course.
 						esc_html_x(
 							'User enrolled in %s success.',
@@ -374,7 +376,7 @@ if ( ( ! class_exists( 'LD_REST_Courses_Users_Controller_V2' ) ) && ( class_exis
 					$data_item->user_id = $user_id;
 					$data_item->status  = 'failed';
 					$data_item->code    = 'learndash_rest_enroll_failed';
-					$data_item->message  = sprintf(
+					$data_item->message = sprintf(
 						// translators: placeholder: Course.
 						esc_html_x(
 							'User already enrolled in %s.',
@@ -505,7 +507,7 @@ if ( ( ! class_exists( 'LD_REST_Courses_Users_Controller_V2' ) ) && ( class_exis
 					$data_item->user_id = $user_id;
 					$data_item->status  = 'success';
 					$data_item->code    = 'learndash_rest_unenroll_success';
-					$data_item->message  = sprintf(
+					$data_item->message = sprintf(
 						// translators: placeholder: Course.
 						esc_html_x(
 							'User enrolled from %s success.',
@@ -518,7 +520,7 @@ if ( ( ! class_exists( 'LD_REST_Courses_Users_Controller_V2' ) ) && ( class_exis
 					$data_item->user_id = $user_id;
 					$data_item->status  = 'failed';
 					$data_item->code    = 'learndash_rest_unenroll_failed';
-					$data_item->message  = sprintf(
+					$data_item->message = sprintf(
 						// translators: placeholder: Course.
 						esc_html_x(
 							'User not enrolled from %s.',

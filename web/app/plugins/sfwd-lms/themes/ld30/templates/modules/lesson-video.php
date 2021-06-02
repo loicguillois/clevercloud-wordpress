@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays a lesson/topic Video.
+ * LearnDash LD30 Displays a lesson/topic Video.
  *
  * Note this template is called a few steps BEFORE the main Lesson/Topic template and is used
  * primarily to add the video if used to the content.
@@ -14,7 +14,7 @@
  *
  * @since 2.4.5
  *
- * @package LearnDash\Lesson
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

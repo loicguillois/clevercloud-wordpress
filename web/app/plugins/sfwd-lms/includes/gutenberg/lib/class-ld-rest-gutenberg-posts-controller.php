@@ -3,7 +3,7 @@
  * LearnDash Gutenberg Posts Controller.
  *
  * @package LearnDash
- * @since 2.5.9
+ * @since 2.5.8
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,16 +11,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'LD_REST_Posts_Gutenberg_Controller' ) ) {
+
 	/**
 	 * LearnDash Gutenberg Posts Controller.
 	 *
-	 * @package LearnDash
-	 * @since 2.5.9
+	 * @since 2.5.8
 	 */
 	class LD_REST_Posts_Gutenberg_Controller extends WP_REST_Posts_Controller {
+
 		/**
 		 * Constructor.
 		 *
+		 * @since 2.5.8
 		 * @param string $post_type Post type.
 		 */
 		public function __construct( $post_type = '' ) {
@@ -29,6 +31,8 @@ if ( ! class_exists( 'LD_REST_Posts_Gutenberg_Controller' ) ) {
 
 		/**
 		 * Registers the routes for the objects of the controller.
+		 *
+		 * @since 2.5.8
 		 */
 		public function register_routes() {
 			$namespace     = 'wp/v2';
@@ -83,8 +87,10 @@ if ( ! class_exists( 'LD_REST_Posts_Gutenberg_Controller' ) ) {
 		}
 
 		/**
-		* Function documented in endpoints/class-wp-rest-posts-controller.php
-		*/
+		 * Function documented in endpoints/class-wp-rest-posts-controller.php
+		 *
+		 * @since 3.2.0
+		 */
 		public function get_item_permissions_check( $request ) {
 			/**
 			 * Logic added to prevent access to the automatic routes created as part of

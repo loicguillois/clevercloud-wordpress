@@ -1,5 +1,13 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+/**
+ * LearnDash LD30 Displays a user's profile assignments listing.
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
+ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -14,6 +22,8 @@ $assignment_post_type_object = get_post_type_object( 'sfwd-assignment' ); ?>
 			<?php
 			/**
 			 * Filters assignment columns in user's profile.
+			 *
+			 * @since 3.0.0
 			 *
 			 * @param array $assignment_columns An array of profile assignment column fields.
 			 */

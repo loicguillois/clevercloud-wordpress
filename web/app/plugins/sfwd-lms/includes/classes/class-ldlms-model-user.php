@@ -2,9 +2,8 @@
 /**
  * Class to extend LDLMS_Model to LDLMS_Model_User.
  *
- * @package LearnDash
- * @subpackage User
- * @since 3.2.0
+ * @since 3.4.0
+ * @package LearnDash\User
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,6 +11,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( ! class_exists( 'LDLMS_Model_User' ) ) && ( class_exists( 'LDLMS_Model' ) ) ) {
+
+	/**
+	 * Class for LearnDash LDLMS_Model_User.
+	 *
+	 * @since 3.4.0
+	 * @uses LDLMS_Model
+	 */
 	class LDLMS_Model_User extends LDLMS_Model {
 
 		/**

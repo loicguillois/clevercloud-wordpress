@@ -13,13 +13,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'LearnDash_Gutenberg_Block' ) ) {
 	/**
 	 * Abstract Parent class to hold common functions used by specific LearnDash Blocks.
+	 *
+	 * @since 2.5.9
 	 */
 	class LearnDash_Gutenberg_Block {
 
+		/**
+		 * @var string $block_base
+		 */
 		protected $block_base = 'learndash';
+
+		/**
+		 * @var string $shortcode_slug
+		 */
 		protected $shortcode_slug;
+
+		/**
+		 * @var string $block_slug
+		 */
 		protected $block_slug;
+
+		/**
+		 * @var array $block_attributes
+		 */
 		protected $block_attributes;
+
+		/**
+		 * @var boolean $self_closing
+		 */
 		protected $self_closing;
 
 		/**
@@ -30,6 +51,8 @@ if ( ! class_exists( 'LearnDash_Gutenberg_Block' ) ) {
 
 		/**
 		 * Initialize the hooks.
+		 *
+		 * @since 2.5.9
 		 */
 		public function init() {
 			if ( function_exists( 'register_block_type' ) ) {
@@ -47,6 +70,8 @@ if ( ! class_exists( 'LearnDash_Gutenberg_Block' ) ) {
 
 		/**
 		 * Register Block for Gutenberg
+		 *
+		 * @since 2.5.9
 		 */
 		public function register_blocks() {
 			register_block_type(
@@ -65,6 +90,7 @@ if ( ! class_exists( 'LearnDash_Gutenberg_Block' ) ) {
 		 * @since 2.5.9
 		 *
 		 * @param string $content The post content containg all the inline HTML and blocks.
+		 *
 		 * @return string $content.
 		 */
 		public function the_content_filter( $content = '' ) {
@@ -128,6 +154,8 @@ if ( ! class_exists( 'LearnDash_Gutenberg_Block' ) ) {
 		/**
 		 * Pre-Process the block attributes before render.
 		 *
+		 * @since 3.2.3
+		 *
 		 * @param array $attributes Shortcode attrbutes.
 		 *
 		 * @return array $attributes
@@ -155,7 +183,7 @@ if ( ! class_exists( 'LearnDash_Gutenberg_Block' ) ) {
 		/**
 		 * Utility function to parse the WP Block content looking for specific token patterns.
 		 *
-		 * @since 2.6
+		 * @since 2.6.0
 		 *
 		 * @param string  $content Full page/post content to be searched.
 		 * @param string  $block_slug This is the block token pattern to search for. Ex: ld-user-meta, ld-visitor, ld-profile.
@@ -427,6 +455,13 @@ if ( ! class_exists( 'LearnDash_Gutenberg_Block' ) ) {
 
 					$val_str = implode( ',', $val );
 					$val     = $val_str;
+				} elseif ( 'price_type' === $key ) {
+					if ( empty( $val ) ) {
+						continue;
+					}
+
+					$val_str = implode( ',', $val );
+					$val     = $val_str;
 				} elseif ( empty( $val ) ) {
 					continue;
 				}
@@ -443,7 +478,8 @@ if ( ! class_exists( 'LearnDash_Gutenberg_Block' ) ) {
 		/**
 		 * Get example user ID. This is used as part of WP 5.3 Gutenberg Block Example / Preview.
 		 *
-		 * @since 3.1
+		 * @since 3.1.0
+		 *
 		 * @return integer $user_id User ID.
 		 */
 		public function get_example_user_id() {
@@ -477,8 +513,10 @@ if ( ! class_exists( 'LearnDash_Gutenberg_Block' ) ) {
 		/**
 		 * Get example post ID. This is used as part of WP 5.3 Gutenberg Block Example / Preview.
 		 *
-		 * @since 3.1
+		 * @since 3.1.0
+		 *
 		 * @param string $post_type Post Type Slug to retreive.
+		 *
 		 * @return integer $post_id Post ID.
 		 */
 		public function get_example_post_id( $post_type = '' ) {

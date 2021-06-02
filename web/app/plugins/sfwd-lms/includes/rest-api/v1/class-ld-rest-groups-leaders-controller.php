@@ -1,11 +1,32 @@
 <?php
+/**
+ * LearnDash REST API V1 Group Leaders Controller.
+ *
+ * @since 2.5.8
+ * @package LearnDash\REST\V1
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( ! class_exists( 'LD_REST_Groups_Leaders_Controller_V1' ) ) && ( class_exists( 'LD_REST_Users_Controller_V1' ) ) ) {
+
+	/**
+	 * Class LearnDash REST API V1 Group Leaders Controller.
+	 *
+	 * @since 2.5.8
+	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Groups_Leaders_Controller_V1 extends LD_REST_Users_Controller_V1 {
 
+		/**
+		 * Supported Collection Parameters.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @var array $supported_collection_params.
+		 */
 		private $supported_collection_params = array(
 			'exclude'  => 'exclude',
 			'include'  => 'include',
@@ -18,12 +39,24 @@ if ( ( ! class_exists( 'LD_REST_Groups_Leaders_Controller_V1' ) ) && ( class_exi
 			'slug'     => 'nicename__in',
 		);
 
+		/**
+		 * Public constructor for class
+		 *
+		 * @since 2.5.8
+		 */
 		public function __construct() {
 			parent::__construct();
 			$this->namespace = LEARNDASH_REST_API_NAMESPACE . '/' . $this->version;
 			$this->rest_base = LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Section_General_REST_API', 'groups' );
 		}
 
+		/**
+		 * Registers the routes for the objects of the controller.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @see register_rest_route() in WordPress core.
+		 */
 		public function register_routes() {
 			$this->meta        = new WP_REST_User_Meta_Fields();
 			$collection_params = $this->get_collection_params();
@@ -121,6 +154,8 @@ if ( ( ! class_exists( 'LD_REST_Groups_Leaders_Controller_V1' ) ) && ( class_exi
 		/**
 		 * Gets the group leaders schema.
 		 *
+		 * @since 2.5.8
+		 *
 		 * @return array
 		 */
 		public function get_schema() {
@@ -151,24 +186,52 @@ if ( ( ! class_exists( 'LD_REST_Groups_Leaders_Controller_V1' ) ) && ( class_exi
 			return $schema;
 		}
 
+		/**
+		 * Check Group Leaders Read Permissions.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function get_groups_leaders_permissions_check( $request ) {
 			if ( learndash_is_admin_user() ) {
 				return true;
 			}
 		}
 
+		/**
+		 * Check Group Leaders Update Permissions.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function update_groups_leaders_permissions_check( $request ) {
 			if ( learndash_is_admin_user() ) {
 				return true;
 			}
 		}
 
+		/**
+		 * Check Group Leaders Delete Permissions.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function delete_groups_leaders_permissions_check( $request ) {
 			if ( learndash_is_admin_user() ) {
 				return true;
 			}
 		}
 
+		/**
+		 * Update Group Leaders.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function update_groups_leaders( $request ) {
 			$group_id = $request['id'];
 			if ( empty( $group_id ) ) {
@@ -221,6 +284,13 @@ if ( ( ! class_exists( 'LD_REST_Groups_Leaders_Controller_V1' ) ) && ( class_exi
 			return $response;
 		}
 
+		/**
+		 * DeleteGroup Leaders.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function delete_groups_leaders( $request ) {
 			$group_id = $request['id'];
 			if ( empty( $group_id ) ) {
@@ -273,6 +343,13 @@ if ( ( ! class_exists( 'LD_REST_Groups_Leaders_Controller_V1' ) ) && ( class_exi
 			return $response;
 		}
 
+		/**
+		 * Get Group Leaders.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param object $request WP_REST_Request instance.
+		 */
 		public function get_groups_leaders( $request ) {
 
 			$group_id = $request['id'];
@@ -423,6 +500,11 @@ if ( ( ! class_exists( 'LD_REST_Groups_Leaders_Controller_V1' ) ) && ( class_exi
 			return $response;
 		}
 
+		/**
+		 * Get Collection parameters
+		 *
+		 * @since 2.5.8
+		 */
 		public function get_collection_params() {
 			$query_params_default = parent::get_collection_params();
 

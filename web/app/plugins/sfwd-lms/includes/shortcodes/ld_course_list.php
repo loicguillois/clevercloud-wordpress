@@ -1,9 +1,8 @@
 <?php
 /**
- * Shortcode for ld_course_list
+ * LearnDash `[ld_course_list]` shortcode processing.
  *
  * @since 2.1.0
- *
  * @package LearnDash\Shortcodes
  */
 
@@ -13,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 /**
- * Builds the `ld_course_list` shortcode output.
+ * Builds the `[ld_course_list]` shortcode output.
  *
  * @global boolean $learndash_shortcode_used
  *
@@ -22,46 +21,48 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $attr {
  *    An array of shortcode attributes.
  *
- *    @type string          $include_outer_wrapper Optional. Whether to include outer wrapper.  Default 'true'.
- *    @type int             $paged                 Optional. Is the query paged. Default false.
- *    @type string          $post_type             Optional. Post type slug. Default 1.
- *    @type string          $post_status           Optional. The post status. Default 'publish'.
- *    @type string          $order                 Optional. Designates ascending ('ASC') or descending ('DESC') order. Default 'DESC'.
- *    @type string          $orderby               Optional. The name of the field to order posts by. Default 'ID'.
- *    @type int|false       $user_id               Optional. User ID. Default false
- *    @type string          $mycourses             Optional. Type of courses. Can be 'enrolled', 'not-enrolled'. Default null
- *    @type string          $status                Optional. Status of the course. Default null
- *    @type string          $post__in              Optional. List of posts IDs to check. Default null.
- *    @type string          $course_id             Optional. Course ID Default empty.
- *    @type string          $meta_key              Optional. Meta key Default empty.
- *    @type string          $meta_value            Optional. Meta Value. Default empty.
- *    @type string          $meta_compare          Optional. Meta compare operator Default empty.
- *    @type string          $tag                   Optional. Tag slug. Comma-separated (either), Plus-separated (all). Default empty.
- *    @type int|array       $tag_id                Optional. An array of tag ids (AND in). Default 0.
- *    @type string|array    $tag__and              Optional. An array of tag ids (AND in). Default empty.
- *    @type string|array    $tag__in               Optional. An array of tag ids (OR in). Default empty.
- *    @type string|array    $tag__not_in           Optional. An array of tag ids (NOT in). Default empty.
- *    @type string|array    $tag_slug__and         Optional. An array of tag slugs (AND in). Default empty.
- *    @type string|array    $tag_slug__in          Optional. An array of tag slugs (OR in). Default empty.
- *    @type string          $cat                   Optional. Category ID or comma-separated list of IDs (this or any children). Default empty.
- *    @type string          $category_name         Optional. Use category slug (not name, this or any children). Default 0.
- *    @type string|array    $category__and         Optional. An array of category IDs (AND in). Default empty.
- *    @type string|array    $category__in          Optional. An array of category IDs (OR in, no children). Default empty.
- *    @type string|array    $category__not_in      Optional. An array of category IDs (NOT in). Default empty.
- *    @type string          $tax_compare           Optional. Taxonomy compare operator. Default 'AND'
- *    @type string          $categoryselector      Optional. Category selector. Default empty.
- *    @type string          $show_thumbnail        Optional. Whether to show thumbnail. Default 'true'.
- *    @type string          $show_content          Optional. Whether to show content. Default 'true'.
- *    @type string          $author__in            Optional. An array of author IDs to query from. Default empty.
- *    @type string          $col                   Optional. Column. Default empty
- *    @type string          $progress_bar          Optional. Whether to show progress bar. Default 'false'.
- *    @type boolean         $array                 Optional. Unused. Default false.
- *    @type string          $course_grid           Optional. Whether to show progress bar. Default 'true'.
+ *    @type string          $include_outer_wrapper Whether to include outer wrapper.  Default 'true'.
+ *    @type int             $paged                 Is the query paged. Default false.
+ *    @type string          $post_type             Post type slug. Default 1.
+ *    @type string          $post_status           The post status. Default 'publish'.
+ *    @type string          $order                 Designates ascending ('ASC') or descending ('DESC') order. Default 'DESC'.
+ *    @type string          $orderby               The name of the field to order posts by. Default 'ID'.
+ *    @type int|false       $user_id               User ID. Default false
+ *    @type string          $mycourses             Type of courses. Can be 'enrolled', 'not-enrolled'. Default null
+ *    @type string          $status                Status of the course. Default null
+ *    @type string          $post__in              List of posts IDs to check. Default null.
+ *    @type string          $course_id             Course ID Default empty.
+ *    @type string          $meta_key              Meta key Default empty.
+ *    @type string          $meta_value            Meta Value. Default empty.
+ *    @type string          $meta_compare          Meta compare operator Default empty.
+ *    @type string          $tag                   Tag slug. Comma-separated (either), Plus-separated (all). Default empty.
+ *    @type int|array       $tag_id                An array of tag ids (AND in). Default 0.
+ *    @type string|array    $tag__and              An array of tag ids (AND in). Default empty.
+ *    @type string|array    $tag__in               An array of tag ids (OR in). Default empty.
+ *    @type string|array    $tag__not_in           An array of tag ids (NOT in). Default empty.
+ *    @type string|array    $tag_slug__and         An array of tag slugs (AND in). Default empty.
+ *    @type string|array    $tag_slug__in          An array of tag slugs (OR in). Default empty.
+ *    @type string          $cat                   Category ID or comma-separated list of IDs (this or any children). Default empty.
+ *    @type string          $category_name         Use category slug (not name, this or any children). Default 0.
+ *    @type string|array    $category__and         An array of category IDs (AND in). Default empty.
+ *    @type string|array    $category__in          An array of category IDs (OR in, no children). Default empty.
+ *    @type string|array    $category__not_in      An array of category IDs (NOT in). Default empty.
+ *    @type string          $tax_compare           Taxonomy compare operator. Default 'AND'
+ *    @type string          $categoryselector      Category selector. Default empty.
+ *    @type string          $show_thumbnail        Whether to show thumbnail. Default 'true'.
+ *    @type string          $show_content          Whether to show content. Default 'true'.
+ *    @type string          $author__in            An array of author IDs to query from. Default empty.
+ *    @type string          $col                   Column. Default empty
+ *    @type string          $progress_bar          Whether to show progress bar. Default 'false'.
+ *    @type boolean         $array                 Unused. Default false.
+ *    @type string          $course_grid           Whether to show progress bar. Default 'true'.
+ *    @type string|array    $price_type            An array of price types to show. Default empty.
  * }
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string The `ld_course_list` shortcode output.
  */
-function ld_course_list( $attr ) {
+function ld_course_list( $attr = array(), $content = '' ) {
 	global $learndash_shortcode_used;
 
 	/**
@@ -124,6 +125,7 @@ function ld_course_list( $attr ) {
 			'progress_bar'          => 'false',
 			'array'                 => false,
 			'course_grid'           => 'true',
+			'price_type'            => '',
 		),
 		$attr
 	);
@@ -191,21 +193,22 @@ function ld_course_list( $attr ) {
 
 		$atts['course_status'] = array();
 		if ( 'enrolled' === $atts['mycourses'] ) {
-			if ( ! empty( $atts['status'] ) ) {
+			if ( empty( $atts['status'] ) ) {
+				$atts['status'] = 'completed,in_progress,not_started';
+			}
 
-				if ( ! is_array( $atts['status'] ) ) {
-					$atts['status'] = explode( ',', $atts['status'] );
-				}
-				$atts['status'] = array_map( 'trim', $atts['status'] );
+			if ( ! is_array( $atts['status'] ) ) {
+				$atts['status'] = explode( ',', $atts['status'] );
+			}
+			$atts['status'] = array_map( 'trim', $atts['status'] );
 
-				foreach ( $atts['status'] as $course_status ) {
-					if ( 'completed' == $course_status ) {
-						$atts['course_status'][] = 'COMPLETED';
-					} elseif ( 'in_progress' == $course_status ) {
-						$atts['course_status'][] = 'IN_PROGRESS';
-					} elseif ( 'not_started' == $course_status ) {
-						$atts['course_status'][] = 'NOT_STARTED';
-					}
+			foreach ( $atts['status'] as $course_status ) {
+				if ( 'completed' == $course_status ) {
+					$atts['course_status'][] = 'COMPLETED';
+				} elseif ( 'in_progress' == $course_status ) {
+					$atts['course_status'][] = 'IN_PROGRESS';
+				} elseif ( 'not_started' == $course_status ) {
+					$atts['course_status'][] = 'NOT_STARTED';
 				}
 			}
 		} else {
@@ -815,104 +818,131 @@ function ld_course_list( $attr ) {
 
 	// Logic to determine the exact post ids to query. This will help drive the category selectors below and prevent extra queries.
 
+	$courses_pricetype = array();
+	if ( isset( $atts['price_type'] ) && ! empty( $atts['price_type'] ) ) {
+		$price_type = explode( ',', $atts['price_type'] );
+		foreach ( $price_type as $list ) {
+			$courses_pricetype = array_merge( $courses_pricetype, learndash_get_posts_by_price_type( learndash_get_post_type_slug( 'course' ), $list ) );
+		}
+		// If no courses are found with the selected price type we abort.
+		if ( empty( $courses_pricetype ) ) {
+			return;
+		}
+	}
+
 	$shortcode_course_id = null;
-	if ( is_null( $post__in ) ) {
-		if ( in_array( $atts['post_type'], learndash_get_post_types( 'course' ), true ) ) {
-			if ( 'enrolled' == $mycourses ) {
-				$filter['post__in'] = learndash_user_get_enrolled_courses( $atts['user_id'] );
+
+	if ( ( in_array( $atts['post_type'], learndash_get_post_types( 'course' ), true ) ) && ( is_null( $post__in ) ) ) {
+		if ( 'enrolled' == $mycourses ) {
+			$courses_enrolled   = array();
+			$filter['post__in'] = learndash_user_get_enrolled_courses( $atts['user_id'] );
+			if ( empty( $filter['post__in'] ) ) {
+				return;
+			}
+
+			if ( ! empty( $course_status ) ) {
+				$activity_query_args             = array(
+					'post_types'      => 'sfwd-courses',
+					'activity_types'  => 'course',
+					'activity_status' => $course_status,
+					'orderby_order'   => 'users.ID, posts.post_title',
+					'date_format'     => 'F j, Y H:i:s',
+					'per_page'        => '',
+				);
+				$activity_query_args['user_ids'] = array( $atts['user_id'] );
+				$activity_query_args['post_ids'] = $filter['post__in'];
+
+				$user_courses_reports = learndash_reports_get_activity( $activity_query_args );
+
+				$user_courses_ids = array();
+				if ( ! empty( $user_courses_reports['results'] ) ) {
+					foreach( $user_courses_reports['results'] as $result ) {
+						if ( in_array( 'COMPLETED', $course_status, true ) ) {
+							if ( ! empty( $result->activity_completed ) ) {
+								$user_courses_ids[] = absint( $result->post_id );
+							}
+						}
+						if ( in_array( 'IN_PROGRESS', $course_status, true ) ) {
+							if ( ( ! empty( $result->activity_started ))  && ( empty( $result->activity_completed ) ) ) {
+								$user_courses_ids[] = absint( $result->post_id );
+							}
+						}
+
+						if ( in_array( 'NOT_STARTED', $course_status, true ) ) {
+							if ( empty( $result->activity_started ) ) {
+								$user_courses_ids[] = absint( $result->post_id );
+							}
+						}
+					}
+				}
+
+				if ( ! empty( $user_courses_ids ) ) {
+					$courses_enrolled = array_map( 'absint', $user_courses_ids );
+				} else {
+					return;
+				}
+			}
+
+			if ( ! empty( $courses_pricetype ) && ! empty( $courses_enrolled ) ) {
+				$filter['post__in'] = array_intersect( $courses_pricetype, $courses_enrolled );
+			} elseif ( ! empty( $courses_pricetype ) ) {
+				$filter['post__in'] = $courses_pricetype;
+			} elseif ( ! empty( $courses_enrolled ) ) {
+				$filter['post__in'] = $courses_enrolled;
+			}
+
+			if ( empty( $filter['post__in'] ) ) {
+				return;
+			}
+
+		} elseif ( 'not-enrolled' == $mycourses ) {
+			$atts['status'] = '';
+			$courses_enrolled = learndash_user_get_enrolled_courses( $atts['user_id'] );
+			if ( ! empty( $courses_pricetype ) && ! empty( $courses_enrolled ) ) {
+				$filter_pricetype_enrolled = array_diff( $courses_pricetype, $courses_enrolled );
+				if ( ! empty( $filter_pricetype_enrolled ) ) {
+					$filter['post__in'] = $filter_pricetype_enrolled;
+				} else{
+					return;
+					$filter['post__not_in'] = $courses_enrolled;
+				}
+			} elseif ( ! empty( $courses_pricetype ) ) {
+				$filter['post__in'] = $courses_pricetype;
+			} elseif ( ! empty( $courses_enrolled ) ) {
+				$filter['post__not_in'] = $courses_enrolled;
+			}
+
+		} elseif ( ! empty( $courses_pricetype ) ) {
+			$filter['post__in'] = $courses_pricetype;
+		}
+	} elseif ( ( learndash_get_post_type_slug( 'group' ) === $atts['post_type'] ) && ( is_null( $post__in ) ) ) {
+		if ( 'enrolled' == $mygroups ) {
+			$user_group_ids = learndash_get_users_group_ids( $atts['user_id'] );
+			if ( empty( $user_group_ids ) ) {
+				return;
+			}
+
+			if ( ! empty( $group_status ) ) {
+				foreach ( $user_group_ids as $group_id ) {
+					$group_status = learndash_get_user_group_status( $group_id, $atts['user_id'], true );
+					if ( ( ! empty( $group_status ) ) && ( ! empty( $atts['group_status'] ) ) && ( in_array( $group_status, $atts['group_status'] ) ) ) {
+						$filter['post__in'][] = $group_id;
+					}
+				}
 				if ( empty( $filter['post__in'] ) ) {
 					return;
 				}
-
-				if ( ! empty( $course_status ) ) {
-					$activity_query_args             = array(
-						'post_types'      => 'sfwd-courses',
-						'activity_types'  => 'course',
-						'activity_status' => $course_status,
-						'orderby_order'   => 'users.ID, posts.post_title',
-						'date_format'     => 'F j, Y H:i:s',
-						'per_page'        => '',
-					);
-					$activity_query_args['user_ids'] = array( $atts['user_id'] );
-					$activity_query_args['post_ids'] = $filter['post__in'];
-
-					$user_courses_reports = learndash_reports_get_activity( $activity_query_args );
-
-					/*
-					if ( ! empty( $user_courses_reports['results'] ) ) {
-						// foreach( $user_courses_reports['results'] as $result ) {
-						$filter['post__in'] = wp_list_pluck( $user_courses_reports['results'], 'post_id' );
-						$filter['post__in'] = array_map( 'absint', $filter['post__in'] );
-					} else {
-						$filter['post__in'] = array( 0 );
-					}
-					*/
-
-					$user_courses_ids = array();
-					if ( ! empty( $user_courses_reports['results'] ) ) {
-						foreach( $user_courses_reports['results'] as $result ) {
-							if ( in_array( 'COMPLETED', $course_status, true ) ) {
-								if ( ! empty( $result->activity_completed ) ) {
-									$user_courses_ids[] = absint( $result->post_id );
-								}
-							}
-							if ( in_array( 'IN_PROGRESS', $course_status, true ) ) {
-								if ( ( ! empty( $result->activity_started ))  && ( empty( $result->activity_completed ) ) ) {
-									$user_courses_ids[] = absint( $result->post_id );
-								}
-							}
-
-							if ( in_array( 'NOT_STARTED', $course_status, true ) ) {
-								if ( empty( $result->activity_started ) ) {
-									$user_courses_ids[] = absint( $result->post_id );
-								}
-							}
-						}
-					}
-
-					if ( ! empty( $user_courses_ids ) ) {
-						$filter['post__in'] = array_map( 'absint', $user_courses_ids );
-					} else {
-						$filter['post__in'] = array( 0 );
-					}
-				}
-			} elseif ( 'not-enrolled' == $mycourses ) {
-				if ( in_array( $atts['post_type'], learndash_get_post_types( 'course' ), true ) ) {
-					$filter['post__not_in'] = learndash_user_get_enrolled_courses( $atts['user_id'] );
-				}
-
-				if ( empty( $filter['post__not_in'] ) ) {
-					unset( $filter['post__not_in'] );
-				}
+			} else {
+				$filter['post__in'] = $user_group_ids;
 			}
-		} elseif ( learndash_get_post_type_slug( 'group' ) === $atts['post_type'] ) {
-			if ( 'enrolled' == $mygroups ) {
-				$user_group_ids = learndash_get_users_group_ids( $atts['user_id'] );
-				if ( empty( $user_group_ids ) ) {
-					return;
-				}
-
-				if ( ! empty( $group_status ) ) {
-					foreach ( $user_group_ids as $group_id ) {
-						$group_status = learndash_get_user_group_status( $group_id, $atts['user_id'], true );
-						if ( ( ! empty( $group_status ) ) && ( ! empty( $atts['group_status'] ) ) && ( in_array( $group_status, $atts['group_status'] ) ) ) {
-							$filter['post__in'][] = $group_id;
-						}
-					}
-					if ( empty( $filter['post__in'] ) ) {
-						return;
-					}
-				} else {
-					$filter['post__in'] = $user_group_ids;
-				}
-			} elseif ( 'not-enrolled' == $mygroups ) {
-				$filter['post__not_in'] = learndash_get_users_group_ids( $atts['user_id'] );
-				if ( empty( $filter['post__not_in'] ) ) {
-					unset( $filter['post__not_in'] );
-				}
+		} elseif ( 'not-enrolled' == $mygroups ) {
+			$filter['post__not_in'] = learndash_get_users_group_ids( $atts['user_id'] );
+			if ( empty( $filter['post__not_in'] ) ) {
+				unset( $filter['post__not_in'] );
 			}
 		}
 	}
+
 
 	/**
 	 * Filters course list shortcode query arguments.
@@ -1315,7 +1345,7 @@ function ld_course_list( $attr ) {
 	return apply_filters( 'ld_course_list', $output, $atts, $filter );
 }
 
-add_shortcode( 'ld_course_list', 'ld_course_list' );
+add_shortcode( 'ld_course_list', 'ld_course_list', 10, 2 );
 
 /**
  * Handles the AJAX pagination for the course list shortcode.

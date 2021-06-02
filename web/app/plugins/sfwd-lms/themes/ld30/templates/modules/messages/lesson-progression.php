@@ -1,5 +1,13 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+/**
+ * LearnDash LD30 Displays the lesson progression message
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
+ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -72,6 +80,8 @@ if ( ! empty( $previous_item ) && $previous_item instanceof WP_Post ) {
  *
  * The dynamic portion of the hook name, `$context`, refers to the context of progress,
  * such as `course`, `lesson`, `topic`, `quiz`, etc.
+ *
+ * @since 3.0.0
  *
  * @param array $alert An array of Progress alert arguments.
  */

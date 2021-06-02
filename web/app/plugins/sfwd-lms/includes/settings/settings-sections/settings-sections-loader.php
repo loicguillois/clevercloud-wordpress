@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Sections Loader.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

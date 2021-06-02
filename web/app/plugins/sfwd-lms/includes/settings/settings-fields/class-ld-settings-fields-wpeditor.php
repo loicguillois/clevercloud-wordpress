@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Settings field WPEditor.
+ * LearnDash WPEditor Settings Field.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Field
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Fields' ) ) && ( ! class_exists( 'LearnDash_Settings_Fields_WPEditor' ) ) ) {
 	/**
-	 * Class to create the settings field.
+	 * LearnDash WPEditor Settings Field.
+	 *
+	 * @since 3.0.0
+	 * @uses LearnDash_Settings_Fields
 	 */
 	class LearnDash_Settings_Fields_WPEditor extends LearnDash_Settings_Fields {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		public function __construct() {
 			$this->field_type = 'wpeditor';
@@ -28,7 +33,7 @@ if ( ( class_exists( 'LearnDash_Settings_Fields' ) ) && ( ! class_exists( 'Learn
 		/**
 		 * Function to crete the settiings field.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param array $field_args An array of field arguments used to process the ouput.
 		 * @return void
@@ -64,7 +69,7 @@ if ( ( class_exists( 'LearnDash_Settings_Fields' ) ) && ( ! class_exists( 'Learn
 		/**
 		 * Default validation function. Should be overriden in Field subclass.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param mixed  $val Value to validate.
 		 * @param string $key Key of value being validated.

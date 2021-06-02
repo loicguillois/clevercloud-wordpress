@@ -29,7 +29,7 @@
  *
  * @since 2.1.0
  *
- * @package LearnDash\Topic
+ * @package LearnDash\Templates\Legacy\Quiz
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

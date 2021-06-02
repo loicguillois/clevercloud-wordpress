@@ -1,9 +1,8 @@
 <?php
 /**
- * Shortcode for ld_course_certificate
+ * LearnDash `[ld_course_certificate]` shortcode processing.
  *
  * @since 2.1.0
- *
  * @package LearnDash\Shortcodes
  */
 
@@ -12,17 +11,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `ld_course_certificate` shortcode output.
+ * Builds the `[ld_course_certificate]` shortcode output.
  *
  * @global boolean $learndash_shortcode_used
  *
  * @since 2.1.0
  *
  * @param array $atts The ld_course_certificate shortcode attributes.
+ * @param array  $atts {
+ *    An array of shortcode attributes.
+ *
+ *    @type int $course_id Course ID. Default 0.
+ * }
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string Shortcode output.
  */
-function ld_course_certificate_shortcode( $atts ) {
+function ld_course_certificate_shortcode( $atts = array(), $content = '' ) {
 	global $learndash_shortcode_used;
 	$learndash_shortcode_used = true;
 
@@ -51,5 +56,4 @@ function ld_course_certificate_shortcode( $atts ) {
 	 */
 	return apply_filters( 'ld_course_certificate', "<div id='learndash_course_certificate'><a href='" . $link . "' class='btn-blue' target='_blank'>" . apply_filters( 'ld_certificate_link_label', esc_html__( 'PRINT YOUR CERTIFICATE', 'learndash' ), $user_id, $course_id ) . '</a></div>', $link, $course_id, $user_id );
 }
-
-add_shortcode( 'ld_course_certificate', 'ld_course_certificate_shortcode' );
+add_shortcode( 'ld_course_certificate', 'ld_course_certificate_shortcode', 10, 2 );

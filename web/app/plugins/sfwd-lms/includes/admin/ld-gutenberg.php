@@ -4,7 +4,9 @@
  *
  * Used to customize Gutenberg behavior.
  *
+ * @since 3.0.0
  * @package LearnDash
+
  */
 
 namespace LearnDash\Admin\Gutenberg;
@@ -17,6 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Disables the Gutenberg editor on specific custom post types.
  *
  * Fires on `use_block_editor_for_post_type` and `gutenberg_can_edit_post_type` hook.
+ *
+ * @since 3.0.0
  *
  * @param boolean $is_enabled Whether the Gutenberg editor is enabled or not.
  * @param string  $post_type  Current post type slug.

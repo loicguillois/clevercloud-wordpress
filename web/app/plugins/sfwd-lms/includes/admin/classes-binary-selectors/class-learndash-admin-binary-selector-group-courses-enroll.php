@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Binary Selector Group Courses Enroll Class.
+ * LearnDash Binary Selector Group Courses Enroll.
  *
- * @package LearnDash
- * @subpackage Admin Settings
+ * @since 3.2.0
+ * @package LearnDash\Settings
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,13 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( ! class_exists( 'Learndash_Binary_Selector_Group_Courses_Enroll' ) ) && ( class_exists( 'Learndash_Binary_Selector_Posts' ) ) ) {
+
 	/**
-	 * Class for LearnDash binary Selector Group Courses Enroll.
+	 *  Class LearnDash Binary Selector Group Courses Enroll.
+	 *
+	 * @since 3.2.0
+	 * @uses Learndash_Binary_Selector_Posts
 	 */
 	class Learndash_Binary_Selector_Group_Courses_Enroll extends Learndash_Binary_Selector_Posts {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.2.0
 		 *
 		 * @param array $args Array of arguments for class.
 		 */

@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays the infobar in group context
+ * LearnDash LD30 Displays the infobar in group context
  *
  * @var int    $group_id     Group ID.
  * @var int    $user_id      User ID.
@@ -10,7 +10,7 @@
  *
  * @since 3.2.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\LD30\Modules
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -114,7 +114,11 @@ if ( is_user_logged_in() && isset( $has_access ) && $has_access ) :
 		/**
 		 * Action to add custom content inside the un-enrolled ld-course-status infobox before the price
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
+		 *
+		 * @param string|false $post_type Post type slug.
+		 * @param int          $group_id  Group ID.
+		 * @param int          $user_id   User ID.
 		 */
 		do_action( 'learndash-group-infobar-noaccess-price-before', get_post_type(), $group_id, $user_id );
 		?>

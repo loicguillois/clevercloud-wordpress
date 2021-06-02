@@ -1,17 +1,67 @@
 <?php
+/**
+ * LearnDash REST API V1 Post Controller.
+ *
+ * @since 2.5.8
+ * @package LearnDash\REST\V1
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'LD_REST_Posts_Controller_V1' ) ) {
+if ( ( ! class_exists( 'LD_REST_Posts_Controller_V1' ) ) && ( class_exists( 'WP_REST_Posts_Controller' ) ) ) {
+
+	/**
+	 * Class LearnDash REST API V1 Post Controller.
+	 *
+	 * @since 2.5.8
+	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	abstract class LD_REST_Posts_Controller_V1 extends WP_REST_Posts_Controller {
 
-		protected $version         = 'v1';
-		protected $sub_controllers = array();
-		protected $course_post     = null;
-		protected $lesson_post     = null;
-		protected $topic_post      = null;
+		/**
+		 * REST API version.
+		 *
+		 * @var $version string.
+		 */
+		protected $version = 'v1';
 
+		/**
+		 * REST API Sub-Controllers
+		 *
+		 * @var array $sub_controllers.
+		 */
+		protected $sub_controllers = array();
+
+		/**
+		 * Current Course Post object
+		 *
+		 * @var WP_Post $course_post.
+		 */
+		protected $course_post = null;
+
+		/**
+		 * Current Lesson Post object
+		 *
+		 * @var WP_Post $lesson_post.
+		 */
+		protected $lesson_post = null;
+
+		/**
+		 * Current Topic Post object
+		 *
+		 * @var WP_Post $topic_post.
+		 */
+		protected $topic_post = null;
+
+		/**
+		 * Public constructor for class
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param string $post_type Post type.
+		 */
 		public function __construct( $post_type = '' ) {
 			parent::__construct( $post_type );
 
@@ -20,6 +70,13 @@ if ( ! class_exists( 'LD_REST_Posts_Controller_V1' ) ) {
 			add_filter( "rest_prepare_{$this->post_type}", array( $this, 'rest_prepare_response_filter' ), 20, 3 );
 		}
 
+		/**
+		 * Registers the routes for the objects of the controller.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @see register_rest_route() in WordPress core.
+		 */
 		public function register_routes_wpv2() {
 
 			if ( class_exists( 'LD_REST_Posts_Gutenberg_Controller' ) ) {
@@ -28,6 +85,11 @@ if ( ! class_exists( 'LD_REST_Posts_Controller_V1' ) ) {
 			}
 		}
 
+		/**
+		 * Prepare the LearnDash Post Type Settings.
+		 *
+		 * @since 2.5.8
+		 */
 		public function register_fields() {
 			global $sfwd_lms;
 
@@ -55,12 +117,7 @@ if ( ! class_exists( 'LD_REST_Posts_Controller_V1' ) ) {
 							$field_args['sanitize_callback'] = 'sanitize_key';
 						}
 
-						//if ( ! isset( $field_args['schema']['validate_callback'] ) ) {
-							$field_args['schema']['validate_callback'] = array( $this, 'ld_rest_validate_request_arg' );
-						//}
-						//if ( ! isset( $field_args['validate_callback'] ) ) {
-						//	$field_args['validate_callback'] = array( $this, 'ld_rest_validate_request_arg' );
-						//}
+						$field_args['schema']['validate_callback'] = array( $this, 'ld_rest_validate_request_arg' );
 
 						if ( ( ! isset( $field_args['schema'] ) ) || ( empty( $field_args['schema'] ) ) ) {
 							$field_args['schema'] = array();
@@ -114,15 +171,29 @@ if ( ! class_exists( 'LD_REST_Posts_Controller_V1' ) ) {
 			}
 		}
 
+		/**
+		 * Validate REST request args.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param mixed  $value REST request value.
+		 * @param array  $args  REST request args
+		 * @param string $param REST request param
+		 */
 		public function ld_rest_validate_request_arg( $value, $args, $param = '' ) {
-			//error_log('in '. __FUNCTION__ );
-			//error_log('value<pre>'. print_r($value, true) .'</pre>');
-			//error_log('args<pre>'. print_r($args, true) .'</pre>');
-			//error_log('param<pre>'. print_r($param, true) .'</pre>');
-
 			return true;
 		}
 
+		/**
+		 * Get Field Value
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param array  $postdata   Post data
+		 * @param string $field_name Field name
+		 * @param object $request    WP_REST_Request instance
+		 * @param string $post_type  Post Type
+		 */
 		public function ld_get_field_value( array $postdata, $field_name, WP_REST_Request $request, $post_type ) {
 			if ( ( isset( $postdata['id'] ) ) && ( ! empty( $postdata['id'] ) ) ) {
 				$ld_post = get_post( $postdata['id'] );
@@ -153,6 +224,16 @@ if ( ! class_exists( 'LD_REST_Posts_Controller_V1' ) ) {
 			}
 		}
 
+		/**
+		 * Update Field Value
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param mixed  $value      Field value
+		 * @param object $post       WP_Post instance
+		 * @param object $request    WP_REST_Request instance
+		 * @param string $post_type  Post Type
+		 */
 		public function ld_update_field_value( $value, WP_Post $post, $field_name, WP_REST_Request $request, $post_type ) {
 			switch ( $field_name ) {
 				case 'course_prerequisite_enabled':
@@ -176,8 +257,12 @@ if ( ! class_exists( 'LD_REST_Posts_Controller_V1' ) ) {
 		}
 
 		/**
-		 * For LearnDash post type we override the default order/orderby
-		 * to ASC/title instead of the WP default DESC/date.
+		 * Filters collection parameters for the posts controller.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param array $query_params Quest params array.
+		 * @param WP_Post_Type $post_type    Post type object.
 		 */
 		public function rest_collection_params_filter( $query_params, $post_type ) {
 			global $learndash_post_types;
@@ -196,6 +281,16 @@ if ( ! class_exists( 'LD_REST_Posts_Controller_V1' ) ) {
 			return $query_params;
 		}
 
+		/**
+		 * Filter query args.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @param array           $query_args Key value array of query var to query value.
+		 * @param WP_REST_Request $request    The request used.
+		 *
+		 * @return array Key value array of query var to query value.
+		 */
 		public function rest_query_filter( $args, $request ) {
 			return $args;
 		}
@@ -203,13 +298,14 @@ if ( ! class_exists( 'LD_REST_Posts_Controller_V1' ) ) {
 		/**
 		 * Override the REST response links. This is needed when Course Shared Steps is enabled.
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
+		 *
 		 * @param object $response WP_REST_Response instance.
 		 * @param object $post     WP_Post instance.
 		 * @param object $request  WP_REST_Request instance.
 		 */
 		public function rest_prepare_response_filter( WP_REST_Response $response, WP_Post $post, WP_REST_Request $request ) {
-			if ( ( LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Section_Permalinks', 'nested_urls' ) == 'yes' ) && ( in_array( $post->post_type, learndash_get_post_types( 'course_steps' ) ) ) ) {
+			if ( ( LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Section_Permalinks', 'nested_urls' ) == 'yes' ) && ( in_array( $post->post_type, learndash_get_post_types( 'course_steps' ), true ) ) ) {
 				$request_params_json = $request->get_json_params();
 				if ( ( isset( $request_params_json['course_id'] ) ) && ( ! empty( $request_params_json['course_id'] ) ) ) {
 					$course_id = absint( $request_params_json['course_id'] );

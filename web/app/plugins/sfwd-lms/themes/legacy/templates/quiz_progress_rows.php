@@ -1,5 +1,15 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+/**
+ * Displays the Quiz Progress rows
+ * Available Variables:
+ * none
+ *
+ * @since 2.1.0
+ *
+ * @package LearnDash\Templates\Legacy\Quiz
+ */
+
+ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 ?>

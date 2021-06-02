@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Settings field Checkbox.
+ * LearnDash Checkbox Settings Field.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Fields
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,12 +13,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ( class_exists( 'LearnDash_Settings_Fields' ) ) && ( ! class_exists( 'LearnDash_Settings_Fields_Checkbox' ) ) ) {
 
 	/**
-	 * Class to create the settings field.
+	 * Class LearnDash Checkbox Settings Field.
+	 *
+	 * @since 3.0.0
+	 * @uses LearnDash_Settings_Fields
 	 */
 	class LearnDash_Settings_Fields_Checkbox extends LearnDash_Settings_Fields {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		public function __construct() {
 			$this->field_type = 'checkbox';
@@ -29,7 +34,7 @@ if ( ( class_exists( 'LearnDash_Settings_Fields' ) ) && ( ! class_exists( 'Learn
 		/**
 		 * Function to crete the settiings field.
 		 *
-		 * @since 2.4
+		 * @since 3.0.0
 		 *
 		 * @param array $field_args An array of field arguments used to process the ouput.
 		 * @return void
@@ -111,7 +116,7 @@ if ( ( class_exists( 'LearnDash_Settings_Fields' ) ) && ( ! class_exists( 'Learn
 		/**
 		 * Validate field
 		 *
-		 * @since 2.6.0
+		 * @since 3.0.0
 		 *
 		 * @param mixed  $val Value to validate.
 		 * @param string $key Key of value being validated.
@@ -140,6 +145,47 @@ if ( ( class_exists( 'LearnDash_Settings_Fields' ) ) && ( ! class_exists( 'Learn
 			}
 
 			return false;
+		}
+
+		/**
+		 * Convert Settings Field value to REST value.
+		 *
+		 * @since 3.4.1
+		 *
+		 * @param mixed  $val        Value from REST to be converted to internal value.
+		 * @param string $key        Key field for value.
+		 * @param array  $field_args Array of field args.
+		 * @param object $request    Request object.
+		 */
+		public function field_value_to_rest_value( $val, $key, $field_args, WP_REST_Request $request ) {
+			if ( ( isset( $field_args['field']['type'] ) ) && ( $field_args['field']['type'] === $this->field_type ) ) {
+				if ( in_array( $val, array( 'on', 'yes' ), true ) ) {
+					$val = true;
+				} else {
+					$val = false;
+				}
+			}
+			return $val;
+		}
+
+		/**
+		 * Convert REST submit value to internal Settings Field acceptable value.
+		 *
+		 * @since 3.4.1
+		 *
+		 * @param mixed  $val         Value from REST to be converted to internal value.
+		 * @param string $key         Key field for value.
+		 * @param array  $fields_args Array of field args.
+		 */
+		public function rest_value_to_field_value( $val = '', $key = '', $field_args = array() ) {
+			if ( ( isset( $field_args['field']['type'] ) ) && ( $field_args['field']['type'] === $this->field_type ) ) {
+				if ( true === $val ) {
+					$val = 'on';
+				} else {
+					$val = '';
+				}
+			}
+			return $val;
 		}
 	}
 }

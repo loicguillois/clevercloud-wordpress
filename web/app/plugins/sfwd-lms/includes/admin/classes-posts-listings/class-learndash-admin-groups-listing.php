@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Groups (groups) Posts Listing Class.
+ * LearnDash Groups (groups) Posts Listing.
  *
- * @package LearnDash
- * @subpackage admin
+ * @since 3.2.0
+ * @package LearnDash\Group\Listing
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,13 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'Learndash_Admin_Groups_Listing' ) ) ) {
+
 	/**
-	 * Class for LearnDash Groups Listing Pages.
+	 * Class LearnDash Groups (groups) Posts Listing.
+	 *
+	 * @since 3.2.0
+	 * @uses Learndash_Admin_Posts_Listing
 	 */
 	class Learndash_Admin_Groups_Listing extends Learndash_Admin_Posts_Listing {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.2.0
 		 */
 		public function __construct() {
 			$this->post_type = learndash_get_post_type_slug( 'group' );
@@ -27,6 +33,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Called via the WordPress init action hook.
+		 *
+		 * @since 3.2.3
 		 */
 		public function listing_init() {
 			if ( $this->listing_init_done ) {
@@ -74,36 +82,111 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Call via the WordPress load sequence for admin pages.
+		 *
+		 * @since 3.2.3
 		 */
 		public function on_load_listing() {
 			if ( $this->post_type_check() ) {
 				parent::on_load_listing();
 
 				add_filter( 'learndash_listing_table_query_vars_filter', array( $this, 'listing_table_query_vars_filter_groups' ), 30, 3 );
+
+				/**
+				 * Convert the Group Post Meta items.
+				 *
+				 * @since 3.4.1
+				 */
+				$ld_data_upgrade_group_post_meta = Learndash_Admin_Data_Upgrades::get_instance( 'Learndash_Admin_Data_Upgrades_Group_Post_Meta' );
+				if ( ( $ld_data_upgrade_group_post_meta ) && ( is_a( $ld_data_upgrade_group_post_meta, 'Learndash_Admin_Data_Upgrades_Group_Post_Meta' ) ) ) {
+					$ld_data_upgrade_group_post_meta->process_post_meta( false );
+				}
 			}
 		}
 
-		/** This function is documented in includes/admin/class-learndash-admin-posts-listing.php */
+		/**
+		 * Listing table query vars
+		 *
+		 * @since 3.2.3
+		 *
+		 * @param array  $q_vars    Array of query vars.
+		 * @param string $post_type Post Type being displayed.
+		 * @param array  $query     Main Query.
+		 */
 		public function listing_table_query_vars_filter_groups( $q_vars, $post_type, $query ) {
-			$user_selector = $this->get_selector( 'user_id' );
-			if ( ( $user_selector ) && ( isset( $user_selector['selected'] ) ) && ( ! empty( $user_selector['selected'] ) ) ) {
-				$user_group_ids = learndash_get_users_group_ids( $user_selector['selected'], true );
-				if ( ! empty( $user_group_ids ) ) {
-					$q_vars['post__in'] = $user_group_ids;
-				} else {
-					$q_vars['post__in'] = array( 0 );
+			if ( $post_type === $this->post_type ) {
+				if ( ! learndash_is_admin_user() ) {
+					if ( ( learndash_is_group_leader_user( get_current_user_id() ) ) && ( 'basic' === learndash_get_group_leader_manage_groups() ) ) {
+						$group_ids = learndash_get_administrators_group_ids( get_current_user_id() );
+						$group_ids = array_map( 'absint', $group_ids );
+						if ( ! empty( $group_ids ) ) {
+							if ( empty( $q_vars['post__in'] ) ) {
+								$q_vars['post__in'] = $group_ids;
+							} else {
+								$q_vars['post__in'] = array_intersect( $q_vars['post__in'], $group_ids );
+								if ( empty( $group_ids ) ) {
+									$q_vars['post__in'] = array( 0 );
+									return $q_vars;
+								}
+							}
+						} else {
+							$q_vars['post__in'] = array( 0 );
+							return $q_vars;
+						}
+					}
+				}
+				
+				$user_selector = $this->get_selector( 'user_id' );
+				if ( ( $user_selector ) && ( isset( $user_selector['selected'] ) ) && ( ! empty( $user_selector['selected'] ) ) ) {
+					$group_ids = learndash_get_users_group_ids( $user_selector['selected'], true );
+					$group_ids = array_map( 'absint', $group_ids );
+					if ( ! empty( $group_ids ) ) {
+						if ( empty( $q_vars['post__in'] ) ) {
+							$q_vars['post__in'] = $group_ids;
+						} else {
+							$q_vars['post__in'] = array_intersect( $q_vars['post__in'], $group_ids );
+							if ( empty( $group_ids ) ) {
+								$q_vars['post__in'] = array( 0 );
+								return $q_vars;
+							}
+						}
+					} else {
+						$q_vars['post__in'] = array( 0 );
+						return $q_vars;
+					}
+				}
+
+				// Filter the Groups listing for the Group Membership for the Post.
+				// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+				if ( ( isset( $_GET['ld-group-membership-post-id'] ) ) && ( ! empty( $_GET['ld-group-membership-post-id'] ) ) ) {
+					// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+					$group_membership_settings = learndash_get_post_group_membership_settings( absint( $_GET['ld-group-membership-post-id'] ) );
+					if ( ! empty( $group_membership_settings['groups_membership_groups'] ) ) {
+						$group_ids = $group_membership_settings['groups_membership_groups'];
+						if ( empty( $q_vars['post__in'] ) ) {
+							$q_vars['post__in'] = $group_ids;
+						} else {
+							$q_vars['post__in'] = array_intersect( $q_vars['post__in'], $group_ids );
+							if ( empty( $group_ids ) ) {
+								$q_vars['post__in'] = array( 0 );
+								return $q_vars;
+							}
+						}
+					} else {
+						$q_vars['post__in'] = array( 0 );
+						return $q_vars;
+					}
 				}
 			}
 
-			// Filter the Groups listing for the Group Membership for the Post.
-			// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			if ( ( isset( $_GET['ld-group-membership-post-id'] ) ) && ( ! empty( $_GET['ld-group-membership-post-id'] ) ) ) {
-				// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-				$group_membership_settings = learndash_get_post_group_membership_settings( absint( $_GET['ld-group-membership-post-id'] ) );
-				if ( ! empty( $group_membership_settings['groups_membership_groups'] ) ) {
-					$q_vars['post__in'] = $group_membership_settings['groups_membership_groups'];
-				} else {
-					$q_vars['post__in'] = array( 0 );
+			if ( isset( $_GET['certificate_id'] ) ) {
+				$certificate_id = absint( $_GET['certificate_id'] );
+				if ( ! empty( $certificate_id ) ) {
+					$used_posts = learndash_certificate_get_used_by( $certificate_id, $this->post_type );
+					if ( ! empty( $used_posts ) ) {
+						$q_vars['post__in'] = $used_posts;
+					} else {
+						$q_vars['post__in'] = array( 0 );
+					}
 				}
 			}
 

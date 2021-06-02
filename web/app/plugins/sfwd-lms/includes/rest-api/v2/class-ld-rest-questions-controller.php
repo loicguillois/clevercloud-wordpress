@@ -1,14 +1,14 @@
 <?php
 /**
- * LearnDash V2 REST API Quiz Questions Post Controller.
+ * LearnDash REST API V2 Quiz Questions Post Controller.
  *
  * This Controller class is used for the LearnDash Questions (sfwd-question)
  * custom post type.
  *
  * This class extends the LD_REST_Posts_Controller_V2 class.
  *
- * @package LearnDash
- * @subpackage REST
+ * @since 3.3.0
+ * @package LearnDash\REST\V2
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -16,8 +16,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( ! class_exists( 'LD_REST_Questions_Controller_V2' ) ) && ( class_exists( 'LD_REST_Posts_Controller_V2' ) ) ) {
+
 	/**
-	 * Class REST API Courses Post Controller.
+	 * Class LearnDash REST API V2 Quiz Questions Post Controller.
+	 *
+	 * @since 3.3.0
+	 * @uses LD_REST_Posts_Controller_V2
 	 */
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Questions_Controller_V2 extends LD_REST_Posts_Controller_V2 {
@@ -33,6 +37,8 @@ if ( ( ! class_exists( 'LD_REST_Questions_Controller_V2' ) ) && ( class_exists( 
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.3.0
 		 */
 		public function __construct( $post_type = '' ) {
 			if ( empty( $post_type ) ) {

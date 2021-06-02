@@ -2,8 +2,8 @@
 /**
  * LearnDash Widgets Loader.
  *
- * @package LearnDash
- * @subpackage Widgets
+ * @since 3.2.0
+ * @package LearnDash\Widgets
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

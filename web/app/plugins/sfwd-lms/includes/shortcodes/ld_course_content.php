@@ -1,9 +1,8 @@
 <?php
 /**
- * Shortcode for course_content
+ * LearnDash `[course_content]` shortcode processing.
  *
  * @since 2.1.0
- *
  * @package LearnDash\Shortcodes
  */
 
@@ -12,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `course_content` shortcode output.
+ * Builds the `[course_content]` shortcode output.
  *
  * @global boolean $learndash_shortcode_used
  *
@@ -21,13 +20,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $atts {
  *    The shortcode attributes.
  *
- *    @type int         Optional. $course_id The ID of the course. Default 0.
- *    @type boolean|int Optional. $num       Unused Default false.
+ *    @type int         $course_id The ID of the course. Default 0.
+ *    @type boolean|int $num       Unused Default false.
  * }
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string The output of the shortcode.
  */
-function learndash_course_content_shortcode( $atts ) {
+function learndash_course_content_shortcode( $atts = array(), $content = '' ) {
 
 	global $learndash_shortcode_used;
 
@@ -113,5 +113,4 @@ function learndash_course_content_shortcode( $atts ) {
 	/** This filter is documented in includes/class-ld-cpt-instance.php */
 	return '<div class="learndash ' . $user_has_access . '" id="learndash_post_' . $course_id . '">' . apply_filters( 'learndash_content', $content, $post ) . '</div>';
 }
-
-add_shortcode( 'course_content', 'learndash_course_content_shortcode' );
+add_shortcode( 'course_content', 'learndash_course_content_shortcode', 10, 2 );

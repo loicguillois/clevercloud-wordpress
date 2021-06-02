@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section for Translations LearnDash Metabox.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.5.2
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,7 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Section_Translations_LearnDash' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Section for Translations LearnDash Metabox.
+	 *
+	 * @since 2.5.2
 	 */
 	class LearnDash_Settings_Section_Translations_LearnDash extends LearnDash_Settings_Section {
 
@@ -25,6 +27,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 2.5.2
 		 */
 		protected function __construct() {
 			$this->settings_page_id = 'learndash_lms_translations';
@@ -47,7 +51,7 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * Custom function to metabox.
 		 *
-		 * @since 2.4.0
+		 * @since 2.5.2
 		 */
 		public function show_meta_box() {
 			$ld_translations = new LearnDash_Translations( $this->project_slug );

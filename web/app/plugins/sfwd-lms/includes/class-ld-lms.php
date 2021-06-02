@@ -409,6 +409,14 @@ if ( ! class_exists( 'SFWD_LMS' ) ) {
 			learndash_setup_rewrite_flush();
 
 			if ( ! defined( 'LEARNDASH_ACTIVATED' ) ) {
+				/**
+				 * Define LearnDash LMS - Set during plugin activation.
+				 *
+				 * @since 2.4.0
+				 * @internal Will be set by LearnDash LMS.
+				 *
+				 * @var bool true when plugin is being activated.
+				 */
 				define( 'LEARNDASH_ACTIVATED', true );
 			}
 
@@ -455,6 +463,21 @@ if ( ! class_exists( 'SFWD_LMS' ) ) {
 				$data_upgrade_quiz_questions = Learndash_Admin_Data_Upgrades::get_instance( 'Learndash_Admin_Data_Upgrades_Quiz_Questions' );
 				if ( $data_upgrade_quiz_questions ) {
 					$data_upgrade_quiz_questions->set_last_run_info();
+				}
+
+				$data_upgrade_course_post_meta = Learndash_Admin_Data_Upgrades::get_instance( 'Learndash_Admin_Data_Upgrades_Course_Post_Meta' );
+				if ( $data_upgrade_course_post_meta ) {
+					$data_upgrade_course_post_meta->set_last_run_info();
+				}
+
+				$data_upgrade_group_post_meta = Learndash_Admin_Data_Upgrades::get_instance( 'Learndash_Admin_Data_Upgrades_Group_Post_Meta' );
+				if ( $data_upgrade_group_post_meta ) {
+					$data_upgrade_group_post_meta->set_last_run_info();
+				}
+
+				$data_upgrade_quiz_post_meta = Learndash_Admin_Data_Upgrades::get_instance( 'Learndash_Admin_Data_Upgrades_Quiz_Post_Meta' );
+				if ( $data_upgrade_quiz_post_meta ) {
+					$data_upgrade_quiz_post_meta->set_last_run_info();
 				}
 			}
 
@@ -3250,6 +3273,8 @@ if ( ! class_exists( 'SFWD_LMS' ) ) {
 				/**
 				 * Filters csv object.
 				 *
+				 * @since 2.3.2
+				 *
 				 * @param \lmsParseCSV $csv CSV object.
 				 * @param string       $context The context of the csv object.
 				 */
@@ -4708,6 +4733,16 @@ if ( ! class_exists( 'SFWD_LMS' ) ) {
 			if ( ! defined( 'LEARNDASH_TEMPLATES_DIR' ) ) {
 				$wp_upload_dir    = wp_upload_dir();
 				$ld_templates_dir = trailingslashit( $wp_upload_dir['basedir'] ) . 'learndash/templates/';
+
+				/**
+				 * Define LearnDash LMS - Set the Template override path.
+				 *
+				 * Will be set within the wp-content/uploads/learndash directory.
+				 *
+				 * @since 2.4.0
+				 *
+				 * @var string
+				 */
 				define( 'LEARNDASH_TEMPLATES_DIR', $ld_templates_dir );
 
 				if ( ! file_exists( $ld_templates_dir ) ) {

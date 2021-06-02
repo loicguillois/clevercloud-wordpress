@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Data Upgrades for User Courses
+ * LearnDash Data Upgrades for User Courses.
  *
- * @package LearnDash
- * @subpackage Data Upgrades
+ * @since 2.3.0
+ * @package LearnDash\Data_Upgrades
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,8 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'Learndash_Admin_Data_Upgrades_User_Meta_Courses' ) ) ) {
+
 	/**
-	 * Class to create the Data Upgrade for Courses.
+	 * Class LearnDash Data Upgrades for User Courses.
+	 *
+	 * @since 2.3.0
+	 * @uses Learndash_Admin_Data_Upgrades
 	 */
 	class Learndash_Admin_Data_Upgrades_User_Meta_Courses extends Learndash_Admin_Data_Upgrades {
 
@@ -27,8 +31,6 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Show data upgrade row for this instance.
-		 *
-		 * @since 2.3
 		 */
 		public function show_upgrade_action() {
 			?>
@@ -128,8 +130,6 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		 * This function will determine what users need to be converted. Then the course and quiz functions
 		 * will be called to convert each individual user data set.
 		 *
-		 * @since 2.3
-		 *
 		 * @param  array $data Post data from AJAX call.
 		 * @return array $data Post data from AJAX call.
 		 */
@@ -217,8 +217,6 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 		/**
 		 * Common function to query needed items.
 		 *
-		 * @since 2.6.0
-		 *
 		 * @param boolean $increment_paged default true to increment paged.
 		 */
 		protected function query_items( $increment_paged = true ) {
@@ -247,8 +245,6 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Common function to build the returned data progress output.
-		 *
-		 * @since 2.6.0
 		 *
 		 * @param array $data Array of existing data elements.
 		 * @return array or data.
@@ -298,8 +294,6 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Convert single user quiz attempts to Activity DB entries.
-		 *
-		 * @since 2.3
 		 *
 		 * @param int $user_id User ID of user to convert.
 		 * @return boolean true if complete, false if not.
@@ -356,6 +350,9 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 						$user_course_access_from = 0;
 						$user_course_completed   = 0;
 
+						// We replace the $course_data with the newer logic
+						$course_data = learndash_user_get_course_progress( $user_id, $course_id, 'legacy' );
+
 						// Then loop over Lessons.
 						if ( ( isset( $course_data['lessons'] ) ) && ( ! empty( $course_data['lessons'] ) ) ) {
 							foreach ( $course_data['lessons'] as $lesson_id => $lesson_complete ) {
@@ -397,7 +394,7 @@ if ( ( class_exists( 'Learndash_Admin_Data_Upgrades' ) ) && ( ! class_exists( 'L
 								if ( ! empty( $lessons_topics ) ) {
 									foreach ( $lessons_topics as $topic_id => $topic_complete ) {
 										$topic_post = get_post( $topic_id );
-										if ( ( $lesson_post ) && is_a( $topic_post, 'WP_Post' ) ) {
+										if ( ( $topic_post ) && is_a( $topic_post, 'WP_Post' ) ) {
 
 											$topic_args = array(
 												'course_id' => $course_id,

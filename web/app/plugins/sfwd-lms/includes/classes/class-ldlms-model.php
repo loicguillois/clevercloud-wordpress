@@ -2,23 +2,27 @@
 /**
  * Abstract class for LDLMS_Model.
  *
- * @package LearnDash
  * @since 3.2.0
+ * @package LearnDash
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-abstract class LDLMS_Model {
-
+if ( ! class_exists( 'LDLMS_Model' ) ) {
 	/**
-	 * Private constructor for class.
+	 * Class for LearnDash LDLMS_Model.
 	 *
-	 * @since 3.3
+	 * @since 3.2.0
 	 */
-	private function __construct() {}
+	abstract class LDLMS_Model {
+
+		/**
+		 * Private constructor for class.
+		 *
+		 * @since 3.3
+		 */
+		private function __construct() {}
+	}
 }
-
-
-

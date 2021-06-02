@@ -32,7 +32,7 @@ class WpProQuiz_View_QuestionEdit extends WpProQuiz_View_View {
 	<form action="admin.php?page=ldAdvQuiz&module=question&action=addEdit&quiz_id=<?php echo intval( $this->quiz->getId() ); ?>&questionId=<?php echo intval( $this->question->getId() ); ?>&post_id=<?php echo intval( $post_id ); ?>" method="POST">
 		<a style="float: left;" class="button-secondary" href="admin.php?page=ldAdvQuiz&module=question&action=show&quiz_id=<?php echo intval( $this->quiz->getId() ); ?>&post_id=<?php echo intval( $post_id ); ?>">
 		<?php
-		sprintf(
+		printf(
 			// translators: Question
 			esc_html_x( 'Return to %s Overview', 'placeholder: Question', 'learndash' ),
 			learndash_get_custom_label( 'question' )
@@ -71,7 +71,7 @@ class WpProQuiz_View_QuestionEdit extends WpProQuiz_View_View {
 					<div id="wpProQuiz_questionPoints>
 						<p class="description">
 							<?php
-								sprintf(
+								printf(
 									// translators: placeholder: question
 									esc_html_x( 'Points for this %s (Standard is 1 point)', 'placeholder: question', 'learndash' ),
 									learndash_get_custom_label_lower( 'question' )
@@ -83,7 +83,7 @@ class WpProQuiz_View_QuestionEdit extends WpProQuiz_View_View {
 						</label>
 						<p class="description">
 							<?php
-								sprintf(
+								printf(
 									// translators: placeholder: question
 									esc_html_x( 'These points will be rewarded, only if the user answers the %s correctly.', 'placeholder: question', 'learndash' ),
 									learndash_get_custom_label_lower( 'question' )

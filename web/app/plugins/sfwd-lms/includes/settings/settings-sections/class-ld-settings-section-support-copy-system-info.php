@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section for Support Copy System Info Metabox.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.1.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,7 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Section_Support_System_Info' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Section for Support Copy System Info Metabox.
+	 *
+	 * @since 3.1.0
 	 */
 	class LearnDash_Settings_Section_Support_System_Info extends LearnDash_Settings_Section {
 
@@ -25,6 +27,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 3.1.0
 		 */
 		protected function __construct() {
 			$this->settings_page_id = 'learndash_support';
@@ -50,6 +54,14 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 			parent::__construct();
 		}
 
+		/**
+		 * Show Support Section
+		 *
+		 * @since 3.1.0
+		 *
+		 * @param string $settings_section_key Section Key
+		 * @param string $settings_screen_id   Screen ID
+		 */
 		public function show_support_section( $settings_section_key = '', $settings_screen_id = '' ) {
 			if ( $settings_section_key === $this->settings_section_key ) {
 				$support_page_instance = LearnDash_Settings_Page::get_page_instance( 'LearnDash_Settings_Page_Support' );
@@ -95,7 +107,6 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 				}
 			}
 		}
-
 
 		// End of functions.
 	}

@@ -1,4 +1,11 @@
 <?php
+/**
+ * LearnDash LD30 Displays a user's profile essay row.
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -13,6 +20,8 @@ $details  = learndash_get_essay_details( $essay->ID );
 
 /**
  * Filters list of profile essay columns.
+ *
+ * @since 3.0.0
  *
  * @param array $essay_columns An Associative array of essay columns with slug as key and content as value.
  */

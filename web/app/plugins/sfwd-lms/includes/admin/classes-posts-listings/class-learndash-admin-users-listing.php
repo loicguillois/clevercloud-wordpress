@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Users Listing Class.
+ * LearnDash Users Listing.
  *
- * @package LearnDash
- * @subpackage admin
+ * @since 3.2.3
+ * @package LearnDash\Users\Listing
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,13 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'Learndash_Admin_Users_Listing' ) ) ) {
+
 	/**
-	 * Class for LearnDash Users Listing Pages.
+	 * Class LearnDash Users Listing.
+	 *
+	 * @since 3.2.3
+	 * @uses Learndash_Admin_Posts_Listing
 	 */
 	class Learndash_Admin_Users_Listing extends Learndash_Admin_Posts_Listing {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.2.3
 		 */
 		public function __construct() {
 			$this->post_type = 'user';
@@ -27,6 +33,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Called via the WordPress init action hook.
+		 *
+		 * @since 3.2.3
 		 */
 		public function listing_init() {
 			if ( $this->listing_init_done ) {
@@ -82,6 +90,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Call via the WordPress load sequence for admin pages.
+		 *
+		 * @since 3.2.3
 		 */
 		public function on_load_listing() {
 			if ( $this->post_type_check() ) {
@@ -97,6 +107,12 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 					// Filter the Users listing query args.
 					add_filter( 'users_list_table_query_args', array( $this, 'users_list_table_query_args' ), 50, 1 );
+
+					if ( ( ! current_user_can( 'edit_groups' ) ) && ( ! current_user_can( 'edit_courses' ) ) ) {
+						if ( isset( $this->columns['groups_courses'] ) ) {
+							unset( $this->columns['groups_courses'] );
+						}
+					}
 				}
 			}
 		}
@@ -105,6 +121,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 * Adds the user course filter in admin.
 		 *
 		 * Fires on `restrict_manage_users` hook.
+		 *
+		 * @since 3.2.3
 		 *
 		 * @param string $location Optional. The location of the extra table nav markup: 'top' or 'bottom'. Default empty.
 		 */
@@ -247,7 +265,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 				/**
 				 * Filters user groups filter query arguments.
 				 *
-				 * @deprecated 3.2.3 No replacement.
+				 * @since 2.5.0
+				 * @deprecated 3.2.3
 				 *
 				 * @param array  $query_options_group An array of user groups filter query arguments.
 				 * @param string $post_type           Post type to check.
@@ -293,7 +312,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 				/**
 				 * Filters users filter query arguments.
 				 *
-				 * @deprecated 3.2.3 No replacement.
+				 * @since 2.5.0
+				 * @deprecated 3.2.3
 				 *
 				 * @param array  $query_options_course An array of users filter query arguments.
 				 * @param string $post_type            Post type to check.
@@ -311,8 +331,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 * @since 3.2.3
 		 *
 		 * @param string  $column_content Optional. Column content. Default empty.
-		 * @param string  $column_name Column slug or row being displayed.
-		 * @param integer $post_id     Post ID of row being displayed.
+		 * @param string  $column_name    Column slug or row being displayed.
+		 * @param integer $post_id        Post ID of row being displayed.
 		 */
 		public function manage_user_column_rows( $column_content = '', $column_name = '', $user_id = 0 ) {
 			if ( $this->post_type_check() ) {
@@ -342,80 +362,84 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 * @return string Users custom column content.
 		 */
 		public function show_column_user_groups_courses( $column_content = '', $column_name = '', $user_id = 0 ) {
-			$user_groups = learndash_get_users_group_ids( $user_id, true );
-			if ( empty( $user_groups ) ) {
-				$user_groups = array();
-			}
-
-			if ( ! empty( $user_groups ) ) {
-				$filter_url = add_query_arg(
-					array(
-						'post_type' => learndash_get_post_type_slug( 'group' ),
-						'user_id'   => $user_id,
-					),
-					admin_url( 'edit.php' )
-				);
-
-				if ( ! empty( $column_content ) ) {
-					$column_content .= '<br />';
+			if ( current_user_can( 'edit_groups' ) ) {
+				$user_groups = learndash_get_users_group_ids( $user_id, false );
+				if ( empty( $user_groups ) ) {
+					$user_groups = array();
 				}
 
-				$link_aria_label = sprintf(
-					// translators: placeholder: Groups, User Nicename.
-					esc_html_x( 'Filter %1$s by user "%2$s"', 'placeholder: Groups, User Nicename', 'learndash' ),
-					LearnDash_Custom_Label::get_label( 'groups' ),
-					get_user_by( 'ID', $user_id )->display_name
-				);
+				if ( ! empty( $user_groups ) ) {
+					$filter_url = add_query_arg(
+						array(
+							'post_type' => learndash_get_post_type_slug( 'group' ),
+							'user_id'   => $user_id,
+						),
+						admin_url( 'edit.php' )
+					);
 
-				$column_content .= sprintf(
-					// translators: placeholder: Groups, filter Groups by user URL.
-					esc_html_x( 'Total %1$s: %2$s', 'placeholder: Groups, filter Groups by user URL', 'learndash' ),
-					LearnDash_Custom_Label::get_label( 'groups' ),
-					'<a href="' . esc_url( $filter_url ) . '" aria-label="' . esc_attr( $link_aria_label ) . '">' . count( $user_groups ) . '</a>'
-				);
+					if ( ! empty( $column_content ) ) {
+						$column_content .= '<br />';
+					}
 
-				$row_actions     = array(
-					'ld-post-filter' => '<a href="' . esc_url( $filter_url ) . '" aria-label="' . esc_attr( $link_aria_label ) . '">' . esc_html__( 'filter', 'learndash' ) . '</a>',
-				);
-				$column_content .= $this->list_table_row_actions( $row_actions );
+					$link_aria_label = sprintf(
+						// translators: placeholder: Groups, User Nicename.
+						esc_html_x( 'Filter %1$s by user "%2$s"', 'placeholder: Groups, User Nicename', 'learndash' ),
+						LearnDash_Custom_Label::get_label( 'groups' ),
+						get_user_by( 'ID', $user_id )->display_name
+					);
+
+					$column_content .= sprintf(
+						// translators: placeholder: Groups, filter Groups by user URL.
+						esc_html_x( 'Total %1$s: %2$s', 'placeholder: Groups, filter Groups by user URL', 'learndash' ),
+						LearnDash_Custom_Label::get_label( 'groups' ),
+						'<a href="' . esc_url( $filter_url ) . '" aria-label="' . esc_attr( $link_aria_label ) . '">' . count( $user_groups ) . '</a>'
+					);
+
+					$row_actions     = array(
+						'ld-post-filter' => '<a href="' . esc_url( $filter_url ) . '" aria-label="' . esc_attr( $link_aria_label ) . '">' . esc_html__( 'filter', 'learndash' ) . '</a>',
+					);
+					$column_content .= $this->list_table_row_actions( $row_actions );
+				}
 			}
 
-			$user_courses = learndash_user_get_enrolled_courses( $user_id );
-			if ( empty( $user_courses ) ) {
-				$user_courses = array();
-			}
-
-			if ( ! empty( $user_courses ) ) {
-				$filter_url = add_query_arg(
-					array(
-						'post_type' => learndash_get_post_type_slug( 'course' ),
-						'user_id'   => $user_id,
-					),
-					admin_url( 'edit.php' )
-				);
-
-				if ( ! empty( $column_content ) ) {
-					$column_content .= '<br />';
+			if ( current_user_can( 'edit_courses' ) ) {
+				$user_courses = learndash_user_get_enrolled_courses( $user_id );
+				if ( empty( $user_courses ) ) {
+					$user_courses = array();
 				}
 
-				$link_aria_label = sprintf(
-					// translators: placeholder: Courses, User Nicename.
-					esc_html_x( 'Filter %1$s by user "%2$s"', 'placeholder: Courses, User Nicename', 'learndash' ),
-					LearnDash_Custom_Label::get_label( 'courses' ),
-					get_user_by( 'ID', $user_id )->display_name
-				);
+				if ( ! empty( $user_courses ) ) {
+					$filter_url = add_query_arg(
+						array(
+							'post_type' => learndash_get_post_type_slug( 'course' ),
+							'user_id'   => $user_id,
+						),
+						admin_url( 'edit.php' )
+					);
 
-				$column_content .= sprintf(
-					// translators: placeholder: Courses, filter Courses by user URL.
-					esc_html_x( 'Total %1$s: %2$s', 'placeholder: Courses, filter Courses by user URL', 'learndash' ),
-					LearnDash_Custom_Label::get_label( 'courses' ),
-					'<a href="' . esc_url( $filter_url ) . '" aria-label="' . esc_attr( $link_aria_label ) . '">' . count( $user_courses ) . '</a>'
-				);
+					if ( ! empty( $column_content ) ) {
+						$column_content .= '<br />';
+					}
 
-				$row_actions     = array(
-					'ld-post-filter' => '<a href="' . esc_url( $filter_url ) . '" aria-label="' . esc_attr( $link_aria_label ) . '">' . esc_html__( 'filter', 'learndash' ) . '</a>',
-				);
-				$column_content .= $this->list_table_row_actions( $row_actions );
+					$link_aria_label = sprintf(
+						// translators: placeholder: Courses, User Nicename.
+						esc_html_x( 'Filter %1$s by user "%2$s"', 'placeholder: Courses, User Nicename', 'learndash' ),
+						LearnDash_Custom_Label::get_label( 'courses' ),
+						get_user_by( 'ID', $user_id )->display_name
+					);
+
+					$column_content .= sprintf(
+						// translators: placeholder: Courses, filter Courses by user URL.
+						esc_html_x( 'Total %1$s: %2$s', 'placeholder: Courses, filter Courses by user URL', 'learndash' ),
+						LearnDash_Custom_Label::get_label( 'courses' ),
+						'<a href="' . esc_url( $filter_url ) . '" aria-label="' . esc_attr( $link_aria_label ) . '">' . count( $user_courses ) . '</a>'
+					);
+
+					$row_actions     = array(
+						'ld-post-filter' => '<a href="' . esc_url( $filter_url ) . '" aria-label="' . esc_attr( $link_aria_label ) . '">' . esc_html__( 'filter', 'learndash' ) . '</a>',
+					);
+					$column_content .= $this->list_table_row_actions( $row_actions );
+				}
 			}
 
 			return $column_content;

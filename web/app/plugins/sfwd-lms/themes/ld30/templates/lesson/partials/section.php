@@ -1,4 +1,15 @@
 <?php
+/**
+ * LearnDash LD30 Displays section
+ *
+ * Available Variables:
+ * TBD
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

@@ -18,7 +18,7 @@ if ( ! function_exists( 'add_essays_data_columns' ) ) {
 	 * Fires on `manage_edit-sfwd-essays_columns` hook.
 	 *
 	 * @since 2.1.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 *
 	 * @param array $cols An array of admin columns for a post type.
 	 *
@@ -27,7 +27,7 @@ if ( ! function_exists( 'add_essays_data_columns' ) ) {
 	function add_essays_data_columns( $cols ) {
 
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 
 		return $cols;
@@ -43,11 +43,11 @@ if ( ! function_exists( 'learndash_essay_bulk_actions' ) ) {
 	 * @todo  check if needed, jQuery selector seems incorrect
 	 *
 	 * @since 2.3.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 */
 	function learndash_essay_bulk_actions() {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 	}
 }
@@ -59,7 +59,7 @@ if ( ! function_exists( 'learndash_essay_inline_actions' ) ) {
 	 * Fires on `post_row_actions` hook.
 	 *
 	 * @since 2.1.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 *
 	 * @param array   $actions An array of post actions.
 	 * @param WP_Post $post    The `WP_Post` object.
@@ -68,7 +68,7 @@ if ( ! function_exists( 'learndash_essay_inline_actions' ) ) {
 	 */
 	function learndash_essay_inline_actions( $actions, $post ) {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 
 		return $actions;
@@ -83,13 +83,13 @@ if ( ! function_exists( 'learndash_modify_admin_essay_listing_query' ) ) {
 	 * Fires on `pre_get_posts` hook.
 	 *
 	 * @since 2.2.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 *
 	 * @param WP_Query $essay_query The `WP_Query` instance (passed by reference).
 	 */
 	function learndash_modify_admin_essay_listing_query( $essay_query ) {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 	}
 }
@@ -101,11 +101,11 @@ if ( ! function_exists( 'learndash_essays_remove_subbmitdiv_metabox' ) ) {
 	 * Fires on `admin_menu` hook.
 	 *
 	 * @since 2.2.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 */
 	function learndash_essays_remove_subbmitdiv_metabox() {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 	}
 }
@@ -117,11 +117,11 @@ if ( ! function_exists( 'learndash_register_essay_upload_metabox' ) ) {
 	 * Fires on `add_meta_boxes_sfwd-essays` hook.
 	 *
 	 * @since 2.2.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 */
 	function learndash_register_essay_upload_metabox() {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 	}
 }
@@ -131,13 +131,13 @@ if ( ! function_exists( 'learndash_essay_upload_meta_box' ) ) {
 	 * Prints the essay upload metabox content.
 	 *
 	 * @since 2.2.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 *
 	 * @param WP_Post $essay The `WP_Post` essay object.
 	 */
 	function learndash_essay_upload_meta_box( $essay ) {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 	}
 }
@@ -149,11 +149,11 @@ if ( ! function_exists( 'learndash_register_essay_grading_response_metabox' ) ) 
 	 * Used when a grader wants to respond to a essay submitted by the user.
 	 *
 	 * @since 2.2.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 */
 	function learndash_register_essay_grading_response_metabox() {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3');
 		}
 	}
 }
@@ -163,13 +163,13 @@ if ( ! function_exists( 'learndash_essay_grading_response_meta_box' ) ) {
 	 * Prints the essay grading response metabox content.
 	 *
 	 * @since 2.2.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 *
 	 * @param WP_Post $essay The `WP_Post` essay object.
 	 */
 	function learndash_essay_grading_response_meta_box( $essay ) {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 	}
 }
@@ -181,7 +181,7 @@ if ( ! function_exists( 'learndash_save_essay_grading_response' ) ) {
 	 * Fires on `save_post_sfwd-essays` metabox.
 	 *
 	 * @since 2.2.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 *
 	 * @param int     $essay_id ID of the essay to be saved.
 	 * @param WP_Post $essay    The `WP_Post` essay object.
@@ -189,7 +189,7 @@ if ( ! function_exists( 'learndash_save_essay_grading_response' ) ) {
 	 */
 	function learndash_save_essay_grading_response( $essay_id, $essay, $update ) {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 	}
 }
@@ -202,11 +202,11 @@ if ( ! function_exists( 'learndash_register_essay_grading_metabox' ) ) {
 	 * Fires on `add_meta_boxes_sfwd-essays` hook.
 	 *
 	 * @since 2.2.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 */
 	function learndash_register_essay_grading_metabox() {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 	}
 }
@@ -218,13 +218,13 @@ if ( ! function_exists( 'learndash_essay_grading_meta_box' ) ) {
 	 * Copied/modified version of submitdiv from core.
 	 *
 	 * @since 2.2.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 *
 	 * @param WP_Post $essay The `WP_Post` essay object.
 	 */
 	function learndash_essay_grading_meta_box( $essay ) {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 	}
 }
@@ -236,7 +236,7 @@ if ( ! function_exists( 'learndash_save_essay_status_metabox_data' ) ) {
 	 * Fires on `save_post_sfwd-essays` hook.
 	 *
 	 * @since 2.2.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 *
 	 * @param int     $essay_id ID of the essay to be saved.
 	 * @param WP_Post $essay    The `WP_Post` essay object.
@@ -244,7 +244,7 @@ if ( ! function_exists( 'learndash_save_essay_status_metabox_data' ) ) {
 	 */
 	function learndash_save_essay_status_metabox_data( $essay_id, $essay, $update ) {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 	}
 }
@@ -256,7 +256,7 @@ if ( ! function_exists( 'learndash_restrict_essay_listings_for_group_admins' ) )
 	 * Fires on `parse_query` hook.
 	 *
 	 * @since 2.2.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 *
 	 * @param object $query The `WP_Query` instance (passed by reference).
 	 *
@@ -264,7 +264,7 @@ if ( ! function_exists( 'learndash_restrict_essay_listings_for_group_admins' ) )
 	 */
 	function learndash_restrict_essay_listings_for_group_admins( $query ) {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 	}
 }
@@ -276,11 +276,11 @@ if ( ! function_exists( 'learndash_essay_bulk_actions_approve' ) ) {
 	 * Fires on `load-edit.php` hook.
 	 *
 	 * @since 2.3.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 */
 	function learndash_essay_bulk_actions_approve() {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 	}
 }
@@ -296,11 +296,11 @@ if ( ! function_exists( 'learndash_assignment_bulk_actions' ) ) {
 	 * @todo  check if needed, jQuery selector seems incorrect
 	 *
 	 * @since 2.1.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 */
 	function learndash_assignment_bulk_actions() {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 	}
 }
@@ -312,11 +312,11 @@ if ( ! function_exists( 'learndash_assignment_bulk_actions_approve' ) ) {
 	 * Fires on `load-edit.php` hook.
 	 *
 	 * @since 2.1.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 */
 	function learndash_assignment_bulk_actions_approve() {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 	}
 }
@@ -331,7 +331,7 @@ if ( ! function_exists( 'learndash_restrict_assignment_listings' ) ) {
 	 * @global string $typenow
 	 *
 	 * @since 2.1.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 *
 	 * @param WP_Query $query  The WP_Query query object.
 	 *
@@ -339,7 +339,7 @@ if ( ! function_exists( 'learndash_restrict_assignment_listings' ) ) {
 	 */
 	function learndash_restrict_assignment_listings( $query ) {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 	}
 }
@@ -349,7 +349,7 @@ if ( ! function_exists( 'learndash_assignment_approval_link' ) ) {
 	 * Gets assignment approval URL.
 	 *
 	 * @since 2.1.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 *
 	 * @param int $assignment_id Assignment ID.
 	 *
@@ -357,7 +357,7 @@ if ( ! function_exists( 'learndash_assignment_approval_link' ) ) {
 	 */
 	function learndash_assignment_approval_link( $assignment_id ) {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 
 		return '';
@@ -371,11 +371,11 @@ if ( ! function_exists( 'learndash_assignment_metabox' ) ) {
 	 * Fires on `add_meta_boxes` hook.
 	 *
 	 * @since 2.1.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 */
 	function learndash_assignment_metabox() {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 	}
 }
@@ -388,11 +388,11 @@ if ( ! function_exists( 'learndash_assignment_metabox_content' ) ) {
 	 * @global SFWD_LMS $sfwd_lms Global SFWD_LMS object.
 	 *
 	 * @since 2.1.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 */
 	function learndash_assignment_metabox_content() {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 	}
 }
@@ -404,13 +404,13 @@ if ( ! function_exists( 'learndash_assignment_save_metabox_content' ) ) {
 	 * Fires on `save_post` hook.
 	 *
 	 * @since 2.1.0
-	 * @deprecated 3.2.3 No replacement.
+	 * @deprecated 3.2.3
 	 *
 	 * @param int $assignment_id Assignment ID.
 	 */
 	function learndash_assignment_save_metabox_content( $assignment_id ) {
 		if ( function_exists( '_deprecated_function' ) ) {
-			_deprecated_function( __FUNCTION__, '3.2.3', '' );
+			_deprecated_function( __FUNCTION__, '3.2.3' );
 		}
 	}
 }

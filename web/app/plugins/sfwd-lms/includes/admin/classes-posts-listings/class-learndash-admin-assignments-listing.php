@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Assignments (sfwd-assignment) Posts Listing Class.
+ * LearnDash Assignments (sfwd-assignment) Posts Listing.
  *
- * @package LearnDash
- * @subpackage admin
+ * @since 3.2.3
+ * @package LearnDash\Assignment\Listing
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,13 +11,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'Learndash_Admin_Assignments_Listing' ) ) ) {
+
 	/**
-	 * Class for LearnDash Assignments Listing Pages.
+	 * Class LearnDash Assignments (sfwd-assignment) Posts Listing.
+	 *
+	 * @since 3.2.3
+	 * @uses Learndash_Admin_Posts_Listing
 	 */
 	class Learndash_Admin_Assignments_Listing extends Learndash_Admin_Posts_Listing {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 3.2.3
 		 */
 		public function __construct() {
 			$this->post_type = learndash_get_post_type_slug( 'assignment' );
@@ -27,6 +33,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Called via the WordPress init action hook.
+		 *
+		 * @since 3.2.3
 		 */
 		public function listing_init() {
 			if ( $this->listing_init_done ) {
@@ -148,6 +156,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 
 		/**
 		 * Call via the WordPress load sequence for admin pages.
+		 *
+		 * @since 3.2.3
 		 */
 		public function on_load_listing() {
 			if ( $this->post_type_check() ) {
@@ -160,7 +170,15 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 			}
 		}
 
-		/** This function is documented in includes/admin/class-learndash-admin-posts-listing.php */
+		/**
+		 * Listing table query vars
+		 *
+		 * @since 3.2.3
+		 *
+		 * @param array  $q_vars    Array of query vars.
+		 * @param string $post_type Post Type being displayed.
+		 * @param array  $query     Main Query.
+		 */
 		public function listing_table_query_vars_filter_assignments( $q_vars, $post_type, $query ) {
 			if ( $post_type === $this->post_type ) {
 
@@ -213,7 +231,15 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 			return $q_vars;
 		}
 
-		/** This function is documented in includes/admin/class-learndash-admin-posts-listing.php */
+		/**
+		 * Listing user selector filter
+		 *
+		 * @since 3.3.0
+		 *
+		 * @param array  $q_vars    Array of query vars.
+		 * @param string $post_type Post Type being displayed.
+		 * @param array  $query     Main Query.
+		 */
 		public function learndash_listing_selector_user_query_args_assignments( $q_vars, $selector, $post_type ) {
 			if ( $post_type === $this->post_type ) {
 				$group_selector = $this->get_selector( 'group_id' );
@@ -243,7 +269,7 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		/**
 		 * Filter the main query listing by the course_id
 		 *
-		 * @since 3.2.3
+		 * @since 3.2.3.4
 		 *
 		 * @param  object $q_vars   Query vars used for the table listing
 		 * @param  array  $selector Array of attributes used to display the filter selector.
@@ -317,7 +343,7 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		/**
 		 * Filter the main query listing by the lesson_id
 		 *
-		 * @since 3.2.3
+		 * @since 3.2.3.4
 		 *
 		 * @param  object $q_vars   Query vars used for the table listing.
 		 * @param  array  $selector Array of attributes used to display the filter selector.
@@ -370,7 +396,7 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		/**
 		 * Filter the main query listing by the topic_id
 		 *
-		 * @since 3.2.3
+		 * @since 3.2.3.4
 		 *
 		 * @param  object $q_vars   Query vars used for the table listing
 		 * @param  array  $selector Array of attributes used to display the filter selector.
@@ -491,11 +517,11 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 *
 		 * Fires on `admin_footer` hook.
 		 *
+		 * @since 3.2.3
+		 *
 		 * @global WP_Post $post Global post object.
 		 *
 		 * @todo  check if needed, jQuery selector seems incorrect
-		 *
-		 * @since 2.1.0
 		 */
 		public function assignment_bulk_actions() {
 			global $post;
@@ -516,7 +542,7 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		/**
 		 * Handles approval of assignments in bulk.
 		 *
-		 * @since 2.1.0
+		 * @since 3.2.3
 		 */
 		protected function assignment_bulk_actions_approve() {
 
@@ -589,9 +615,11 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 * This function fill filter the table listing items based on filters selected.
 		 * Called via 'parse_query' filter from WP.
 		 *
-		 * @since 3.2.0
+		 * @since 3.2.3
 		 *
-		 * @param  object $q_vars      Query vars used for the table listing
+		 * @param  object $q_vars Query vars used for the table listing
+		 * @param  array  $selector Array of attributes used to display the filter selector.
+		 *
 		 * @return object $q_vars.
 		 */
 		protected function filter_by_approval_status( $q_vars, $selector ) {
@@ -621,6 +649,8 @@ if ( ( class_exists( 'Learndash_Admin_Posts_Listing' ) ) && ( ! class_exists( 'L
 		 * Hides the list table views for non admin users.
 		 *
 		 * Fires on `views_edit-sfwd-essays` and `views_edit-sfwd-assignment` hook.
+		 *
+		 * @since 3.2.3
 		 *
 		 * @param array $views Optional. An array of available list table views. Default empty array.
 		 */

@@ -1,9 +1,9 @@
 <?php
 /**
- * LearnDash Course Builder Metabox Class.
+ * LearnDash Course Builder Metabox.
  *
- * @package LearnDash
- * @subpackage admin
+ * @since 2.5.0
+ * @package LearnDash\Builder
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,8 +11,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_exists( 'Learndash_Admin_Builder' ) ) ) {
+
 	/**
-	 * Class for LearnDash Course Builder.
+	 * Class LearnDash Course Builder Metabox.
+	 *
+	 * @since 2.5.0
+	 * @uses Learndash_Admin_Builder
 	 */
 	class Learndash_Admin_Metabox_Course_Builder extends Learndash_Admin_Builder {
 
@@ -34,6 +38,7 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 		 * Iniitialize builder for specific Course Item.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param integer $post_id Post ID to load.
 		 */
 		public function builder_init( $post_id = 0 ) {
@@ -44,17 +49,10 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 		}
 
 		/**
-		 * Call via the WordPress load sequence for admin pages.
-		 */
-		public function builder_on_load() {
-			parent::builder_on_load();
-		}
-
-		/**
 		 * Prints content for Course Builder meta box for admin
 		 * This function is called from other add_meta_box functions
 		 *
-		 * @since 2.5
+		 * @since 2.6.0
 		 *
 		 * @param object $post WP_Post.
 		 */
@@ -166,6 +164,7 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 		 * Get the selected items for a post type.
 		 *
 		 * @since 2.6.0
+		 *
 		 * @param string $selector_post_type Post Type is selector being processed.
 		 * @return array Selector post IDs.
 		 */
@@ -182,6 +181,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 
 		/**
 		 * Get the number of current items in the builder.
+		 *
+		 * @since 2.6.0
 		 */
 		public function get_build_items_count() {
 			?>
@@ -199,6 +200,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 
 		/**
 		 * Call via the WordPress admin_footer action hook.
+		 *
+		 * @since 2.6.0
 		 */
 		public function builder_admin_footer() {
 			$builder_post_type_label = $this->get_label_for_post_type( $this->builder_post_type );
@@ -238,6 +241,7 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 		 *
 		 * @param string  $post_type Post Type slug.
 		 * @param boolean $singular True if singular label needed. False for plural.
+		 *
 		 * @return string.
 		 */
 		public function get_label_for_post_type( $post_type = '', $singular = true ) {
@@ -281,6 +285,7 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 		 * @since 2.5.0
 		 *
 		 * @param array $args Array of query args.
+		 *
 		 * @return array
 		 */
 		public function build_selector_query( $args = array() ) {
@@ -289,8 +294,15 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 				$per_page = 10;
 			}
 
+			$step_post_statuses = learndash_get_step_post_statuses();
+			if ( ! empty( $step_post_statuses ) ) {
+				$step_post_statuses = array_keys( $step_post_statuses );
+			} else {
+				$step_post_statuses = array( 'publish' );
+			}
+
 			$defaults = array(
-				'post_status'    => array( 'publish' ),
+				'post_status'    => $step_post_statuses,
 				'posts_per_page' => $per_page,
 				'paged'          => 1,
 				'orderby'        => 'title',
@@ -399,6 +411,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 			/**
 			 * Filters course builder query arguments.
 			 *
+			 * @since 2.5.0
+			 *
 			 * @param array $args An array of query arguments.
 			 */
 			return apply_filters( 'learndash_course_builder_selector_args', $args );
@@ -408,7 +422,9 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 		 * Common function to show Selector pager buttons.
 		 *
 		 * @since 2.5.0
+		 *
 		 * @param object $post_type_query WP_Query instance.
+		 *
 		 * @return string Button(s) HTML.
 		 */
 		public function build_selector_pages_buttons( $post_type_query ) {
@@ -452,8 +468,10 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 		/**
 		 * Common function to show Selector pager buttons.
 		 *
-		 * @since 2.5.0
+		 * @since 3.0.0
+		 *
 		 * @param object $post_type_query WP_Query instance.
+		 *
 		 * @return string Button(s) HTML.
 		 */
 		public function build_selector_pages_buttons_json( $post_type_query ) {
@@ -502,13 +520,15 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 		 * Show selector rows.
 		 *
 		 * @since 2.5.0
+		 *
 		 * @param object $post_type_query WP_Query instance.
 		 */
 		public function build_selector_rows( $post_type_query ) {
 			$selector_rows = '';
 
 			if ( $post_type_query instanceof WP_Query ) {
-				$selector_post_type        = $post_type_query->query['post_type'];
+				$selector_post_type = $post_type_query->query['post_type'];
+
 				$selector_post_type_object = get_post_type_object( $selector_post_type );
 
 				$selector_label = $selector_post_type_object->label;
@@ -525,7 +545,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 		/**
 		 * Show selector rows.
 		 *
-		 * @since 2.5.0
+		 * @since 3.0.0
+		 *
 		 * @param object $post_type_query WP_Query instance.
 		 */
 		public function build_selector_rows_json( $post_type_query ) {
@@ -536,10 +557,11 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 
 				foreach ( $post_type_query->posts as $p ) {
 					$selector_rows[] = [
-						'ID'         => $p->ID,
-						'post_title' => get_the_title( $p->ID ),
-						'type'       => $selector_post_type,
-						'edit_link'  => get_edit_post_link( $p->ID, '' ),
+						'ID'          => $p->ID,
+						'post_title'  => wp_kses_post( $p->post_title ),
+						'post_status' => learndash_get_step_post_status_slug( $p ),
+						'type'        => $selector_post_type,
+						'edit_link'   => get_edit_post_link( $p->ID, '' ),
 					];
 				}
 			}
@@ -551,6 +573,7 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 		 * Show selector single row.
 		 *
 		 * @since 2.5.0
+		 *
 		 * @param object $p WP_Post object to show.
 		 * @param string $selector_post_type Post type slug.
 		 * @return string Raw HTML.
@@ -639,8 +662,6 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 				$selector_sub_items    .= '<div class="ld-course-builder-quiz-items ld-course-builder-topic-quiz-items"></div>';
 				$selector_action_expand = '<span class="ld-course-builder-action ld-course-builder-action-show-hide ld-course-builder-action-show ld-course-builder-action-' . $selector_slug . '-show dashicons" title="' . esc_html__( 'Expand/Collape Section', 'learndash' ) . '"></span>';
 
-			} elseif ( 'sfwd-quiz' === $selector_post_type ) {
-				// Nothing here.
 			}
 
 			$selector_row .= '<li id="ld-post-' . $p_id . '" class="ld-course-builder-item ld-course-builder-' . $selector_slug . '-item " data-ld-type="' . $selector_post_type . '" data-ld-id="' . $p_id . '">
@@ -668,6 +689,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 
 		/**
 		 * Build Course Steps HTML.
+		 *
+		 * @since 2.5.0
 		 */
 		public function build_course_steps_html() {
 			$steps_html = '';
@@ -683,8 +706,10 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 		 * Build course steps HTML.
 		 *
 		 * @since 2.5.0
+		 *
 		 * @param array  $steps Array of current course steps.
 		 * @param string $steps_parent_type Parent post type slug. Default is 'sfwd-courses'.
+		 *
 		 * @return string Steps HTML.
 		 */
 		protected function process_course_steps( $steps = array(), $steps_parent_type = 'sfwd-courses' ) {
@@ -823,6 +848,7 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 		/** Save Course Builder steps
 		 *
 		 * @since 2.5.0
+		 *
 		 * @param integer $post_id Post ID of course being saved.
 		 * @param object  $post WP_Post object instance being saved.
 		 * @param boolean $update False is an update. True if new post.
@@ -859,6 +885,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 		/**
 		 * Handle AJAX pager requests.
 		 *
+		 * @since 2.6.0
+		 *
 		 * @param array $query_args array of values for AJAX request.
 		 */
 		public function learndash_builder_selector_pager( $query_args = array() ) {
@@ -875,6 +903,7 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 
 			if ( ! empty( $query_args ) ) {
 				$post_type_query_args = $this->build_selector_query( $query_args );
+
 				if ( ! empty( $post_type_query_args ) ) {
 					$post_type_query = new WP_Query( $post_type_query_args );
 					if ( $post_type_query->have_posts() ) {
@@ -897,6 +926,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 
 		/**
 		 * Handle AJAX search requests.
+		 *
+		 * @since 2.6.0
 		 *
 		 * @param array $query_args array of values for AJAX request.
 		 */
@@ -936,6 +967,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 		/**
 		 * Handle AJAX new step requests.
 		 *
+		 * @since 2.6.0
+		 *
 		 * @param array $query_args array of values for AJAX request.
 		 */
 		public function learndash_builder_selector_step_new( $query_args = array() ) {
@@ -965,8 +998,11 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 						/**
 						 * Filters course builder new step post arguments.
 						 *
+						 * @since 2.5.0
+						 *
 						 * @param array $post_args An array of new step post arguments.
 						 */
+						// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 						$new_step_id = wp_insert_post( apply_filters( 'course_builder_selector_new_step_post_args', $post_args ) );
 						if ( $new_step_id ) {
 							/**
@@ -993,6 +1029,7 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 							$reply_data['new_steps'][ $old_step_id ]['post_id']  = $new_step_id;
 							$reply_data['new_steps'][ $old_step_id ]['view_url'] = get_permalink( $new_step_id );
 							$reply_data['new_steps'][ $old_step_id ]['edit_url'] = get_edit_post_link( $new_step_id );
+							$reply_data['new_steps'][ $old_step_id ]['post_status']  = get_post_status( $new_step_id );
 
 							if ( 'sfwd-quiz' === $post_args['post_type'] ) {
 
@@ -1021,6 +1058,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 
 		/**
 		 * Handle AJAX trash step requests.
+		 *
+		 * @since 2.6.0
 		 *
 		 * @param array $query_args array of values for AJAX request.
 		 */
@@ -1054,6 +1093,8 @@ if ( ( ! class_exists( 'Learndash_Admin_Metabox_Course_Builder' ) ) && ( class_e
 
 		/**
 		 * Handle AJAX set title requests.
+		 *
+		 * @since 2.6.0
 		 *
 		 * @param array $query_args array of values for AJAX request.
 		 */

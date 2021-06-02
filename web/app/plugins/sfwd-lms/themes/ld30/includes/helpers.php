@@ -1,4 +1,12 @@
 <?php
+/**
+ * LearnDash LD30 Helper functions.
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -10,6 +18,9 @@ $learndash_30_defs = array(
 
 foreach ( $learndash_30_defs as $learndash_30_definition => $learndash_30_value ) {
 	if ( ! defined( $learndash_30_definition ) ) {
+		/**
+		 * @ignore
+		 */
 		define( $learndash_30_definition, $learndash_30_value ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.VariableConstantNameFound -- Used inside foreach loop
 	}
 }
@@ -78,6 +89,8 @@ function learndash_get_course_price( $course = null ) {
 
 	/**
 	 * Filters price details for a course.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param array $course_price Course price details.
 	 */
@@ -194,6 +207,8 @@ function learndash_get_breadcrumbs( $post = null, $args = false ) {
 	/**
 	 * Filters Breadcrumbs for the LearnDash post.
 	 *
+	 * @since 3.0.0
+	 *
 	 * @param array $breadcrumbs Hierarchy of breadcrumbs.
 	 */
 	$breadcrumbs = apply_filters( 'learndash_breadcrumbs', $breadcrumbs );
@@ -254,6 +269,8 @@ function learndash_get_essays_by_quiz_attempt( $attempt_id = null, $user_id = nu
  * Gets the essay details.
  *
  * Returns details about essay such as points details and status.
+ *
+ * @since 3.0.0
  *
  * @param int|null $post_id Post ID of the essay.
  *
@@ -317,6 +334,8 @@ function learndash_get_lesson_progress( $topics = null ) {
 	/**
 	 * Filters default values for lesson progress.
 	 *
+	 * @since 3.0.0
+	 *
 	 * @param array $lesson_progress_defaults Default values for lesson progress.
 	 */
 	$progress = apply_filters(
@@ -329,7 +348,7 @@ function learndash_get_lesson_progress( $topics = null ) {
 	);
 
 	// Fail gracefully, return zero's
-	if ( null === $topics || emtpy( $topics ) ) {
+	if ( null === $topics || empty( $topics ) ) {
 		return $progress;
 	}
 
@@ -348,6 +367,8 @@ function learndash_get_lesson_progress( $topics = null ) {
 
 	/**
 	 * Filters LearnDash lesson progress.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param array $progress An Associative array of lesson progress with keys total, completed and percentage.
 	 * @param array $topics   An array of the topics of the lessons.
@@ -406,6 +427,8 @@ function learndash_is_item_complete( $post = null, $user_id = null, $course_id =
 	/**
 	 * Filters whether the LearnDash content type is complete or not.
 	 *
+	 * @since 3.0.0
+	 *
 	 * @param boolean $complete  Whether any LearnDash content is complete or not.
 	 * @param int     $user_id   User ID.
 	 * @param int     $post_id   Post ID.
@@ -459,6 +482,8 @@ function learndash_get_content_label( $post_type = null, $args = null ) {
 	/**
 	 * Filters label for the content type by post type. Used to override label settings set by the user.
 	 *
+	 * @since 3.0.0
+	 *
 	 * @param string $label     Label for the content type
 	 * @param string $post_type Post type
 	 */
@@ -470,6 +495,8 @@ function learndash_get_content_label( $post_type = null, $args = null ) {
  * Gets the assignment progress.
  *
  * Returns details of assignment progress.
+ *
+ * @since 3.0.0
  *
  * @param array $assignments An array of assignment `WP_Post` objects.
  *
@@ -486,6 +513,8 @@ function learndash_get_assignment_progress( $assignments = null ) {
 
 		/**
 		 * Filters progress of an assignment.
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param array $stats An Associative array of assignment statistics with keys total, complete.
 		 */
@@ -574,6 +603,8 @@ function learndash_lesson_progress( $post = null, $course_id = null ) {
 
 	/**
 	 * Filters stats about the user's current progress within a lesson
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param array      $progress lesson progress details.
 	 * @param int|object $post     Post ID or post object.
@@ -679,6 +710,8 @@ function learndash_lesson_row_class( $lesson = null, $has_access = false ) {
 	/**
 	 * Filters lesson row CSS class names.
 	 *
+	 * @since 3.0.0
+	 *
 	 * @param string $lesson_class Lesson row CSS class names.
 	 * @param object $lesson       The lesson post object to evaluate
 	 */
@@ -688,6 +721,8 @@ function learndash_lesson_row_class( $lesson = null, $has_access = false ) {
 
 /**
  * Outputs the quiz row CSS classes.
+ *
+ * @since 3.0.0
  *
  * @param array  $quiz    The quiz details array.
  * @param string $context The context where quiz is shown.
@@ -716,6 +751,8 @@ function learndash_quiz_row_classes( $quiz = null, $context = 'course' ) {
 
 	/**
 	 * Filters quiz row CSS classes.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param array  $classes Array of CSS classes with keys wrapper, preview, and anchor.
 	 * @param array  $quiz    The quiz array
@@ -772,6 +809,8 @@ function learndash_get_lesson_attributes( $lesson = null ) {
 
 	/**
 	 * Filters attributes of a lesson. Used to modify details about a lesson like label, icon and class name
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param array  $attributes Array of lesson attributes.
 	 * @param object $lesson     The lesson post object
@@ -837,6 +876,8 @@ function learndash_get_wrapper_class( $post = null ) {
 
 	/**
 	 * Filters LearnDash content wrapper class.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param string     $wrapper_class Wrapper class.
 	 * @param int|object $post          Post ID or post object.
@@ -933,8 +974,13 @@ function learndash_status_icon( $status = 'not-completed', $post_type = null, $a
 	/**
 	 * Filters status icon markup for the course element.
 	 *
-	 * @param string $markup Icon markup.
-	 * @param string $status The current item's status.
+	 * @since 3.0.0
+	 *
+	 * @param string $markup    Icon markup.
+	 * @param string $status    The current item's status.
+	 * @param string $post_type What post type we're checking against so this can be used for courses, lessons, topics, and quizzes.
+ 	* @param array   $args      The arguments to get the status icon.
+ 	* @param boolean $echo      True to print the output and false to return the output.
 	 */
 	$markup = apply_filters( 'learndash_status_icon', $markup, $status, $post_type, $args, $echo );
 
@@ -992,6 +1038,8 @@ function learndash_status_bubble( $status = 'incomplete', $context = null, $echo
 	/**
 	 * Filters item status bubble markup.
 	 *
+	 * @since 3.0.0
+	 *
 	 * @param string $bubble Status bubble markup.
 	 * @param string $status The current item status
 	 */
@@ -1025,10 +1073,12 @@ function learndash_test_admin_icon() { ?>
  *
  * Returns `WP_query` object to get course assignments.
  *
+ * @since 3.0.0
+ *
  * @param int|null $course_id Course ID.
  * @param int|null $user_id   User ID.
  *
- * @return WP_Query|false Return `WP_Query` object if there are assingments in course otherwise false.
+ * @return WP_Query|false Return `WP_Query` object if there are assignments in course otherwise false.
  */
 function learndash_get_course_assignments( $course_id = null, $user_id = null ) {
 
@@ -1072,6 +1122,8 @@ add_action( 'wp_enqueue_scripts', 'learndash_30_remove_legacy_css' );
  * Removes the legacy css.
  *
  * Fires on `wp_enqueue_scripts` hook.
+ *
+ * @since 3.1.4
  */
 function learndash_30_remove_legacy_css() {
 
@@ -1089,6 +1141,8 @@ function learndash_30_remove_legacy_css() {
 
 /**
  * Gets the user statistics.
+ *
+ * @since 3.0.0
  *
  * @param int|null $user_id The ID of the user. Defaults to current logged in user.
  *
@@ -1137,6 +1191,8 @@ function learndash_get_user_stats( $user_id = null ) {
 	/**
 	 * Filters LearnDash user stats. Used to modify user details like courses, points, certificates.
 	 *
+	 * @since 3.0.0
+	 *
 	 * @param array $stats   User stats
 	 * @param int   $user_id User ID.
 	 */
@@ -1153,6 +1209,8 @@ add_filter( 'template_include', 'learndash_30_focus_mode', 99 );
  * Returns the focus template path if the focus mode is enabled.
  *
  * Fires on `template_include` hook.
+ *
+ * @since 3.0.0
  *
  * @param string $template The path of the template to include.
  *
@@ -1204,6 +1262,8 @@ add_filter( 'learndash_template_filename', 'learndash_30_template_filename', 100
  * Gets the template file path by name.
  *
  * Fires on `learndash_template_filename` hook.
+ *
+ * @since 3.0.3
  *
  * @param string  $filepath         Template file path.
  * @param string  $name            Template name.
@@ -1262,6 +1322,8 @@ add_action( 'wp_enqueue_scripts', 'learndash_30_template_assets' );
  * Enqueues the ld30 theme template assets.
  *
  * Fires on `wp_enqueue_scripts` hook.
+ *
+ * @since 3.0.0
  */
 function learndash_30_template_assets() {
 	// If this function is being called then we are the active theme.
@@ -1310,6 +1372,8 @@ add_action( 'enqueue_block_editor_assets', 'learndash_30_editor_scripts' );
  * Enqueues the ld30 theme editor scripts.
  *
  * Fires on `enqueue_block_editor_assets` hook.
+ *
+ * @since 3.0.0
  */
 function learndash_30_editor_scripts() {
 
@@ -1535,12 +1599,16 @@ add_action( 'init', 'learndash_30_nav_menus' );
  * Registers the ld30 theme nav menus.
  *
  * Fires on `init` hook.
+ *
+ * @since 3.0.0
  */
 function learndash_30_nav_menus() {
 
 	register_nav_menus(
 		/**
 		 * Filters nav menu locations
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param array $locations An Associative array of menu location identifiers (like a slug) and descriptive text.
 		 */
@@ -1556,6 +1624,8 @@ function learndash_30_nav_menus() {
 
 /**
  * Gets the ld30 theme custom focus menu items.
+ *
+ * @since 3.0.0
  *
  * @return array|false An array of menu items, otherwise false.
  */
@@ -1583,11 +1653,15 @@ add_action( 'wp_enqueue_scripts', 'learndash_30_custom_colors' );
  * Enqueues the ld30 theme custom colors style.
  *
  * Fires on `wp_enqueue_scripts` hook.
+ *
+ * @since 3.0.0
  */
 function learndash_30_custom_colors() {
 
 	/**
 	 * Filters default custom colors used in settings to set accent color, progress color, and notifications settings.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param array $custom_colors An Associative array of color name and values in hex code.
 	 */
@@ -1603,12 +1677,16 @@ function learndash_30_custom_colors() {
 	/**
 	 * Filters responsive videos setting value. Override the value of responsive video set in settings.
 	 *
+	 * @since 3.0.1
+	 *
 	 * @param string|int $resonsive_video_setting Value is yes if enabled and empty string if disabled. Default is set to 0.
 	 */
 	$responsive_video = apply_filters( 'learndash_30_responsive_video', LearnDash_Settings_Section::get_section_setting( 'LearnDash_Settings_Theme_LD30', 'responsive_video_enabled' ) );
 
 	/**
 	 * Filters focus mode width setting value. Override the focus mode width set in settings.
+	 *
+	 * @since 3.0.5
 	 *
 	 * @param string $focus_width_setting Focus mode width. Default value is default.
 	 */
@@ -1875,6 +1953,8 @@ add_action( 'wp_ajax_ld30_ajax_profile_search', 'learndash_30_ajax_profile_searc
  * Gets the ajax profile search data.
  *
  * Fires on `wp_ajax_ld30_ajax_profile_search` and `wp_ajax_nopriv_ld30_ajax_profile_search` ajax action.
+ *
+ * @since 3.0.0
  */
 function learndash_30_ajax_profile_search() {
 	if ( ( ! isset( $_GET['ld-profile-search-nonce'] ) ) || ( empty( $_GET['ld-profile-search-nonce'] ) ) || ( ! wp_verify_nonce( $_GET['ld-profile-search-nonce'], 'learndash_profile_course_search_nonce' ) ) ) {
@@ -1911,6 +1991,8 @@ function learndash_30_ajax_profile_search() {
 	/**
 	 * Filters ajax profile search attributes.
 	 *
+	 * @since 3.0.0
+	 *
 	 * @param array $shortcode_instance Shortcode instance.
 	 */
 	$atts = apply_filters( 'learndash_profile_ajax_search_atts', $_GET['shortcode_instance'] );
@@ -1933,6 +2015,8 @@ add_action( 'wp_ajax_nopriv_ld30_ajax_pager', 'learndash_30_ajax_pager' );
  * Gets the ld30 theme ajax pagination.
  *
  * Fires on `wp_ajax_ld30_ajax_pager` and `wp_ajax_nopriv_ld30_ajax_pager` ajax action.
+ *
+ * @since 3.0.0
  */
 function learndash_30_ajax_pager() {
 	if ( ( ! isset( $_GET['pager_nonce'] ) ) || ( empty( $_GET['pager_nonce'] ) ) || ( ! wp_verify_nonce( $_GET['pager_nonce'], 'ld30_ajax_pager' ) ) ) {
@@ -2044,6 +2128,8 @@ function learndash_30_ajax_pager() {
 		/**
 		 * Filters topic ajax pagination arguments.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param array $pagination_arguments Topic pagination arguments
 		 */
 		$topic_pager_args = apply_filters(
@@ -2123,6 +2209,8 @@ function learndash_30_ajax_pager() {
 
 		/**
 		 * Filters whether to show quiz for a particular lesson or not.
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param boolean $show_lesson_quizzes Boolean value determines whether to show a quiz or not.
 		 * @param int     $lesson_id           Lesson ID.
@@ -2319,6 +2407,8 @@ function learndash_30_ajax_pager() {
 		/**
 		 * Filters ajax profile search attributes
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param array $shortcode_instance Shortcode instance
 		 */
 		$atts = apply_filters( 'learndash_profile_ajax_pagination_atts', $_GET['shortcode_instance'] );
@@ -2338,6 +2428,8 @@ function learndash_30_ajax_pager() {
 
 		/**
 		 * Filters course content shortcode ajax pagination arguments.
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param array $shortcode_instance Shortcode instance
 		 */
@@ -2375,6 +2467,8 @@ function learndash_30_ajax_pager() {
 
 		/**
 		 * Filters user stats widget ajax pagination arguments.
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param array $shortcode_instance Shortcode instance
 		 */
@@ -2431,6 +2525,8 @@ function learndash_30_ajax_pager() {
  * Gets the focus mode lesson query arguments.
  *
  * @global WP_Post $post Global post object.
+ *
+ * @since 3.0.0
  *
  * @param int      $course_id               Course ID.
  * @param int|null $course_lessons_per_page Number of course lessons per page.
@@ -2505,6 +2601,8 @@ function learndash_focus_mode_lesson_query_args( $course_id, $course_lessons_per
 /**
  * Converts the hex color values to rgb.
  *
+ * @since 3.0.0
+ *
  * @param string            $color  Color value in hex format.
  * @param float|int|boolean $opacity The opacity of color.
  *
@@ -2552,6 +2650,8 @@ function learndash_hex2rgb( $color, $opacity = false ) {
 
 /**
  * Gets the ld30 theme course navigation.
+ *
+ * @since 3.0.0
  *
  * @global array $course_navigation_widget_pager Global course navigation widget pager.
  *
@@ -2610,6 +2710,8 @@ function learndash_30_get_course_navigation( $course_id, $widget_instance = arra
 /**
  * Gets the ld30 theme course sections.
  *
+ * @since 3.0.0
+ *
  * @param int|null $course_id Course ID.
  *
  * @return array|false An array of sections or false.
@@ -2645,6 +2747,8 @@ add_filter( 'body_class', 'learndash_30_custom_body_classes' );
  *
  * Fires on `body_class` hook.
  *
+ * @since 3.0.0
+ *
  * @param array $classes An array of body class names.
  *
  * @return array An array of body class names.
@@ -2670,6 +2774,8 @@ function learndash_30_custom_body_classes( $classes ) {
 
 /**
  * Checks whether a post can be marked as complete or not in focus mode.
+ *
+ * @since 3.0.0
  *
  * @param int|WP_Post|null $post      `WP_Post` object or post ID. Default to global $post.
  * @param int|null         $course_id Course ID.
@@ -2715,7 +2821,7 @@ function learndash_30_focus_mode_can_complete( $post = null, $course_id = null )
 }
 
 /**
- * Depricated
+ * Deprecated
  *
  * @deprecated
  */
@@ -2751,6 +2857,8 @@ function learndash_30_responsive_videos( $html, $url, $attr, $post_id ) {
 	/**
 	 * Filters responsive video domains. Used to modify the supported domains for the responsive video.
 	 *
+	 * @since 3.0.0
+	 *
 	 * @param array $video_domains Array of video domains to support responsive video.
 	 */
 	$matches = apply_filters(
@@ -2774,6 +2882,8 @@ function learndash_30_responsive_videos( $html, $url, $attr, $post_id ) {
 /**
  * Gets the certificate count for a user.
  *
+ * @since 3.0.0
+ *
  * @param WP_User|int|null $user `WP_User` object or user ID. Defaults to current logged in user.
  *
  * @return int|false Returns users certificate count.
@@ -2794,11 +2904,11 @@ function learndash_get_certificate_count( $user = null ) {
 
 	$certificates = 0;
 
-	$courses = get_user_meta( $user->ID, '_sfwd-course_progress', true );
-	$quizzes = get_user_meta( $user->ID, '_sfwd-quizzes', true );
+	$course_ids = learndash_user_get_enrolled_courses( $user->ID, array(), true );
+	$quizzes    = get_user_meta( $user->ID, '_sfwd-quizzes', true );
 
-	if ( $courses && ! empty( $courses ) ) {
-		foreach ( $courses as $course_id => $meta ) {
+	if ( $course_ids && ! empty( $course_ids ) ) {
+		foreach ( $course_ids as $course_id ) {
 
 			$link = learndash_get_course_certificate_link( $course_id, $user->ID );
 
@@ -2822,6 +2932,8 @@ function learndash_get_certificate_count( $user = null ) {
 
 /**
  * Gets whether the lesson has quiz or not.
+ *
+ * @since 3.0.0
  *
  * @param int|null $course_id Course ID. Defauls to current post ID in WordPress loop.
  * @param int|null $lessons   An array of lesson `WP_Post` object.
@@ -2856,6 +2968,8 @@ function learndash_30_has_lesson_quizzes( $course_id = null, $lessons = null ) {
 /**
  * Gets an array of points awarded for an assignment.
  *
+ * @since 3.0.0
+ *
  * @param int $assignment_id Assignment ID.
  *
  * @return false|array An array of points awarded for an assignment or false if the points are disabled.
@@ -2884,6 +2998,8 @@ function learndash_get_points_awarded_array( $assignment_id ) {
 		/**
 		 * Filters Points awarded data. Used to modify points given for any particular assignment.
 		 *
+		 * @since 3.0.0
+		 *
 		 * @param array $points_awarded Array for points awarded details.
 		 * @param int   $assignment_id  Assignment ID.
 		 */
@@ -2903,6 +3019,8 @@ function learndash_get_points_awarded_array( $assignment_id ) {
 
 /**
  * Gets whether a lesson has topics or not.
+ *
+ * @since 3.0.0
  *
  * @param int|null   $course_id Course ID.
  * @param array|null $lessons   An array of lesson objects.
@@ -2932,6 +3050,8 @@ function learndash_30_has_topics( $course_id = null, $lessons = null ) {
 
 /**
  * Outputs the currency symbol.
+ *
+ * @since 3.0.0
  */
 function learndash_30_the_currency_symbol() {
 	echo wp_kses_post( learndash_30_get_currency_symbol() );
@@ -2939,6 +3059,8 @@ function learndash_30_the_currency_symbol() {
 
 /**
  * Gets the currency symbol.
+ *
+ * @since 3.0.0
  *
  * @return string|false Returns currency symbol.
  */
@@ -2972,8 +3094,6 @@ function learndash_30_get_currency_symbol() {
 
 /**
  * Genesis doesn't use the normal wp_enqueue_scripts or wp_head so we need to call the enqueue function specifically for Genesis
- *
- * Since 3.0.1
  */
 add_action( 'learndash-focus-head', 'learndash_studiopress_compatibility' );
 
@@ -2981,6 +3101,8 @@ add_action( 'learndash-focus-head', 'learndash_studiopress_compatibility' );
  * Enqueues the genesis main stylesheet.
  *
  * Fires on `learndash-focus-head` hook.
+ *
+ * @since 3.0.1
  */
 function learndash_studiopress_compatibility() {
 

@@ -459,7 +459,7 @@ if ( ! class_exists( 'LDLMS_DB' ) ) {
 		}
 
 		/**
-		 * Utility function to pre-precess an array of values used in the SQL IN() clause.
+		 * Utility function to pre-process an array of values used in the SQL IN() clause.
 		 *
 		 * @since 3.4.0
 		 *

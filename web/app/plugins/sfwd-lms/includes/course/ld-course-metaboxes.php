@@ -5,7 +5,8 @@
  * Introduces metaboxes at Add/Edit Course page to be used as
  * a wrapper by the React application at front-end.
  *
- * @package LearnDash
+ * @since 3.0.0
+ * @package LearnDash\Course
  */
 
 namespace LearnDash\Course\Metaboxes;
@@ -18,6 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Adds the meta boxes to course post type.
  *
  * Fires on `learndash_add_meta_boxes` and `add_meta_boxes_sfwd-courses` hook.
+ *
+ * @since 3.0.0
  */
 function add_meta_boxes() {
 
@@ -58,6 +61,8 @@ add_action( 'learndash_add_meta_boxes', 'LearnDash\Course\Metaboxes\add_meta_box
 
 /**
  * Prints the lesson metabox content.
+ *
+ * @since 3.0.0
  */
 function meta_box_lessons_callback() {
 	?>
@@ -67,6 +72,8 @@ function meta_box_lessons_callback() {
 
 /**
  * Prints the topics metabox content.
+ *
+ * @since 3.0.0
  */
 function meta_box_topics_callback() {
 	?>
@@ -75,7 +82,9 @@ function meta_box_topics_callback() {
 }
 
 /**
- *  Prints the quizzes meta box content.
+ * Prints the quizzes meta box content.
+ *
+ * @since 3.0.0
  */
 function meta_box_quizzes_callback() {
 	?>

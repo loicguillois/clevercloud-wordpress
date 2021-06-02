@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section for Support Templates Metabox.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.1.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,7 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Section_Support_Templates' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Section for Support Templates Metabox.
+	 *
+	 * @since 3.1.0
 	 */
 	class LearnDash_Settings_Section_Support_Templates extends LearnDash_Settings_Section {
 
@@ -25,6 +27,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 3.1.0
 		 */
 		protected function __construct() {
 			$this->settings_page_id = 'learndash_support';
@@ -49,6 +53,13 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 			parent::__construct();
 		}
 
+		/**
+		 * Support Sections Init
+		 *
+		 * @since 3.1.0
+		 *
+		 * @param array $support_sections Support sections array
+		 */
 		public function learndash_support_sections_init( $support_sections = array() ) {
 			global $wpdb, $wp_version, $wp_rewrite;
 			global $sfwd_lms;
@@ -150,6 +161,14 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 			return $support_sections;
 		}
 
+		/**
+		 * Show Support Section
+		 *
+		 * @since 3.1.0
+		 *
+		 * @param string $settings_section_key Section Key
+		 * @param string $settings_screen_id   Screen ID
+		 */
 		public function show_support_section( $settings_section_key = '', $settings_screen_id = '' ) {
 			if ( $settings_section_key === $this->settings_section_key ) {
 				$support_page_instance = LearnDash_Settings_Page::get_page_instance( 'LearnDash_Settings_Page_Support' );
@@ -159,10 +178,10 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 			}
 		}
 
-				/**
+		/**
 		 * Load template files in preparation for processing.
 		 *
-		 * @since 2.3
+		 * @since 3.1.0
 		 */
 		public function load_templates() {
 			$this->template_array = array();

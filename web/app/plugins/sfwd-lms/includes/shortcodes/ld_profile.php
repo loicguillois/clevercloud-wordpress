@@ -1,6 +1,6 @@
 <?php
 /**
- * Shortcode for ld_profile
+ * LearnDash `[ld_profile]` shortcode processing.
  *
  * @since 2.1.0
  *
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `ld_profile` shortcode output.
+ * Builds the `[ld_profile]` shortcode output.
  *
  * @global boolean $learndash_shortcode_used
  *
@@ -21,22 +21,23 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array $atts {
  *    An array of shortcode attributes.
  *
- *    @type int       $user_id            Optional. User ID. Defaults to current user ID.
- *    @type false|int $per_page           Optional. Number of profiles per page. Default false.
- *    @type string    $order              Optional. Designates ascending ('ASC') or descending ('DESC') order. Default 'DESC'.
- *    @type string    $orderby            Optional. The name of the field to order posts by. Default 'ID'.
- *    @type int       $course_points_user Optional. Whether to show user course points. Default 'yes'.
- *    @type boolean   $expand_all         Optional. Whether to expand all. Default False.
- *    @type string    $profile_link        Optional. User profile link. Default 'yes'.
- *    @type string    $show_header        Optional. Whether to show header. Default 'yes'.
- *    @type string    $show_quizzes       Optional. Whether to show quizzes. Default 'yes'.
- *    @type string    $show_search        Optional. Whether to allow search. Default 'yes'.
- *    @type string    $search             Optional. Serch query string. Default empty.
+ *    @type int       $user_id            User ID. Defaults to current user ID.
+ *    @type false|int $per_page           Number of profiles per page. Default false.
+ *    @type string    $order              Designates ascending ('ASC') or descending ('DESC') order. Default 'DESC'.
+ *    @type string    $orderby            The name of the field to order posts by. Default 'ID'.
+ *    @type int       $course_points_user Whether to show user course points. Default 'yes'.
+ *    @type boolean   $expand_all         Whether to expand all. Default False.
+ *    @type string    $profile_link       User profile link. Default 'yes'.
+ *    @type string    $show_header        Whether to show header. Default 'yes'.
+ *    @type string    $show_quizzes       Whether to show quizzes. Default 'yes'.
+ *    @type string    $show_search        Whether to allow search. Default 'yes'.
+ *    @type string    $search             Serch query string. Default empty.
  * }
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string The `ld_profile` shortcode ouput.
  */
-function learndash_profile( $atts ) {
+function learndash_profile( $atts = array(), $content = '' ) {
 	global $learndash_shortcode_used;
 
 	// Add check to ensure user it logged in
@@ -194,5 +195,4 @@ function learndash_profile( $atts ) {
 		)
 	);
 }
-
-add_shortcode( 'ld_profile', 'learndash_profile' );
+add_shortcode( 'ld_profile', 'learndash_profile', 10, 2 );

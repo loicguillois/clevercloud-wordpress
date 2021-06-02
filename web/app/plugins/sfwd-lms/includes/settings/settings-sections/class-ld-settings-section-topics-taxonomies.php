@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section for Topics Taxonomies Metabox.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.4.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Topics_Taxonomies' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Section for Topics Taxonomies Metabox.
+	 *
+	 * @since 2.4.0
 	 */
 	class LearnDash_Settings_Topics_Taxonomies extends LearnDash_Settings_Section {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 2.4.0
 		 */
 		protected function __construct() {
 			// What screen ID are we showing on.
@@ -54,6 +58,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings values.
+		 *
+		 * @since 2.4.0
 		 */
 		public function load_settings_values() {
 			parent::load_settings_values();
@@ -89,6 +95,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings fields.
+		 *
+		 * @since 2.4.0
 		 */
 		public function load_settings_fields() {
 

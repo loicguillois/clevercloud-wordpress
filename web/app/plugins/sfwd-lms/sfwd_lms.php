@@ -3,7 +3,7 @@
  * Plugin Name: LearnDash LMS
  * Plugin URI: http://www.learndash.com
  * Description: LearnDash LMS Plugin - Turn your WordPress site into a learning management system.
- * Version: 3.4.0.8
+ * Version: 3.4.1.1
  * Author: LearnDash
  * Author URI: http://www.learndash.com
  * Text Domain: learndash
@@ -19,436 +19,1027 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * LearnDash Version Constant
+ * Define LearnDash LMS - Set the current version constant.
+ *
+ * @since 2.1.0
+ * @internal Will be set by LearnDash LMS.
+ *
+ * @var string PHP version x.x.x or x.x.x.x format.
  */
-define( 'LEARNDASH_VERSION', '3.4.0.8' );
+define( 'LEARNDASH_VERSION', '3.4.1.1' );
+
+/**
+ * Define LearnDash LMS - Set the settings database version.
+ *
+ * This define controls logic specific to the Activity database tables schema.
+ *
+ * @since 2.3.0
+ * @internal Will be set by LearnDash LMS.
+ *
+ * @var string PHP version x.x.x or x.x.x.x format.
+ */
 define( 'LEARNDASH_SETTINGS_DB_VERSION', '2.5' );
+
+/**
+ * Define LearnDash LMS - Set the settings database upgrade trigger version.
+ *
+ * This define controls admin prompts to performa data upgrades.
+ *
+ * @since 2.3.1
+ * @internal Will be set by LearnDash.
+ *
+ * @var string PHP version x.x.x or x.x.x.x format.
+ */
 define( 'LEARNDASH_SETTINGS_TRIGGER_UPGRADE_VERSION', '2.5' );
+
+/**
+ * Define LearnDash LMS - Set the text domain.
+ *
+ * This define is used when loading the text domain files.
+ * Should NOT be used for actual text domain string markers.
+ *
+ * @since 2.3.2
+ * @internal Will be set by LearnDash LMS.
+ *
+ * @var string PHP version x.x.x or x.x.x.x format.
+ */
 define( 'LEARNDASH_LMS_TEXT_DOMAIN', 'learndash' );
 
 /**
- * Define minimum versions for PHP and MySQL
+ * Define LearnDash LMS - Set the minimum supported PHP version.
  *
  * @since 3.3.0.2
+ * @internal Will be set by LearnDash LMS.
+ *
+ * @var string PHP version x.x.x or x.x.x.x format.
  */
 define( 'LEARNDASH_MIN_PHP_VERSION', '7.3' );
+
+/**
+ * Define LearnDash LMS - Set the minimum supported MySQL version.
+ *
+ * @since 3.3.0.2
+ * @internal Will be set by LearnDash LMS.
+ *
+ * @var string PHP version x.x.x or x.x.x.x format.
+ */
 define( 'LEARNDASH_MIN_MYSQL_VERSION', '5.6' );
+
+/**
+ * Define LearnDash LMS - Set the minimum supported MariaDB version.
+ *
+ * @since 3.4.0
+ * @internal Will be set by LearnDash LMS.
+ *
+ * @var string PHP version x.x.x or x.x.x.x format.
+ */
 define( 'LEARNDASH_MIN_MARIA_VERSION', '10.0' );
 
 if ( ! defined( 'LEARNDASH_LMS_PLUGIN_DIR' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the plugin install path.
+	 *
+	 * Will be set based on the WordPress define `WP_PLUGIN_DIR`.
+	 *
+	 * @since 2.1.4
+	 * @uses WP_PLUGIN_DIR
+	 *
+	 * @var string Directory path to plugin install directory.
+	 */
 	define( 'LEARNDASH_LMS_PLUGIN_DIR', trailingslashit( str_replace( '\\', '/', WP_PLUGIN_DIR ) . '/' . basename( dirname( __FILE__ ) ) ) );
 }
+
 if ( ! defined( 'LEARNDASH_LMS_PLUGIN_URL' ) ) {
 	$learndash_plugin_url = trailingslashit( WP_PLUGIN_URL . '/' . basename( dirname( __FILE__ ) ) );
 	$learndash_plugin_url = str_replace( array( 'https://', 'http://' ), array( '//', '//' ), $learndash_plugin_url );
+
+	/**
+	 * Define LearnDash LMS - Set the plugin relative URL.
+	 *
+	 * Will be set based on the WordPress define `WP_PLUGIN_URL`.
+	 *
+	 * @since 2.1.4
+	 * @uses WP_PLUGIN_URL
+	 *
+	 * @var string URL to plugin install directory.
+	 */
 	define( 'LEARNDASH_LMS_PLUGIN_URL', $learndash_plugin_url );
 }
 
 if ( ! defined( 'LEARNDASH_LMS_LIBRARY_DIR' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the plugin includes/lib path.
+	 *
+	 * Will be set based on the LearnDash define `LEARNDASH_LMS_PLUGIN_DIR`.
+	 *
+	 * @since 2.1.4
+	 * @uses LEARNDASH_LMS_PLUGIN_DIR
+	 *
+	 * @var string Directory path to plugin includes/lib internal directory.
+	 */
 	define( 'LEARNDASH_LMS_LIBRARY_DIR', trailingslashit( LEARNDASH_LMS_PLUGIN_DIR ) . 'includes/lib' );
 }
 
 if ( ! defined( 'LEARNDASH_LMS_LIBRARY_URL' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the plugin includes/lib relative URL.
+	 *
+	 * Will be set based on the LearnDash define `LEARNDASH_LMS_PLUGIN_URL`.
+	 *
+	 * @since 2.1.4
+	 * @uses LEARNDASH_LMS_PLUGIN_URL
+	 *
+	 * @var string URL to plugin includes/lib directory.
+	 */
 	define( 'LEARNDASH_LMS_LIBRARY_URL', trailingslashit( LEARNDASH_LMS_PLUGIN_URL ) . 'includes/lib' );
 }
 
 if ( ! defined( 'LEARNDASH_LMS_PLUGIN_KEY' ) ) {
 	$learndash_plugin_dir = LEARNDASH_LMS_PLUGIN_DIR;
 	$learndash_plugin_dir = basename( $learndash_plugin_dir ) . '/' . basename( __FILE__ );
+
+	/**
+	 * Define LearnDash LMS - Set the plugin key.
+	 *
+	 * This define is the plugin directory and filename.
+	 * directory.
+	 *
+	 * @since 2.3.1
+	 *
+	 * @var string Default value is `sfwd-lms/sfwd_lms.php`.
+	 */
 	define( 'LEARNDASH_LMS_PLUGIN_KEY', $learndash_plugin_dir );
 }
 
+if ( ! defined( 'LEARNDASH_OBJECT_CACHE_ENABLED' ) ) {
+	/**
+	 * Define LearnDash LMS - Enabled support for object cache used for temporary storage.
+	 *
+	 * @since 3.4.1
+	 *
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  Will enable object storage support. Default.
+	 *    @type bool false Will disable object cache support.
+	 * }
+	 */
+
+	define( 'LEARNDASH_OBJECT_CACHE_ENABLED', true );
+}
+
 if ( ! defined( 'LEARNDASH_TRANSIENTS_DISABLED' ) ) {
+	/**
+	 * Define LearnDash LMS - Enabled support for Transients used for temporary storage.
+	 *
+	 * @since 2.3.3 Initial value `false`.
+	 * @since 3.4.0 Set to `true` as default to disable transients.
+	 *
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  Will disable transient storage. Default.
+	 *    @type bool false Will enable transient storage.
+	 * }
+	 */
 	define( 'LEARNDASH_TRANSIENTS_DISABLED', true );
 }
 
+if ( ! defined( 'LEARNDASH_REPORT_TRANSIENT_STORAGE' ) ) {
+	/**
+	 * Define LearnDash LMS - Controls the Course/Quiz Report transient cache storage used.
+	 *
+	 * @since 3.4.1
+	 *
+	 * @var string {
+	 *    Only one of the following values.
+	 *    @type string options Will use the wp_options table. Default.
+	 *    @type string file    Will save cache data in file within `wp-content/uploads/learndash/reports/`.
+	 * }
+	 */
+	define( 'LEARNDASH_REPORT_TRANSIENT_STORAGE', 'options' );
+}
+
 if ( ! defined( 'LEARNDASH_DEBUG' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable debug message output.
+	 *
+	 * @since 2.5.9
+	 *
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  Will output debug message similar to the WordPress WP_DEBUG define.
+	 *    @type bool false Default
+	 * }
+	 */
 	define( 'LEARNDASH_DEBUG', false );
 }
 
-/**
- * Controls legacy reporting logic where the PHP error_reporting(0) was set.
- *
- * @since 3.4.0
- */
 if ( ! defined( 'LEARNDASH_ERROR_REPORTING_ZERO' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable legacy error handling logic where the PHP
+	 * error_reporting(0) was set.
+	 *
+	 * @since 3.4.0
+	 *
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  Enable the function error_reporting(0) to be used. Legacy.
+	 *    @type bool false Default.
+	 * }
+	 */
 	define( 'LEARNDASH_ERROR_REPORTING_ZERO', false );
 }
 
-
-// If the WordPress 'SCRIPT_DEBUG' is set then we also set our 'LEARNDASH_SCRIPT_DEBUG' so we are serving non-minified scripts.
 if ( ! defined( 'LEARNDASH_SCRIPT_DEBUG' ) ) {
 	if ( ( defined( 'SCRIPT_DEBUG' ) ) && ( SCRIPT_DEBUG === true ) ) {
-		define( 'LEARNDASH_SCRIPT_DEBUG', true );
+		$learndash_define_script_debug_value = true;
 	} else {
-		define( 'LEARNDASH_SCRIPT_DEBUG', false );
+		$learndash_define_script_debug_value = false;
 	}
+
+	/**
+	 * Define LearnDash LMS - Enable load of non-minified CSS/JS assets.
+	 *
+	 * If the WordPress SCRIPT_DEBUG or LearnDash LEARNDASH_SCRIPT_DEBUG
+	 * are set then LEARNDASH_SCRIPT_DEBUG wiill also be set to (bool) true.
+	 *
+	 * @since 2.2.0
+	 *
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  The non-minified versions of CSS/JS assets will be used.
+	 *    @type bool false The minified CSS/JS assets will be used. Default.
+	 * }
+	 */
+	define( 'LEARNDASH_SCRIPT_DEBUG', $learndash_define_script_debug_value );
 }
 
-if ( ! defined( 'LEARNDASH_BUILDER_DEBUG' ) ) {
-	define( 'LEARNDASH_BUILDER_DEBUG', false );
-}
-
-/**
- * Controls Course query / Progression logic.
- *
- * @since 3.4.0
- */
 if ( ! defined( 'LEARNDASH_COURSE_FUNCTIONS_LEGACY' ) ) {
+	/**
+	 * Define LearnDash LMS - Enabled legacy Course Progression and Query logic.
+	 *
+	 * This define will be removed in a future release.
+	 *
+	 * @since 3.4.0
+	 *
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  The LD 3.3.x legacy course progression and query logic will be used.
+	 *    @type bool false The LD 3.4.x improved course progression and quesry logic will be used. Default.
+	 * }
+	 */
 	define( 'LEARNDASH_COURSE_FUNCTIONS_LEGACY', false );
 }
 
-/**
- * Controls the method used to update the builder step.
- *
- * If defined 'true' will use the wp_update_post() method
- * else will use the default wpdb::update() and clean_post_cache().
- *
- * @since 3.2.3
- */
 if ( ! defined( 'LEARNDASH_BUILDER_STEPS_UPDATE_POST' ) ) {
+	/**
+	 * Define LearnDash LMS - Enables Controls the method used to update the builder step.
+	 *
+	 * @since 3.2.3
+	 *
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  Use the function `wp_update_post()` function.
+	 *    @type bool false Use the default `wpdb::update()` and `clean_post_cache()` functions. Default.
+	 * }
+	 */
 	define( 'LEARNDASH_BUILDER_STEPS_UPDATE_POST', false );
 }
 
 if ( ! defined( 'LEARNDASH_SCRIPT_VERSION_TOKEN' ) ) {
 	if ( defined( 'LEARNDASH_SCRIPT_DEBUG' ) && ( LEARNDASH_SCRIPT_DEBUG === true ) ) {
-		define( 'LEARNDASH_SCRIPT_VERSION_TOKEN', LEARNDASH_VERSION . '-' . time() );
-
+		$learndash_define_script_version_token_value = LEARNDASH_VERSION . '-' . time();
 	} else {
-		define( 'LEARNDASH_SCRIPT_VERSION_TOKEN', LEARNDASH_VERSION );
+		$learndash_define_script_version_token_value = LEARNDASH_VERSION;
 	}
+
+	/**
+	 * Define LearnDash LMS - Sets a unique value to be appended to CSS/JS URLS.
+	 *
+	 * The default value is the plugin version `LEARNDASH_VERSION`. If `LEARNDASH_SCRIPT_DEBUG`
+	 * is set to `true` the value will also append a timestamp ensuring a unique URL for each
+	 * request.
+	 *
+	 * @since 2.5.0
+	 *
+	 * @uses LEARNDASH_SCRIPT_DEBUG
+	 * @uses LEARNDASH_VERSION
+	 *
+	 * @var string Default is define `LEARNDASH_VERSION` value.
+	 */
+	define( 'LEARNDASH_SCRIPT_VERSION_TOKEN', $learndash_define_script_version_token_value );
 }
 
-/**
- * The priority when LearnDash hooks into the WordPress filter
- * 'the_content' for the main course posts.
- * @since 3.1.4
- */
 if ( ! defined( 'LEARNDASH_FILTER_PRIORITY_THE_CONTENT' ) ) {
+	/**
+	 * Define LearnDash LMS - Sets the priority when LearnDash hooks into the WordPress filter
+	 * 'the_content' filter for the main course posts.
+	 *
+	 * @since 3.1.4
+	 *
+	 * @var int Default is 30.
+	 */
 	define( 'LEARNDASH_FILTER_PRIORITY_THE_CONTENT', 30 );
 }
 
-/**
- * Added to support REST API.
- * @since 2.5.8.
- */
 if ( ! defined( 'LEARNDASH_REST_API_ENABLED' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable support REST API.
+	 *
+	 * @since 2.5.8
+	 *
+	 * @var bool Default is true.
+	 */
 	define( 'LEARNDASH_REST_API_ENABLED', true );
 }
 
-/**
- * Block access to default WordPress CPT routes.
- * @since 3.2.0
- */
 if ( ! defined( 'LEARNDASH_BLOCK_WORDPRESS_CPT_ROUTES' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable block access to default WordPress CPT routes.
+	 *
+	 * Logic added to prevent access to the automatic routes created as part of
+	 * WP core for Gutenberg enabled custom post types. This new logic will prevent
+	 * visibility read access if used is not authenticated or does not have update
+	 * capabilities.
+	 *
+	 * @since 3.2.0
+	 *
+	 * @var bool Default is true.
+	 */
 	define( 'LEARNDASH_BLOCK_WORDPRESS_CPT_ROUTES', true );
 }
 
-/**
- * Added to support Lesson/Topic Video Progression
- * @since 2.4.5.
- */
 if ( ! defined( 'LEARNDASH_LESSON_VIDEO' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable support for Lesson/Topic Video Progression.
+	 *
+	 * @since 2.4.5
+	 *
+	 * @var bool Default is true.
+	 */
 	define( 'LEARNDASH_LESSON_VIDEO', true );
 }
 
-/**
- * Added to support Course Builder
- * @since 2.5.0.
- */
 if ( ! defined( 'LEARNDASH_COURSE_BUILDER' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable support for Course Builder.
+	 *
+	 * @since 2.5.0
+	 *
+	 * @var bool Default is true.
+	 */
 	define( 'LEARNDASH_COURSE_BUILDER', true );
 }
 
+/**
+ * Define LearnDash LMS
+ *
+ * @ignore
+ */
 if ( ! defined( 'LEARNDASH_COURSE_STEPS_PRELOAD' ) ) {
 	define( 'LEARNDASH_COURSE_STEPS_PRELOAD', true );
 }
 
-/**
- * Added to support Quiz Builder
- * @since 2.6.0.
- */
 if ( ! defined( 'LEARNDASH_QUIZ_BUILDER' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable support for Quiz Builder.
+	 *
+	 * @since 2.6.0
+	 *
+	 * @var bool Default is true.
+	 */
 	define( 'LEARNDASH_QUIZ_BUILDER', true );
 }
 
-/**
- * Added to support Gutenberg Editor
- * @since 2.5.8.
- */
+if ( ! defined( 'LEARNDASH_BUILDER_DEBUG' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable load of non-minified CSS/JS assets for Builders.
+	 *
+	 * @since 3.0.0
+	 *
+	 * @var bool Default is false.
+	 */
+	define( 'LEARNDASH_BUILDER_DEBUG', false );
+}
+
 if ( ! defined( 'LEARNDASH_GUTENBERG' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable support for Gutenberg Editor.
+	 *
+	 * @since 2.5.8
+	 *
+	 * @var bool Default is true.
+	 */
 	define( 'LEARNDASH_GUTENBERG', true );
 }
 
-/**
- * Added to support Translations via GlotPress
- * @since 2.5.1.1.
- */
 if ( ! defined( 'LEARNDASH_TRANSLATIONS' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable support for Translations downloads via GlotPress.
+	 *
+	 * @since 2.5.2
+	 *
+	 * @var bool Default is true.
+	 */
 	define( 'LEARNDASH_TRANSLATIONS', true );
 }
 
 if ( ! defined( 'LEARNDASH_HTTP_REMOTE_GET_TIMEOUT' ) ) {
+	/**
+	 * Define LearnDash LMS - Set timeout (seconds) on HTTP GET requests.
+	 *
+	 * @since 3.1.0
+	 *
+	 * @var int Default is 15.
+	 */
 	define( 'LEARNDASH_HTTP_REMOTE_GET_TIMEOUT', 15 );
 }
 
-/**
- * The timeout (seconds) for the POST request.
- */
 if ( ! defined( 'LEARNDASH_HTTP_REMOTE_POST_TIMEOUT' ) ) {
+	/**
+	 * Define LearnDash LMS - Set timeout (seconds) on HTTP POST requests.
+	 *
+	 * @since 3.1.0
+	 *
+	 * @var int Default is 15.
+	 */
 	define( 'LEARNDASH_HTTP_REMOTE_POST_TIMEOUT', 15 );
 }
-/**
- * The timeout (seconds) for BitBucket Readme download_url() request.
- *
- * @since 3.1.8
- */
+
 if ( ! defined( 'LEARNDASH_HTTP_BITBUCKET_README_DOWNLOAD_TIMEOUT' ) ) {
+	/**
+	 * Define LearnDash LMS - Set timeout (seconds) for BitBucket Readme download_url() request.
+	 *
+	 * @since 3.1.8
+	 *
+	 * @var int Default is 15.
+	 */
 	define( 'LEARNDASH_HTTP_BITBUCKET_README_DOWNLOAD_TIMEOUT', 15 );
 }
 
-/**
- * Set the number of consecutive errors before update attemps abort
- *
- * @since 3.1.8
- */
 if ( defined( 'LEARNDASH_REPO_ERROR_THRESHOLD_COUNT' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the number of consecutive errors before update attemps abort.
+	 *
+	 * @since 3.1.8
+	 *
+	 * @var int Default is 3.
+	 */
 	define( 'LEARNDASH_REPO_ERROR_THRESHOLD_COUNT', 3 );
 }
 
-/**
- * Set the time (seconds) after abort before restarting tries.
- *
- * @since 3.1.8
- */
 if ( defined( 'LEARNDASH_REPO_ERROR_THRESHOLD_TIME' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the time (seconds) after abort before restarting tries.
+	 *
+	 * @since 3.1.8
+	 *
+	 * @var int Default is 7200.
+	 */
 	define( 'LEARNDASH_REPO_ERROR_THRESHOLD_TIME', 2 * 60 * 60 );
 }
 
 if ( ! defined( 'LEARNDASH_LMS_DEFAULT_QUESTION_POINTS' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the default quiz question points.
+	 *
+	 * @since 2.1.6
+	 *
+	 * @var int Default is 1.
+	 */
 	define( 'LEARNDASH_LMS_DEFAULT_QUESTION_POINTS', 1 );
 }
 
 if ( ! defined( 'LEARNDASH_LMS_DEFAULT_ANSWER_POINTS' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the default quiz question answer points.
+	 *
+	 * @since 2.1.6
+	 *
+	 * @var int Default is 0.
+	 */
 	define( 'LEARNDASH_LMS_DEFAULT_ANSWER_POINTS', 0 );
 }
 
-// Define the number of items to lazy load per AJAX request.
 if ( ! defined( 'LEARNDASH_LMS_DEFAULT_LAZY_LOAD_PER_PAGE' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the number of items to lazy load per AJAX request.
+	 *
+	 * @since 2.2.1
+	 *
+	 * @var int Default is 5000.
+	 */
 	define( 'LEARNDASH_LMS_DEFAULT_LAZY_LOAD_PER_PAGE', 5000 );
 }
 
-// Define the number of items for Data Upgrade batch.
 if ( ! defined( 'LEARNDASH_LMS_DEFAULT_DATA_UPGRADE_BATCH_SIZE' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the number of items for Data Upgrade batch.
+	 *
+	 * @since 2.6.0
+	 *
+	 * @var int Default is 1000.
+	 */
 	define( 'LEARNDASH_LMS_DEFAULT_DATA_UPGRADE_BATCH_SIZE', 1000 );
 }
 
-/**
- * Define the number of course steps load batch size.
- *
- * @since 3.4.0
- */
 if ( ! defined( 'LEARNDASH_LMS_COURSE_STEPS_LOAD_BATCH_SIZE' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the number of course steps objects load batch size.
+	 *
+	 * Used when loading course step WP_Post objects. On a very large course attempting
+	 * to load too many post objects via a single query can impact server performance.
+	 *
+	 * @since 3.4.0
+	 *
+	 * @var int Default is 500.
+	 */
 	define( 'LEARNDASH_LMS_COURSE_STEPS_LOAD_BATCH_SIZE', 500 );
 }
 
-// Define the default number of items per page.
 if ( ! defined( 'LEARNDASH_LMS_DEFAULT_WIDGET_PER_PAGE' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the default number of items per page.
+	 *
+	 * @since 2.5.5
+	 *
+	 * @var int Default is 20.
+	 */
 	define( 'LEARNDASH_LMS_DEFAULT_WIDGET_PER_PAGE', 20 );
 }
 
 if ( ! defined( 'LEARNDASH_LMS_DEFAULT_CB_INSERT_CHUNK_SIZE' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the number of items to insert/update when saving builder data.
+	 *
+	 * This value controls the query insert/update logic and does not limit the number of steps.
+	 *
+	 * @since 2.5.0
+	 *
+	 * @var int Default is 10.
+	 */
 	define( 'LEARNDASH_LMS_DEFAULT_CB_INSERT_CHUNK_SIZE', 10 );
 }
 
-// Define what administrator cabability to check.
 if ( ! defined( 'LEARNDASH_ADMIN_CAPABILITY_CHECK' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the Administrator role capability check.
+	 *
+	 * The value should match a role capability used to determine if a user is
+	 * and Administrator user. Default is 'manage_options'.
+	 *
+	 * @since 2.3.0
+	 *
+	 * @var string Default is 'manage_options'.
+	 */
 	define( 'LEARNDASH_ADMIN_CAPABILITY_CHECK', 'manage_options' );
 }
 
 if ( ! defined( 'LEARNDASH_GROUP_LEADER_CAPABILITY_CHECK' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the Group Leader role capability check.
+	 *
+	 * The value should match a role capability used to determine if a user is
+	 * a Group Leader user. Default is 'group_leader'.
+	 *
+	 * @since 2.3.0
+	 *
+	 * @var string Default is 'group_leader'.
+	 */
 	define( 'LEARNDASH_GROUP_LEADER_CAPABILITY_CHECK', 'group_leader' );
 }
 
+if ( ! defined( 'LEARNDASH_GROUP_LEADER_DASHBOARD_ACCESS' ) ) {
+
+	/**
+	 * Define LearnDash LMS - Control Group Leader access to WP Dashboard with WooCommerce.
+	 *
+	 * Used by `learndash_check_group_leader_access`
+	 *
+	 * @since 2.3.0
+	 *
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  Will allow Group Leader access to WP Dashboard. Default.
+	 *    @type bool false Will prevent Group Leader access to WP Dashboard.
+	 * }
+	 */
+	define( 'LEARNDASH_GROUP_LEADER_DASHBOARD_ACCESS', true );
+}
+
 if ( ! defined( 'LEARNDASH_DEFAULT_THEME' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the default template used.
+	 *
+	 * This value is used to set the default theme on new installs.
+	 *
+	 * @since 3.0.0
+	 *
+	 * @var string Default is 'ld30'.
+	 */
 	define( 'LEARNDASH_DEFAULT_THEME', 'ld30' );
 }
 
 if ( ! defined( 'LEARNDASH_LEGACY_THEME' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the legacy template slug.
+	 *
+	 * @since 3.0.0
+	 *
+	 * @var string Default is 'legacy'.
+	 */
 	define( 'LEARNDASH_LEGACY_THEME', 'legacy' );
 }
 
 if ( ! defined( 'LEARNDASH_DEFAULT_COURSE_PRICE_TYPE' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the default course price type.
+	 *
+	 * @since 3.2.0
+	 *
+	 * @var string {
+	 *    Possible values one of the following.
+	 *    @type string open      Price Type 'open'. Default.
+	 *    @type string free      Price Type 'free'.
+	 *    @type string paynow    Price Type 'paynow'.
+	 *    @type string subscribe Price Type 'subscribe'.
+	 *    @type string closed    Price Type 'closed'.
+	 * }
+	 */
 	define( 'LEARNDASH_DEFAULT_COURSE_PRICE_TYPE', 'open' );
 }
+
 if ( ! defined( 'LEARNDASH_DEFAULT_COURSE_ORDER' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the default course steps order. NOT USED
+	 *
+	 * @since 3.2.0
+	 * @ignore
+	 *
+	 * @var string {
+	 *    Only one of the following values.
+	 *    @type string ASC  Sort values Ascending. Default.
+	 *    @type string DESC Sort values Descending.
+	 * }
+	 */
 	define( 'LEARNDASH_DEFAULT_COURSE_ORDER', 'ASC' );
 }
+
 if ( ! defined( 'LEARNDASH_DEFAULT_COURSE_ORDERBY' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the default course steps order by. NOT USED.
+	 *
+	 * @since 3.2.0
+	 * @ignore
+	 *
+	 * @var string {
+	 *    Only one of the following values.
+	 *    @type string date       Sort values by Date. Default.
+	 *    @type string menu_order Sort values by menu_order.
+	 *    @type string title      Sort values by title.
+	 * }
+	 */
 	define( 'LEARNDASH_DEFAULT_COURSE_ORDERBY', 'date' );
 }
 
-/**
- * Controls if check is made to ensure user can read course step.
- *
- * @since 3.4.0.2
- */
 if ( ! defined( 'LEARNDASH_COURSE_STEP_READ_CHECK' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable logic to check if user can read course step WP_Post.
+	 *
+	 * @since 3.4.0.2
+	 *
+	 * @var bool Default is true.
+	 */
 	define( 'LEARNDASH_COURSE_STEP_READ_CHECK', true );
 }
 
 if ( ! defined( 'LEARNDASH_DEFAULT_GROUP_PRICE_TYPE' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the default group price type.
+	 *
+	 * @since 3.2.0
+	 *
+	 * @var string {
+	 *    Possible values one of the following.
+	 *    @type string closed    Price Type 'closed'. Default.
+	 *    @type string free      Price Type 'free'.
+	 *    @type string paynow    Price Type 'paynow'.
+	 *    @type string subscribe Price Type 'subscribe'.
+	 * }
+	 */
 	define( 'LEARNDASH_DEFAULT_GROUP_PRICE_TYPE', 'closed' );
 }
+
 if ( ! defined( 'LEARNDASH_DEFAULT_GROUP_ORDER' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the default groups courses display order.
+	 *
+	 * @since 3.2.0
+	 *
+	 * @var string {
+	 *    Only one of the following values.
+	 *    @type string ASC  Sort values Ascending. Default.
+	 *    @type string DESC Sort values Descending.
+	 * }
+	 */
 	define( 'LEARNDASH_DEFAULT_GROUP_ORDER', 'ASC' );
 }
+
 if ( ! defined( 'LEARNDASH_DEFAULT_GROUP_ORDERBY' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the default groups courses display order by.
+	 *
+	 * @since 3.2.0
+	 *
+	 * @var string {
+	 *    Only one of the following values.
+	 *    @type string date       Sort values by Date. Default.
+	 *    @type string menu_order Sort values by menu_order.
+	 *    @type string title      Sort values by title.
+	 * }
+	 */
 	define( 'LEARNDASH_DEFAULT_GROUP_ORDERBY', 'date' );
 }
 
 if ( ! defined( 'LEARNDASH_QUIZ_RESULT_MESSAGE_MAX' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the maximun number of items used for the
+	 * Quiz Result Message setting field.
+	 *
+	 * @since 3.0.0
+	 *
+	 * @var int Default is 15.
+	 */
 	define( 'LEARNDASH_QUIZ_RESULT_MESSAGE_MAX', 15 );
 }
 
+if ( ! defined( 'LEARNDASH_QUIZ_EXPORT_LEGACY' ) ) {
+	/**
+	 * Define LearnDash LMS - Use the legacy WPProQuiz import/export logic
+	 * using underialize/serialize insted of newer json_decode/json_encode.
+	 *
+	 * @since 3.2.0
+	 *
+	 * @var bool Default is false.
+	 */
+	define( 'LEARNDASH_QUIZ_EXPORT_LEGACY', false );
+}
+
+if ( ! defined( 'LEARNDASH_QUIZ_PREREQUISITE_ALT' ) ) {
+	/**
+	 * Define LearnDash LMS - Controls the Quiz Prerequisite
+	 * handling.
+	 *
+	 * If `true` the user must pass the prerequisite
+	 * quizzes. If `false` the user must have only taken
+	 * the prerequisite quizzes but not required to pass
+	 * them.
+	 *
+	 * @since 2.5.7
+	 *
+	 * @var bool Default is false.
+	 */
+	define( 'LEARNDASH_QUIZ_PREREQUISITE_ALT', false );
+}
+
+
 if ( ! defined( 'LEARNDASH_ADMIN_POPUP_STYLE' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the popup method used for items like the
+	 * TinyMCE popup used for shortcodes.
+	 *
+	 * @since 3.0.7
+	 *
+	 * @var string {
+	 *    Only one of the following values.
+	 *    @type string jQuery-dialog Default.
+	 *    @type string thickbox      Legacy thickbox popup.
+	 * }
+	 */
 	define( 'LEARNDASH_ADMIN_POPUP_STYLE', 'jQuery-dialog' );
 }
 
-/**
- * Use the WP function wp_safe_redirect.
- *
- * @since 3.4.0
- */
 if ( ! defined( 'LEARNDASH_USE_WP_SAFE_REDIRECT' ) ) {
+	/**
+	 * Define LearnDash LMS - Controls handling of redirects.
+	 *
+	 * @since 3.3.0.2
+	 *
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  Use the WP function `wp_safe_redirect`. Default.
+	 *    @type bool false Use the WP function `wp_redirect`.
+	 * }
+	 */
 	define( 'LEARNDASH_USE_WP_SAFE_REDIRECT', true );
 }
 
-
 if ( ! defined( 'LEARNDASH_DISABLE_TEMPLATE_CONTENT_OUTSIDE_LOOP' ) ) {
+	/**
+	 * Define LearnDash LMS - Controls filtering of 'the_content' outside of the 'loop'.
+	 *
+	 * @since 3.2.3
+	 *
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  If called outside the WP loop, content will not be processed. Default.
+	 *    @type bool false Content will be processed.
+	 * }
+	 */
 	define( 'LEARNDASH_DISABLE_TEMPLATE_CONTENT_OUTSIDE_LOOP', true );
 }
 
-/**
- * Use the User's registration for the Group enrollment time if newer
- * then the course enrollment. Default true.
- */
 if ( ! defined( 'LEARNDASH_GROUP_ENROLLED_COURSE_FROM_USER_REGISTRATION' ) ) {
+	/**
+	 * Define LearnDash LMS - Control the determination of the user's Group enrollment time.
+	 *
+	 * @since 3.2.0
+	 *
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  Use the user's registration for the Group enrollment time, if newer. Default.
+	 *    @type bool false
+	 * }
+	 */
 	define( 'LEARNDASH_GROUP_ENROLLED_COURSE_FROM_USER_REGISTRATION', true );
 }
 
-
-/**
- * Load the Select2 JS library.
- */
 if ( ! defined( 'LEARNDASH_SELECT2_LIB' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable use of the Select2 jQuery library.
+	 *
+	 * The Select2 library is used on post type listings and within admin setting
+	 * used by LearnDash.
+	 *
+	 * @since 3.0.0
+	 *
+	 * @var bool Default is true.
+	 */
 	define( 'LEARNDASH_SELECT2_LIB', true );
 }
 
-/**
- * Load selector data via AJAX for Select2.
- *
- * The LEARNDASH_SELECT2_LIB define must be true.
- *
- * @since 3.2.3
- */
 if ( ! defined( 'LEARNDASH_SELECT2_LIB_AJAX_FETCH' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable fetch logic as part of the Select2 library.
+	 *
+	 * Possible value:
+	 * true (bool) Will enable callbacks to the server via AJAX to load selector
+	 * items. This can improve performance. Default.
+	 *
+	 * The `LEARNDASH_SELECT2_LIB` define must be true.
+	 *
+	 * @since 3.2.3
+	 *
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  Will enable callbacks to the server via AJAX to load selector. Default.
+	 *    @type bool false
+	 * }
+	 */
 	define( 'LEARNDASH_SELECT2_LIB_AJAX_FETCH', true );
 }
 
-/**
- * Enable legacy Post Type Setttings Metaboxes
- */
 if ( ! defined( 'LEARNDASH_SETTINGS_METABOXES_LEGACY' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable legacy Post Type Setttings Metaboxes.
+	 *
+	 * @since 3.0.0
+	 *
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  Will use metabox containers when showing the settings outside of the post type editor. Default is true. Must be set to true.
+	 *    @type bool false Not supprted.
+	 * }
+	 */
 	define( 'LEARNDASH_SETTINGS_METABOXES_LEGACY', true );
 }
 
 if ( ! defined( 'LEARNDASH_SETTINGS_METABOXES_LEGACY_QUIZ' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable legacy WPProQuiz Post Type Setttings Metaboxes.
+	 *
+	 * @since 3.0.0
+	 *
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  Will show the lagacy WPProQuiz linear listing of settings.
+	 *    @type bool false Will display Quiz Post settings using newer metabox containers. Default.
+	 * }
+	 */
 	define( 'LEARNDASH_SETTINGS_METABOXES_LEGACY_QUIZ', false );
 }
 
-/**
- * Show new Settings Header Panel
- * default is true.
- */
 if ( ! defined( 'LEARNDASH_SETTINGS_HEADER_PANEL' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable the new (3.0.0) Header Panel.
+	 *
+	 * @since 3.0.0
+	 *
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  Will show the LearnDash header panel on related admin pages. Default is true. Must be set to true.
+	 *    @type bool false Not supported.
+	 * }
+	 */
 	define( 'LEARNDASH_SETTINGS_HEADER_PANEL', true );
 }
 
-/**
- * Show Mark Incomplete button.
- * default is false.
- * @since 3.1.4
- */
 if ( ! defined( 'LEARNDASH_SHOW_MARK_INCOMPLETE' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable the Mark Incomplete button on course steps. Beta.
+	 *
+	 * @since 3.1.4
+	 *
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  Will display a button on completed course steps allowing the user. BETA.
+	 *    @type bool false Default.
+	 * }
+	 */
 	define( 'LEARNDASH_SHOW_MARK_INCOMPLETE', false );
 }
 
-/**
- * Will filter search on front-end.
- * @since 3.17
- */
 if ( ! defined( 'LEARNDASH_FILTER_SEARCH' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable search filter logic.
+	 *
+	 * @since 3.2.0
+	 *
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  Will enable some logic to hook into the WP search processing.
+	 *                     The logic can help filter display items to only show lessons, topics, etc.
+	 *                     the user has access to. Default.
+	 *    @type bool false
+	 * }
+	 */
 	define( 'LEARNDASH_FILTER_SEARCH', true );
+}
+
+if ( ! defined( 'LEARNDASH_LMS_DATABASE_PREFIX_SUB' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the default database prefix.
+	 *
+	 * This prefix is appended to the WP table prefix.
+	 *
+	 * @since 3.1.0
+	 *
+	 * @var string Default is 'learndash_'.
+	 */
+	define( 'LEARNDASH_LMS_DATABASE_PREFIX_SUB', 'learndash_' );
+}
+
+if ( ! defined( 'LEARNDASH_PROQUIZ_DATABASE_PREFIX_SUB_DEFAULT' ) ) {
+	/**
+	 * Define LearnDash LMS - Set the default WPProQuiz database prefix.
+	 *
+	 * This prefix is appended to the WP table prefix.
+	 *
+	 * @since 3.1.0
+	 *
+	 * @var string Default is 'wp_'.
+	 */
+	define( 'LEARNDASH_PROQUIZ_DATABASE_PREFIX_SUB_DEFAULT', 'wp_' );
+}
+
+if ( ! defined( 'LEARNDASH_UPDATES_ENABLED' ) ) {
+	/**
+	 * Define LearnDash LMS - Enable support to check for updates for Core and Add-ons.
+	 *
+	 * @since 3.1.8
+	 *
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  Will enable calls to support.learndash.com and bitbucket.org to check for updates. Default.
+	 *    @type bool false Will disable outbound server calls.
+	 * }
+	 */
+	define( 'LEARNDASH_UPDATES_ENABLED', true );
+}
+
+if ( ! defined( 'LEARNDASH_ADDONS_UPDATER' ) ) {
+	if ( true === LEARNDASH_UPDATES_ENABLED ) {
+		$learndash_define_addons_updater_value = true;
+	} else {
+		$learndash_define_addons_updater_value = false;
+	}
+	/**
+	 * Define LearnDash LMS - Enable support for Add-ons.
+	 *
+	 * @since 2.5.5
+	 *
+	 * @var bool Default is true.
+	 * @var bool {
+	 *    Only one of the following values.
+	 *    @type bool true  Will enable new menu items and install/update of related Add-ons. Default.
+	 *    @type bool false
+	 * }
+	 */
+	define( 'LEARNDASH_ADDONS_UPDATER', $learndash_define_addons_updater_value );
 }
 
 /**
  * LearnDash Database utility class.
  */
-if ( ! defined( 'LEARNDASH_LMS_DATABASE_PREFIX_SUB' ) ) {
-	define( 'LEARNDASH_LMS_DATABASE_PREFIX_SUB', 'learndash_' );
-}
-if ( ! defined( 'LEARNDASH_PROQUIZ_DATABASE_PREFIX_SUB_DEFAULT' ) ) {
-	define( 'LEARNDASH_PROQUIZ_DATABASE_PREFIX_SUB_DEFAULT', 'wp_' );
-}
-
-/**
- * Controls if we should perform update and license checkes.
- *
- * @since 3.1.8
- */
-if ( ! defined( 'LEARNDASH_UPDATES_ENABLED' ) ) {
-	define( 'LEARNDASH_UPDATES_ENABLED', true );
-}
-
-/**
- * Added to support Add-on Update logic
- * @since 2.5.5.
- */
-if ( ! defined( 'LEARNDASH_ADDONS_UPDATER' ) ) {
-	if ( true === LEARNDASH_UPDATES_ENABLED ) {
-		define( 'LEARNDASH_ADDONS_UPDATER', true );
-	} else {
-		define( 'LEARNDASH_ADDONS_UPDATER', false );
-	}
-}
-
-if ( ( true === LEARNDASH_ADDONS_UPDATER ) && ( true === LEARNDASH_UPDATES_ENABLED ) ) {
-	require_once dirname( __FILE__ ) . '/includes/class-ld-addons-updater.php';
-} else {
-	/**
-	 * Added a dummy class if/when auto_update is disabled.
-	 * To prevent fatal errors.
-	 */
-	if ( ! class_exists( 'LearnDash_Addon_Updater' ) ) {
-		class LearnDash_Addon_Updater {
-			protected static $instance = null;
-
-			public static function get_instance() {
-				if ( ! isset( static::$instance ) ) {
-					static::$instance = new static();
-				}
-
-				return static::$instance;
-			}
-
-			public function __call( $name, $arguments ) {
-				return;
-			}
-		}
-	}
-}
-
 require_once dirname( __FILE__ ) . '/includes/class-ldlms-db.php';
 
 /**
@@ -674,17 +1265,6 @@ require_once dirname( __FILE__ ) . '/includes/class-ld-gdpr.php';
  */
 require_once dirname( __FILE__ ) . '/includes/ld-autoupdate.php';
 
-/**
- * Addon Updater API
- */
-/**
- * Controls if we should perform update and license checkes.
- *
- * @since 3.2.0
- */
-if ( ! defined( 'LEARNDASH_UPDATES_ENABLED' ) ) {
-	define( 'LEARNDASH_UPDATES_ENABLED', true );
-}
 
 if ( ( true === LEARNDASH_ADDONS_UPDATER ) && ( true === LEARNDASH_UPDATES_ENABLED ) ) {
 	require_once dirname( __FILE__ ) . '/includes/class-ld-addons-updater.php';
@@ -694,9 +1274,15 @@ if ( ( true === LEARNDASH_ADDONS_UPDATER ) && ( true === LEARNDASH_UPDATES_ENABL
 	 * To prevent fatal errors.
 	 */
 	if ( ! class_exists( 'LearnDash_Addon_Updater' ) ) {
+		/**
+		 * @ignore
+		 */
 		class LearnDash_Addon_Updater {
 			protected static $instance = null;
 
+			/**
+			 * @ignore
+			 */
 			public static function get_instance() {
 				if ( ! isset( static::$instance ) ) {
 					static::$instance = new static();
@@ -705,7 +1291,11 @@ if ( ( true === LEARNDASH_ADDONS_UPDATER ) && ( true === LEARNDASH_UPDATES_ENABL
 				return static::$instance;
 			}
 
+			/**
+			 * @ignore
+			 */
 			public function __call( $name, $arguments ) {
+				// phpcs:ignore Squiz.PHP.NonExecutableCode.ReturnNotRequired
 				return;
 			}
 		}
@@ -719,9 +1309,26 @@ if ( ( defined( 'LEARNDASH_TRANSLATIONS' ) ) && ( LEARNDASH_TRANSLATIONS === tru
 	require_once dirname( __FILE__ ) . '/includes/class-ld-translations.php';
 
 	if ( ! defined( 'LEARNDASH_TRANSLATIONS_URL_BASE' ) ) {
+		/**
+		 * Define LearnDash LMS - Set the Translation server URL.
+		 *
+		 * @since 2.5.2
+		 * @internal
+		 * @var string Default is 'https://translations.learndash.com'.
+		 */
 		define( 'LEARNDASH_TRANSLATIONS_URL_BASE', 'https://translations.learndash.com' );
 	}
 	if ( ! defined( 'LEARNDASH_TRANSLATIONS_URL_CACHE' ) ) {
+		/**
+		 * Define LearnDash LMS - Set the Translation cache timeout.
+		 *
+		 * This controls how often the plugin will call out to the translations
+		 * server to check for updates.
+		 *
+		 * @since 2.5.2
+		 *
+		 * @var string Default is number of seconds in a 24 hour period (86.400).
+		 */
 		define( 'LEARNDASH_TRANSLATIONS_URL_CACHE', DAY_IN_SECONDS );
 	}
 }

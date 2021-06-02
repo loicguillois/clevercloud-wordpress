@@ -5,6 +5,7 @@
  * This would be used in REST API quiz-statistics/<id>/questions
  * endpoint in order to get answer data from various question types.
  *
+ * @since 3.3.0
  * @package Learndash
  */
 
@@ -25,6 +26,8 @@ if ( ! interface_exists( 'LDLMS_Answer' ) ) {
 		 * All necessary actions for the object like
 		 * adding hooks, calling internal methods etc.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @return mixed
 		 */
 		public function setup();
@@ -32,6 +35,8 @@ if ( ! interface_exists( 'LDLMS_Answer' ) ) {
 		/**
 		 * Answer key. questionID + position.
 		 * Example: '12-2'
+		 *
+		 * @since 3.3.0
 		 *
 		 * @param string $pos position of the answer in answer set.
 		 *
@@ -42,12 +47,16 @@ if ( ! interface_exists( 'LDLMS_Answer' ) ) {
 		/**
 		 * Get answers data in the form of array.
 		 *
+		 * @since 3.3.0
+		 *
 		 * @return array
 		 */
 		public function get_answers();
 
 		/**
 		 * Get submitted answers data in form of array.
+		 *
+		 * @since 3.3.0
 		 *
 		 * @return array
 		 */

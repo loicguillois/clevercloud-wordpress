@@ -11,7 +11,7 @@
  *
  * @since 2.5.8
  *
- * @package LearnDash
+ * @package LearnDash\Templates\Legacy\Course
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -22,7 +22,7 @@ $learndash_previous_nav = learndash_previous_post_link();
 $learndash_next_nav     = '';
 
 /*
- * See details for filter 'learndash_show_next_link' https://bitbucket.org/snippets/learndash/5oAEX
+ * See details for filter 'learndash_show_next_link' https://developers.learndash.com/hook/learndash_show_next_link
  *
  * @since version 2.3
  */

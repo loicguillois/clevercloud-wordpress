@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays the listing of course content
+ * LearnDash LD30 Displays the listing of course content
  *
  * Available Variables:
  * $course_id                  : (int) ID of the course
@@ -25,9 +25,9 @@
  * $has_topics                 : (true/false)
  * $lesson_topics              : (array) lessons topics
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -38,7 +38,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Display lessons if they exist
  *
  * @var $lessons [array]
- * @since 3.0
+ * @since 3.0.0
  */
 
 if ( ! empty( $lessons ) || ! empty( $quizzes ) ) :
@@ -46,7 +46,9 @@ if ( ! empty( $lessons ) || ! empty( $quizzes ) ) :
 	/**
 	 * Filters LearnDash Course table CSS class.
 	 *
-	 * @param string $cours_table_class CSS classes for course table.
+	 * @since 3.0.0
+	 *
+	 * @param string $course_table_class CSS classes for course table.
 	 */
 	$table_class = apply_filters( 'learndash_course_table_class', 'ld-item-list-items ' . ( isset( $lesson_progression_enabled ) && $lesson_progression_enabled ? 'ld-lesson-progression' : '' ) );
 
@@ -54,7 +56,7 @@ if ( ! empty( $lessons ) || ! empty( $quizzes ) ) :
 	 * Display the expand button if lesson has topics
 	 *
 	 * @var $lessons [array]
-	 * @since 3.0
+	 * @since 3.0.0
 	 */
 	?>
 
@@ -76,7 +78,7 @@ if ( ! empty( $lessons ) || ! empty( $quizzes ) ) :
 			 * Loop through each lesson and output a row
 			 *
 			 * @var $lessons [array]
-			 * @since 3.0
+			 * @since 3.0.0
 			 */
 
 			$sections = learndash_30_get_course_sections( $course_id );
@@ -106,7 +108,7 @@ if ( ! empty( $lessons ) || ! empty( $quizzes ) ) :
 		 * Determine if we should show course quizzes at this point or not
 		 *
 		 * @var $show_course_quizzes boolean
-		 * @since 3.0
+		 * @since 3.0.0
 		 */
 		$show_course_quizzes = true;
 		if ( isset( $course_pager_results['pager'] ) && ! empty( $course_pager_results['pager'] ) && 0 !== absint( $course_pager_results['pager']['total_pages'] ) ) :
@@ -114,6 +116,8 @@ if ( ! empty( $lessons ) || ! empty( $quizzes ) ) :
 		endif;
 		/**
 		 * Filters whether to show course quizzes while listing the course content
+		 *
+		 * @since 3.0.0
 		 *
 		 * @param boolean $show_course_quizzes Whether to show course quizzes in course listing or not.
 		 * @param int     $course_id           Course ID.

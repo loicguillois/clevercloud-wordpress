@@ -1,9 +1,9 @@
 <?php
 /**
- * This class handles the Admin Groups Users Listing.
+ * Group Leader Groups Listing.
  *
- * @package LearnDash
- * @subpackage Groups Listing
+ * @since 2.1.2
+ * @package LearnDash\Group_Users
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -11,20 +11,48 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'Learndash_Admin_Groups_Users_List' ) ) {
+
 	/**
-	 * Class to create the Admin Groups Users List.
+	 * Class Group Leader Groups Listing.
+	 *
+	 * @since 2.1.2
 	 */
 	class Learndash_Admin_Groups_Users_List {
-		public $list_table;
-		public $form_method = 'get';
-		public $title       = '';
 
+		/**
+		 * @var object $list_table Post List table instance
+		 */
+		public $list_table;
+
+		/**
+		 * @var string $form_method Form Method
+		 */
+		public $form_method = 'get';
+
+		/**
+		 * @var string $title Title
+		 */
+		public $title = '';
+
+		/**
+		 * @var string $current_action Current table action
+		 */
 		public $current_action = '';
-		public $group_id       = 0;
-		public $user_id        = 0;
+
+		/**
+		 * @var integer $group_id Group ID
+		 */
+		public $group_id = 0;
+
+		/**
+		 * @var integer $user_id User ID
+		 */
+		public $user_id = 0;
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 2.1.2
 		 */
 		public function __construct() {
 			add_action( 'admin_menu', array( $this, 'learndash_group_admin_menu' ) );
@@ -33,7 +61,7 @@ if ( ! class_exists( 'Learndash_Admin_Groups_Users_List' ) ) {
 		/**
 		 * Register Group Administration submenu page
 		 *
-		 * @since 2.1.0
+		 * @since 2.1.2
 		 */
 		public function learndash_group_admin_menu() {
 
@@ -86,6 +114,11 @@ if ( ! class_exists( 'Learndash_Admin_Groups_Users_List' ) ) {
 			}
 		}
 
+		/**
+		 * On page load
+		 *
+		 * @since 2.1.2
+		 */
 		public function on_load() {
 			global $learndash_assets_loaded;
 
@@ -215,6 +248,11 @@ if ( ! class_exists( 'Learndash_Admin_Groups_Users_List' ) ) {
 			$this->list_table->columns['group_actions'] = esc_html__( 'Actions', 'learndash' );
 		}
 
+		/**
+		 * Show page
+		 *
+		 * @since 2.3.0
+		 */
 		public function show_page() {
 			?>
 			<div class="wrap wrap-learndash-group-list">
@@ -347,6 +385,11 @@ if ( ! class_exists( 'Learndash_Admin_Groups_Users_List' ) ) {
 			<?php
 		}
 
+		/**
+		 * Handle actions from table
+		 *
+		 * @since 2.3.0
+		 */
 		public function on_process_actions_list() {
 			if ( ! empty( $this->user_id ) ) {
 				learndash_save_user_course_complete( $this->user_id );
@@ -357,6 +400,11 @@ if ( ! class_exists( 'Learndash_Admin_Groups_Users_List' ) ) {
 	}
 }
 
+/**
+ * Handle Groups Table AJAX for Reports.
+ *
+ * @since 2.3.0
+ */
 function learndash_data_group_reports_ajax() {
 	$reply_data = array( 'status' => false );
 

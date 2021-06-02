@@ -1,14 +1,14 @@
 <?php
 /**
- * Displays course progress rows for a user
+ * LearnDash LD30 Displays course progress rows for a user
  *
  * Available:
  * $courses_registered: course registered to the user
  * $shortcode_atts: Attributes used in shortcode
  *
- * @since 2.5.5
+ * @since 3.0.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

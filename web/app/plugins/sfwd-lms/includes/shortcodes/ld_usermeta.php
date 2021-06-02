@@ -1,6 +1,6 @@
 <?php
 /**
- * Shortcode for usermeta
+ * LearnDash `[usermeta]` shortcode processing.
  *
  * @since 2.1.0
  *
@@ -12,18 +12,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * [usermeta] shortcode
+ * Builds the `[usermeta]` shortcode output.
  *
  * This shortcode takes a parameter named field, which is the name of the user meta data field to be displayed.
  * Example: [usermeta field="display_name"] would display the user's Display Name.
  *
  * @since 2.1.0
  *
- * @param  array  $attr    shortcode attributes
- * @param  string $content content of shortcode
+ * @param array $atts {
+ *     An array of shortcode attributes.
+ *
+ *    @type string  $field   The usermeta field to show
+ *    @type int     $user_id User ID. Default current user ID.
+ * }
+ * @param string $content The shortcode content. Default empty.
+ *
  * @return string            output of shortcode
  */
-function learndash_usermeta_shortcode( $attr, $content = '' ) {
+function learndash_usermeta_shortcode( $attr = array(), $content = '' ) {
 	global $learndash_shortcode_used;
 	$learndash_shortcode_used = true;
 
@@ -37,22 +43,6 @@ function learndash_usermeta_shortcode( $attr, $content = '' ) {
 		),
 		$attr
 	);
-
-	/**
-	 * Added logic to allow admin and group_leader to view certificate from other users. Should proably be somewhere else
-	 *
-	 * @since 2.3
-	 */
-	// $post_type = '';
-	// if ( get_query_var( 'post_type' ) ) {
-	// $post_type = get_query_var( 'post_type' );
-	// if ( $post_type == 'sfwd-certificates' ) {
-	// if ( ( ( learndash_is_admin_user() ) || ( learndash_is_group_leader_user() ) )
-	// && ( ( isset( $_GET['user'] ) ) && (!empty( $_GET['user'] ) ) ) ) {
-	// $attr['user_id'] = intval( $_GET['user'] );
-	// }
-	// }
-	// }
 
 	if ( ( ! empty( $attr['user_id'] ) ) && ( ! empty( $attr['field'] ) ) ) {
 
@@ -68,12 +58,12 @@ function learndash_usermeta_shortcode( $attr, $content = '' ) {
 			if ( ! is_array( $usermeta_available_fields ) ) {
 				$usermeta_available_fields = array( $usermeta_available_fields );
 			}
-			
+
 			$value = '';
 			if ( array_key_exists( $attr['field'], $usermeta_available_fields ) === true ) {
-			
-				switch( $attr['field'] ) {
-					case 'first_last_name':				
+
+				switch ( $attr['field'] ) {
+					case 'first_last_name':
 						$value = $userdata->user_firstname . ' ' . $userdata->user_lastname;
 						break;
 
@@ -100,5 +90,4 @@ function learndash_usermeta_shortcode( $attr, $content = '' ) {
 
 	return $content;
 }
-
-add_shortcode( 'usermeta', 'learndash_usermeta_shortcode' );
+add_shortcode( 'usermeta', 'learndash_usermeta_shortcode', 10, 2 );

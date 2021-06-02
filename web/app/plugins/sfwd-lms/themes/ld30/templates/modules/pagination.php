@@ -1,10 +1,10 @@
 <?php
 /**
- * This file contains the code that displays the pager.
+ * LearnDash LD30 Displays pagination for the module
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash
+ * @package LearnDash\Templates\LD30\Modules
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -109,6 +109,8 @@ if ( ( isset( $pager_results ) ) && ( ! empty( $pager_results ) ) ) {
 
 		/**
 		 * Fires before the pagination wrapper.
+		 *
+		 * @since 3.0.0
 		 */
 		do_action( 'learndash_pagination_before_wrapper' );
 
@@ -165,6 +167,8 @@ if ( ( isset( $pager_results ) ) && ( ! empty( $pager_results ) ) ) {
 
 		/**
 		 * Fires after the pagination wrapper.
+		 *
+		 * @since 3.0.0
 		 */
 		do_action( 'learndash_pagination_after_wrapper' );
 

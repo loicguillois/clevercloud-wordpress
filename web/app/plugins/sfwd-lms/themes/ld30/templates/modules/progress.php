@@ -1,18 +1,28 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+/**
+ * LearnDash LD30 Displays course progress
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
+ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
  * Fires before the progress bar
  *
- * @since 3.0
+ * @since 3.0.0
  */
 
 $context = ( isset( $context ) ? $context : 'learndash' );
 
 /**
  * Fires before the progress bar.
+ *
+ * @since 3.0.0
  *
  * @param int $course_id Course ID.
  * @param int $user_id   User ID.
@@ -24,6 +34,8 @@ do_action( 'learndash-progress-bar-before', $course_id, $user_id );
  *
  * The dynamic portion of the hook name, `$context`, refers to the context for which the hook is fired,
  * such as `course`, `lesson`, `topic`, `quiz`, etc.
+ *
+ * @since 3.0.0
  *
  * @param int $course_id Course ID.
  * @param int $user_id   User ID.
@@ -39,6 +51,8 @@ if ( 'topic' !== $context ) {
 	/**
 	 * Filters LearnDash progress arguments.
 	 * This filter will not be called if the context is `topic`.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param array $progress_args An array of progress arguments.
 	 * @param int   $course_id     Course ID.
@@ -61,6 +75,8 @@ if ( 'topic' !== $context ) {
 	 *
 	 * The dynamic portion of the hook name, `$context`, refers to the context of progress,
 	 * such as `course`, `lesson`, `topic`, `quiz`, etc.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param string $progress_markup The HTML template of users course/lesson progress
 	 */
@@ -162,6 +178,8 @@ do_action( 'learndash-progress-bar-after', $course_id, $user_id );
  *
  * The dynamic portion of the hook name, `$context`, refers to the context for which the hook is fired,
  * such as `course`, `lesson`, `topic`, `quiz`, etc.
+ *
+ * @since 3.0.0
  *
  * @param int $course_id Course ID.
  * @param int $user_id   User ID.

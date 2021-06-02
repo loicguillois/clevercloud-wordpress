@@ -1,25 +1,31 @@
 <?php
 /**
- * Questions REST API Endpoint.
+ * LearnDash REST API V1 Questions Post Controller.
  *
- * Register interface to handle questions with the REST API.
- *
- * @package LearnDash
+ * @since 2.5.8
+ * @package LearnDash\REST\V1
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'LD_REST_Questions_Controller_V1' ) ) {
+if ( ( ! class_exists( 'LD_REST_Questions_Controller_V1' ) ) && ( class_exists( 'WP_REST_Controller' ) ) ) {
 
 	/**
-	 * Questions REST Controller.
+	 * Class LearnDash REST API V1 Questions Post Controller.
+	 *
+	 * @since 2.5.8
 	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Questions_Controller_V1 extends WP_REST_Controller {
 
 		/**
-		 * Register the routes for the objects of the controller.
+		 * Registers the routes for the objects of the controller.
+		 *
+		 * @since 2.5.8
+		 *
+		 * @see register_rest_route() in WordPress core.
 		 */
 		public function register_routes() {
 			$version   = '1';
@@ -108,7 +114,10 @@ if ( ! class_exists( 'LD_REST_Questions_Controller_V1' ) ) {
 		/**
 		 * Check if a given request has access manage the item.
 		 *
+		 * @since 2.5.8
+		 *
 		 * @param WP_REST_Request $request Full data about the request.
+		 *
 		 * @return WP_Error|bool
 		 */
 		public function permissions_check( $request ) {
@@ -124,7 +133,10 @@ if ( ! class_exists( 'LD_REST_Questions_Controller_V1' ) ) {
 		/**
 		 * Get a question items
 		 *
+		 * @since 2.5.8
+		 *
 		 * @param WP_REST_Request $request Full data about the request.
+		 *
 		 * @return WP_Error|WP_REST_Response
 		 */
 		public function get_items( $request ) {
@@ -135,7 +147,10 @@ if ( ! class_exists( 'LD_REST_Questions_Controller_V1' ) ) {
 		/**
 		 * Get a question item
 		 *
+		 * @since 2.5.8
+		 *
 		 * @param WP_REST_Request $request Full data about the request.
+		 *
 		 * @return WP_Error|WP_REST_Response
 		 */
 		public function get_item( $request ) {
@@ -149,7 +164,10 @@ if ( ! class_exists( 'LD_REST_Questions_Controller_V1' ) ) {
 		/**
 		 * Delete one item from the collection
 		 *
+		 * @since 2.5.8
+		 *
 		 * @param WP_REST_Request $request Full data about the request.
+		 *
 		 * @return WP_Error|WP_REST_Request
 		 */
 		public function delete_item( $request ) {
@@ -177,7 +195,10 @@ if ( ! class_exists( 'LD_REST_Questions_Controller_V1' ) ) {
 		/**
 		 * Update one item from the collection
 		 *
+		 * @since 2.5.8
+		 *
 		 * @param WP_REST_Request $request Full data about the request.
+		 *
 		 * @return WP_Error|WP_REST_Request
 		 */
 		public function update_item( $request ) {
@@ -222,22 +243,16 @@ if ( ! class_exists( 'LD_REST_Questions_Controller_V1' ) ) {
 			// Save the new data to database.
 			$question_mapper->save( $question_model );
 
-			// if ( true ) {
 			return new WP_REST_Response( $this->get_question_data( $question_id ), 200 );
-			//}
-
-			// return new WP_Error(
-			// 	'cant-delete',
-			// 	// translators: placeholder: Question.
-			// 	sprintf( esc_html_x( 'Could not update the %s.', 'placeholder: Question', 'learndash' ), \LearnDash_Custom_Label::get_label( 'question' ) ),
-			// 	array( 'status' => 500 )
-			// );
 		}
 
 		/**
 		 * Get question data.
 		 *
+		 * @since 2.5.8
+		 *
 		 * @param int $question_id The question ID.
+		 *
 		 * @return object
 		 */
 		public function get_question_data( $question_id ) {
@@ -279,6 +294,8 @@ if ( ! class_exists( 'LD_REST_Questions_Controller_V1' ) ) {
 
 		/**
 		 * Gets the sfwd-question schema.
+		 *
+		 * @since 2.5.8
 		 *
 		 * @return array
 		 */

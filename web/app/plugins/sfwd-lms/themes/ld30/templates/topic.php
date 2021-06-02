@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays a topic.
+ * LearnDash LD30 Displays a topic.
  *
  * Available Variables:
  *
@@ -27,9 +27,9 @@
  * $previous_lesson_completed  : (true/false) true if previous lesson is completed
  * $previous_topic_completed   : (true/false) true if previous topic is completed
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\Topic
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

@@ -1,9 +1,8 @@
 <?php
 /**
- * Shortcode for ld_course_resume
+ * LearnDash `[ld_course_resume]` shortcode processing.
  *
  * @since 3.1.4
- *
  * @package LearnDash\Shortcodes
  */
 
@@ -12,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `ld_course_resume` shortcode output.
+ * Builds the `[ld_course_resume]` shortcode output.
  *
  * @global boolean $learndash_shortcode_used
  *
@@ -21,14 +20,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array  $atts {
  *    An array of shortcode attributes.
  *
- *    @type int     $course_id  Optional. Course ID. Default 0.
- *    @type int     $user_id    Optional. User ID. Default current user ID.
- *    @type string  $label      Optional. Resume label. Default empty.
- *    @type string  $html_class Optional. The resume CSS classes. Default 'ld-course-resume'.
- *    @type string  $html_id    Optional. The value for id HTML attribute. Default empty.
- *    @type boolean $button     Optional. Whether to show button. Default true.
+ *    @type int     $course_id  Course ID. Default 0.
+ *    @type int     $user_id    User ID. Default current user ID.
+ *    @type string  $label      Resume label. Default empty.
+ *    @type string  $html_class The resume CSS classes. Default 'ld-course-resume'.
+ *    @type string  $html_id    The value for id HTML attribute. Default empty.
+ *    @type boolean $button     Whether to show button. Default true.
  * }
- * @param string $content The shortcode content.
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string The `ld_course_resume` shortcode output.
  */

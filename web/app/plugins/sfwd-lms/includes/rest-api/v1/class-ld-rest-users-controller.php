@@ -1,15 +1,34 @@
 <?php
+/**
+ * LearnDash REST API V1 Users Controller.
+ *
+ * @since 2.5.8
+ * @package LearnDash\REST\V1
+ */
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ( ! class_exists( 'LD_REST_Users_Controller_V1' ) ) && ( class_exists( 'WP_REST_Users_Controller' ) ) ) {
+
+	/**
+	 * Class LearnDash REST API V1 Users Controller.
+	 *
+	 * @since 2.5.8
+	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class LD_REST_Users_Controller_V1 extends WP_REST_Users_Controller {
 
 		protected $version = 'v1';
 
 		protected $sub_controllers = array();
 
+		/**
+		 * Public constructor for class
+		 *
+		 * @since 2.5.8
+		 */
 		public function __construct() {
 			parent::__construct();
 
@@ -20,9 +39,9 @@ if ( ( ! class_exists( 'LD_REST_Users_Controller_V1' ) ) && ( class_exists( 'WP_
 		/**
 		 * Registers the routes for the objects of the controller.
 		 *
-		 * @since 4.7.0
+		 * @since 2.5.8
 		 *
-		 * @see register_rest_route()
+		 * @see register_rest_route() in WordPress core.
 		 */
 		public function register_routes() {
 

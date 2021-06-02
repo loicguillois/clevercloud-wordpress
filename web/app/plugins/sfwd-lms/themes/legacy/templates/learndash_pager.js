@@ -7,6 +7,9 @@ jQuery( function() {
 			e.preventDefault();
 
 			var pager_div = jQuery(e.currentTarget).parents('.learndash-pager');
+
+			jQuery(pager_div).addClass('ld-loading');
+
 			if (typeof pager_div === 'undefined')
 				return;
 			var pager_nonce = jQuery(pager_div).data('nonce');
@@ -41,10 +44,13 @@ jQuery( function() {
 					if ( typeof reply_data !== 'undefined') {
 						if ( typeof reply_data['content'] !== 'undefined' ) {
 							jQuery('.ld_course_info_mycourses_list .ld-courseregistered-content-container', parent_div ).html( reply_data['content'] );
+							jQuery(pager_div).removeClass('ld-loading');
 						}
 
 						if ( typeof reply_data['pager'] !== 'undefined' ) {
 							jQuery('.ld_course_info_mycourses_list .ld-course-registered-pager-container', parent_div ).html( reply_data['pager'] );
+
+							jQuery(pager_div).removeClass('ld-loading');
 
 							learndash_scroll_to_parent(jQuery('.ld_course_info_mycourses_list', parent_div));
 
@@ -70,6 +76,9 @@ jQuery( function() {
 			e.preventDefault();
 
 			var pager_div = jQuery(e.currentTarget).parents('.learndash-pager');
+
+			jQuery(pager_div).addClass('ld-loading');
+
 			if (typeof pager_div === 'undefined')
 				return;
 			var pager_nonce = jQuery(pager_div).data('nonce');
@@ -104,10 +113,12 @@ jQuery( function() {
 					if ( typeof reply_data !== 'undefined') {
 						if ( typeof reply_data['content'] !== 'undefined' ) {
 							jQuery('.course_progress_details .ld-course-progress-content-container', parent_div).html( reply_data['content'] );
+							jQuery(pager_div).removeClass('ld-loading');
 						}
 
 						if ( typeof reply_data['pager'] !== 'undefined' ) {
 							jQuery('.course_progress_details .ld-course-progress-pager-container', parent_div).html( reply_data['pager'] );
+							jQuery(pager_div).removeClass('ld-loading');
 
 							learndash_scroll_to_parent(jQuery('.course_progress_details', parent_div));
 
@@ -134,6 +145,9 @@ jQuery( function() {
 			e.preventDefault();
 
 			var pager_div = jQuery(e.currentTarget).parents('.learndash-pager');
+
+			jQuery(pager_div).addClass('ld-loading');
+
 			if (typeof pager_div === 'undefined')
 				return;
 			var pager_nonce = jQuery(pager_div).data('nonce');
@@ -199,6 +213,9 @@ jQuery( function() {
 			e.preventDefault();
 
 			var pager_div = jQuery(e.currentTarget).parents('.learndash-pager');
+
+			jQuery(pager_div).addClass('ld-loading');
+
 			if (typeof pager_div === 'undefined')
 				return;
 			var pager_nonce = jQuery(pager_div).data('nonce');
@@ -233,6 +250,8 @@ jQuery( function() {
 					if ( typeof reply_data !== 'undefined') {
 						if ( typeof reply_data['content'] !== 'undefined' ) {
 							jQuery( parent_div ).html( reply_data['content'] );
+
+							jQuery(pager_div).removeClass('ld-loading');
 
 							learndash_scroll_to_parent(parent_div);
 

@@ -1,5 +1,13 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+/**
+ * LearnDash LD30 focus mode prints the comments list output.
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
+ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -8,6 +16,8 @@ if ( ! function_exists( 'learndash_focus_mode_comments_list' ) ) {
 	 * Prints the focus mode comments list output.
 	 *
 	 * Used as a callback by `wp_list_comments()` for displaying the comments.
+	 *
+	 * @since 3.1.0
 	 *
 	 * @global WP_Roles   $wp_roles WordPress role management object.
 	 * @global WP_Post    $post     Global post object.
@@ -96,6 +106,8 @@ if ( ! function_exists( 'learndash_focus_mode_comments_list' ) ) {
 if ( ! isset( $_GET['replytocom'] ) ) {
 	/**
 	 * Filters Focus mode comment list arguments.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param array $comment_list_args Comment List arguments to be used in wp_list_comments arguments.
 	 */

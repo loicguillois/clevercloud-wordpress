@@ -1,9 +1,8 @@
 <?php
 /**
- * Widget for Certificates
+ * LearnDash `Certificates` Widget Class.
  *
  * @since 2.1.0
- *
  * @package LearnDash\Widgets
  */
 
@@ -11,10 +10,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-/**
- * Adds widget for displaying certificates
- */
 if ( ( ! class_exists( 'Certificates_Widget' ) ) && ( class_exists( 'WP_Widget' ) ) ) {
+
+	/**
+	 * Class for LearnDash `Certificates` Widget.
+	 *
+	 * @since 2.1.0
+	 * @uses WP_Widget
+	 */
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedClassFound
 	class Certificates_Widget extends WP_Widget {
 
 		protected $post_type = 'sfwd-certificates';
@@ -22,7 +26,7 @@ if ( ( ! class_exists( 'Certificates_Widget' ) ) && ( class_exists( 'WP_Widget' 
 		protected $post_args;
 
 		/**
-		 * Set up post arguments for widget
+		 * Public constructor for Widget Class.
 		 *
 		 * @since 2.1.0
 		 */
@@ -45,8 +49,6 @@ if ( ( ! class_exists( 'Certificates_Widget' ) ) && ( class_exists( 'WP_Widget' 
 			parent::__construct( "{$this->post_type}-widget", $this->post_name, $args );
 		}
 
-
-
 		/**
 		 * Displays widget
 		 *
@@ -54,6 +56,7 @@ if ( ( ! class_exists( 'Certificates_Widget' ) ) && ( class_exists( 'WP_Widget' 
 		 *
 		 * @param  array $args     widget arguments
 		 * @param  array $instance widget instance
+		 *
 		 * @return string          widget output
 		 */
 		public function widget( $args, $instance ) {
@@ -99,6 +102,7 @@ if ( ( ! class_exists( 'Certificates_Widget' ) ) && ( class_exists( 'WP_Widget' 
 		 *
 		 * @param  array $new_instance
 		 * @param  array $old_instance
+		 *
 		 * @return array $instance
 		 */
 		public function update( $new_instance, $old_instance ) {

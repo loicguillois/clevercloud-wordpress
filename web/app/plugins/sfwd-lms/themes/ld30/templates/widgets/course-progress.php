@@ -1,10 +1,10 @@
 <?php
 /**
- * Displays the course progress widget.
+ * LearnDash LD30 Displays the course progress widget.
  *
  * @since 3.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

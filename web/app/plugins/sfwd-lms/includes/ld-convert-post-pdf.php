@@ -211,6 +211,8 @@ if ( ! function_exists( 'learndash_certificate_post_shortcode' ) ) {
 		$monospaced_font   = '';
 		$font              = '';
 		$font_size         = '';
+		$destination       = 'I';
+		$destination_type  = 'U';
 
 		ob_start();
 
@@ -291,20 +293,48 @@ if ( ! function_exists( 'learndash_certificate_post_shortcode' ) ) {
 
 		$chached_filename = '';
 
-		if ( ! empty( $_GET['font'] ) ) {
-			$font = esc_html( $_GET['font'] );
+		$query_string_params_supported = array( 'font', 'monospaced', 'fontsize', 'subsetting', 'ratio', 'header', 'logo', 'logo_file', 'logo_width', 'footer', 'destination', 'destination_type' );
+
+		$query_string_params_allowed = array( 'destination', 'destination_type' );
+
+		/**
+		 * Filter for allowed PDF Certificate parameters.
+		 *
+		 * @since 3.4.1
+		 *
+		 * @param array $query_string_params_allowed   Array of allowed query string params.
+		 * @param array $query_string_params_supported Array of supported query string params.
+		 */
+		$query_string_params_allowed = apply_filters( 'learndash_certificate_query_string_params_allowed', $query_string_params_allowed, $query_string_params_supported );
+
+		if ( ! is_array( $query_string_params_allowed ) ) {
+			$query_string_params_allowed = array();
 		}
 
-		if ( ! empty( $_GET['monospaced'] ) ) {
-			$monospaced_font = esc_html( $_GET['monospaced'] );
+		$query_string_params_allowed = array_intersect( $query_string_params_allowed, $query_string_params_supported );
+
+		if ( in_array( 'font', $query_string_params_allowed, true ) ) {
+			if ( ! empty( $_GET['font'] ) ) {
+				$font = esc_html( $_GET['font'] );
+			}
 		}
 
-		if ( ! empty( $_GET['fontsize'] ) ) {
-			$font_size = intval( $_GET['fontsize'] );
+		if ( in_array( 'monospaced', $query_string_params_allowed, true ) ) {
+			if ( ! empty( $_GET['monospaced'] ) ) {
+				$monospaced_font = esc_html( $_GET['monospaced'] );
+			}
 		}
 
-		if ( ! empty( $_GET['subsetting'] ) && ( 1 == $_GET['subsetting'] || 0 == $_GET['subsetting'] ) ) {
-			$subsetting_enable = $_GET['subsetting'];
+		if ( in_array( 'fontsize', $query_string_params_allowed, true ) ) {
+			if ( ! empty( $_GET['fontsize'] ) ) {
+				$font_size = intval( $_GET['fontsize'] );
+			}
+		}
+
+		if ( in_array( 'subsetting', $query_string_params_allowed, true ) ) {
+			if ( ! empty( $_GET['subsetting'] ) && ( 1 == $_GET['subsetting'] || 0 == $_GET['subsetting'] ) ) {
+				$subsetting_enable = $_GET['subsetting'];
+			}
 		}
 
 		if ( 1 == $subsetting_enable ) {
@@ -313,51 +343,66 @@ if ( ! function_exists( 'learndash_certificate_post_shortcode' ) ) {
 			$subsetting = 'false';
 		}
 
-		if ( ! empty( $_GET['ratio'] ) ) {
-			$cert_args['ratio'] = floatval( $_GET['ratio'] );
-		}
-
-		if ( ! empty( $_GET['header'] ) ) {
-			$header_enable = $_GET['header'];
-		}
-
-		if ( ! empty( $_GET['logo'] ) ) {
-			$logo_enable = $_GET['logo'];
-		}
-
-		if ( ! empty( $_GET['logo_file'] ) ) {
-			$logo_file = esc_html( $_GET['logo_file'] );
-		}
-
-		if ( ! empty( $_GET['logo_width'] ) ) {
-			$logo_width = intval( $_GET['logo_width'] );
-		}
-
-		if ( ! empty( $_GET['footer'] ) ) {
-			$footer_enable = $_GET['footer'];
-		}
-
-		if ( ( isset( $_GET['destination'] ) ) && ( ! empty( $_GET['destination'] ) ) ) {
-			if ( 'F' === $_GET['destination'] ) {
-				$destination = 'F';
-			} else {
-				$destination = 'I';
-			}
-		} else {
-			if ( 0 != $target_post_id ) {
-				$destination = 'F';
-			} else {
-				$destination = 'I';
+		if ( in_array( 'ratio', $query_string_params_allowed, true ) ) {
+			if ( ! empty( $_GET['ratio'] ) ) {
+				$cert_args['ratio'] = floatval( $_GET['ratio'] );
 			}
 		}
 
-		$destination_type = 'U';
-		if ( 'F' === $destination ) {
-			if ( ( isset( $_GET['destination_type'] ) ) && ( ! empty( $_GET['destination_type'] ) ) ) {
-				if ( 'F' === $_GET['destination_type'] ) {
-					$destination_type = 'F';
+		if ( in_array( 'header', $query_string_params_allowed, true ) ) {
+			if ( ! empty( $_GET['header'] ) ) {
+				$header_enable = $_GET['header'];
+			}
+		}
+
+		if ( in_array( 'logo', $query_string_params_allowed, true ) ) {
+			if ( ! empty( $_GET['logo'] ) ) {
+				$logo_enable = $_GET['logo'];
+			}
+		}
+
+		if ( in_array( 'logo_file', $query_string_params_allowed, true ) ) {
+			if ( ! empty( $_GET['logo_file'] ) ) {
+				$logo_file = esc_html( $_GET['logo_file'] );
+			}
+		}
+
+		if ( in_array( 'logo_width', $query_string_params_allowed, true ) ) {
+			if ( ! empty( $_GET['logo_width'] ) ) {
+				$logo_width = intval( $_GET['logo_width'] );
+			}
+		}
+
+		if ( in_array( 'footer', $query_string_params_allowed, true ) ) {
+			if ( ! empty( $_GET['footer'] ) ) {
+				$footer_enable = $_GET['footer'];
+			}
+		}
+
+		if ( in_array( 'destination', $query_string_params_allowed, true ) ) {
+			if ( ( isset( $_GET['destination'] ) ) && ( ! empty( $_GET['destination'] ) ) ) {
+				if ( 'F' === $_GET['destination'] ) {
+					$destination = 'F';
 				} else {
-					$destination_type = 'U';
+					$destination = 'I';
+				}
+			} else {
+				if ( 0 != $target_post_id ) {
+					$destination = 'F';
+				} else {
+					$destination = 'I';
+				}
+			}
+		}
+
+		if ( in_array( 'destination_type', $query_string_params_allowed, true ) ) {
+			if ( 'F' === $destination ) {
+				if ( ( isset( $_GET['destination_type'] ) ) && ( ! empty( $_GET['destination_type'] ) ) ) {
+					if ( 'F' === $_GET['destination_type'] ) {
+						$destination_type = 'F';
+					} else {
+						$destination_type = 'U';
+					}
 				}
 			}
 		}
@@ -384,6 +429,19 @@ if ( ! function_exists( 'learndash_certificate_post_shortcode' ) ) {
 		 */
 		if ( ! defined( 'LEARNDASH_TCPDF_LEGACY_LD322' ) ) {
 			$use_LD322_define = apply_filters( 'learndash_tcpdf_legacy_ld322', true, $cert_args ); // phpcs:ignore WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase
+
+			/**
+			 * Define LearnDash LMS - Set to enable legacy TCPDF processing logic.
+			 *
+			 * LD 3.2.0 includes an upgrade of the TCPDF library for generating PDF
+			 * Certificates. The newer TCPDF library incldues some improvements which
+			 * cause the rendering to not match the prior version of the library. This
+			 * define if set to `true` will enable legacy logic in the new library.
+			 *
+			 * @since 3.2.2
+			 *
+			 * @var bool true When enabling legacy logic.
+			 */
 			define( 'LEARNDASH_TCPDF_LEGACY_LD322', $use_LD322_define ); // phpcs:ignore WordPress.NamingConventions.ValidVariableName.VariableNotSnakeCase
 		}
 		$cert_content = $cert_args['cert_post']->post_content;

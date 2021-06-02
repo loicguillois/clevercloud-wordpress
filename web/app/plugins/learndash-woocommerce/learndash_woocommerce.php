@@ -3,7 +3,7 @@
  * Plugin Name: LearnDash LMS - WooCommerce Integration
  * Plugin URI: http://www.learndash.com/work/woocommerce/
  * Description: LearnDash LMS addon plugin to integrate LearnDash LMS with WooCommerce.
- * Version: 1.9.1
+ * Version: 1.9.2
  * Author: LearnDash
  * Author URI: http://www.learndash.com
  * Domain Path: /languages/
@@ -89,7 +89,7 @@ class Learndash_WooCommerce {
 
 	public static function setup_constants() {
 		if ( ! defined( 'LEARNDASH_WOOCOMMERCE_VERSION' ) ) {
-			define( 'LEARNDASH_WOOCOMMERCE_VERSION', '1.9.1' );
+			define( 'LEARNDASH_WOOCOMMERCE_VERSION', '1.9.2' );
 		}
 
 		// Plugin file
@@ -390,9 +390,13 @@ class Learndash_WooCommerce {
 			/**
 			 * Only get items for non-subscription products
 			 *
+			 * The $learndash_woocommerce_get_items_filter_out_subscriptions variable is required to be "true" for the filter to work
+			 *
 			 * @see Learndash_WooCommerce::filter_subscription_products_out() Filter subscription products out when getting items for course access update
 			 * @var array
 			 */
+			global $learndash_woocommerce_get_items_filter_out_subscriptions;
+			$learndash_woocommerce_get_items_filter_out_subscriptions = true;
 			$products = $order->get_items();
 
 			foreach ( $products as $product ) {
@@ -429,6 +433,8 @@ class Learndash_WooCommerce {
 			 * @see Learndash_WooCommerce::filter_subscription_products_out() Filter subscription products out when getting items for course access update
 			 * @var array
 			 */
+			global $learndash_woocommerce_get_items_filter_out_subscriptions;
+			$learndash_woocommerce_get_items_filter_out_subscriptions = true;
 			$products = $order->get_items();
 
 			$courses_count = 0;
@@ -483,15 +489,19 @@ class Learndash_WooCommerce {
 	 * @return array         Modified $items
 	 */
 	public static function filter_subscription_products_out( $items, $order, $types ) {
-		$trace = wp_debug_backtrace_summary();
-		if ( stripos( $trace, 'Learndash_WooCommerce::add_course_access' ) !== false || stripos( $trace, 'Learndash_WooCommerce::remove_course_access' ) !== false ) {
+		global $learndash_woocommerce_get_items_filter_out_subscriptions;
+		if ( $learndash_woocommerce_get_items_filter_out_subscriptions ) {
+			$learndash_woocommerce_get_items_filter_out_subscriptions = false;
+
 			$items = array_filter( $items, function( $item ) {
 				$product = $item->get_product();
 
-				if ( is_a( $product, 'WC_Product' ) ) {
-					return $product->get_type != 'subscription';
+				if ( $product && is_a( $product, 'WC_Product' ) ) {
+					return $product->get_type() != 'subscription';
+				} else {
+					return true;
 				}
-			} );	
+			} );
 		}
 
 		return $items;
@@ -834,9 +844,10 @@ class Learndash_WooCommerce {
 	 * @param  object $checkout Checkout object
 	 */
 	public static function force_login( $checkout )
-	{
-		$cart_items = WC()->cart->cart_contents;
-		if ( is_array( $cart_items ) ) {
+	{	
+		$wc_cart = WC()->cart;
+		if ( is_a( $wc_cart, 'WC_Cart' ) ) {
+			$cart_items = $wc_cart->cart_contents;
 			foreach ( $cart_items as $key => $item ) {
 				$courses = (array) get_post_meta( $item['data']->get_id(), '_related_course', true );
 				$courses = maybe_unserialize( $courses );

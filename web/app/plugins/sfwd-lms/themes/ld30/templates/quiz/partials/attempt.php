@@ -1,5 +1,13 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+/**
+ * LearnDash LD30 Displays a quiz attempt
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
+ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -105,27 +113,5 @@ if ( ! empty( $quiz_title ) ) : ?>
 		</div>
 
 		<div class="quiz_date"><?php echo esc_html( learndash_adjust_date_time_display( $quiz_attempt['time'] ) ); ?></div>
-
-		<?php
-		/**
-		 * TODO @37designs Need to query for essays related to this assignment
-		 */
-
-		$quiz_essays = function_for_related_essays( $quiz_attempt['post']->ID );
-
-		if ( ! empty( $quiz_essays ) ) :
-			foreach ( $quiz_essays as $essay ) :
-				SFWD_LMS::get_template(
-					'quiz/partials/essay-row.php',
-					array(
-						'essay'   => $essay,
-						'context' => $context,
-					)
-				);
-			endforeach;
-		endif;
-		?>
-
-
 	</div>
 <?php endif; ?>

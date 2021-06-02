@@ -1,6 +1,6 @@
 <?php
 /**
- * Shortcode for ld_quiz
+ * LearnDash `[ld_quiz]` shortcode processing.
  *
  * @since 2.1.0
  *
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `ld_quiz` shortcode output.
+ * Builds the `[ld_quiz]` shortcode output.
  *
  * @global boolean $learndash_shortcode_used
  * @global array   $learndash_shortcode_atts
@@ -20,16 +20,16 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @param array   $atts {
  *    An array of shortcode attributes.
  *
- *    @type int  $course_id   Optional. Course ID. Default 0.
- *    @type int  $quiz_id     Optional. Quiz ID. Default 0.
- *    @type int  $quiz_pro_id Optional. Quiz pro ID. Default 0.
+ *    @type int  $course_id   Course ID. Default 0.
+ *    @type int  $quiz_id     Quiz ID. Default 0.
+ *    @type int  $quiz_pro_id Quiz pro ID. Default 0.
  * }
- * @param string  $content        Optional. The shortcode content. Default empty.
- * @param boolean $show_materials Optional. Whether to show quiz materials. Default false.
+ * @param string  $content        The shortcode content. Default empty.
+ * @param boolean $show_materials Whether to show quiz materials. Default false.
  *
  * @return string The `ld_quiz` shortcode output.
  */
-function learndash_quiz_shortcode( $atts, $content = '', $show_materials = false ) {
+function learndash_quiz_shortcode( $atts = array(), $content = '', $show_materials = false ) {
 
 	global $learndash_shortcode_used, $learndash_shortcode_atts;
 
@@ -158,7 +158,7 @@ function learndash_quiz_shortcode( $atts, $content = '', $show_materials = false
 		$bypass_course_limits_admin_users = learndash_can_user_bypass( $user_id, 'learndash_course_lesson_access_from', $course_id, $quiz_post );
 
 		// For logged in users to allow an override filter.
-		/** This filter is documented in themes/ld30/includes/helpers.php */
+		/** This filter is documented in includes/course/ld-course-progress.php */
 		$bypass_course_limits_admin_users = apply_filters( 'learndash_prerequities_bypass', $bypass_course_limits_admin_users, $user_id, $course_id, $quiz_post );
 		if ( ( true === $bypass_course_limits_admin_users ) && ( ! $attempts_left ) ) {
 			$attempts_left = 1;
@@ -167,7 +167,7 @@ function learndash_quiz_shortcode( $atts, $content = '', $show_materials = false
 		/**
 		 * Filters the quiz attempts left for a user.
 		 *
-		 * See example https://bitbucket.org/snippets/learndash/Gjygja
+		 * See example https://developers.learndash.com/hook/learndash_quiz_attempts/
 		 *
 		 * @since 3.1.0
 		 *
@@ -262,4 +262,4 @@ function learndash_quiz_shortcode( $atts, $content = '', $show_materials = false
 
 	return $content;
 }
-add_shortcode( 'ld_quiz', 'learndash_quiz_shortcode' );
+add_shortcode( 'ld_quiz', 'learndash_quiz_shortcode', 10, 2 );

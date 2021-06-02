@@ -1,9 +1,8 @@
 <?php
 /**
- * Shortcode for ld_certificate
+ * LearnDash `[ld_certificate]` shortcode processing.
  *
  * @since 3.1.4
- *
  * @package LearnDash\Shortcodes
  */
 
@@ -12,24 +11,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `ld_certificate` shortcode output.
+ * Builds the `[ld_certificate]` shortcode output.
  *
  * @global boolean $learndash_shortcode_used
  *
  * @since 3.1.4
  *
- * @param array  $atts {
+ * @param array $atts {
  *    An array of shortcode attributes.
  *
- *    @type int      $course_id Optional. Course ID. Default 0.
- *    @type int      $quiz_id   Optional. Quiz ID. Default 0.
- *    @type int      $user_id   Optional. User ID. Default current user ID.
- *    @type string   $label     Optional. Certificate label. Default translatable 'Certificate' string.
- *    @type string   $class     Optional. Certificate CSS class. Default 'button'.
- *    @type string   $content   Optional. Shortcode context. Default empty.
- *    @type callable $callback  Optional. Callback for certificate button HTML output. Default empty.
+ *    @type int      $course_id Course ID. Default 0.
+ *    @type int      $quiz_id   Quiz ID. Default 0.
+ *    @type int      $user_id   User ID. Default current user ID.
+ *    @type string   $label     Certificate label. Default translatable 'Certificate' string.
+ *    @type string   $class     Certificate CSS class. Default 'button'.
+ *    @type string   $content   Shortcode context. Default empty.
+ *    @type callable $callback  Callback for certificate button HTML output. Default empty.
  * }
- * @param string $content Optional. The shortcode content. Default empty.
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string The `ld_certificate` shortcode output.
  */

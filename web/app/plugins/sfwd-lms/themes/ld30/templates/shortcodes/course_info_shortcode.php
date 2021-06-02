@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays course information for a user
+ * LearnDash LD30 Displays course information for a user
  *
  * Available:
  * $user_id
@@ -8,9 +8,9 @@
  * $course_progress: Progress in courses
  * $quizzes
  *
- * @since 3.0
+ * @since 3.0.0
  *
- * @package LearnDash\Course
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

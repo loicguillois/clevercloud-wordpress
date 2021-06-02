@@ -1,5 +1,25 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+/**
+ * LearnDash LD30 Displays the status of a user's course in the ld_profile shortode
+ *
+ * Available Variables:
+ * $course_id                  : (int) ID of the course
+ * $course                     : (object) Post object of the course
+ * $course_link                : (object) Permalink to the current course
+ * $progress                   : (array) Progress of the current user's course
+ * $status                     : (string) Status of the current user's course
+ * $since                      : (string) Date user gained access to the course
+ * $course_class               : (string) CSS class for each course row
+ * $user_id                    : (int) ID of the user
+ * $course_icon_class          : (string) CSS class for course status icon
+ * $components                 : (array) User status components
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
+ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -21,7 +41,7 @@ if ( empty( $since ) ) {
 	$since = ld_course_access_from( $course_id, $user_id );
 }
 
-/** This filter is documented in plugins/learndash-core/themes/ld30/templates/shortcodes/profile/course-row.php */
+/** This filter is documented in themes/ld30/templates/shortcodes/profile/course-row.php */
 $course_class = apply_filters(
 	'learndash-course-row-class',
 	'ld-item-list-item ld-item-list-item-course ld-expandable ' . ( 100 === absint( $progress['percentage'] ) ? 'learndash-complete' : 'learndash-incomplete' ),
@@ -31,6 +51,8 @@ $course_class = apply_filters(
 
 /**
  * Filters course icon CSS class.
+ *
+ * @since 3.0.0
  *
  * @param string              $course_icon_class List of Course icon CSS class.
  * @param \WP_Post|array|null $course            Course Object.
@@ -66,6 +88,8 @@ $course_icon_class = apply_filters(
 
 				/**
 				 * Filters user status course components.
+				 *
+				 * @since 3.0.0
 				 *
 				 * @param array $components An Array of user status components.
 				 */

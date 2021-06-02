@@ -1,14 +1,41 @@
 <?php
+/**
+ * LearnDash Reports Base Class.
+ *
+ * @since 2.3.0
+ * @package LearnDash
+ */
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 if ( ! class_exists( 'Learndash_Admin_Settings_Data_Reports' ) ) {
+	/**
+	 * LearnDash Reports Base Class.
+	 *
+	 * @since 2.3.0
+	 */
 	class Learndash_Admin_Settings_Data_Reports {
 
+		/**
+		 * Process times
+		 *
+		 * @var array $process_times
+		 */
 		protected $process_times = array();
-		private $report_actions  = array();
 
+		/**
+		 * Report actions
+		 *
+		 * @var array $report_actions
+		 */
+		private $report_actions = array();
+
+		/**
+		 * Public constructor for class
+		 *
+		 * @since 2.3.0
+		 */
 		public function __construct() {
 
 			$this->parent_menu_page_url  = 'admin.php?page=learndash-lms-reports';
@@ -33,6 +60,11 @@ if ( ! class_exists( 'Learndash_Admin_Settings_Data_Reports' ) ) {
 
 		}
 
+		/**
+		 * Init check for download request.
+		 *
+		 * @since 2.3.0
+		 */
 		public function init_check_for_download_request() {
 			if ( isset( $_GET['ld-report-download'] ) ) {
 
@@ -56,6 +88,8 @@ if ( ! class_exists( 'Learndash_Admin_Settings_Data_Reports' ) ) {
 								/**
 								 * Filters http headers for CSV download request.
 								 *
+								 * @since 2.4.7
+								 *
 								 * @param array  $http_headers  An array of http headers.
 								 * @param array  $transient_data An array of transient data for csv download.
 								 * @param string $data_slug     The slug of the data to be downloaded.
@@ -68,6 +102,8 @@ if ( ! class_exists( 'Learndash_Admin_Settings_Data_Reports' ) ) {
 								}
 								/**
 								 * Fires after setting CSV download headers.
+								 *
+								 * @since 2.4.7
 								 */
 								do_action( 'learndash_csv_download_after_headers' );
 
@@ -88,6 +124,8 @@ if ( ! class_exists( 'Learndash_Admin_Settings_Data_Reports' ) ) {
 
 		/**
 		 * Register settings page
+		 *
+		 * @since 2.3.0
 		 */
 		public function admin_menu() {
 
@@ -106,7 +144,7 @@ if ( ! class_exists( 'Learndash_Admin_Settings_Data_Reports' ) ) {
 				add_action( 'load-' . $this->settings_page_id, array( $this, 'on_load_panel' ) );
 
 			} else {
-				// If the data upgreades have not been performed then we call the old Reports page output in ld-admin.php
+				// If the data upgrades have not been performed then we call the old Reports page output in ld-admin.php
 				$this->settings_page_id = add_submenu_page(
 					'learndash-lms',
 					$this->settings_page_title,
@@ -118,6 +156,14 @@ if ( ! class_exists( 'Learndash_Admin_Settings_Data_Reports' ) ) {
 			}
 		}
 
+		/**
+		 * Admin tabs
+		 *
+		 * @since 2.4.0
+		 *
+		 * @param object $admin_menu_section Settings Section instance
+		 * @param object $ld_admin_tabs      LearnDash Admin Tabs instance
+		 */
 		public function admin_tabs( $admin_menu_section, $ld_admin_tabs ) {
 			if ( $admin_menu_section == $this->parent_menu_page_url ) {
 
@@ -133,7 +179,11 @@ if ( ! class_exists( 'Learndash_Admin_Settings_Data_Reports' ) ) {
 			}
 		}
 
-
+		/**
+		 * On load panel
+		 *
+		 * @since 2.3.0
+		 */
 		public function on_load_panel() {
 
 			wp_enqueue_style(
@@ -167,20 +217,34 @@ if ( ! class_exists( 'Learndash_Admin_Settings_Data_Reports' ) ) {
 
 		}
 
+		/**
+		 * Init Report Action
+		 *
+		 * @since 2.3.0
+		 */
 		public function init_report_actions() {
 
 			/**
 			 * Filters admin report register actions.
+			 *
+			 * @since 2.3.0
 			 *
 			 * @param array $report_actions An array of report actions.
 			 */
 			$this->report_actions = apply_filters( 'learndash_admin_report_register_actions', $this->report_actions );
 		}
 
+		/**
+		 * Admin page
+		 *
+		 * @since 2.3.0
+		 */
 		public function admin_page() {
 
 			/**
 			 * Fires before settings page content.
+			 *
+			 * @since 3.0.0
 			 */
 			do_action( 'learndash_settings_page_before_content' );
 			?>
@@ -213,6 +277,16 @@ if ( ! class_exists( 'Learndash_Admin_Settings_Data_Reports' ) ) {
 			<?php
 		}
 
+		/**
+		 * Do data reports
+		 *
+		 * @since 2.3.0
+		 *
+		 * @param array $post_data  Array of post data to process.
+		 * @param array $reply_data Array of reply data to return;
+		 *
+		 * @return array
+		 */
 		public function do_data_reports( $post_data = array(), $reply_data = array() ) {
 
 			$this->init_report_actions();
@@ -227,7 +301,11 @@ if ( ! class_exists( 'Learndash_Admin_Settings_Data_Reports' ) ) {
 			return $reply_data;
 		}
 
-
+		/**
+		 * Init process times
+		 *
+		 * @since 2.3.0
+		 */
 		public function init_process_times() {
 			$this->process_times['started'] = time();
 			$this->process_times['limit']   = ini_get( 'max_execution_time' );
@@ -237,6 +315,11 @@ if ( ! class_exists( 'Learndash_Admin_Settings_Data_Reports' ) ) {
 			}
 		}
 
+		/**
+		 * Out of time check
+		 *
+		 * @since 2.3.0
+		 */
 		public function out_of_timer() {
 			$this->process_times['current_time'] = time();
 
@@ -251,22 +334,81 @@ if ( ! class_exists( 'Learndash_Admin_Settings_Data_Reports' ) ) {
 			return false;
 		}
 
+		/**
+		 * Get process transient data.
+		 *
+		 * @since 2.4.0
+		 *
+		 * @param string $transient_key Unique transient key.
+		 */
 		public function get_transient( $transient_key = '' ) {
 			if ( ! empty( $transient_key ) ) {
+				$transient_key = str_replace( '-', '_', $transient_key );
 				$options_key = 'learndash_reports_' . $transient_key;
-				$options_key = str_replace( '-', '_', $options_key );
-				return get_option( $options_key );
+
+				if ( ( defined( 'LEARNDASH_REPORT_TRANSIENT_STORAGE' ) ) && ( 'file' === LEARNDASH_REPORT_TRANSIENT_STORAGE ) ) {
+					$wp_upload_dir = wp_upload_dir();
+
+					$ld_file_part = '/learndash/reports/learndash_reports_data_' . $transient_key . '.txt';
+
+					$ld_transient_filename = $wp_upload_dir['basedir'] . $ld_file_part;
+					if ( wp_mkdir_p( dirname( $ld_transient_filename ) ) === false ) {
+						$data['error_message'] = esc_html__( 'ERROR: Cannot create working folder. Check that the parent folder is writable', 'learndash' ) . ' ' . dirname( $ld_transient_filename );
+						return;
+					}
+
+					$transient_fp = fopen( $ld_transient_filename, 'r' );
+					if ( $transient_fp ) {
+						$transient_data = '';
+						while ( ! feof( $transient_fp ) ) {
+							$transient_data .= fread( $transient_fp, 4096 );
+						}
+						fclose( $transient_fp );
+
+						$transient_data = maybe_unserialize( $transient_data );
+					}
+				} else {
+					$transient_data = get_option( $options_key );
+				}
+
+				return $transient_data;
 			}
 		}
 
+		/**
+		 * Set process Option cache
+		 *
+		 * @since 3.1.0
+		 *
+		 * @param string $transient_key  Unique transient key.
+		 * @param string $transient_data Array od data to store.
+		 */
 		public function set_option_cache( $transient_key = '', $transient_data = '' ) {
 
 			if ( ! empty( $transient_key ) ) {
+				$transient_key = str_replace( '-', '_', $transient_key );
 				$options_key = 'learndash_reports_' . $transient_key;
-				$options_key = str_replace( '-', '_', $options_key );
 
 				if ( ! empty( $transient_data ) ) {
-					update_option( $options_key, $transient_data );
+					if ( ( defined( 'LEARNDASH_REPORT_TRANSIENT_STORAGE' ) ) && ( 'file' === LEARNDASH_REPORT_TRANSIENT_STORAGE ) ) {
+						$wp_upload_dir = wp_upload_dir();
+
+						$ld_file_part = '/learndash/reports/learndash_reports_data_' . $transient_key . '.txt';
+
+						$ld_transient_filename = $wp_upload_dir['basedir'] . $ld_file_part;
+						if ( wp_mkdir_p( dirname( $ld_transient_filename ) ) === false ) {
+							$data['error_message'] = esc_html__( 'ERROR: Cannot create working folder. Check that the parent folder is writable', 'learndash' ) . ' ' . dirname( $ld_transient_filename );
+							return;
+						}
+
+						$transient_fp = fopen( $ld_transient_filename, 'w' );
+						if ( $transient_fp ) {
+							fwrite( $transient_fp, serialize( $transient_data ) );
+							fclose( $transient_fp );
+						}
+					} else {
+						update_option( $options_key, $transient_data );
+					}
 				} else {
 					delete_option( $options_key );
 				}
@@ -289,7 +431,12 @@ add_action(
 	}
 );
 
-
+/**
+ * Data Reports AJAX function.
+ * Handles AJAX requests for Reports.
+ *
+ * @since 2.3.0
+ */
 function learndash_data_reports_ajax() {
 	$reply_data = array( 'status' => false );
 

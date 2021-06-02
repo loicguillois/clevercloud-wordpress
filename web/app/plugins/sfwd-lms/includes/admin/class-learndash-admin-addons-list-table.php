@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Page Add-ons.
  *
- * @package LearnDash
- * @subpackage Add-on Updates
+ * @since 2.5.5
+ * @package LearnDash\Settings\Add-ons
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -18,25 +18,64 @@ if ( ! class_exists( 'WP_Plugin_Install_List_Table' ) ) {
 }
 
 if ( ( class_exists( 'WP_Plugin_Install_List_Table' ) ) && ( ! class_exists( 'Learndash_Admin_Addons_List_Table' ) ) ) {
+
 	/**
-	 * Class to create Addons list table.
+	 * Class LearnDash Settings Page Add-ons.
+	 *
+	 * @since 2.5.5
+	 * @uses WP_Plugin_Install_List_Table
 	 */
 	class Learndash_Admin_Addons_List_Table extends WP_Plugin_Install_List_Table {
 
-		public $filters       = array();
-		public $per_page      = 50;
-		public $columns       = array();
-		public $addon_updater = null;
-		public $group_id      = 0;
+		/**
+		 * @var array $filters
+		 */
+		public $filters = array();
 
-		public $order   = 'DESC';
+		/**
+		 * @var integer $per_page
+		 */
+		public $per_page = 50;
+
+		/**
+		 * @var array $columns
+		 */
+		public $columns = array();
+
+		/**
+		 * @var object $addon_updater
+		 */
+		public $addon_updater = null;
+
+		/**
+		 * @var integer $group_id
+		 */
+		public $group_id = 0;
+
+		/**
+		 * @var string $order
+		 */
+		public $order = 'DESC';
+
+		/**
+		 * @var string $orderby
+		 */
 		public $orderby = 'last_updated';
 
-		public $tabs        = array();
+		/**
+		 * @var array $tabs
+		 */
+		public $tabs = array();
+
+		/**
+		 * @var string $current_tab
+		 */
 		public $current_tab = 'learndash';
 
 		/**
 		 * List table constructor.
+		 *
+		 * @since 2.5.5
 		 */
 		public function __construct() {
 			global $status, $page;
@@ -71,6 +110,8 @@ if ( ( class_exists( 'WP_Plugin_Install_List_Table' ) ) && ( ! class_exists( 'Le
 
 		/**
 		 * Prepare Items.
+		 *
+		 * @since 2.5.5
 		 */
 		public function prepare_items() {
 			if ( 'learndash' === $this->current_tab ) {
@@ -80,8 +121,9 @@ if ( ( class_exists( 'WP_Plugin_Install_List_Table' ) ) && ( ! class_exists( 'Le
 			} else {
 				/**
 				 * Filters add-on items for a tab.
-				 *
 				 * The dynamic part of the hook refers to the name of the current tab.
+				 *
+				 * @since 2.5.5
 				 *
 				 * @param array $tab_items An array of tab list items.
 				 */
@@ -91,6 +133,8 @@ if ( ( class_exists( 'WP_Plugin_Install_List_Table' ) ) && ( ! class_exists( 'Le
 
 		/**
 		 * Prepare items LearnDash.
+		 *
+		 * @since 2.5.5
 		 */
 		public function prepare_items_learndash() {
 			$this->addon_updater = LearnDash_Addon_Updater::get_instance();
@@ -106,6 +150,8 @@ if ( ( class_exists( 'WP_Plugin_Install_List_Table' ) ) && ( ! class_exists( 'Le
 
 		/**
 		 * Prepare Items Third Party.
+		 *
+		 * @since 2.5.5
 		 */
 		public function prepare_items_third_party() {
 			if ( ! function_exists( 'plugin_api' ) ) {
@@ -190,8 +236,14 @@ if ( ( class_exists( 'WP_Plugin_Install_List_Table' ) ) && ( ! class_exists( 'Le
 		}
 
 		/**
-		 * @param object $plugin_a
-		 * @param object $plugin_b
+		 * Order items callback
+		 * The function compars two items based on $orderby
+		 *
+		 * @since 3.2.0
+		 *
+		 * @param object $plugin_a Add-on instance
+		 * @param object $plugin_b Add-on instance
+		 *
 		 * @return int
 		 */
 		private function order_callback( $plugin_a, $plugin_b ) {
@@ -216,6 +268,8 @@ if ( ( class_exists( 'WP_Plugin_Install_List_Table' ) ) && ( ! class_exists( 'Le
 
 		/**
 		 * Display Rows.
+		 *
+		 * @since 2.5.5
 		 */
 		public function display_rows() {
 			if ( 'learndash' == $this->current_tab ) {
@@ -225,8 +279,9 @@ if ( ( class_exists( 'WP_Plugin_Install_List_Table' ) ) && ( ! class_exists( 'Le
 			} else {
 				/**
 				 * Fires after add-on display row.
-				 *
 				 * The dynamic portion of the hook `$this->current_tab` refers to current tab slug.
+				 *
+				 * @since 2.5.5
 				 */
 				do_action( 'learndash_addon_display_rows_' . $this->current_tab );
 			}
@@ -234,6 +289,8 @@ if ( ( class_exists( 'WP_Plugin_Install_List_Table' ) ) && ( ! class_exists( 'Le
 
 		/**
 		 * Display Rows LearnDash.
+		 *
+		 * @since 2.5.5
 		 */
 		public function display_rows_learndash() {
 			$plugins_allowedtags = array(
@@ -428,6 +485,10 @@ if ( ( class_exists( 'WP_Plugin_Install_List_Table' ) ) && ( ! class_exists( 'Le
 
 		/**
 		 * display_tablenav.
+		 *
+		 * @since 2.5.5
+		 *
+		 * @param string $which
 		 */
 		protected function display_tablenav( $which ) {
 			// Empty function
@@ -435,6 +496,9 @@ if ( ( class_exists( 'WP_Plugin_Install_List_Table' ) ) && ( ! class_exists( 'Le
 
 		/**
 		 * Get Views.
+		 *
+		 * @since 2.5.5
+		 *
 		 * @global array $tabs
 		 * @global string $tab
 		 *
@@ -445,6 +509,8 @@ if ( ( class_exists( 'WP_Plugin_Install_List_Table' ) ) && ( ! class_exists( 'Le
 
 			/**
 			 * Filters list of add-on tabs.
+			 *
+			 * @since 2.5.5
 			 *
 			 * @param array $tabs An array of tabs list.
 			 */
@@ -461,6 +527,8 @@ if ( ( class_exists( 'WP_Plugin_Install_List_Table' ) ) && ( ! class_exists( 'Le
 
 		/**
 		 * Override parent views so we can use the filter bar display.
+		 *
+		 * @since 2.5.5
 		 */
 		public function views() {
 			$views = $this->get_views();
@@ -492,6 +560,8 @@ if ( ( class_exists( 'WP_Plugin_Install_List_Table' ) ) && ( ! class_exists( 'Le
 
 		/**
 		 * Show the force update button.
+		 *
+		 * @since 2.5.9
 		 */
 		public function show_update_button() {
 			$page_url = add_query_arg(

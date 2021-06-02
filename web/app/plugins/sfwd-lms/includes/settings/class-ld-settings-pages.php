@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Page Abstract Class.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.4.0
+ * @package LearnDash\Settings\Pages
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -13,6 +13,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 if ( ! class_exists( 'LearnDash_Settings_Page' ) ) {
 	/**
 	 * Absract for LearnDash Settings Pages.
+	 *
+	 * @since 2.4.0
 	 */
 	abstract class LearnDash_Settings_Page {
 
@@ -107,6 +109,8 @@ if ( ! class_exists( 'LearnDash_Settings_Page' ) ) {
 
 		/**
 		 * Public constructor for class
+		 *
+		 * @since 2.4.0
 		 */
 		public function __construct() {
 			global $learndash_pages;
@@ -157,6 +161,8 @@ if ( ! class_exists( 'LearnDash_Settings_Page' ) ) {
 
 		/**
 		 * Action hook to handle admin_init processing from WP.
+		 *
+		 * @since 2.4.0
 		 */
 		public function admin_init() {
 
@@ -188,6 +194,8 @@ if ( ! class_exists( 'LearnDash_Settings_Page' ) ) {
 
 		/**
 		 * Action hook to handle admin_menu processing from WP.
+		 *
+		 * @since 2.4.0
 		 */
 		public function admin_menu() {
 			if ( ! $this->settings_screen_id ) {
@@ -205,6 +213,8 @@ if ( ! class_exists( 'LearnDash_Settings_Page' ) ) {
 
 		/**
 		 * Action hook to handle admin_tabs processing from LearnDash.
+		 *
+		 * @since 2.4.0
 		 *
 		 * @param string $admin_menu_section Current admin menu section.
 		 */
@@ -225,6 +235,8 @@ if ( ! class_exists( 'LearnDash_Settings_Page' ) ) {
 
 		/**
 		 * Action hook to handle current settings page load.
+		 *
+		 * @since 2.4.0
 		 */
 		public function load_settings_page() {
 			global $learndash_assets_loaded;
@@ -296,6 +308,8 @@ if ( ! class_exists( 'LearnDash_Settings_Page' ) ) {
 		/**
 		 * Action hook to handle current settings page layout columns.
 		 *
+		 * @since 2.4.0
+		 *
 		 * @param integer $columns Number of columns to show.
 		 * @param Object  $screen Current screen object.
 		 *
@@ -329,6 +343,8 @@ if ( ! class_exists( 'LearnDash_Settings_Page' ) ) {
 
 		/**
 		 * Action hook to handle footer JS/CSS added footer
+		 *
+		 * @since 2.4.0
 		 */
 		public function load_footer_scripts() {
 			?>
@@ -372,6 +388,8 @@ if ( ! class_exists( 'LearnDash_Settings_Page' ) ) {
 		/**
 		 * Fucntion to handle showing of Settings page. This is the main function for all visible
 		 * output. Extending classes can implement its own function.
+		 *
+		 * @since 2.4.0
 		 */
 		public function show_settings_page() {
 			if ( defined( 'LEARNDASH_SETTINGS_SECTION_TYPE' ) && ( 'metabox' === LEARNDASH_SETTINGS_SECTION_TYPE ) ) {
@@ -499,6 +517,8 @@ if ( ! class_exists( 'LearnDash_Settings_Page' ) ) {
 		/**
 		 * Class utility function to return the settings page title.
 		 *
+		 * @since 2.5.0
+		 *
 		 * @return string page title.
 		 */
 		public function get_admin_page_title() {
@@ -522,6 +542,8 @@ if ( ! class_exists( 'LearnDash_Settings_Page' ) ) {
 		/**
 		 * Class utility function to return the form wrapper. Supports
 		 * the beginning <form> an ending </form>.
+		 *
+		 * @since 2.5.0
 		 *
 		 * @param boolean $start Flag to indicate if showing start or end of form.
 		 *
@@ -550,6 +572,8 @@ if ( ! class_exists( 'LearnDash_Settings_Page' ) ) {
 
 /**
  * Enqueues the settings page styles and scripts.
+ *
+ * @since 3.0.0
  *
  * @global array $learndash_assets_loaded An array of loaded assets.
  */

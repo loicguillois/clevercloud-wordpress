@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays a course
+ * LearnDash LD30 Displays a group
  *
  * Available Variables:
  *
@@ -15,7 +15,7 @@
  *
  * @since 3.1.7
  *
- * @package LearnDash\Group
+ * @package LearnDash\Templates\LD30
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -105,7 +105,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	 * Filters the content to be echoed after the group status section of the group template output.
 	 *
 	 * @since 3.1.7
-	 * See https://bitbucket.org/snippets/learndash/7oe9K for example use of this filter used for Courses.
+	 * See https://developers.learndash.com/hook/ld_after_course_status_template_container/ for example use of this filter used for Courses.
 	 *
 	 * @param string $content            Custom content showed after the group status section. Can be empty.
 	 * @param string $group_status_index Group status index from the course status label
@@ -203,6 +203,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 						/**
 						 * Filters whether to expand all course steps by default. Default is false.
 						 *
+						 * @since 2.5.0
+						 *
 						 * @param boolean $expand_all Whether to expand all course steps.
 						 * @param int     $course_id  Course ID.
 						 * @param string  $context    The context where course is expanded.
@@ -223,7 +225,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					/**
 					 * Action to add custom content after the course content expand button
 					 *
-					 * @since 3.0
+					 * @since 3.0.0
 					 *
 					 * @param int $group_id Group ID.
 					 * @param int $user_id  User ID.

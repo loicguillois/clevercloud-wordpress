@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section for Quizzes Management and Display Metabox.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 3.0.0
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Quizzes_Management_Display' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Section for Quizzes Management and Display Metabox.
+	 *
+	 * @since 3.0.0
 	 */
 	class LearnDash_Settings_Quizzes_Management_Display extends LearnDash_Settings_Section {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 3.0.0
 		 */
 		protected function __construct() {
 
@@ -78,6 +82,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings values.
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_values() {
 			parent::load_settings_values();
@@ -159,7 +165,7 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 		 * late filtering of the field args just before the display. This is a way to
 		 * defer queries etc.
 		 *
-		 * @since 3.4.0
+		 * @since 3.0.0
 		 *
 		 * @param array $field_args An array of field arguments used to process the ouput.
 		 */
@@ -199,6 +205,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings fields.
+		 *
+		 * @since 3.0.0
 		 */
 		public function load_settings_fields() {
 			$this->setting_option_fields = array();
@@ -463,7 +471,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * Intercept the WP options save logic and check that we have a valid nonce.
 		 *
-		 * @since 3.0
+		 * @since 3.0.0
+		 *
 		 * @param array  $value Array of section fields values.
 		 * @param array  $old_value Array of old values.
 		 * @param string $section_key Section option key should match $this->setting_option_key.
@@ -525,7 +534,7 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 		/**
 		 * This function handles the AJAX actions from the browser.
 		 *
-		 * @since 2.5.9
+		 * @since 3.0.0
 		 */
 		public function ajax_action() {
 			$reply_data = array( 'status' => false );

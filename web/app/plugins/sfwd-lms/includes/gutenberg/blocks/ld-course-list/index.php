@@ -96,6 +96,12 @@ if ( ( class_exists( 'LearnDash_Gutenberg_Block' ) ) && ( ! class_exists( 'Learn
 				'example_show'            => array(
 					'type' => 'boolean',
 				),
+				'price_type'              => array(
+					'type'  => 'array',
+					'items' => array(
+						'type' => 'string',
+					),
+				),
 			);
 			$this->self_closing     = true;
 
@@ -155,12 +161,12 @@ if ( ( class_exists( 'LearnDash_Gutenberg_Block' ) ) && ( ! class_exists( 'Learn
 		 */
 		public function learndash_block_markers_shortcode_atts_filter( $attributes = array(), $shortcode_slug = '', $block_slug = '', $content = '' ) {
 			if ( $shortcode_slug === $this->shortcode_slug ) {
-				if ( isset( $attributes['preview_show'] ) ) {
+				if ( ( isset( $attributes['preview_show'] ) ) && ( true === $attributes['preview_show'] ) ) {
+					if ( isset( $attributes['preview_user_id'] ) ) {
+						$attributes['user_id'] = $attributes['preview_user_id'];
+						unset( $attributes['preview_user_id'] );
+					}
 					unset( $attributes['preview_show'] );
-				}
-
-				if ( isset( $attributes['preview_user_id'] ) ) {
-					unset( $attributes['preview_user_id'] );
 				}
 
 				if ( isset( $attributes['per_page'] ) ) {

@@ -1,6 +1,6 @@
 <?php
 /**
- * Shortcode for visitor
+ * LearnDash `[visitor]` shortcode processing.
  *
  * @since 2.1.0
  *
@@ -12,26 +12,24 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Builds the `visitor` shortcode output.
+ * Builds the `[visitor]` shortcode output.
  *
  * @global boolean $learndash_shortcode_used
- *
- * @todo  function is duplicate of learndash_student_check_shortcode()
  *
  * @since 2.1.0
  *
  * @param array  $atts {
  *    An array of shortcode attributes.
  *
- *    @type int     $course_id Optional. Course ID. Default current course ID.
- *    @type string  $content   Optional. The shortcode content. Default empty
- *    @type boolean $autop     Optional. Whether to replace linebreaks with paragraph elements. Default true.
+ *    @type int     $course_id Course ID. Default current course ID.
+ *    @type string  $content   The shortcode content. Default empty
+ *    @type boolean $autop     Whether to replace linebreaks with paragraph elements. Default true.
  * }
- * @param string $content Optional. The shortcode content. Default empty.
+ * @param string $content The shortcode content. Default empty.
  *
  * @return string The `visitor` shortcode output.
  */
-function learndash_visitor_check_shortcode( $atts, $content = '' ) {
+function learndash_visitor_check_shortcode( $atts = array(), $content = '' ) {
 	global $learndash_shortcode_used;
 
 	if ( ! empty( $content ) ) {
@@ -82,5 +80,4 @@ function learndash_visitor_check_shortcode( $atts, $content = '' ) {
 
 	return $content;
 }
-
-add_shortcode( 'visitor', 'learndash_visitor_check_shortcode' );
+add_shortcode( 'visitor', 'learndash_visitor_check_shortcode', 10, 2 );

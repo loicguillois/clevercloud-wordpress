@@ -2,8 +2,8 @@
 /**
  * LearnDash Settings Section for Per Page Metabox.
  *
- * @package LearnDash
- * @subpackage Settings
+ * @since 2.5.5
+ * @package LearnDash\Settings\Sections
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -12,12 +12,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'LearnDash_Settings_Section_General_Per_Page' ) ) ) {
 	/**
-	 * Class to create the settings section.
+	 * Class LearnDash Settings Section for Per Page Metabox.
+	 *
+	 * @since 2.5.5
 	 */
 	class LearnDash_Settings_Section_General_Per_Page extends LearnDash_Settings_Section {
 
 		/**
 		 * Protected constructor for class
+		 *
+		 * @since 2.5.5
 		 */
 		protected function __construct() {
 			$this->settings_page_id = 'learndash_lms_settings';
@@ -40,6 +44,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings values.
+		 *
+		 * @since 2.5.5
 		 */
 		public function load_settings_values() {
 			parent::load_settings_values();
@@ -69,6 +75,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Validate settings field.
+		 *
+		 * @since 2.5.5
 		 *
 		 * @param string $val Value to be validated.
 		 * @param string $key settings fields key.
@@ -114,6 +122,8 @@ if ( ( class_exists( 'LearnDash_Settings_Section' ) ) && ( ! class_exists( 'Lear
 
 		/**
 		 * Initialize the metabox settings fields.
+		 *
+		 * @since 2.5.5
 		 */
 		public function load_settings_fields() {
 

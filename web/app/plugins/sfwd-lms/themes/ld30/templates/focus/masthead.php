@@ -1,5 +1,13 @@
 <?php
-if ( ! defined( 'ABSPATH' ) ) {
+/**
+ * LearnDash LD30 focus mode masthead.
+ *
+ * @since 3.0.0
+ *
+ * @package LearnDash\Templates\LD30
+ */
+
+ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
@@ -17,6 +25,8 @@ if ( ! empty( $header['logo'] ) ) {
 	 * Filters Focus mode header logo alternative text.
 	 * This filter will be called only if there is a logo set in LearnDash plugin settings.
 	 *
+	 * @since 3.1.0
+	 *
 	 * @param string $logo_alt  Header logo alternative text.
 	 * @param int    $course_id Course ID.
 	 * @param int    $user_id   User ID.
@@ -25,6 +35,8 @@ if ( ! empty( $header['logo'] ) ) {
 	/**
 	 * Filters Focus mode header logo URL.
 	 * This filter will be called only if there is a logo set in LearnDash plugin settings.
+	 *
+	 * @since 3.1.0
 	 *
 	 * @param string $logo_url  Header logo URL.
 	 * @param int    $course_id Course ID.
@@ -36,6 +48,8 @@ if ( ! empty( $header['logo'] ) ) {
 	 * Filters Focus mode header text. This text is used to display in place of the logo.
 	 * This filter will be called only if there is no logo set in LearnDash plugin settings.
 	 *
+	 * @since 3.1.0
+	 *
 	 * @param string $header_text Focus mode header text.
 	 * @param int    $course_id   Course ID.
 	 * @param int    $user_id     User ID.
@@ -45,6 +59,8 @@ if ( ! empty( $header['logo'] ) ) {
 		/**
 		 * Filters Focus mode header text URL.
 		 * This filter will be called only if there is no logo set in LearnDash plugin settings.
+		 *
+		 * @since 3.1.0
 		 *
 		 * @param string $header_text_url Header Text URL
 		 * @param int    $course_id       Course ID.
@@ -59,6 +75,8 @@ if ( ! empty( $header['logo'] ) ) {
 	<?php
 	/**
 	 * Fires before the header mobile nav in the focus template.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param int $course_id Course ID.
 	 * @param int $user_id   User ID.
@@ -77,6 +95,8 @@ if ( ! empty( $header['logo'] ) ) {
 	<?php
 	/**
 	 * Fires before the header logo in the focus template.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param int $course_id Course ID.
 	 * @param int $user_id   User ID.
@@ -110,6 +130,8 @@ if ( ! empty( $header['logo'] ) ) {
 		/**
 		 * Filters Focus mode Header element markup.
 		 *
+		 * @since 3.1.0
+		 *
 		 * @param string $header_element Focus mode header element markup.
 		 * @param array  $header         Array of header element details keyed logo_alt, logo_url, text, text_url.
 		 * @param int    $course_id      Course ID.
@@ -123,6 +145,8 @@ if ( ! empty( $header['logo'] ) ) {
 	<?php
 	/**
 	 * Fires after the header logo in the focus template.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param int $course_id Course ID.
 	 * @param int $user_id   User ID.
@@ -143,6 +167,8 @@ if ( ! empty( $header['logo'] ) ) {
 
 	/**
 	 * Fires before the header nav in the focus template.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param int $course_id Course ID.
 	 * @param int $user_id   User ID.
@@ -167,6 +193,8 @@ if ( ! empty( $header['logo'] ) ) {
 	/**
 	 * Fires after the header nav in the focus template.
 	 *
+	 * @since 3.0.0
+	 *
 	 * @param int $course_id Course ID.
 	 * @param int $user_id   User ID.
 	 */
@@ -178,6 +206,8 @@ if ( ! empty( $header['logo'] ) ) {
 			<?php
 			/**
 			 * Fires before the user menu in the focus template.
+			 *
+			 * @since 3.0.0
 			 *
 			 * @param int $course_id Course ID.
 			 * @param int $user_id   User ID.
@@ -194,6 +224,8 @@ if ( ! empty( $header['logo'] ) ) {
 				/**
 				 * Filters Focus mode user welcome name.
 				 *
+				 * @since 3.0.3
+				 *
 				 * @param string           $user_nicename User nice name.
 				 * @param \WP_User|boolean $user_data     User Object or false if no user found.
 				 */
@@ -207,6 +239,8 @@ if ( ! empty( $header['logo'] ) ) {
 				/**
 				 * Fires before the user avatar in the focus template.
 				 *
+				 * @since 3.0.0
+				 *
 				 * @param int $course_id Course ID.
 				 * @param int $user_id   User ID.
 				 */
@@ -214,6 +248,8 @@ if ( ! empty( $header['logo'] ) ) {
 				echo get_avatar( $user_id );
 				/**
 				 * Fires after the user avatar in the focus template.
+				 *
+				 * @since 3.0.0
 				 *
 				 * @param int $course_id Course ID.
 				 * @param int $user_id   User ID.
@@ -225,6 +261,8 @@ if ( ! empty( $header['logo'] ) ) {
 			<?php
 			/**
 			 * Fires before the header user dropdown in the focus template.
+			 *
+			 * @since 3.0.0
 			 *
 			 * @param int $course_id Course ID.
 			 * @param int $user_id   User ID.
@@ -315,7 +353,9 @@ if ( ! empty( $header['logo'] ) ) {
 
 			<?php
 			/**
-			 * Fires before the header user dropdown in the focus template.
+			 * Fires after the header user dropdown in the focus template.
+			 *
+			 * @since 3.0.0
 			 *
 			 * @param int $course_id Course ID.
 			 * @param int $user_id   User ID.
@@ -328,6 +368,8 @@ if ( ! empty( $header['logo'] ) ) {
 	endif;
 	/**
 	 * Fires after the header user dropdown in the focus template.
+	 *
+	 * @since 3.0.0
 	 *
 	 * @param int $course_id Course ID.
 	 * @param int $user_id   User ID.
