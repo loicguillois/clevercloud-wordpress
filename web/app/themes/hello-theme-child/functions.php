@@ -29,11 +29,8 @@ add_action( 'wp_enqueue_scripts', 'hello_elementor_child_enqueue_scripts', 20 );
 */
 
 /* remove notice login top page */
-add_filter( 'woocommerce_checkout_login_message', 'educawa_return_customer_message' );
- 
-function educawa_return_customer_message() {
-return '';
-}
+remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_login_form', 10 );
+
 
 /* WooCommerce: The Code Below Removes Checkout Fields */
 add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
@@ -61,7 +58,7 @@ function wc_billing_field_strings( $translated_text, $text, $domain ) {
 	//return "";
 	switch ( $translated_text ) {
 		case 'Billing details' :
-			$translated_text = __( 'Contact Information', 'woocommerce' );
+			//$translated_text = __( 'Contact Information', 'woocommerce' );
 			return "";
 			break;
 	}
