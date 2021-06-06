@@ -28,6 +28,51 @@ add_action( 'wp_enqueue_scripts', 'hello_elementor_child_enqueue_scripts', 20 );
 ** Custom WooCommerce checkout 
 */
 
+/* remove notice login top page */
+add_filter( 'woocommerce_checkout_login_message', 'educawa_return_customer_message' );
+ 
+function educawa_return_customer_message() {
+return '';
+}
+
+/* WooCommerce: The Code Below Removes Checkout Fields */
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+function custom_override_checkout_fields( $fields ) {
+	//unset($fields['billing']['billing_first_name']);
+	//unset($fields['billing']['billing_last_name']);
+	unset($fields['billing']['billing_company']);
+	unset($fields['billing']['billing_address_1']);
+	unset($fields['billing']['billing_address_2']);
+	unset($fields['billing']['billing_city']);
+	unset($fields['billing']['billing_postcode']);
+	unset($fields['billing']['billing_country']);
+	unset($fields['billing']['billing_state']);
+	unset($fields['billing']['billing_phone']);
+	unset($fields['order']['order_comments']);
+	//unset($fields['billing']['billing_email']);
+	//unset($fields['account']['account_username']);
+	//unset($fields['account']['account_password']);
+	//unset($fields['account']['account_password-2']);
+	return $fields;
+}
+
+//Change the 'Billing details' checkout label to 'Contact Information'
+function wc_billing_field_strings( $translated_text, $text, $domain ) {
+	//return "";
+	switch ( $translated_text ) {
+		case 'Billing details' :
+			$translated_text = __( 'Contact Information', 'woocommerce' );
+			return "";
+			break;
+	}
+	return $translated_text;
+	//return "";
+}
+add_filter( 'gettext', 'wc_billing_field_strings', 20, 3 );
+
+
+
+
 /* make fields optional */
 
 // Billing and shipping addresses fields
@@ -47,7 +92,7 @@ function filter_default_address_fields( $address_fields ) {
 }
 
 // For billing email and phone - Make them not required
-add_filter( 'woocommerce_billing_fields', 'filter_billing_fields', 20, 1 );
+//add_filter( 'woocommerce_billing_fields', 'filter_billing_fields', 20, 1 );
 function filter_billing_fields( $billing_fields ) {
     // Only on checkout page
     if( ! is_checkout() ) return $billing_fields;
@@ -59,6 +104,8 @@ function filter_billing_fields( $billing_fields ) {
 
 /* hide additional info */
 add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
+
+
 
 /* customize form fields */
 
