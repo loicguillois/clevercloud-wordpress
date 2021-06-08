@@ -1,0 +1,893 @@
+# <>, 2016.
+msgid ""
+msgstr ""
+"Project-Id-Version: computop_woocommerce\n"
+"POT-Creation-Date: 2020-03-20 20:48+0100\n"
+"PO-Revision-Date: 2020-09-30 14:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: French (France)\n"
+"Language: fr_FR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __\n"
+"X-Poedit-SearchPath-0: languages\n"
+"X-Poedit-SearchPath-1: .\n"
+"Report-Msgid-Bugs-To: \n"
+"X-Loco-Version: 2.4.3; wp-5.4.2"
+
+#: account/class-computop-customer-account.php:40
+msgid "Card"
+msgstr "Carte"
+
+#: account/class-computop-customer-account.php:41
+msgid "Card number"
+msgstr "Numéro de carte"
+
+#: account/class-computop-customer-account.php:42
+msgid "Expire date"
+msgstr "Date d'expiration"
+
+#: account/class-computop-customer-account.php:43
+#: account/class-computop-customer-account.php:108
+msgid "Action"
+msgstr "Action"
+
+#: account/class-computop-customer-account.php:62
+msgid "Delete"
+msgstr "Supprimer"
+
+#: account/class-computop-customer-account.php:70
+msgid "No payment card register yet."
+msgstr "Aucune carte bancaire enregistrée."
+
+#: account/class-computop-customer-account.php:103
+#: includes/class-computop-transaction.php:124
+#: views/html-computop-credentials.php:11
+#: views/html-computop-transactions.php:17
+msgid "Status"
+msgstr "Statut"
+
+#: account/class-computop-customer-account.php:104
+msgid "Product"
+msgstr "Produit"
+
+#: account/class-computop-customer-account.php:105
+msgid "Last Payment"
+msgstr "Dernier Paiement"
+
+#: account/class-computop-customer-account.php:106
+msgid "Next Payment"
+msgstr "Prochain Paiement"
+
+#: account/class-computop-customer-account.php:107
+msgid "Remaining payment(s)"
+msgstr "Paiement(s) par abonnement"
+
+#: account/class-computop-customer-account.php:127
+msgid "Enabled"
+msgstr "Activé"
+
+#: account/class-computop-customer-account.php:130
+msgid "Cancel"
+msgstr "Annuler"
+
+#: account/class-computop-customer-account.php:133
+msgid "Illimited"
+msgstr "Illimité"
+
+#: account/class-computop-customer-account.php:139
+msgid "Problem"
+msgstr "Problème"
+
+#: account/class-computop-customer-account.php:144
+msgid "Disabled"
+msgstr "Désactivé"
+
+#: account/class-computop-customer-account.php:177
+#: includes/class-computop-admin-recurring-payment-list.php:207
+msgid "No subscription register yet."
+msgstr "Aucune souscription enregistrée."
+
+#: account/class-computop-customer-account.php:186
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: account/class-computop-customer-account.php:187
+msgid "Your Orders"
+msgstr "Vos commandes"
+
+#: account/class-computop-customer-account.php:188
+msgid "Payment Cards"
+msgstr "Cartes de paiement"
+
+#: account/class-computop-customer-account.php:189
+msgid "Subscriptions"
+msgstr "Abonnements"
+
+#: account/class-computop-customer-account.php:190
+msgid "Download"
+msgstr "Télécharger"
+
+#: account/class-computop-customer-account.php:191
+msgid "Addresses"
+msgstr "Adresses"
+
+#: account/class-computop-customer-account.php:192
+msgid "Account Details"
+msgstr "Détails du compte"
+
+#: account/class-computop-customer-account.php:193
+msgid "Logout"
+msgstr "Se déconnecter"
+
+#: account/class-computop-customer-account.php:203
+msgid "My Payment Cards"
+msgstr "Mes cartes de paiements"
+
+#: account/class-computop-customer-account.php:207
+msgid "My Subscriptions"
+msgstr "Mes abonnements"
+
+#: computop-woocommerce.php:77
+msgid "Transactions history"
+msgstr "Historique des transactions"
+
+#: computop-woocommerce.php:78
+msgid "Transactions schedule"
+msgstr "Calendrier des transactions"
+
+#: computop-woocommerce.php:79 gateways/class-computop-gateway-recurrent.php:31
+#: gateways/class-computop-gateway-recurrent.php:195
+msgid "Recurring Payment"
+msgstr "Paiement par abonnement"
+
+#: computop-woocommerce.php:88
+msgid ""
+"You have to enable the cURL extension on your server to use this module."
+msgstr ""
+"Vous devez activer l'extension cURL sur votre serveur pour utiliser ce "
+"module."
+
+#: computop-woocommerce.php:91
+msgid ""
+"You have to enable the OpenSSL extension on your server to use this module."
+msgstr ""
+"Vous devez activer l'extension OpenSSL sur votre serveur pour utiliser ce "
+"module."
+
+#: computop-woocommerce.php:97
+msgid "Woocommerce's plugin must be active to use Axepta"
+msgstr "Le module Woocommerce doit être activé pour utiliser Axepta"
+
+#: gateways/class-computop-gateway-onetime.php:22
+msgid "One-time payment by Axepta"
+msgstr "Axepta"
+
+#: gateways/class-computop-gateway-onetime.php:24
+msgid "One-time Payment"
+msgstr "Paiement simple"
+
+#: gateways/class-computop-gateway-onetime.php:25
+#: gateways/class-computop-gateway-recurrent.php:32
+msgid "Pay"
+msgstr "PAYER"
+
+#: gateways/class-computop-gateway-onetime.php:145
+#: gateways/class-computop-gateway-recurrent.php:142
+#: includes/class-computop-transaction.php:119
+#: views/html-computop-transactions.php:9
+msgid "N° Transaction"
+msgstr "N° Transaction"
+
+#: gateways/class-computop-gateway-onetime.php:209
+#: gateways/class-computop-gateway-recurrent.php:119
+msgid "Activation"
+msgstr "Activation"
+
+#: gateways/class-computop-gateway-onetime.php:211
+msgid "Active One Time Payment"
+msgstr "Activer le paiement simple"
+
+#: gateways/class-computop-gateway-onetime.php:215
+#: gateways/class-computop-gateway-onetime.php:217
+msgid "Active logs"
+msgstr "Activer les logs"
+
+#: gateways/class-computop-gateway-onetime.php:295
+msgid "Please select a payment method :"
+msgstr "Veuillez sélectionner un moyen de paiement :"
+
+#: gateways/class-computop-gateway-onetime.php:377
+msgid "Register my card for future payments"
+msgstr "Enregistrer mon moyen de paiement pour les futures commandes"
+
+#: gateways/class-computop-gateway-onetime.php:392
+#: gateways/class-computop-gateway-onetime.php:428
+#: gateways/class-computop-gateway-recurrent.php:345
+#: gateways/class-computop-gateway-recurrent.php:492
+msgid "Please choose a card to proceed at the payment."
+msgstr "Merci de choisir un moyen de paiement pour finaliser la commande."
+
+#: gateways/class-computop-gateway-onetime.php:402
+msgid "Please register your social security number."
+msgstr "Merci d'enregistrer votre numéro de sécurité social."
+
+#: gateways/class-computop-gateway-onetime.php:407
+msgid "Your social security number is invalid."
+msgstr "Votre numéro de sécurité social est invalide."
+
+#: gateways/class-computop-gateway-recurrent.php:29
+msgid "Axepta recurring payment"
+msgstr "Paiement par abonnement avec Axepta"
+
+#: gateways/class-computop-gateway-recurrent.php:121
+msgid "Active Recurring Payment"
+msgstr "Activer le paiement par abonnement"
+
+#: gateways/class-computop-gateway-recurrent.php:194
+msgid "Simple Payment"
+msgstr "Paiement simple."
+
+#: gateways/class-computop-gateway-recurrent.php:198
+msgid "Periodicity"
+msgstr "Périodicité"
+
+#: gateways/class-computop-gateway-recurrent.php:204
+msgid "Type of occurrence"
+msgstr "Type d'occurence"
+
+#: gateways/class-computop-gateway-recurrent.php:211
+#: includes/class-computop-admin-recurring-payment-list.php:234
+msgid "Day"
+msgstr "Jour"
+
+#: gateways/class-computop-gateway-recurrent.php:212
+#: includes/class-computop-admin-recurring-payment-list.php:237
+msgid "Month"
+msgstr "Mois"
+
+#: gateways/class-computop-gateway-recurrent.php:215
+msgid "Number of occurrences (0 = unlimited)"
+msgstr "Nombre d'occurences (0 = illimité)"
+
+#: gateways/class-computop-gateway-recurrent.php:221
+msgid "Recurring amount"
+msgstr "Montant de l'abonnement"
+
+#: gateways/class-computop-gateway-recurrent.php:254
+msgid "The occurence number must contain only numeric."
+msgstr "Le nombre d'occurrence doit contenir seulement des chiffres."
+
+#: gateways/class-computop-gateway-recurrent.php:257
+msgid "The amount must contain only numeric."
+msgstr "Le montant doit contenir uniquement des chiffres"
+
+#: includes/class-computop-admin-account.php:38
+msgid "Delete this account"
+msgstr "Supprimer ce compte"
+
+#: includes/class-computop-admin-account.php:44
+msgid "Axepta Account"
+msgstr "Comptes Axepta"
+
+#: includes/class-computop-admin-account.php:49
+msgid "Save Settings"
+msgstr "Enregistrer les paramètres"
+
+#: includes/class-computop-admin-account.php:199
+msgid "You have to register a Merchant ID."
+msgstr "Vous devez enregistrer un Marchand ID."
+
+#: includes/class-computop-admin-account.php:204
+msgid "You have to register your password."
+msgstr "Vous devez enregistrer un mot de passe de cryptage."
+
+#: includes/class-computop-admin-account.php:209
+msgid "You have to register your activation key."
+msgstr "Vous devez enregistrer une clé d'activation."
+
+#: includes/class-computop-admin-account.php:212
+msgid "You have to register a valid activation key."
+msgstr "Vous devez enregistrer une clé d'activation valide."
+
+#: includes/class-computop-admin-account.php:217
+msgid "You have to register a hmac key."
+msgstr "Vous devez renseigner une HMAC-KEY."
+
+#: includes/class-computop-admin-account.php:223
+msgid "The 3DS minimum amount must contain only numeric."
+msgstr "Le montant minimum pour le 3DS doit être numérique."
+
+#: includes/class-computop-admin-account.php:225
+msgid "The 3DS minimum amount must be superior to 0."
+msgstr "Le montant minimum pour le 3DS doit être supérieur à 0."
+
+#: includes/class-computop-admin-account.php:234
+msgid "The time to capture in hours must contain only numeric."
+msgstr "La durée avant la capture en heures doit être numérique."
+
+#: includes/class-computop-admin-account.php:236
+msgid "The time to capture in hours must be superior to 0 and less than 697."
+msgstr ""
+"La durée avant la capture en heures doit être supérieur à 0 et inférieur à "
+"697."
+
+#: includes/class-computop-admin-account.php:243
+msgid ""
+"The key is not compatible with the currency selected in Woocommerce "
+"configuration"
+msgstr ""
+"La clé n'est pas compatible avec la devise sélectionnée dans la "
+"configuration de Woocommerce."
+
+#: includes/class-computop-admin-account.php:253
+msgid "You must choose at less one country"
+msgstr "Vous devez choisir au moins un pays"
+
+#: includes/class-computop-admin-account.php:259
+#: includes/class-computop-admin-credentials.php:55
+msgid "Another configuration exist for this merchant and this country"
+msgstr ""
+"Une autre configuration existe pour ce marchand et l'un des pays sélectionné."
+
+#: includes/class-computop-admin-account.php:399
+msgid "*Currency allowed"
+msgstr "*Devise autorisée"
+
+#: includes/class-computop-admin-account.php:402
+msgid "Currency selected in woocommerce configuration."
+msgstr "Devise sélectionnée dans la configuration de Woocommerce."
+
+#: includes/class-computop-admin-account.php:408
+msgid "*Country allowed"
+msgstr "*Pays autorisés"
+
+#: includes/class-computop-admin-account.php:411
+msgid "Select the country you want to connect to your account"
+msgstr "Sélectionnez le pays que vous souhaitez lier à votre compte"
+
+#: includes/class-computop-admin-account.php:421
+msgid "*Enter your Merchant ID"
+msgstr "*Entrez votre Marchant ID"
+
+#: includes/class-computop-admin-account.php:423
+msgid "This ID is provided by Axepta"
+msgstr "Cet ID est fourni par Axepta"
+
+#: includes/class-computop-admin-account.php:428
+msgid "*Enter your password"
+msgstr "*Entrez votre mot de passe de cryptage"
+
+#: includes/class-computop-admin-account.php:431
+msgid "This password is provided by Axepta"
+msgstr "Le mot de passe est fourni par Axepta"
+
+#: includes/class-computop-admin-account.php:436
+msgid "*Enter your hmac key"
+msgstr "*Entrez votre HMAC-KEY"
+
+#: includes/class-computop-admin-account.php:438
+msgid "This hmac key is provided by Axepta"
+msgstr "La clé \"HMAC KEY\" est fournie par Axepta"
+
+#: includes/class-computop-admin-account.php:443
+msgid "*Enter your activation key"
+msgstr "*Entrez votre clé d'activation"
+
+#: includes/class-computop-admin-account.php:446
+msgid "This key is provided by Axepta"
+msgstr "La clé d'activation est fournie par Axepta"
+
+#: includes/class-computop-admin-account.php:461
+msgid "Payment options"
+msgstr "Options de Paiement"
+
+#: includes/class-computop-admin-account.php:468
+msgid "*Activate 3D-Secure"
+msgstr "*Activer le 3D-Secure"
+
+#: includes/class-computop-admin-account.php:471
+msgid "Add the 3DS Secure control based on the 3DS authentication"
+msgstr "Ajoute le contrôle du 3DS Secure basé sur l'authentification 3DS"
+
+#: includes/class-computop-admin-account.php:474
+#: includes/class-computop-admin-account.php:498
+#: includes/class-computop-admin-account.php:514
+msgid "Yes"
+msgstr "Oui"
+
+#: includes/class-computop-admin-account.php:475
+#: includes/class-computop-admin-account.php:499
+#: includes/class-computop-admin-account.php:515
+msgid "No"
+msgstr "Non"
+
+#: includes/class-computop-admin-account.php:480
+msgid "Minimum amount for which activate 3D-Secure"
+msgstr "Montant minimum pour lequel activer le 3D-Secure"
+
+#: includes/class-computop-admin-account.php:482
+msgid "Minimum amount to add the 3DS"
+msgstr "Montant minimum  pour ajouter le 3DS"
+
+#: includes/class-computop-admin-account.php:492
+msgid "*Activate One-Click Payment"
+msgstr "*Activer le paiement en un clic"
+
+#: includes/class-computop-admin-account.php:495
+msgid "Allow One-Click payment for customers"
+msgstr "Autoriser le paiement en un clic pour les clients"
+
+#: includes/class-computop-admin-account.php:508
+msgid "*Activate Subcriptions"
+msgstr "*Activer l'abonnement"
+
+#: includes/class-computop-admin-account.php:511
+msgid "Allow subcriptions for customers"
+msgstr "Autoriser les abonnements pour les clients"
+
+#: includes/class-computop-admin-account.php:528
+msgid "Payment page"
+msgstr "Page de Paiement"
+
+#: includes/class-computop-admin-account.php:533
+msgid "Card data input method"
+msgstr "*Sélection et saisie des données bancaires lors d'un paiement"
+
+#: includes/class-computop-admin-account.php:537
+msgid ""
+"Redirection : Redirect to payment page<br>Iframe : Payment page in checkout "
+"process"
+msgstr ""
+"Redirection : Redirection externe vers la page de paiement<br>Iframe : "
+"Affichage de la page de paiement sur la boutique"
+
+#: includes/class-computop-admin-account.php:540
+msgid "Redirection"
+msgstr "Redirection"
+
+#: includes/class-computop-admin-account.php:541
+msgid "Iframe"
+msgstr "Iframe"
+
+#: includes/class-computop-admin-account.php:547
+msgid "Capture mode"
+msgstr "*Mode de capture"
+
+#: includes/class-computop-admin-account.php:553
+msgid "Automatic capture payment (by default)"
+msgstr "Capturer le paiement automatiquement (par défaut)"
+
+#: includes/class-computop-admin-account.php:554
+msgid "Capture after time defined"
+msgstr "Capturez le paiement après une durée définie"
+
+#: includes/class-computop-admin-account.php:560
+msgid "Time before capture"
+msgstr "*Délai avant capture"
+
+#: includes/class-computop-admin-account.php:562
+msgid "Delay in hours until the capture (whole number: 1 to 696)."
+msgstr "Délai en heures avant la capture (nombre entier compris en 1 et 696)."
+
+#: includes/class-computop-admin-account.php:578
+msgid "*Enabled this account"
+msgstr "*Activer ce compte"
+
+#: includes/class-computop-admin-account.php:581
+msgid "Enable or disable this account"
+msgstr "Activer ou désactiver ce compte"
+
+#: includes/class-computop-admin-account.php:585
+msgid "Disable"
+msgstr "Désactiver"
+
+#: includes/class-computop-admin-account.php:586
+msgid "Enable"
+msgstr "Activer"
+
+#: includes/class-computop-admin-account.php:626
+msgid "Payment method not allow for select countries"
+msgstr "*Moyen de paiement disponible mais pays non configuré"
+
+#: includes/class-computop-admin-account.php:579
+msgid "Presto product type"
+msgstr "Type de produit Presto"
+
+#: includes/class-computop-admin-account.php:585
+msgid "Household appliances"
+msgstr "Appareils ménagers"
+
+#: includes/class-computop-admin-account.php:586
+msgid "Refrigerator - freezer"
+msgstr "Réfrigérateur - Congélateur"
+
+#: includes/class-computop-admin-account.php:587
+msgid "Dishwasher"
+msgstr "Lave-vaisselle"
+
+#: includes/class-computop-admin-account.php:588
+msgid "Washhing Machine"
+msgstr "Machine à laver"
+
+#: includes/class-computop-admin-account.php:589
+msgid "Group Cleaning"
+msgstr "Nettoyage de groupe"
+
+#: includes/class-computop-admin-account.php:590
+msgid "Refrigerator"
+msgstr "Réfrigérateur"
+
+#: includes/class-computop-admin-account.php:591
+msgid "Freezer"
+msgstr "Congélateur"
+
+#: includes/class-computop-admin-account.php:592
+msgid "Cooker/Cooker hob"
+msgstr "Cuisinier / plaque de cuisson"
+
+#: includes/class-computop-admin-account.php:593
+msgid "Dryer"
+msgstr "Séchoir"
+
+#: includes/class-computop-admin-account.php:594
+msgid "Furniture"
+msgstr "Meubles"
+
+#: includes/class-computop-admin-account.php:595
+msgid "Living Room"
+msgstr "Salon"
+
+#: includes/class-computop-admin-account.php:596
+msgid "Dining Room"
+msgstr "Salle à manger"
+
+#: includes/class-computop-admin-account.php:597
+#: includes/class-computop-admin-account.php:603
+msgid "Bedroom"
+msgstr "Chambre"
+
+#: includes/class-computop-admin-account.php:598
+msgid "Sofa"
+msgstr "Canapé"
+
+#: includes/class-computop-admin-account.php:599
+msgid "Group furniture"
+msgstr "Mobilier de groupe"
+
+#: includes/class-computop-admin-account.php:600
+msgid "Armchair"
+msgstr "Fauteil"
+
+#: includes/class-computop-admin-account.php:601
+msgid "Library/Cabinet"
+msgstr "Bibliothèque / Armoire"
+
+#: includes/class-computop-admin-account.php:602
+msgid "Bedding"
+msgstr "Litterie"
+
+#: includes/class-computop-admin-account.php:604
+msgid "Furniture Textile"
+msgstr "Textile d'ameublement"
+
+#: includes/class-computop-admin-account.php:605
+msgid "Office furniture"
+msgstr "Mobilier de bureau"
+
+#: includes/class-computop-admin-account.php:606
+msgid "Bathroom furniture"
+msgstr "Mobilier de salle de bain"
+
+#: includes/class-computop-admin-account.php:607
+msgid "Kitchen furniture"
+msgstr "Mobilier de cuisine"
+
+#: includes/class-computop-admin-account.php:608
+msgid "TV-Hifi, Digital"
+msgstr "TV-Hifi, Digital"
+
+#: includes/class-computop-admin-account.php:609
+msgid "Video recorder - video"
+msgstr "Enregistrement vidéo - vidéo"
+
+#: includes/class-computop-admin-account.php:610
+msgid "Hifi"
+msgstr "Hifi"
+
+#: includes/class-computop-admin-account.php:611
+msgid "Colour tv"
+msgstr "Tv couleurs"
+
+#: includes/class-computop-admin-account.php:612
+msgid "Information technology"
+msgstr "Informatique"
+
+#: includes/class-computop-admin-account.php:613
+msgid "Group purchase TV - hifi"
+msgstr "Achat groupé TV - hifi"
+
+#: includes/class-computop-admin-account.php:614
+msgid "Photo - Cinema - Optics"
+msgstr "Photo - Cinema - Optique"
+
+#: includes/class-computop-admin-account.php:615
+msgid "Telephony"
+msgstr "Téléphonie"
+
+#: includes/class-computop-admin-account.php:616
+msgid "Home Cinema"
+msgstr "Home Cinéma"
+
+#: includes/class-computop-admin-account.php:617
+msgid "LCD/Plasma Display"
+msgstr "Ecran LCD/Plasma"
+
+#: includes/class-computop-admin-account.php:618
+msgid "Camcorder"
+msgstr "Caméscope"
+
+#: includes/class-computop-admin-account.php:619
+msgid "Computer"
+msgstr "Ordinateur"
+
+#: includes/class-computop-admin-account.php:620
+msgid "Printer/Scanner"
+msgstr "Imprimante/Scanner"
+
+#: includes/class-computop-admin-account.php:621
+msgid "Holiday Trips"
+msgstr "Voyages"
+
+#: includes/class-computop-admin-account.php:622
+msgid "Clothing"
+msgstr "Vêtements"
+
+#: includes/class-computop-admin-account.php:623
+msgid "Books"
+msgstr "Livres"
+
+#: includes/class-computop-admin-account.php:624
+msgid "Leisure Activities"
+msgstr "Loisirs"
+
+#: includes/class-computop-admin-account.php:625
+msgid "DIY - Gardening"
+msgstr "DIY - Jardinage"
+
+#: includes/class-computop-admin-account.php:626
+msgid "Jewellery Store"
+msgstr "Bijouterie"
+
+#: includes/class-computop-admin-account.php:627
+msgid "Radiator"
+msgstr "Radiateur"
+
+#: includes/class-computop-admin-account.php:628
+msgid "Piano"
+msgstr "Piano"
+
+#: includes/class-computop-admin-account.php:629
+msgid "Organ"
+msgstr "Orgue"
+
+#: includes/class-computop-admin-account.php:630
+msgid "Various Music"
+msgstr "Musique variée"
+
+#: includes/class-computop-admin-account.php:632
+msgid "My payment methods"
+msgstr "Mes méthodes de paiements"
+
+#: includes/class-computop-admin-account.php:674
+msgid "Please contact Axepta support to active this payment method."
+msgstr "Non disponible dans votre offre, veuillez contacter Axepta."
+
+#: includes/class-computop-admin-credentials.php:18
+msgid "Account correctly deleted !"
+msgstr "Compte correctement supprimé !"
+
+#: includes/class-computop-admin-credentials.php:20
+msgid "Account not found, cannot be deleted !"
+msgstr "Le compte n'a pas été trouvé, il ne peut pas être supprimé !"
+
+#: includes/class-computop-admin-credentials.php:22
+msgid "Account correctly added !"
+msgstr "Compte correctement ajouté !"
+
+#: includes/class-computop-admin-credentials.php:24
+msgid "Account correctly updated !"
+msgstr "Compte correctement mis à jour !"
+
+#: includes/class-computop-admin-credentials.php:37
+msgid "Axepta Setup"
+msgstr "Axepta Configuration"
+
+#: includes/class-computop-admin-credentials.php:62
+msgid "Add an account"
+msgstr "Ajouter un compte"
+
+#: includes/class-computop-admin-credentials.php:64
+msgid "Axepta Accounts"
+msgstr "Comptes Axepta"
+
+#: includes/class-computop-admin-general.php:41
+msgid "All available payments"
+msgstr "Toutes les méthodes de paiement disponibles"
+
+#: includes/class-computop-admin-recurring-payment-list.php:24
+#: includes/class-computop-admin-recurring-payment-list.php:38
+msgid "Axepta recurring payment list"
+msgstr "Liste des abonnements avec Axepta"
+
+#: includes/class-computop-admin-recurring-payment-list.php:211
+msgid ""
+"Please contact Axepta BNP Paribas to active subscriptions in your module."
+msgstr ""
+"Merci de contacter Axepta BNP Paribas pour activer les abonnements dans "
+"votre module."
+
+#: includes/class-computop-admin-recurring-payment-list.php:232
+msgid "Days"
+msgstr "Jours"
+
+#: includes/class-computop-admin-recurring-payment-list.php:336
+msgid "In progress"
+msgstr "En cours"
+
+#: includes/class-computop-admin-recurring-payment-list.php:346
+msgid "Canceled"
+msgstr "Annulé"
+
+#: includes/class-computop-admin-transactions.php:22
+msgid "Raw data detail - Transaction n° "
+msgstr "Détail des donnés - Transaction n° "
+
+#: includes/class-computop-admin-transactions.php:28
+msgid "Transactions"
+msgstr "Transactions"
+
+#: includes/class-computop-api.php:427
+msgid ""
+"They are a problem with the payment process. Please contact Axepta BNP "
+"Paribas support."
+msgstr ""
+"Il y a eu un problème avec le processus de paiement. Merci de contacter le "
+"support Axepta BNP Paribas."
+
+#: includes/class-computop-api.php:640
+msgid "Payment method is not allowed for your country."
+msgstr "La méthode de paiement n'est pas autorisée pour votre pays."
+
+#: includes/class-computop-api.php:1183
+msgid "Payment accepted"
+msgstr "Paiement accepté"
+
+#: includes/class-computop-api.php:1197
+msgid "Payment failed"
+msgstr "Paiement refusé"
+
+#: includes/class-computop-transaction.php:118
+#: views/html-computop-transactions.php:8
+msgid "Payment brand"
+msgstr "Marque de paiement"
+
+#: includes/class-computop-transaction.php:120
+#: views/html-computop-transactions.php:10
+msgid "N° Order"
+msgstr "N° Commande"
+
+#: includes/class-computop-transaction.php:121
+#: views/html-computop-credentials.php:9
+#: views/html-computop-transactions.php:11
+msgid "Merchant Id"
+msgstr "Marchand ID"
+
+#: includes/class-computop-transaction.php:122
+#: views/html-computop-transactions.php:15
+msgid "Amount"
+msgstr "Montant"
+
+#: includes/class-computop-transaction.php:123
+#: views/html-computop-transactions.php:16
+msgid "Operation type"
+msgstr "Type d'opération"
+
+#: includes/class-computop-transaction.php:125
+#: views/html-computop-transactions.php:18
+msgid "Message response"
+msgstr "Message de réponse"
+
+#: includes/class-computop-transaction.php:126
+#: views/html-computop-transactions.php:20
+msgid "Raw data"
+msgstr "Données brutes"
+
+#: includes/class-computop-transaction.php:151
+msgid "No transactions for this order."
+msgstr "Pas de transactions pour cette commande."
+
+#: views/html-computop-credentials.php:8
+msgid "N° Account"
+msgstr "N° Compte"
+
+#: views/html-computop-credentials.php:10
+msgid "Country"
+msgstr "Pays"
+
+#: views/html-computop-credentials.php:36
+msgid "This account is active"
+msgstr "Ce compte est activé"
+
+#: views/html-computop-credentials.php:38
+msgid "This account is disable"
+msgstr "Ce compte est désactivé"
+
+#: views/html-computop-credentials.php:48
+msgid "No accounts."
+msgstr "Pas de compte."
+
+#: views/html-computop-transaction.php:31
+msgid "Back to the transactions"
+msgstr "Retour aux transactions"
+
+#: views/html-computop-transactions.php:12
+msgid "PayID"
+msgstr "PayID"
+
+#: views/html-computop-transactions.php:13
+msgid "XID"
+msgstr "XID"
+
+#: views/html-computop-transactions.php:14
+msgid "CCExpiry"
+msgstr "CCExpiry"
+
+#: views/html-computop-transactions.php:19
+msgid "Code response"
+msgstr "Code de réponse"
+
+#: views/html-computop-transactions.php:69
+msgid "No transactions."
+msgstr "Pas de transactions."
+
+msgid "Pay with Axepta BNP Paribas"
+msgstr "Payer avec Axepta BNP Paribas"
+
+msgid "Computop Account "
+msgstr "Compte Computop"
+
+msgid "Customer"
+msgstr "Client"
+
+msgid "Subscription price"
+msgstr "Prix de l'abonnement"
+
+msgid "Order date"
+msgstr "Date de la commande"
+
+msgid "Nb valid payment"
+msgstr "Nb paiement(s) validé(s)"
+
+msgid "Last payment"
+msgstr "Dernier paiement"
+
+msgid "Reset filters"
+msgstr "Remise à zéro"
+
+msgid "Beginning"
+msgstr "Début"
+
+msgid "End"
+msgstr "Fin"
+
+msgid "View"
+msgstr "Voir"
+
+msgid "An error occurred while saving the account"
+msgstr "Une erreur est survenue lors de la sauvegarde du compte"

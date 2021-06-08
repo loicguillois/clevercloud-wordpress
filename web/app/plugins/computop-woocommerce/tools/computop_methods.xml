@@ -1,0 +1,3051 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration xmlns:xi="http://www.w3.org/2001/XInclude">
+	<version>2.0.5</version>
+    <methods>
+        <method>
+            <code trigram="VIM">MasterCard/VISA</code>
+            <labels>
+                <label language="fr_FR">MasterCard/VISA</label>
+                <label language="en_EN">MasterCard/VISA</label>
+            </labels>
+            <operations>
+                <operation parameter_set="1" code="payment">                    
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/payssl.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/payssl.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="2" code="oneclick">                    
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/paynow.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/paynow.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="3" code="recurring">  
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/direct.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/direct.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="4" code="cancellation">                     
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/reverse.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/reverse.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="5" code="refund">                     
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/credit.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/credit.aspx</test_url>
+                    </action_urls> 
+                </operation>
+            </operations>            
+            <allow_countries>
+                <allow_country currency="ALL">ALL</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="CVM">CB/VISA/Mastercard</code>
+            <labels>
+                <label language="fr_FR">CB/VISA/Mastercard</label>
+                <label language="en_EN">CB/VISA/Mastercard</label>       
+            </labels>
+            <operations>
+                <operation parameter_set="1" code="payment">                    
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/payssl.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/payssl.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="2" code="oneclick">                    
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/paynow.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/paynow.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="3" code="recurring">  
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/direct.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/direct.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="4" code="cancellation">                     
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/reverse.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/reverse.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="5" code="refund">                     
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/credit.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/credit.aspx</test_url>
+                    </action_urls> 
+                </operation>
+            </operations>          
+            <allow_countries>
+                <allow_country currency="ALL">ALL</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="AMX">AMEX</code>
+            <labels>
+                <label language="fr_FR">AMEX</label>
+                <label language="en_EN">AMEX</label>      
+            </labels>
+            <operations>
+                <operation parameter_set="1" code="payment">                    
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/payssl.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/payssl.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="2" code="oneclick">                    
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/paynow.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/paynow.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="3" code="recurring">  
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/direct.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/direct.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="4" code="cancellation">                     
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/reverse.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/reverse.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="5" code="refund">                     
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/credit.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/credit.aspx</test_url>
+                    </action_urls> 
+                </operation>
+            </operations>         
+            <allow_countries>
+                <allow_country currency="ALL">ALL</allow_country>
+            </allow_countries>
+        </method>        
+        <method>
+            <code trigram="SOF">Sofort</code>
+            <labels>
+                <label language="fr_FR">Sofort</label>
+                <label language="en_EN">Sofort</label>
+            </labels>            
+            <operations>
+                <operation parameter_set="6" code="payment">                
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/sofort.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/sofort.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="7" code="refund">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/credit.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/credit.aspx</test_url>
+                    </action_urls>
+                </operation>
+            </operations>               
+            <allow_countries>
+                <allow_country currency="EUR">DE</allow_country>
+                <allow_country currency="EUR">AT</allow_country>
+                <allow_country currency="EUR">BE</allow_country>
+                <allow_country currency="EUR">IT</allow_country>
+                <allow_country currency="EUR">ES</allow_country>
+                <allow_country currency="EUR">NL</allow_country>
+                <allow_country currency="EUR">CH</allow_country>
+                <allow_country currency="EUR">PL</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="PAL">Paypal</code>
+            <labels>
+                <label language="fr_FR">Paypal</label>
+                <label language="en_EN">Paypal</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="8" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/paypal.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/paypal.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="7" code="refund">
+                <action_urls>
+                    <url>https://paymentpage.axepta.bnpparibas/credit.aspx</url>
+                    <test_url>https://paymentpage.axepta.bnpparibas/credit.aspx</test_url>
+                </action_urls>
+                </operation>
+                <operation parameter_set="4" code="cancellation">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/reverse.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/reverse.aspx</test_url>
+                    </action_urls>                    
+                </operation>
+                <operation parameter_set="9" code="recurring">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/paypalAbo.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/paypalAbo.aspx</test_url>
+                    </action_urls>                    
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="ALL">ALL</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="ALI">Alipay</code>
+            <labels>
+                <label language="fr_FR">Alipay</label>
+                <label language="en_EN">Alipay</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="10" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/alipay.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/alipay.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="7" code="refund">
+                <action_urls>
+                    <url>https://paymentpage.axepta.bnpparibas/credit.aspx</url>
+                    <test_url>https://paymentpage.axepta.bnpparibas/credit.aspx</test_url>
+                </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="AUD">CN</allow_country>
+                <allow_country currency="CAD">CN</allow_country>
+                <allow_country currency="EUR">CN</allow_country>
+                <allow_country currency="GBP">CN</allow_country>
+                <allow_country currency="HKD">CN</allow_country>
+                <allow_country currency="NZD">CN</allow_country>
+                <allow_country currency="SGD">CN</allow_country>
+                <allow_country currency="USD">CN</allow_country>
+            </allow_countries>
+        </method>
+		<method>
+            <code trigram="WEC">Wechat</code>
+            <labels>
+                <label language="fr_FR">Wechat</label>
+                <label language="en_EN">Wechat</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="10" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/wechat.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/wechat.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="7" code="refund">
+                <action_urls>
+                    <url>https://paymentpage.axepta.bnpparibas/credit.aspx</url>
+                    <test_url>https://paymentpage.axepta.bnpparibas/credit.aspx</test_url>
+                </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="EUR">CN</allow_country>
+                <allow_country currency="USD">CN</allow_country>
+                <allow_country currency="GBP">CN</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="PAY">Paysafecard</code>
+            <labels>
+                <label language="fr_FR">Paysafecard</label>
+                <label language="en_EN">Paysafecard</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="11" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/psc.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/psc.aspx</test_url>
+                    </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="AUD">AT</allow_country>
+                <allow_country currency="AUD">AU</allow_country>
+                <allow_country currency="AUD">BE</allow_country>
+                <allow_country currency="AUD">BG</allow_country>
+                <allow_country currency="AUD">CA</allow_country>
+                <allow_country currency="AUD">CH</allow_country>
+                <allow_country currency="AUD">CY</allow_country>
+                <allow_country currency="AUD">CZ</allow_country>
+                <allow_country currency="AUD">DE</allow_country>
+                <allow_country currency="AUD">DK</allow_country>
+                <allow_country currency="AUD">ES</allow_country>
+                <allow_country currency="AUD">FI</allow_country>
+                <allow_country currency="AUD">FR</allow_country>
+                <allow_country currency="AUD">GB</allow_country>
+                <allow_country currency="AUD">GE</allow_country>
+                <allow_country currency="AUD">GI</allow_country>
+                <allow_country currency="AUD">HR</allow_country>
+                <allow_country currency="AUD">HU</allow_country>
+                <allow_country currency="AUD">IE</allow_country>
+                <allow_country currency="AUD">IT</allow_country>
+                <allow_country currency="AUD">LI</allow_country>
+                <allow_country currency="AUD">LT</allow_country>
+                <allow_country currency="AUD">LU</allow_country>
+                <allow_country currency="AUD">MT</allow_country>
+                <allow_country currency="AUD">MX</allow_country>
+                <allow_country currency="AUD">NL</allow_country>
+                <allow_country currency="AUD">NO</allow_country>
+                <allow_country currency="AUD">NZ</allow_country>
+                <allow_country currency="AUD">PE</allow_country>
+                <allow_country currency="AUD">PL</allow_country>
+                <allow_country currency="AUD">PT</allow_country>
+                <allow_country currency="AUD">RO</allow_country>
+                <allow_country currency="AUD">SE</allow_country>
+                <allow_country currency="AUD">SI</allow_country>
+                <allow_country currency="AUD">SK</allow_country>
+                <allow_country currency="AUD">UY</allow_country>
+                <allow_country currency="CAD">AT</allow_country>
+                <allow_country currency="CAD">AU</allow_country>
+                <allow_country currency="CAD">BE</allow_country>
+                <allow_country currency="CAD">BG</allow_country>
+                <allow_country currency="CAD">CA</allow_country>
+                <allow_country currency="CAD">CH</allow_country>
+                <allow_country currency="CAD">CY</allow_country>
+                <allow_country currency="CAD">CZ</allow_country>
+                <allow_country currency="CAD">DE</allow_country>
+                <allow_country currency="CAD">DK</allow_country>
+                <allow_country currency="CAD">ES</allow_country>
+                <allow_country currency="CAD">FI</allow_country>
+                <allow_country currency="CAD">FR</allow_country>
+                <allow_country currency="CAD">GB</allow_country>
+                <allow_country currency="CAD">GE</allow_country>
+                <allow_country currency="CAD">GI</allow_country>
+                <allow_country currency="CAD">HR</allow_country>
+                <allow_country currency="CAD">HU</allow_country>
+                <allow_country currency="CAD">IE</allow_country>
+                <allow_country currency="CAD">IT</allow_country>
+                <allow_country currency="CAD">LI</allow_country>
+                <allow_country currency="CAD">LT</allow_country>
+                <allow_country currency="CAD">LU</allow_country>
+                <allow_country currency="CAD">MT</allow_country>
+                <allow_country currency="CAD">MX</allow_country>
+                <allow_country currency="CAD">NL</allow_country>
+                <allow_country currency="CAD">NO</allow_country>
+                <allow_country currency="CAD">NZ</allow_country>
+                <allow_country currency="CAD">PE</allow_country>
+                <allow_country currency="CAD">PL</allow_country>
+                <allow_country currency="CAD">PT</allow_country>
+                <allow_country currency="CAD">RO</allow_country>
+                <allow_country currency="CAD">SE</allow_country>
+                <allow_country currency="CAD">SI</allow_country>
+                <allow_country currency="CAD">SK</allow_country>
+                <allow_country currency="CAD">UY</allow_country>
+                <allow_country currency="CHF">AT</allow_country>
+                <allow_country currency="CHF">AU</allow_country>
+                <allow_country currency="CHF">BE</allow_country>
+                <allow_country currency="CHF">BG</allow_country>
+                <allow_country currency="CHF">CA</allow_country>
+                <allow_country currency="CHF">CH</allow_country>
+                <allow_country currency="CHF">CY</allow_country>
+                <allow_country currency="CHF">CZ</allow_country>
+                <allow_country currency="CHF">DE</allow_country>
+                <allow_country currency="CHF">DK</allow_country>
+                <allow_country currency="CHF">ES</allow_country>
+                <allow_country currency="CHF">FI</allow_country>
+                <allow_country currency="CHF">FR</allow_country>
+                <allow_country currency="CHF">GB</allow_country>
+                <allow_country currency="CHF">GE</allow_country>
+                <allow_country currency="CHF">GI</allow_country>
+                <allow_country currency="CHF">HR</allow_country>
+                <allow_country currency="CHF">HU</allow_country>
+                <allow_country currency="CHF">IE</allow_country>
+                <allow_country currency="CHF">IT</allow_country>
+                <allow_country currency="CHF">LI</allow_country>
+                <allow_country currency="CHF">LT</allow_country>
+                <allow_country currency="CHF">LU</allow_country>
+                <allow_country currency="CHF">MT</allow_country>
+                <allow_country currency="CHF">MX</allow_country>
+                <allow_country currency="CHF">NL</allow_country>
+                <allow_country currency="CHF">NO</allow_country>
+                <allow_country currency="CHF">NZ</allow_country>
+                <allow_country currency="CHF">PE</allow_country>
+                <allow_country currency="CHF">PL</allow_country>
+                <allow_country currency="CHF">PT</allow_country>
+                <allow_country currency="CHF">RO</allow_country>
+                <allow_country currency="CHF">SE</allow_country>
+                <allow_country currency="CHF">SI</allow_country>
+                <allow_country currency="CHF">SK</allow_country>
+                <allow_country currency="CHF">UY</allow_country>
+                <allow_country currency="EUR">AT</allow_country>
+                <allow_country currency="EUR">AU</allow_country>
+                <allow_country currency="EUR">BE</allow_country>
+                <allow_country currency="EUR">BG</allow_country>
+                <allow_country currency="EUR">CA</allow_country>
+                <allow_country currency="EUR">CH</allow_country>
+                <allow_country currency="EUR">CY</allow_country>
+                <allow_country currency="EUR">CZ</allow_country>
+                <allow_country currency="EUR">DE</allow_country>
+                <allow_country currency="EUR">DK</allow_country>
+                <allow_country currency="EUR">ES</allow_country>
+                <allow_country currency="EUR">FI</allow_country>
+                <allow_country currency="EUR">FR</allow_country>
+                <allow_country currency="EUR">GB</allow_country>
+                <allow_country currency="EUR">GE</allow_country>
+                <allow_country currency="EUR">GI</allow_country>
+                <allow_country currency="EUR">HR</allow_country>
+                <allow_country currency="EUR">HU</allow_country>
+                <allow_country currency="EUR">IE</allow_country>
+                <allow_country currency="EUR">IT</allow_country>
+                <allow_country currency="EUR">LI</allow_country>
+                <allow_country currency="EUR">LT</allow_country>
+                <allow_country currency="EUR">LU</allow_country>
+                <allow_country currency="EUR">MT</allow_country>
+                <allow_country currency="EUR">MX</allow_country>
+                <allow_country currency="EUR">NL</allow_country>
+                <allow_country currency="EUR">NO</allow_country>
+                <allow_country currency="EUR">NZ</allow_country>
+                <allow_country currency="EUR">PE</allow_country>
+                <allow_country currency="EUR">PL</allow_country>
+                <allow_country currency="EUR">PT</allow_country>
+                <allow_country currency="EUR">RO</allow_country>
+                <allow_country currency="EUR">SE</allow_country>
+                <allow_country currency="EUR">SI</allow_country>
+                <allow_country currency="EUR">SK</allow_country>
+                <allow_country currency="EUR">UY</allow_country>
+                <allow_country currency="GBP">AT</allow_country>
+                <allow_country currency="GBP">AU</allow_country>
+                <allow_country currency="GBP">BE</allow_country>
+                <allow_country currency="GBP">BG</allow_country>
+                <allow_country currency="GBP">CA</allow_country>
+                <allow_country currency="GBP">CH</allow_country>
+                <allow_country currency="GBP">CY</allow_country>
+                <allow_country currency="GBP">CZ</allow_country>
+                <allow_country currency="GBP">DE</allow_country>
+                <allow_country currency="GBP">DK</allow_country>
+                <allow_country currency="GBP">ES</allow_country>
+                <allow_country currency="GBP">FI</allow_country>
+                <allow_country currency="GBP">FR</allow_country>
+                <allow_country currency="GBP">GB</allow_country>
+                <allow_country currency="GBP">GE</allow_country>
+                <allow_country currency="GBP">GI</allow_country>
+                <allow_country currency="GBP">HR</allow_country>
+                <allow_country currency="GBP">HU</allow_country>
+                <allow_country currency="GBP">IE</allow_country>
+                <allow_country currency="GBP">IT</allow_country>
+                <allow_country currency="GBP">LI</allow_country>
+                <allow_country currency="GBP">LT</allow_country>
+                <allow_country currency="GBP">LU</allow_country>
+                <allow_country currency="GBP">MT</allow_country>
+                <allow_country currency="GBP">MX</allow_country>
+                <allow_country currency="GBP">NL</allow_country>
+                <allow_country currency="GBP">NO</allow_country>
+                <allow_country currency="GBP">NZ</allow_country>
+                <allow_country currency="GBP">PE</allow_country>
+                <allow_country currency="GBP">PL</allow_country>
+                <allow_country currency="GBP">PT</allow_country>
+                <allow_country currency="GBP">RO</allow_country>
+                <allow_country currency="GBP">SE</allow_country>
+                <allow_country currency="GBP">SI</allow_country>
+                <allow_country currency="GBP">SK</allow_country>
+                <allow_country currency="GBP">UY</allow_country>
+                <allow_country currency="NOK">AT</allow_country>
+                <allow_country currency="NOK">AU</allow_country>
+                <allow_country currency="NOK">BE</allow_country>
+                <allow_country currency="NOK">BG</allow_country>
+                <allow_country currency="NOK">CA</allow_country>
+                <allow_country currency="NOK">CH</allow_country>
+                <allow_country currency="NOK">CY</allow_country>
+                <allow_country currency="NOK">CZ</allow_country>
+                <allow_country currency="NOK">DE</allow_country>
+                <allow_country currency="NOK">DK</allow_country>
+                <allow_country currency="NOK">ES</allow_country>
+                <allow_country currency="NOK">FI</allow_country>
+                <allow_country currency="NOK">FR</allow_country>
+                <allow_country currency="NOK">GB</allow_country>
+                <allow_country currency="NOK">GE</allow_country>
+                <allow_country currency="NOK">GI</allow_country>
+                <allow_country currency="NOK">HR</allow_country>
+                <allow_country currency="NOK">HU</allow_country>
+                <allow_country currency="NOK">IE</allow_country>
+                <allow_country currency="NOK">IT</allow_country>
+                <allow_country currency="NOK">LI</allow_country>
+                <allow_country currency="NOK">LT</allow_country>
+                <allow_country currency="NOK">LU</allow_country>
+                <allow_country currency="NOK">MT</allow_country>
+                <allow_country currency="NOK">MX</allow_country>
+                <allow_country currency="NOK">NL</allow_country>
+                <allow_country currency="NOK">NO</allow_country>
+                <allow_country currency="NOK">NZ</allow_country>
+                <allow_country currency="NOK">PE</allow_country>
+                <allow_country currency="NOK">PL</allow_country>
+                <allow_country currency="NOK">PT</allow_country>
+                <allow_country currency="NOK">RO</allow_country>
+                <allow_country currency="NOK">SE</allow_country>
+                <allow_country currency="NOK">SI</allow_country>
+                <allow_country currency="NOK">SK</allow_country>
+                <allow_country currency="NOK">UY</allow_country>
+                <allow_country currency="PLN">AT</allow_country>
+                <allow_country currency="PLN">AU</allow_country>
+                <allow_country currency="PLN">BE</allow_country>
+                <allow_country currency="PLN">BG</allow_country>
+                <allow_country currency="PLN">CA</allow_country>
+                <allow_country currency="PLN">CH</allow_country>
+                <allow_country currency="PLN">CY</allow_country>
+                <allow_country currency="PLN">CZ</allow_country>
+                <allow_country currency="PLN">DE</allow_country>
+                <allow_country currency="PLN">DK</allow_country>
+                <allow_country currency="PLN">ES</allow_country>
+                <allow_country currency="PLN">FI</allow_country>
+                <allow_country currency="PLN">FR</allow_country>
+                <allow_country currency="PLN">GB</allow_country>
+                <allow_country currency="PLN">GE</allow_country>
+                <allow_country currency="PLN">GI</allow_country>
+                <allow_country currency="PLN">HR</allow_country>
+                <allow_country currency="PLN">HU</allow_country>
+                <allow_country currency="PLN">IE</allow_country>
+                <allow_country currency="PLN">IT</allow_country>
+                <allow_country currency="PLN">LI</allow_country>
+                <allow_country currency="PLN">LT</allow_country>
+                <allow_country currency="PLN">LU</allow_country>
+                <allow_country currency="PLN">MT</allow_country>
+                <allow_country currency="PLN">MX</allow_country>
+                <allow_country currency="PLN">NL</allow_country>
+                <allow_country currency="PLN">NO</allow_country>
+                <allow_country currency="PLN">NZ</allow_country>
+                <allow_country currency="PLN">PE</allow_country>
+                <allow_country currency="PLN">PL</allow_country>
+                <allow_country currency="PLN">PT</allow_country>
+                <allow_country currency="PLN">RO</allow_country>
+                <allow_country currency="PLN">SE</allow_country>
+                <allow_country currency="PLN">SI</allow_country>
+                <allow_country currency="PLN">SK</allow_country>
+                <allow_country currency="PLN">UY</allow_country>
+                <allow_country currency="RON">AT</allow_country>
+                <allow_country currency="RON">AU</allow_country>
+                <allow_country currency="RON">BE</allow_country>
+                <allow_country currency="RON">BG</allow_country>
+                <allow_country currency="RON">CA</allow_country>
+                <allow_country currency="RON">CH</allow_country>
+                <allow_country currency="RON">CY</allow_country>
+                <allow_country currency="RON">CZ</allow_country>
+                <allow_country currency="RON">DE</allow_country>
+                <allow_country currency="RON">DK</allow_country>
+                <allow_country currency="RON">ES</allow_country>
+                <allow_country currency="RON">FI</allow_country>
+                <allow_country currency="RON">FR</allow_country>
+                <allow_country currency="RON">GB</allow_country>
+                <allow_country currency="RON">GE</allow_country>
+                <allow_country currency="RON">GI</allow_country>
+                <allow_country currency="RON">HR</allow_country>
+                <allow_country currency="RON">HU</allow_country>
+                <allow_country currency="RON">IE</allow_country>
+                <allow_country currency="RON">IT</allow_country>
+                <allow_country currency="RON">LI</allow_country>
+                <allow_country currency="RON">LT</allow_country>
+                <allow_country currency="RON">LU</allow_country>
+                <allow_country currency="RON">MT</allow_country>
+                <allow_country currency="RON">MX</allow_country>
+                <allow_country currency="RON">NL</allow_country>
+                <allow_country currency="RON">NO</allow_country>
+                <allow_country currency="RON">NZ</allow_country>
+                <allow_country currency="RON">PE</allow_country>
+                <allow_country currency="RON">PL</allow_country>
+                <allow_country currency="RON">PT</allow_country>
+                <allow_country currency="RON">RO</allow_country>
+                <allow_country currency="RON">SE</allow_country>
+                <allow_country currency="RON">SI</allow_country>
+                <allow_country currency="RON">SK</allow_country>
+                <allow_country currency="RON">UY</allow_country>
+                <allow_country currency="SEK">AT</allow_country>
+                <allow_country currency="SEK">AU</allow_country>
+                <allow_country currency="SEK">BE</allow_country>
+                <allow_country currency="SEK">BG</allow_country>
+                <allow_country currency="SEK">CA</allow_country>
+                <allow_country currency="SEK">CH</allow_country>
+                <allow_country currency="SEK">CY</allow_country>
+                <allow_country currency="SEK">CZ</allow_country>
+                <allow_country currency="SEK">DE</allow_country>
+                <allow_country currency="SEK">DK</allow_country>
+                <allow_country currency="SEK">ES</allow_country>
+                <allow_country currency="SEK">FI</allow_country>
+                <allow_country currency="SEK">FR</allow_country>
+                <allow_country currency="SEK">GB</allow_country>
+                <allow_country currency="SEK">GE</allow_country>
+                <allow_country currency="SEK">GI</allow_country>
+                <allow_country currency="SEK">HR</allow_country>
+                <allow_country currency="SEK">HU</allow_country>
+                <allow_country currency="SEK">IE</allow_country>
+                <allow_country currency="SEK">IT</allow_country>
+                <allow_country currency="SEK">LI</allow_country>
+                <allow_country currency="SEK">LT</allow_country>
+                <allow_country currency="SEK">LU</allow_country>
+                <allow_country currency="SEK">MT</allow_country>
+                <allow_country currency="SEK">MX</allow_country>
+                <allow_country currency="SEK">NL</allow_country>
+                <allow_country currency="SEK">NO</allow_country>
+                <allow_country currency="SEK">NZ</allow_country>
+                <allow_country currency="SEK">PE</allow_country>
+                <allow_country currency="SEK">PL</allow_country>
+                <allow_country currency="SEK">PT</allow_country>
+                <allow_country currency="SEK">RO</allow_country>
+                <allow_country currency="SEK">SE</allow_country>
+                <allow_country currency="SEK">SI</allow_country>
+                <allow_country currency="SEK">SK</allow_country>
+                <allow_country currency="SEK">UY</allow_country>
+                <allow_country currency="USD">AT</allow_country>
+                <allow_country currency="USD">AU</allow_country>
+                <allow_country currency="USD">BE</allow_country>
+                <allow_country currency="USD">BG</allow_country>
+                <allow_country currency="USD">CA</allow_country>
+                <allow_country currency="USD">CH</allow_country>
+                <allow_country currency="USD">CY</allow_country>
+                <allow_country currency="USD">CZ</allow_country>
+                <allow_country currency="USD">DE</allow_country>
+                <allow_country currency="USD">DK</allow_country>
+                <allow_country currency="USD">ES</allow_country>
+                <allow_country currency="USD">FI</allow_country>
+                <allow_country currency="USD">FR</allow_country>
+                <allow_country currency="USD">GB</allow_country>
+                <allow_country currency="USD">GE</allow_country>
+                <allow_country currency="USD">GI</allow_country>
+                <allow_country currency="USD">HR</allow_country>
+                <allow_country currency="USD">HU</allow_country>
+                <allow_country currency="USD">IE</allow_country>
+                <allow_country currency="USD">IT</allow_country>
+                <allow_country currency="USD">LI</allow_country>
+                <allow_country currency="USD">LT</allow_country>
+                <allow_country currency="USD">LU</allow_country>
+                <allow_country currency="USD">MT</allow_country>
+                <allow_country currency="USD">MX</allow_country>
+                <allow_country currency="USD">NL</allow_country>
+                <allow_country currency="USD">NO</allow_country>
+                <allow_country currency="USD">NZ</allow_country>
+                <allow_country currency="USD">PE</allow_country>
+                <allow_country currency="USD">PL</allow_country>
+                <allow_country currency="USD">PT</allow_country>
+                <allow_country currency="USD">RO</allow_country>
+                <allow_country currency="USD">SE</allow_country>
+                <allow_country currency="USD">SI</allow_country>
+                <allow_country currency="USD">SK</allow_country>
+                <allow_country currency="USD">UY</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="SDD">SEPA Direct debit</code>
+            <labels>
+                <label language="fr_FR">SEPA Direct debit</label>
+                <label language="en_EN">SEPA Direct debit</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="12" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/paysdd.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/paysdd.aspx</test_url>
+                    </action_urls>
+                </operation>
+                    <operation parameter_set="7" code="refund">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/credit.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/credit.aspx</test_url>
+                    </action_urls>
+                </operation>
+                    <operation parameter_set="4" code="cancellation">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/reverse.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/reverse.aspx</test_url>
+                    </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="EUR">AT</allow_country>
+                <allow_country currency="EUR">BE</allow_country>
+                <allow_country currency="EUR">BG</allow_country>
+                <allow_country currency="EUR">CH</allow_country>
+                <allow_country currency="EUR">CY</allow_country>
+                <allow_country currency="EUR">CZ</allow_country>
+                <allow_country currency="EUR">DE</allow_country>
+                <allow_country currency="EUR">DK</allow_country>
+                <allow_country currency="EUR">EE</allow_country>
+                <allow_country currency="EUR">ES</allow_country>
+                <allow_country currency="EUR">FI</allow_country>
+                <allow_country currency="EUR">FR</allow_country>
+                <allow_country currency="EUR">GB</allow_country>
+                <allow_country currency="EUR">GR</allow_country>
+                <allow_country currency="EUR">HR</allow_country>
+                <allow_country currency="EUR">HU</allow_country>
+                <allow_country currency="EUR">IE</allow_country>
+                <allow_country currency="EUR">IS</allow_country>
+                <allow_country currency="EUR">IT</allow_country>
+                <allow_country currency="EUR">LI</allow_country>
+                <allow_country currency="EUR">LT</allow_country>
+                <allow_country currency="EUR">LU</allow_country>
+                <allow_country currency="EUR">LV</allow_country>
+                <allow_country currency="EUR">MC</allow_country>
+                <allow_country currency="EUR">MT</allow_country>
+                <allow_country currency="EUR">NL</allow_country>
+                <allow_country currency="EUR">NO</allow_country>
+                <allow_country currency="EUR">PL</allow_country>
+                <allow_country currency="EUR">PT</allow_country>
+                <allow_country currency="EUR">RO</allow_country>
+                <allow_country currency="EUR">SE</allow_country>
+                <allow_country currency="EUR">SI</allow_country>
+                <allow_country currency="EUR">SK</allow_country>
+                <allow_country currency="EUR">SM</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="MYB">MyBank</code>
+            <labels>
+                <label language="fr_FR">MyBank</label>
+                <label language="en_EN">MyBank</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="10" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/myBank.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/myBank.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="7" code="refund">
+                <action_urls>
+                    <url>https://paymentpage.axepta.bnpparibas/credit.aspx</url>
+                    <test_url>https://paymentpage.axepta.bnpparibas/credit.aspx</test_url>
+                </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="EUR">ES</allow_country>
+                <allow_country currency="EUR">GR</allow_country>
+                <allow_country currency="EUR">IT</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="IDE">iDeal</code>
+            <labels>
+                <label language="fr_FR">iDeal</label>
+                <label language="en_EN">iDeal</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="13" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/ideal.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/ideal.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="7" code="refund">
+                <action_urls>
+                    <url>https://paymentpage.axepta.bnpparibas/credit.aspx</url>
+                    <test_url>https://paymentpage.axepta.bnpparibas/credit.aspx</test_url>
+                </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="EUR">NL</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="GIR">Giropay</code>
+            <labels>
+                <label language="fr_FR">Giropay</label>
+                <label language="en_EN">Giropay</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="13" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/giropay.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/giropay.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="7" code="refund">
+                <action_urls>
+                    <url>https://paymentpage.axepta.bnpparibas/credit.aspx</url>
+                    <test_url>https://paymentpage.axepta.bnpparibas/credit.aspx</test_url>
+                </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="EUR">DE</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="TRU">TrustPay</code>
+            <labels>
+                <label language="fr_FR">TrustPay</label>
+                <label language="en_EN">TrustPay</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="21" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/trustpay.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/trustpay.aspx</test_url>
+                    </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="CZK">CZ</allow_country>
+                <allow_country currency="EUR">SK</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="BAN">Bancontact</code>
+            <labels>
+                <label language="fr_FR">Bancontact</label>
+                <label language="en_EN">Bancontact</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="14" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/bancontact.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/bancontact.aspx</test_url>
+                    </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="EUR">BE</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="EPS">EPS</code>
+            <labels>
+                <label language="fr_FR">EPS</label>
+                <label language="en_EN">EPS</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="14" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/eps.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/eps.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="7" code="refund">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/credit.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/credit.aspx</test_url>
+                    </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="EUR">AT</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="P24">Przelewy24</code>
+            <labels>
+                <label language="fr_FR">Przelewy24</label>
+                <label language="en_EN">Przelewy24</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="19" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/p24.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/p24.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="7" code="refund">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/credit.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/credit.aspx</test_url>
+                    </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="EUR">PL</allow_country>
+                <allow_country currency="PLN">PL</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="MUL">Multibanco</code>
+            <labels>
+                <label language="fr_FR">Multibanco</label>
+                <label language="en_EN">Multibanco</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="14" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/multibanco.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/multibanco.aspx</test_url>
+                    </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="EUR">PT</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="UPI">UnionPay</code>
+            <labels>
+                <label language="fr_FR">UnionPay</label>
+                <label language="en_EN">UnionPay</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="15" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/Chinaunionpay.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/Chinaunionpay.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="7" code="refund">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/credit.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/credit.aspx</test_url>
+                    </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="USD">CN</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="ZIM">Zimpler</code>
+            <labels>
+                <label language="fr_FR">Zimpler</label>
+                <label language="en_EN">Zimpler</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="16" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/zimpler.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/zimpler.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="7" code="refund">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/credit.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/credit.aspx</test_url>
+                    </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="EUR">FI</allow_country>
+                <allow_country currency="SEK">SE</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="FPX">MyClear FPX</code>
+            <labels>
+                <label language="fr_FR">MyClear FPX</label>
+                <label language="en_EN">MyClear FPX</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="17" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/myclear.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/myclear.aspx</test_url>
+                    </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="MYR">MY</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="RHB">RHB Bank</code>
+            <labels>
+                <label language="fr_FR">RHB Bank</label>
+                <label language="en_EN">RHB Bank</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="17" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/rhbbank.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/rhbbank.aspx</test_url>
+                    </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="MYR">MY</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="ENE">eNets</code>
+            <labels>
+                <label language="fr_FR">eNets</label>
+                <label language="en_EN">eNets</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="15" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/enets.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/enets.aspx</test_url>
+                    </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="SGD">SG</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="POL">POLi</code>
+            <labels>
+                <label language="fr_FR">POLi</label>
+                <label language="en_EN">POLi</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="10" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/poli.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/poli.aspx</test_url>
+                    </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="AUD">AU</allow_country>
+                <allow_country currency="NZD">NZ</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="BOL">Boleto Bancário</code>
+            <labels>
+                <label language="fr_FR">Boleto Bancário</label>
+                <label language="en_EN">Boleto Bancário</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="18" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/boleto.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/boleto.aspx</test_url>
+                    </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="USD">BR</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="FIN">Finnish eBanking</code>
+            <labels>
+                <label language="fr_FR">Finnish eBanking</label>
+                <label language="en_EN">Finnish eBanking</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="14" code="payment">
+                    <action_urls>
+                        <url>https://www.computop-paygate.com/finlandOBT.aspx</url>
+                        <test_url>https://www.computop-paygate.com/finlandOBT.aspx</test_url>
+                    </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="EUR">FI</allow_country>
+            </allow_countries>
+        </method>
+		<method>
+            <code trigram="FC3">Cetelem 3X</code>
+            <labels>
+                <label language="fr_FR">Cetelem 3X</label>
+                <label language="en_EN">Cetelem 3X</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="20" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/CetelemFullCB.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/CetelemFullCB.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="5" code="refund">
+                <action_urls>
+                    <url>https://paymentpage.axepta.bnpparibas/credit.aspx</url>
+                    <test_url>https://paymentpage.axepta.bnpparibas/credit.aspx</test_url>
+                </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="EUR">FR</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="FC4">Cetelem 4X</code>
+            <labels>
+                <label language="fr_FR">Cetelem 4X</label>
+                <label language="en_EN">Cetelem 4X</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="20" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/CetelemFullCB.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/CetelemFullCB.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="5" code="refund">
+                <action_urls>
+                    <url>https://paymentpage.axepta.bnpparibas/credit.aspx</url>
+                    <test_url>https://paymentpage.axepta.bnpparibas/credit.aspx</test_url>
+                </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="EUR">FR</allow_country>
+            </allow_countries>
+        </method>
+        <method>
+            <code trigram="PRE">Cetelem Presto</code>
+            <labels>
+                <label language="fr_FR">Cetelem Presto</label>
+                <label language="en_EN">Cetelem Presto</label>
+            </labels>                                  
+            <operations>
+                <operation parameter_set="22" code="payment">
+                    <action_urls>
+                        <url>https://paymentpage.axepta.bnpparibas/CetelemPresto.aspx</url>
+                        <test_url>https://paymentpage.axepta.bnpparibas/CetelemPresto.aspx</test_url>
+                    </action_urls>
+                </operation>
+                <operation parameter_set="5" code="refund">
+                <action_urls>
+                    <url>https://paymentpage.axepta.bnpparibas/credit.aspx</url>
+                    <test_url>https://paymentpage.axepta.bnpparibas/credit.aspx</test_url>
+                </action_urls>
+                </operation>
+            </operations>   
+            <allow_countries>
+                <allow_country currency="EUR">FR</allow_country>
+            </allow_countries>
+        </method>
+    </methods>
+    <parameter_sets>
+        <!-- 
+            id 1 = VIM, CVM, AMX payment
+            id 2 = VIM, CVM, AMX oneclick
+            id 3 = VIM, CVM, AMX recurring
+            id 4 = VIM, CVM, AMX cancellation
+            id 5 = VIM, CVM, AMX refund
+            
+            id 4 = Global cancellation
+            id 7 = Global  refund
+            
+            id 6 = SOF, KLA payment
+            
+            id 8 = PAL payment
+            id 9 = PAL recurring
+
+            id 10 = ALI, WEC, MYB, TRU, POL payment  
+
+            id 11 = PAY payment
+
+            id 12 = SDD payment
+            
+            id 13 = IDE, GIR payment
+            
+            id 14 = BAN, EPS, MUL payment
+            
+            id 15 = UPI, ENE payment
+            
+            id 16 = ZIM payment
+            
+            id 17 = RHB, FPX payment
+            
+            id 18 = BOL
+            
+            id 19 = P24 payment
+			
+            id 20 = FC3, FC4 payment
+            
+            id 21 = TRU
+            
+            id 22 = PRE
+        -->
+        <parameter_set id="1">          
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount3D</code>
+                    <format>N..12</format>
+                    <required>OC</required>
+                </parameter>
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLSuccess</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLFailure</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Response</code>
+                    <format>A7</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLNotify</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>UserData</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Capture</code>
+                    <format>ANS..6</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>ReqID</code>
+                    <format>ANS..32</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Custom</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>AccVerify</code>
+                    <format>A3</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>RTF</code>
+                    <format>A1</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Language</code>
+                    <format>A2</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLBack</code>
+                    <format>ANS..256</format>
+                    <required>O</required>
+                </parameter>				
+            </parameters>               
+        </parameter_set>         
+        <parameter_set id="2">      
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount3D</code>
+                    <format>N..12</format>
+                    <required>OC</required>
+                </parameter>
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLSuccess</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLFailure</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Response</code>
+                    <format>A7</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLNotify</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>UserData</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Capture</code>
+                    <format>ANS..6</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>ReqID</code>
+                    <format>ANS..32</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Custom</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>AccVerify</code>
+                    <format>A3</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>RTF</code>
+                    <format>A1</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Language</code>
+                    <format>A2</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLBack</code>
+                    <format>ANS..256</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>CCNr</code>
+                    <format>N..19</format>
+                    <required>M</required>
+                </parameter>  					
+                <parameter>
+                    <code>CCCVC</code>
+                    <format>N..4</format>
+                    <required>O</required>
+                </parameter>     
+                <parameter>
+                    <code>CCExpiry</code>
+                    <format>N6</format>
+                    <required>M</required>
+                </parameter>  
+                <parameter>
+                    <code>CCBrand</code>
+                    <format>A..22</format>
+                    <required>M</required>
+                </parameter>					
+            </parameters>   
+        </parameter_set>
+        <parameter_set id="3">
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter> 
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>CCNr</code>
+                    <format>N..19</format>
+                    <required>M</required>
+                </parameter>  					
+                <parameter>
+                    <code>CCCVC</code>
+                    <format>N..4</format>
+                    <required>O</required>
+                </parameter>     
+                <parameter>
+                    <code>CCExpiry</code>
+                    <format>N6</format>
+                    <required>M</required>
+                </parameter>  
+                <parameter>
+                    <code>CCBrand</code>
+                    <format>A..22</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Capture</code>
+                    <format>ANS..6</format>
+                    <required>O</required>
+                </parameter> 
+                <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>M</required>
+                </parameter> 
+                <parameter>
+                    <code>TermURL</code>
+                    <format>ANS..256</format>
+                    <required>C</required>
+                </parameter> 
+                <parameter>
+                    <code>UserAgent</code>
+                    <format>ANS..128</format>
+                    <required>C</required>
+                </parameter> 	
+                <parameter>
+                    <code>HTTPAccept</code>
+                    <format>ANS..128</format>
+                    <required>C</required>
+                </parameter>
+                <parameter>
+                    <code>ChDesc</code>
+                    <format>AN..21</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>RTF</code>
+                    <format>A1</format>
+                    <required>O</required>
+                </parameter>					
+            </parameters>
+        </parameter_set>   
+        <parameter_set id="4">
+            <parameters>
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>PayID</code>
+                    <format>AN32</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                        
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>  
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>      
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+            </parameters>                        
+        </parameter_set>
+        <parameter_set id="5">
+            <parameters>
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>PayID</code>
+                    <format>AN32</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>   
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>      
+                <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>O</required>
+                </parameter>    
+                <parameter>
+                    <code>Textfield1</code>
+                    <format>ANS..30</format>
+                    <required>O</required>
+                </parameter>  
+                <parameter>
+                    <code>Textfield2</code>
+                    <format>ANS..30</format>
+                    <required>O</required>
+                </parameter>    
+            </parameters>     
+        </parameter_set>
+        <parameter_set id="6">
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AccOwner</code>
+                    <format>AS..27</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AddrCountryCode</code>
+                    <format>A2</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLSuccess</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLFailure</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Response</code>
+                    <format>A7</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLNotify</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>UserData</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>ReqID</code>
+                    <format>ANS..32</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Custom</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Language</code>
+                    <format>A2</format>
+                    <required>O</required>
+                </parameter>					
+            </parameters>
+        </parameter_set>
+        <parameter_set id="7">
+            <parameters>
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>PayID</code>
+                    <format>AN32</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>   
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>    
+            </parameters> 
+        </parameter_set>
+        <parameter_set id="8">
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Capture</code>
+                    <format>ANS..6</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLSuccess</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLFailure</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Response</code>
+                    <format>A7</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>RTF</code>
+                    <format>ANS1</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLNotify</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>ReqID</code>
+                    <format>ANS..32</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Custom</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Language</code>
+                    <format>A2</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>FirstName</code>
+                    <format>AS..30</format>
+                    <required>OC</required>
+                </parameter>
+                <parameter>
+                    <code>LastName</code>
+                    <format>AS..30</format>
+                    <required>OC</required>
+                </parameter>
+                <parameter>
+                    <code>AddrStreet</code>
+                    <format>ANS..100</format>
+                    <required>OC</required>
+                </parameter>
+                <parameter>
+                    <code>AddrStreet2</code>
+                    <format>ANS..100</format>
+                    <required>OC</required>
+                </parameter>
+                <parameter>
+                    <code>AddrCity</code>
+                    <format>ANS..40</format>
+                    <required>OC</required>
+                </parameter>
+                <parameter>
+                    <code>AddrState</code>
+                    <format>ANS..40</format>
+                    <required>OC</required>
+                </parameter>
+                <parameter>
+                    <code>AddrZip</code>
+                    <format>ANS..20</format>
+                    <required>OC</required>
+                </parameter>
+                <parameter>
+                    <code>AddrCountryCode</code>
+                    <format>AN2</format>
+                    <required>OC</required>
+                </parameter>
+                <parameter>
+                    <code>UI</code>
+                    <format>ENUM</format>
+                    <required>OC</required>
+                </parameter>
+                <parameter>
+                    <code>BuyerEMail</code>
+                    <format>ANS..127</format>
+                    <required>OC</required>
+                </parameter>
+            </parameters>
+        </parameter_set>                
+        <parameter_set id="9">
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Capture</code>
+                    <format>ANS..6</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>BillingAgreementID</code>
+                    <format>AN19</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>RTF</code>
+                    <format>ANS1</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLSuccess</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLFailure</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Response</code>
+                    <format>A7</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLNotify</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>ReqID</code>
+                    <format>ANS..32</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Custom</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Language</code>
+                    <format>A2</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>FirstName</code>
+                    <format>AS..30</format>
+                    <required>OC</required>
+                </parameter>
+                <parameter>
+                    <code>LastName</code>
+                    <format>AS..30</format>
+                    <required>OC</required>
+                </parameter>
+                <parameter>
+                    <code>AddrStreet</code>
+                    <format>ANS..100</format>
+                    <required>OC</required>
+                </parameter>
+                <parameter>
+                    <code>AddrStreet2</code>
+                    <format>ANS..100</format>
+                    <required>OC</required>
+                </parameter>
+                <parameter>
+                    <code>AddrCity</code>
+                    <format>ANS..40</format>
+                    <required>OC</required>
+                </parameter>
+                <parameter>
+                    <code>AddrState</code>
+                    <format>ANS..40</format>
+                    <required>OC</required>
+                </parameter>
+                <parameter>
+                    <code>AddrZip</code>
+                    <format>ANS..20</format>
+                    <required>OC</required>
+                </parameter>
+                <parameter>
+                    <code>AddrCountryCode</code>
+                    <format>AN2</format>
+                    <required>OC</required>
+                </parameter>
+            </parameters>
+        </parameter_set>
+		<parameter_set id="10">
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AccOwner</code>
+                    <format>AS..27</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AddrCountryCode</code>
+                    <format>A2</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLSuccess</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLFailure</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Response</code>
+                    <format>A7</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLNotify</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>UserData</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>ReqID</code>
+                    <format>ANS..32</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Custom</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>				
+            </parameters>
+        </parameter_set>
+        <parameter_set id="11">
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AccOwner</code>
+                    <format>AS..27</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>CustomerID</code>
+                    <format>ANS..50</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AddrCountryCode</code>
+                    <format>A2</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLSuccess</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLFailure</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Response</code>
+                    <format>A7</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLNotify</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>UserData</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>ReqID</code>
+                    <format>ANS..32</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Custom</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>				
+            </parameters>
+        </parameter_set>
+        <parameter_set id="12">
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AccOwner</code>
+                    <format>AS..27</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AddrCountryCode</code>
+                    <format>A2</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLSuccess</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLFailure</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Response</code>
+                    <format>A7</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLNotify</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>UserData</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Language</code>
+                    <format>A2</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Email</code>
+                    <format>ANS..100</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>ReqID</code>
+                    <format>ANS..32</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Custom</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>				
+            </parameters>
+        </parameter_set>
+        <parameter_set id="13">
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLSuccess</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLFailure</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Response</code>
+                    <format>A7</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLNotify</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>UserData</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>ReqID</code>
+                    <format>ANS..32</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Custom</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>				
+            </parameters>
+        </parameter_set>
+        <parameter_set id="14">
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AccOwner</code>
+                    <format>AS..27</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLSuccess</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLFailure</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Response</code>
+                    <format>A7</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLNotify</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>UserData</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>ReqID</code>
+                    <format>ANS..32</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Custom</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>				
+            </parameters>
+        </parameter_set>
+        <parameter_set id="15">
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AccOwner</code>
+                    <format>ANS..50</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Email</code>
+                    <format>ANS..100</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Phone</code>
+                    <format>ANS..100</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLSuccess</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLFailure</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Response</code>
+                    <format>A7</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLNotify</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>UserData</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>ReqID</code>
+                    <format>ANS..32</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Custom</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>				
+            </parameters>
+        </parameter_set>
+        <parameter_set id="16">
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AccOwner</code>
+                    <format>ANS..50</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Email</code>
+                    <format>ANS..100</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AddrCountryCode</code>
+                    <format>A2</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLSuccess</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLFailure</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Response</code>
+                    <format>A7</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLNotify</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>UserData</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>ReqID</code>
+                    <format>ANS..32</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Custom</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>				
+            </parameters>
+        </parameter_set>
+        <parameter_set id="17">
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AccOwner</code>
+                    <format>ANS..50</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Email</code>
+                    <format>ANS..100</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Phone</code>
+                    <format>ANS..100</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AddrCountryCode</code>
+                    <format>A2</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLSuccess</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLFailure</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Response</code>
+                    <format>A7</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLNotify</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>UserData</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>ReqID</code>
+                    <format>ANS..32</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Custom</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>				
+            </parameters>
+        </parameter_set>
+        <parameter_set id="18">
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AccOwner</code>
+                    <format>AS..27</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>CustomerID</code>
+                    <format>ANS..50</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Email</code>
+                    <format>ANS..100</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLSuccess</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLFailure</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>SocialSecurityNumber</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Response</code>
+                    <format>A7</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLNotify</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>UserData</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>ReqID</code>
+                    <format>ANS..32</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Custom</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>				
+            </parameters>
+        </parameter_set>
+        <parameter_set id="19">
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AccOwner</code>
+                    <format>AS..27</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLSuccess</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLFailure</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Response</code>
+                    <format>A7</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLNotify</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>UserData</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Email</code>
+                    <format>ANS..100</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>ReqID</code>
+                    <format>ANS..32</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Custom</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>				
+            </parameters>
+        </parameter_set>
+		<parameter_set id="20">
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Capture</code>
+                    <format>ANS..6</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Salutation</code>
+                    <format>A..4</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLSuccess</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLFailure</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Response</code>
+                    <format>A7</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLNotify</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>ReqID</code>
+                    <format>ANS..32</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Phone</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>FirstName</code>
+                    <format>AS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>LastName</code>
+                    <format>AS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Email</code>
+                    <format>ANS..100</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>bdFirstName</code>
+                    <format>ANS..40</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>bdLastName</code>
+                    <format>ANS..40</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>bdStreet</code>
+                    <format>ANS..60</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>bdZip</code>
+                    <format>N..5</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>PayType</code>
+                    <format>N1</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>bdCity</code>
+                    <format>ANS..40</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>bdCountryCode</code>
+                    <format>A2</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>UseBillingData</code>
+                    <format>A..3</format>
+                    <required>M</required>
+                </parameter>
+				<parameter>
+                    <code>UserData</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+				<parameter>
+                    <code>Custom</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+            </parameters>
+		</parameter_set>
+        <parameter_set id="21">
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                 <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                 <parameter>
+                    <code>OrderDesc</code>
+                    <format>ANS..768</format>
+                    <required>M</required>
+                </parameter>
+                 <parameter>
+                    <code>URLSuccess</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLFailure</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Response</code>
+                    <format>A7</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLNotify</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>UserData</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                 <parameter>
+                    <code>ReqID</code>
+                    <format>ANS..32</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Language</code>
+                    <format>A2</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>AccOwner</code>
+                    <format>AS..27</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AddrCountryCode</code>
+                    <format>A2</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Custom</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>				
+            </parameters>
+        </parameter_set>
+        <parameter_set id="22">
+            <parameters>       
+                <parameter>
+                    <code>MerchantID</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>TransID</code>
+                    <format>ANS..64</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Amount</code>
+                    <format>N..12</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Currency</code>
+                    <format>A3</format>
+                    <required>M</required>
+                </parameter>
+                 <parameter>
+                    <code>MAC</code>
+                    <format>AN64</format>
+                    <required>M</required>
+                </parameter>
+                 <parameter>
+                    <code>URLSuccess</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>URLFailure</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Response</code>
+                    <format>A7</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>URLNotify</code>
+                    <format>ANS..256</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>UserData</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>
+                 <parameter>
+                    <code>ReqID</code>
+                    <format>ANS..32</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>Language</code>
+                    <format>A2</format>
+                    <required>O</required>
+                </parameter>
+                <parameter>
+                    <code>GoodsCategory</code>
+                    <format>N3</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>FirstName</code>
+                    <format>ANS..23</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>LastName</code>
+                    <format>ANS..23</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Email</code>
+                    <format>ANS..49</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AddrStreet</code>
+                    <format>ANS..32</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AddrZIP</code>
+                    <format>N5</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>AddrCity</code>
+                    <format>ANS..30</format>
+                    <required>M</required>
+                </parameter>
+                <parameter>
+                    <code>Custom</code>
+                    <format>ANS..1024</format>
+                    <required>O</required>
+                </parameter>				
+            </parameters>
+        </parameter_set>
+    </parameter_sets>
+</configuration>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * 1961-2016 BNP Paribas
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0) that is available
+ * through the world-wide-web at this URL: http://www.opensource.org/licenses/OSL-3.0
+ * If you are unable to obtain it through the world-wide-web, please send an email
+ * to modules@quadra-informatique.fr so we can send you a copy immediately.
+ *
+ *  @author    Quadra Informatique <modules@quadra-informatique.fr>
+ *  @copyright 1961-2016 BNP Paribas
+ *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+ -->
+<computop>
+    <configuration>
+        <enabled>1</enabled>
+        <severity>0</severity>
+        <saveinfile>1</saveinfile>
+        <filename>error.log</filename>
+        <saveinbo>0</saveinbo>
+        <saveinsyslogng>0</saveinsyslogng>
+        <ip></ip>
+        <port>0</port>
+    </configuration>
+</computop>
