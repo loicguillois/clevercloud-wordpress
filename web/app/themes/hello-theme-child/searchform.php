@@ -16,7 +16,11 @@
 	if (isset($_GET['ms'])){
 		$ms = get_query_var('ms');
 	}
-	if ($posttype=='sfwd-lessons') { 
+	/* debug post type not so accurate */
+	//if (($posttype=='sfwd-lessons')&&(isset($_GET['ms']))){ 
+	//if (($posttype=='sfwd-lessons')){ 
+		
+	if( is_single() && is_singular() ){
 		$getparam_1="ms";
 		$action_1 = "";
 		if(isset($_GET['ms'])){
