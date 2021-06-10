@@ -41,6 +41,24 @@ function educawa_template_redirect() {
 }
 
 
+/* add ms query var to handle search matiere page matiere */
+add_filter( 'query_vars', 'educawa_add_query_vars_filter' );
+function educawa_add_query_vars_filter( $vars ) {
+    // add custom query vars that will be public
+    // https://codex.wordpress.org/WordPress_Query_Vars
+	$vars[] .= 'ms';
+    return $vars;
+}
+
+
+
+/* elementor pro main search filter custom query */
+add_action( 'elementor/query/educawa_search_2', function( $query ) {
+	$edusearch=get_search_query();
+	$query->set( 's', $edusearch);
+
+} );
+
 
 /*
 ** Custom WooCommerce checkout 
@@ -157,6 +175,16 @@ add_action( 'elementor/query/educawa_matiere_1', function( $query ) {
 	'compare' => 'in', ]; 
 	
 	$query->set( 'meta_query', $meta_query );
+
+	/* extra to handle custom search flow */
+	$query->set( 'meta_query', $meta_query );
+	if (isset($_GET['ms'])){
+		$ms = get_query_var('ms');
+		/*$query_var[]= [          
+			'ms' =>  [ $ms ], 
+		];*/ 
+		$query->set( 's', $ms);
+	}
 } );
 
 
