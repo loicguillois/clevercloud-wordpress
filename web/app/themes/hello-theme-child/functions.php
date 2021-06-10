@@ -222,6 +222,15 @@ function educawa_shortcode_get_lesson_title() {
 		return $lessontitle;	
 }
 
+/* elementor pro + ele custom skin get course materials : excerpt course */
+add_shortcode( 'educawa_shortcode_4', 'educawa_shortcode_get_course_materials' );
+function educawa_shortcode_get_course_materials() {
+	$postid=get_the_id();
+	$user_id=1;
+	$materials = learndash_elementor_get_step_material( $user_id, $postid );
+	return $materials ;	
+}
+
 /**
 * Example usage for learndash_add_meta_boxes action.
 */
