@@ -23,10 +23,10 @@ function hello_elementor_child_enqueue_scripts() {
 add_action( 'wp_enqueue_scripts', 'hello_elementor_child_enqueue_scripts', 20 );
 
 
-/* Redirect if topic (chapitre) is no sample */
+/* Redirect if topic (chapitre) is no sample + attention aux recherches */
 add_action( 'template_redirect', 'educawa_template_redirect' );
 function educawa_template_redirect() {
-	if(!is_user_logged_in()){
+	if(!is_user_logged_in() && !(isset($_GET['s'])|isset($_GET['ms']) )){
 		if( get_post_type() == 'sfwd-topic' ){
 			$id = get_the_id();
 			//if ( metadata_exists('post',$id,'_meta_key') ) {
