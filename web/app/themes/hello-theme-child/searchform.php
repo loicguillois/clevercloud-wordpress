@@ -19,11 +19,11 @@
 	/* debug post type not so accurate */
 	//if (($posttype=='sfwd-lessons')&&(isset($_GET['ms']))){ 
 	//if (($posttype=='sfwd-lessons')){ 
-		
+
 	if( is_single() && is_singular() ){
 		$getparam_1="ms";
 		$action_1 = "";
-		if(isset($_GET['ms'])){
+		if((isset($_GET['ms'])  && $ms !=""  )){
 			$placeholder_1= $ms;
 		}
 		else{
