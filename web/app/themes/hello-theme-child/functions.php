@@ -60,6 +60,38 @@ add_action( 'elementor/query/educawa_search_2', function( $query ) {
 } );
 
 
+/* custom login button */
+add_shortcode( 'educawa_shortcode_7', 'educawa_shortcode_login_button' );
+function educawa_shortcode_login_button() {
+	if(is_user_logged_in()){
+		$user_info = wp_get_current_user();
+		if ( ( $user_info->first_name )){
+			if ( $user_info->last_name ) {
+				$textlink= $user_info->first_name . ' ' . $user_info->last_name;
+			}
+			else{
+					$textlink= $user_info->first_name;
+			}			
+		}	
+		else{
+			if ( $user_info->last_name ) {
+				$textlink= $user_info->last_name;
+			}
+			else{
+				$textlink= "Votre nom n'est pas renseigné";
+			}			
+		}
+		$urllink=get_permalink( get_option('woocommerce_myaccount_page_id') );
+	}
+	else{
+		$textlink= "Je m'abonne ou je me connecte";
+		$urllink="/inscription-connexion";
+	}
+	$login_button = '<a href="'.$urllink.'">'.$textlink.'</a>';
+	return $login_button;
+}
+
+
 /*
 ** Custom WooCommerce checkout 
 */
