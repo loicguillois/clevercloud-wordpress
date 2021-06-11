@@ -87,7 +87,7 @@ function educawa_shortcode_login_button() {
 		$textlink= "Je m'abonne ou je me connecte";
 		$urllink="/inscription-connexion";
 	}
-	$login_button = '<a href="'.$urllink.'">'.$textlink.'</a>';
+	$login_button = '<a class"educawa-login" href="'.$urllink.'">'.$textlink.'</a>';
 	return $login_button;
 }
 
