@@ -46,7 +46,8 @@
     "wpackagist-plugin/wp-mail-smtp":"2.8.0",
     "wpackagist-plugin/uncanny-learndash-toolkit":"3.5",
     "wpackagist-plugin/woocommerce-sendinblue-newsletter-subscription":"2.0.19",
-    "wpackagist-plugin/ele-custom-skin":"3.1.0"
+    "wpackagist-plugin/ele-custom-skin":"3.1.0",
+    "wpackagist-plugin/password-protected":"2.4"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.4.2",
