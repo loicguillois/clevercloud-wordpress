@@ -45,7 +45,7 @@ else if ($standard==2){
 /****************************** custom ***************************************/
 	?>
 	<div class="woocommerce-MyAccount-content">
-	<h2>Mon Compte Custom</h2> 
+	<!-- <h2>My Account custom </h2> -->
 	<?php
 		/**
 		 * My Account content.
