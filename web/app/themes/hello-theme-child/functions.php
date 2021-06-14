@@ -119,6 +119,9 @@ function custom_override_checkout_fields( $fields ) {
 	//unset($fields['account']['account_username']);
 	//unset($fields['account']['account_password']);
 	//unset($fields['account']['account_password-2']);
+
+	/* Custom fields Educawa */
+	unset($fields['account']['user_birth']);
 	return $fields;
 }
 
