@@ -49,3 +49,30 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
     letter-spacing: 0.01em;
     color: #002700;
 }
+
+a.button, 
+button.button, 
+input.button, 
+#review_form #submit{
+    padding: 12px 28px !important;
+    background-color: #FFFAF400 !important;
+    border: 1px solid #4A7C38 !important;
+    box-sizing: border-box !important;
+    box-shadow: -4px 4px 0px #4A7C38 !important;
+    border-radius: 30px !important;
+    margin:0 16px !important;
+    color:#002700 !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+    line-height: 21px !important;
+}
+
+a.button:hover , 
+button.button:hover , 
+input.button:hover , 
+#review_form #submit{
+    border: 1px solid #FFBAC5 !important;
+    box-sizing: border-box !important;
+    box-shadow: -4px 4px 0px #FFBAC5 !important;
+    opacity: .75 !important;
+}
