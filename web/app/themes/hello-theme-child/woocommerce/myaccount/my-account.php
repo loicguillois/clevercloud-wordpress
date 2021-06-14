@@ -63,17 +63,6 @@ else if ($standard==2){
 			do_action( 'woocommerce_account_edit-account_endpoint', 'woocommerce_account_edit_account' );
 			//do_action( 'woocommerce_account_subscriptions_endpoint', 'woocommerce_account_edit_account' );
 			//do_action( 'woocommerce_account_view-subscription_endpoint', 'woocommerce_account_edit_account' );
-			
-			/* bug deleted plugin ... */
-
-			/*$subscriptions  = wcs_get_users_subscriptions();
-
-			if ( ! empty( $subscriptions ) ){
-				foreach ( $subscriptions as $subscription_id => $subscription ){
-					do_action( 'woocommerce_subscription_details_table', $subscription );
-				}
-				
-			}*/
 			//do_action( 'woocommerce_account_payment-methods_endpoint', 'woocommerce_account_payment_methods' );		
 			//do_action( 'woocommerce_account_orders_endpoint', 'woocommerce_account_orders' );
 			//do_action( 'woocommerce_account_add-payment-method_endpoint', 'woocommerce_account_add_payment_method' );

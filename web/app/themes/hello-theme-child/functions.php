@@ -1,15 +1,11 @@
 <?php
 /**
- * Theme functions and definitions
- *
- * @package HelloElementorChild
- */
+* Theme functions and definitions
+*/
 
 /**
- * Load child theme css and optional scripts
- *
- * @return void
- */
+* Load child theme css and optional scripts
+*/
 function hello_elementor_child_enqueue_scripts() {
 	wp_enqueue_style(
 		'hello-elementor-child-style',
@@ -119,7 +115,6 @@ function custom_override_checkout_fields( $fields ) {
 	//unset($fields['account']['account_username']);
 	//unset($fields['account']['account_password']);
 	//unset($fields['account']['account_password-2']);
-
 	/* Custom fields Educawa */
 	unset($fields['account']['user_birth']);
 	return $fields;
@@ -182,10 +177,8 @@ add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
 */
 
 /**
- * Get additional account fields.
- *
- * @return array
- */
+* Get additional account fields.
+*/
 function educawa_get_account_fields() {
 	return apply_filters( 'educawa_account_fields', array(
 		'user_birth' => array(
@@ -198,8 +191,8 @@ function educawa_get_account_fields() {
 }
 
 /**
- * Add fields to registration form and account area.
- **/
+* Add fields to registration form and account area.
+**/
 add_action( 'woocommerce_edit_account_form', 'educawa_print_user_frontend_fields', 10 ); // my account
 add_action( 'woocommerce_register_form', 'educawa_print_user_frontend_fields', 10 ); // register form
 function educawa_print_user_frontend_fields() {
@@ -211,8 +204,8 @@ function educawa_print_user_frontend_fields() {
 }
 
 /**
- * Show fields at checkout.
- */
+* Show fields at checkout.
+*/
 add_filter( 'woocommerce_checkout_fields', 'educawa_checkout_fields', 10, 1 );
 function educawa_checkout_fields( $checkout_fields ) {
 	$fields = educawa_get_account_fields();
@@ -236,8 +229,8 @@ function educawa_checkout_fields( $checkout_fields ) {
 
 
 /**
- * Add fields to admin area.
- */
+* Add fields to admin area.
+*/
 add_action( 'show_user_profile', 'educawa_print_user_admin_fields', 30 ); // admin: edit profile
 add_action( 'edit_user_profile', 'educawa_print_user_admin_fields', 30 ); // admin: edit other users
 function educawa_print_user_admin_fields() {

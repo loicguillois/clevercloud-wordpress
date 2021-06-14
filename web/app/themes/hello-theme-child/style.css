@@ -82,3 +82,8 @@ input.button:hover ,
 .edit-account .form-row{
     margin-bottom: 32px !important;
 }
+.edit-account fieldset{
+    border: 1px solid #4A7C38 !important;
+    border-radius: 30px !important;
+    margin-bottom: 32px !important;
+}
