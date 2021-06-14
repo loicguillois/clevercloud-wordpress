@@ -76,3 +76,9 @@ input.button:hover ,
     box-shadow: -4px 4px 0px #FFBAC5 !important;
     opacity: .75 !important;
 }
+.woocommerce-checkout .form-row{
+    margin-bottom: 32px !important;
+}
+.edit-account .form-row{
+    margin-bottom: 32px !important;
+}
