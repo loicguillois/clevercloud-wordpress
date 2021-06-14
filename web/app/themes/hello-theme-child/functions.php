@@ -146,7 +146,7 @@ function filter_default_address_fields( $address_fields ) {
     if( ! is_checkout() ) return $address_fields;
 
     // All field keys in this array
-    $key_fields = array('country','first_name','last_name','company','address_1','address_2','city','state','postcode');
+    $key_fields = array('country','company','address_1','address_2','city','state','postcode');
 
     // Loop through each address fields (billing and shipping)
     foreach( $key_fields as $key_field )
