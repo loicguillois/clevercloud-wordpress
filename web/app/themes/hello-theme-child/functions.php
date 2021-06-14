@@ -174,6 +174,148 @@ add_filter( 'woocommerce_enable_order_notes_field', '__return_false' );
 
 
 /* customize form fields */
+/*
+****   WooCommerce fields customization   ****
+*/
+
+/**
+ * Get additional account fields.
+ *
+ * @return array
+ */
+function educawa_get_account_fields() {
+	return apply_filters( 'educawa_account_fields', array(
+		'user_birth' => array(
+			'type'        => 'date',
+			'label'       => __( 'Date de Naissance', 'hello-elementor' ),
+			//'placeholder' => __( 'Date de Naissance', 'hello-elementor' ),
+			'required'    => false,
+		),
+	) );
+}
+
+/**
+ * Add fields to registration form and account area.
+ **/
+add_action( 'woocommerce_edit_account_form', 'educawa_print_user_frontend_fields', 10 ); // my account
+add_action( 'woocommerce_register_form', 'educawa_print_user_frontend_fields', 10 ); // register form
+function educawa_print_user_frontend_fields() {
+	$fields = educawa_get_account_fields();
+
+	foreach ( $fields as $key => $field_args ) {
+		woocommerce_form_field( $key, $field_args );
+	}
+}
+
+/**
+ * Show fields at checkout.
+ */
+add_filter( 'woocommerce_checkout_fields', 'educawa_checkout_fields', 10, 1 );
+function educawa_checkout_fields( $checkout_fields ) {
+	$fields = educawa_get_account_fields();
+
+	foreach ( $fields as $key => $field_args ) {
+		// Make sure our fields have a default priority so
+		// no error is thrown when sorting them.
+		$field_args['priority'] = isset( $field_args['priority'] ) ? $field_args['priority'] : 0;
+
+		$checkout_fields['account'][ $key ] = $field_args;
+	}
+
+	// Default password field has no priority which throws an
+	// error when it tries to order the fields by priority.
+	if ( ! empty( $checkout_fields['account']['account_password'] ) && ! isset( $checkout_fields['account']['account_password']['priority'] ) ) {
+		$checkout_fields['account']['account_password']['priority'] = 0;
+	}
+
+	return $checkout_fields;
+}
+
+
+/**
+ * Add fields to admin area.
+ */
+add_action( 'show_user_profile', 'educawa_print_user_admin_fields', 30 ); // admin: edit profile
+add_action( 'edit_user_profile', 'educawa_print_user_admin_fields', 30 ); // admin: edit other users
+function educawa_print_user_admin_fields() {
+	$fields = educawa_get_account_fields();
+	?>
+	<h2><?php _e( 'Informations additionelles Educawa', 'hello-elementor' ); ?></h2>
+	<table class="form-table" id="educawa-additional-information">
+		<tbody>
+		<?php foreach ( $fields as $key => $field_args ) { ?>
+			<tr>
+				<th>
+					<label for="<?php echo $key; ?>"><?php echo $field_args['label']; ?></label>
+				</th>
+				<td>
+					<?php $field_args['label'] = false; ?>
+					<?php woocommerce_form_field( $key, $field_args ); ?>
+				</td>
+			</tr>
+		<?php } ?>
+		</tbody>
+	</table>
+	<?php
+}
+
+
+/* Add placeholders */
+add_filter( 'woocommerce_form_field_args', 'educawa_custom_form_field_args',10,3 );
+function educawa_custom_form_field_args( $args, $key, $value ) { 
+	if ( $args['id'] == 'billing_first_name' ) {
+		$args['placeholder'] = 'Marie-Anne';
+		//$args['label'] = '';
+	} 
+	elseif ( $args['id'] == 'billing_last_name' ) {
+		$args['placeholder'] = 'Langlais';
+		//$args['label'] = '';
+	} 
+	elseif ( $args['id'] == 'billing_email' ) {
+		$args['placeholder'] = 'votreemail@gmail.com'; 
+		//$args['label'] = '';
+	} 
+	elseif ( $args['id'] == 'account_first_name' ) {
+		$args['placeholder'] = 'Marie-Anne';
+		//$args['label'] = '';
+	} 
+	elseif ( $args['id'] == 'account_last_name' ) {
+		$args['placeholder'] = 'Langlais';
+		//$args['label'] = '';
+	} 
+	elseif ( $args['id'] == 'account_email' ) {
+		$args['placeholder'] = 'votreemail@gmail.com';  
+		//$args['label'] = '';
+	} 
+	elseif ( $args['id'] == 'password_current' ) {
+		$args['placeholder'] = 'Seul vous le connaîtrez';
+		//$args['label'] = '';
+	} 
+	elseif ( $args['id'] == 'password_1' ) {
+		$args['placeholder'] = 'Nouveau mot de passe';  
+		//$args['label'] = '';
+	} 
+	elseif ( $args['id'] == 'password_2' ) {
+		$args['placeholder'] = 'Confirmez le mot de passe';
+		//$args['label'] = '';
+	}
+
+   return $args;
+};
+
+add_filter( 'woocommerce_checkout_fields' , 'educawa_custom_checkout_fields');
+function educawa_custom_checkout_fields( $fields ) {
+	$fields['billing']['billing_first_name']['placeholder'] = 'Marie-Anne';
+	//$fields['billing']['billing_first_name']['label'] = '';
+	$fields['billing']['billing_last_name']['placeholder'] = 'Langlais';
+	//$fields['billing']['billing_last_name']['label'] = '';
+	$fields['billing']['billing_email']['placeholder'] = 'votreemail@gmail.com';  
+	//$fields['billing']['billing_email']['label'] = '';  
+	$fields['account']['account_password']['placeholder'] = 'Seul vous le connaîtrez';
+	//$fields['account']['account_password']['label'] = '';  
+	return $fields;
+}
+
 
 
 
