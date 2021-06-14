@@ -34,7 +34,6 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
     display: none;
 }
 .woocommerce-checkout label{
-    font-family: Athletics;
     font-style: normal;
     font-weight: bold;
     font-size: 20px;
@@ -43,7 +42,6 @@ Tags: flexible-header, custom-colors, custom-menu, custom-logo, editor-style, fe
     color: #002700;
 }
 .edit-account label {
-    font-family: Athletics;
     font-style: normal;
     font-weight: bold;
     font-size: 20px;
