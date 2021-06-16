@@ -98,7 +98,7 @@ remove_action( 'woocommerce_before_checkout_form', 'woocommerce_checkout_login_f
 
 
 /* WooCommerce: The Code Below Removes Checkout Fields */
-//add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
+add_filter( 'woocommerce_checkout_fields' , 'custom_override_checkout_fields' );
 function custom_override_checkout_fields( $fields ) {
 	//unset($fields['billing']['billing_first_name']);
 	//unset($fields['billing']['billing_last_name']);
