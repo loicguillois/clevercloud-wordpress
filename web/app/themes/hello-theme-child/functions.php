@@ -132,7 +132,7 @@ function wc_billing_field_strings( $translated_text, $text, $domain ) {
 	return $translated_text;
 	//return "";
 }
-add_filter( 'gettext', 'wc_billing_field_strings', 20, 3 );
+//add_filter( 'gettext', 'wc_billing_field_strings', 20, 3 );
 
 
 
@@ -142,15 +142,18 @@ add_filter( 'gettext', 'wc_billing_field_strings', 20, 3 );
 // Billing and shipping addresses fields
 add_filter( 'woocommerce_default_address_fields' , 'filter_default_address_fields', 20, 1 );
 function filter_default_address_fields( $address_fields ) {
-    // Only on checkout page
-    if( ! is_checkout() ) return $address_fields;
+    // Only on account pages
+    if(  ! is_account_page() ) return $address_fields;
 
     // All field keys in this array
-    $key_fields = array('country','company','address_1','address_2','city','state','postcode');
+    $key_fields = array('first_name','last_name','state','address_2','company','country');
 
     // Loop through each address fields (billing and shipping)
     foreach( $key_fields as $key_field )
-        $address_fields[$key_field]['required'] = false;
+		unset( $address_fields[$key_field]);
+		
+	$address_fields['postcode']['class'] = array('form-row-first');
+	$address_fields['city']['class'] = array('form-row-last');
 
     return $address_fields;
 }
@@ -190,6 +193,7 @@ function educawa_get_account_fields() {
 	) );
 }
 
+
 /**
 * Add fields to registration form and account area.
 **/
@@ -226,6 +230,7 @@ function educawa_checkout_fields( $checkout_fields ) {
 
 	return $checkout_fields;
 }
+
 
 
 /**
